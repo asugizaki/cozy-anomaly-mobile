@@ -7,8 +7,14 @@
     "icon": "./assets/images/icon.png",
     "scheme": "cozyanomalymobile",
     "userInterfaceStyle": "automatic",
+<<<<<<< HEAD
     "ios": {
       "icon": "./assets/expo.icon"
+=======
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true
+>>>>>>> c1c27eb (Initial commit)
     },
     "android": {
       "adaptiveIcon": {
@@ -17,6 +23,10 @@
         "backgroundImage": "./assets/images/android-icon-background.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
+<<<<<<< HEAD
+=======
+      "edgeToEdgeEnabled": true,
+>>>>>>> c1c27eb (Initial commit)
       "predictiveBackGestureEnabled": false
     },
     "web": {
@@ -28,10 +38,19 @@
       [
         "expo-splash-screen",
         {
+<<<<<<< HEAD
           "backgroundColor": "#208AEF",
           "android": {
             "image": "./assets/images/splash-icon.png",
             "imageWidth": 76
+=======
+          "image": "./assets/images/splash-icon.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#ffffff",
+          "dark": {
+            "backgroundColor": "#000000"
+>>>>>>> c1c27eb (Initial commit)
           }
         }
       ]
