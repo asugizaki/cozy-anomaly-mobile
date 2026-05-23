@@ -1,5 +1,5 @@
 import { Puzzle } from "@/types/puzzle";
-import metadata from "../assets/puzzles/slot_template_test.json";
+import metadata from "../assets/puzzles/cozy_puzzle_001.json";
 
 export const PUZZLES: Puzzle[] = [
   {
@@ -7,7 +7,7 @@ export const PUZZLES: Puzzle[] = [
     title: "Cozy Shelf 001",
     scene: metadata.scene,
     difficulty: metadata.difficulty,
-    image: require("../assets/puzzles/slot_template_test.png"),
+    image: require("../assets/puzzles/cozy_puzzle_001.png"),
     canvas: metadata.canvas,
     target: metadata.target,
   },

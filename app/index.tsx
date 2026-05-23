@@ -4,7 +4,7 @@ import { ImageBackground, Pressable, StyleSheet, Text, View } from "react-native
 export default function HomeScreen() {
   return (
     <ImageBackground
-      source={require("../assets/puzzles/slot_template_test.png")}
+      source={require("../assets/puzzles/cozy_puzzle_001.png")}
       blurRadius={12}
       style={styles.screen}
     >

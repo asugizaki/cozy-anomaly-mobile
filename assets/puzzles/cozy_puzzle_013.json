@@ -1,0 +1,16 @@
+{
+  "scene": "sakura_cafe",
+  "profile": "mobile",
+  "difficulty": "hard",
+  "asset": "teddy_bear",
+  "anomaly": "missing_eye",
+  "answer": "Missing eye",
+  "image": "cozy_puzzle_013.png",
+  "answer_image": "cozy_puzzle_013_answer.png",
+  "answer_box": {
+    "x1": 293,
+    "y1": 730,
+    "x2": 307,
+    "y2": 746
+  }
+}

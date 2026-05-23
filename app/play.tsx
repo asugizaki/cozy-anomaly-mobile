@@ -3,13 +3,14 @@ import { Puzzle } from "@/types/puzzle";
 import { router } from "expo-router";
 import { useMemo, useState } from "react";
 import {
-    Alert,
-    Image,
-    LayoutChangeEvent,
-    Pressable,
-    StyleSheet,
-    Text,
-    View,
+  Alert,
+  Image,
+  Pressable,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  useWindowDimensions,
+  View,
 } from "react-native";
 
 const MAX_ATTEMPTS = 3;
@@ -27,19 +28,36 @@ function isInsideHitbox(x: number, y: number, puzzle: Puzzle) {
 
 export default function PlayScreen() {
   const puzzle = PUZZLES[0];
+  const { width: screenWidth, height: screenHeight } = useWindowDimensions();
 
   const [attemptsLeft, setAttemptsLeft] = useState(MAX_ATTEMPTS);
   const [solved, setSolved] = useState(false);
-  const [imageLayout, setImageLayout] = useState({ width: 0, height: 0 });
 
-  const scale = useMemo(() => {
-    if (!imageLayout.width || !imageLayout.height) return { x: 1, y: 1 };
+  const imageSize = useMemo(() => {
+    const horizontalPadding = 24;
+    const topArea = 112;
+    const bottomArea = 190;
 
-    return {
-      x: imageLayout.width / puzzle.canvas.width,
-      y: imageLayout.height / puzzle.canvas.height,
-    };
-  }, [imageLayout, puzzle.canvas.width, puzzle.canvas.height]);
+    const maxWidth = screenWidth - horizontalPadding;
+    const maxHeight = screenHeight - topArea - bottomArea;
+
+    const canvasAspect = puzzle.canvas.width / puzzle.canvas.height;
+
+    let width = maxWidth;
+    let height = width / canvasAspect;
+
+    if (height > maxHeight) {
+      height = maxHeight;
+      width = height * canvasAspect;
+    }
+
+    return { width, height };
+  }, [screenWidth, screenHeight, puzzle.canvas.width, puzzle.canvas.height]);
+
+  const scale = {
+    x: imageSize.width / puzzle.canvas.width,
+    y: imageSize.height / puzzle.canvas.height,
+  };
 
   const anomalyOverlay = {
     left: puzzle.target.anomaly_box.x * scale.x - 18,
@@ -47,11 +65,6 @@ export default function PlayScreen() {
     width: puzzle.target.anomaly_box.width * scale.x + 36,
     height: puzzle.target.anomaly_box.height * scale.y + 36,
   };
-
-  function handleImageLayout(event: LayoutChangeEvent) {
-    const { width, height } = event.nativeEvent.layout;
-    setImageLayout({ width, height });
-  }
 
   function handlePress(event: any) {
     if (solved) return;
@@ -77,7 +90,7 @@ export default function PlayScreen() {
   }
 
   return (
-    <View style={styles.screen}>
+    <SafeAreaView style={styles.screen}>
       <View style={styles.topBar}>
         <Pressable onPress={() => router.back()} style={styles.iconButton}>
           <Text style={styles.iconText}>‹</Text>
@@ -93,27 +106,44 @@ export default function PlayScreen() {
         </View>
       </View>
 
-      <View style={styles.puzzleCard}>
-        <Pressable onPress={handlePress}>
-          <View onLayout={handleImageLayout}>
-            <Image source={puzzle.image} style={styles.puzzleImage} resizeMode="contain" />
+      <View style={styles.puzzleArea}>
+        <Pressable
+          onPress={handlePress}
+          style={[
+            styles.puzzleFrame,
+            {
+              width: imageSize.width,
+              height: imageSize.height,
+            },
+          ]}
+        >
+          <Image
+            source={puzzle.image}
+            resizeMode="contain"
+            style={{
+              width: imageSize.width,
+              height: imageSize.height,
+            }}
+          />
 
-            {solved && imageLayout.width > 0 && (
-              <View
-                pointerEvents="none"
-                style={[
-                  styles.answerCircle,
-                  {
-                    left: anomalyOverlay.left,
-                    top: anomalyOverlay.top,
-                    width: anomalyOverlay.width,
-                    height: anomalyOverlay.height,
-                    borderRadius: Math.max(anomalyOverlay.width, anomalyOverlay.height),
-                  },
-                ]}
-              />
-            )}
-          </View>
+          {solved && (
+            <View
+              pointerEvents="none"
+              style={[
+                styles.answerCircle,
+                {
+                  left: anomalyOverlay.left,
+                  top: anomalyOverlay.top,
+                  width: anomalyOverlay.width,
+                  height: anomalyOverlay.height,
+                  borderRadius: Math.max(
+                    anomalyOverlay.width,
+                    anomalyOverlay.height
+                  ),
+                },
+              ]}
+            />
+          )}
         </Pressable>
       </View>
 
@@ -123,25 +153,38 @@ export default function PlayScreen() {
             <Text style={styles.answerTitle}>Found it!</Text>
             <Text style={styles.answerText}>{puzzle.target.answer}</Text>
 
-            <Pressable style={styles.primaryButton} onPress={() => setSolved(false)}>
+            <Pressable
+              style={styles.primaryButton}
+              onPress={() => {
+                setSolved(false);
+                setAttemptsLeft(MAX_ATTEMPTS);
+              }}
+            >
               <Text style={styles.primaryButtonText}>Replay</Text>
             </Pressable>
           </>
         ) : (
           <>
             <Text style={styles.answerTitle}>Find the anomaly</Text>
-            <Text style={styles.answerText}>Tap the item that looks different.</Text>
+            <Text style={styles.answerText}>
+              Tap the item that looks different.
+            </Text>
 
             <Pressable
               style={styles.secondaryButton}
-              onPress={() => Alert.alert("Hint", "Look closely at small facial or accessory details.")}
+              onPress={() =>
+                Alert.alert(
+                  "Hint",
+                  "Look closely at small facial or accessory details."
+                )
+              }
             >
               <Text style={styles.secondaryButtonText}>Use Hint</Text>
             </Pressable>
           </>
         )}
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -149,64 +192,60 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     backgroundColor: "#F7EAD8",
-    paddingTop: 56,
   },
   topBar: {
+    height: 86,
     paddingHorizontal: 18,
-    paddingBottom: 12,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
   },
   iconButton: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
+    width: 52,
+    height: 52,
+    borderRadius: 26,
     backgroundColor: "#FFFFFFCC",
     alignItems: "center",
     justifyContent: "center",
   },
   iconText: {
-    fontSize: 34,
+    fontSize: 38,
     color: "#5A3D2B",
-    marginTop: -3,
+    marginTop: -4,
   },
   levelText: {
-    fontSize: 18,
+    fontSize: 26,
     fontWeight: "900",
     color: "#4B2E20",
     textAlign: "center",
   },
   subText: {
-    fontSize: 12,
-    fontWeight: "700",
+    fontSize: 16,
+    fontWeight: "800",
     color: "#9B745A",
     textAlign: "center",
   },
   triesPill: {
-    paddingHorizontal: 14,
-    paddingVertical: 10,
+    paddingHorizontal: 18,
+    paddingVertical: 13,
     borderRadius: 999,
     backgroundColor: "#FFFFFFCC",
   },
   triesText: {
-    fontWeight: "800",
+    fontSize: 18,
+    fontWeight: "900",
     color: "#5A3D2B",
   },
-  puzzleCard: {
-    marginHorizontal: 12,
-    borderRadius: 28,
-    overflow: "hidden",
-    backgroundColor: "#FFF7EC",
-    shadowColor: "#000",
-    shadowOpacity: 0.12,
-    shadowRadius: 12,
-    shadowOffset: { width: 0, height: 6 },
-    elevation: 5,
+  puzzleArea: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
   },
-  puzzleImage: {
-    width: "100%",
-    aspectRatio: 1080 / 1440,
+  puzzleFrame: {
+    position: "relative",
+    overflow: "hidden",
+    borderRadius: 28,
+    backgroundColor: "#FFF7EC",
   },
   answerCircle: {
     position: "absolute",

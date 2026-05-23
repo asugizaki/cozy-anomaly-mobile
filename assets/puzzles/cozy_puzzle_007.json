@@ -1,0 +1,16 @@
+{
+  "scene": "sakura_cafe",
+  "profile": "mobile",
+  "difficulty": "medium",
+  "asset": "teddy_bear",
+  "anomaly": "missing_bow",
+  "answer": "Missing bow",
+  "image": "cozy_puzzle_007.png",
+  "answer_image": "cozy_puzzle_007_answer.png",
+  "answer_box": {
+    "x1": 752,
+    "y1": 543,
+    "x2": 820,
+    "y2": 586
+  }
+}
