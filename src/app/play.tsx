@@ -1,4 +1,5 @@
 import { PUZZLES } from "@/data/puzzles";
+import { getPuzzleEngine } from "@/game-engines";
 import { loadGameAudio, playSfx, startMusic, updateMusic } from "@/lib/audio";
 import { loadSettings } from "@/lib/game-settings";
 import {
@@ -6,6 +7,7 @@ import {
   PlayerProgress,
   saveProgress,
 } from "@/lib/player-progress";
+import { safePuzzleIndex, smartRandomPuzzleIndex } from "@/lib/puzzle-library";
 import { ComposablePuzzle, PuzzleSlot } from "@/types/puzzle";
 import * as Haptics from "expo-haptics";
 import { router, useLocalSearchParams } from "expo-router";
@@ -25,6 +27,8 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const MAX_ATTEMPTS = 3;
+const MAX_HINT_LEVEL = 3;
+const RECENT_HISTORY_LIMIT = 15;
 
 function imageDimensions(source: ImageSourcePropType) {
   const resolved = Image.resolveAssetSource(source);
@@ -32,11 +36,6 @@ function imageDimensions(source: ImageSourcePropType) {
     width: resolved?.width || 1080,
     height: resolved?.height || 2400,
   };
-}
-
-function isInsideAnswerBox(x: number, y: number, puzzle: ComposablePuzzle) {
-  const box = puzzle.answer_box;
-  return x >= box.x1 && x <= box.x2 && y >= box.y1 && y <= box.y2;
 }
 
 function itemStyleForSlot(
@@ -74,26 +73,27 @@ function boxStyle(
 }
 
 export default function PlayScreen() {
-  const params = useLocalSearchParams<{
-    mode?: string;
-    index?: string;
-  }>();
+  const params = useLocalSearchParams<{ mode?: string; index?: string }>();
 
-  const initialPuzzleIndex = Number(params.index || 0);
+  const initialPuzzleIndex = safePuzzleIndex(Number(params.index || 0));
 
   const [puzzleIndex, setPuzzleIndex] = useState(
     Number.isFinite(initialPuzzleIndex) ? initialPuzzleIndex : 0
   );
+
   const [attemptsLeft, setAttemptsLeft] = useState(MAX_ATTEMPTS);
   const [solved, setSolved] = useState(false);
   const [failed, setFailed] = useState(false);
   const [ready, setReady] = useState(false);
-  const [showHintPulse, setShowHintPulse] = useState(false);
+  const [hintLevel, setHintLevel] = useState(0);
   const [settings, setSettings] = useState<any>(null);
   const [progress, setProgress] = useState<PlayerProgress | null>(null);
 
   const fadeAnim = useRef(new Animated.Value(0)).current;
+
   const puzzle = PUZZLES[puzzleIndex];
+  const engine = useMemo(() => getPuzzleEngine(puzzle), [puzzle]);
+
   const { width: screenWidth, height: screenHeight } = useWindowDimensions();
 
   useEffect(() => {
@@ -122,6 +122,7 @@ export default function PlayScreen() {
 
     const timer = setTimeout(() => {
       setReady(true);
+
       Animated.timing(fadeAnim, {
         toValue: 1,
         duration: 220,
@@ -169,33 +170,58 @@ export default function PlayScreen() {
   const hasNextPuzzle = puzzleIndex < PUZZLES.length - 1;
   const answerVisualBox = puzzle.answer_visual_box ?? puzzle.answer_box;
   const isDailyMode = params.mode === "daily";
+  const showHintCircle = hintLevel >= MAX_HINT_LEVEL;
 
-  async function markSolved(wasFailed: boolean) {
+  async function saveProgressPatch(patch: Partial<PlayerProgress>) {
     if (!progress) return;
-
-    const alreadyCompleted = progress.completedPuzzleIds.includes(puzzle.id);
 
     const updated: PlayerProgress = {
       ...progress,
-      completedPuzzleIds: alreadyCompleted
-        ? progress.completedPuzzleIds
-        : [...progress.completedPuzzleIds, puzzle.id],
-      totalSolved: alreadyCompleted
-        ? progress.totalSolved
-        : progress.totalSolved + 1,
-      currentStreak: wasFailed
-        ? progress.currentStreak
-        : progress.currentStreak + 1,
+      ...patch,
     };
 
     setProgress(updated);
     await saveProgress(updated);
   }
 
+  async function markSolved(wasFailed: boolean) {
+    if (!progress) return;
+
+    const alreadyCompleted = progress.completedPuzzleIds.includes(puzzle.id);
+
+    const recentPuzzleIndexes = [
+      ...(progress.recentPuzzleIndexes || []),
+      puzzleIndex,
+    ].slice(-RECENT_HISTORY_LIMIT);
+
+    await saveProgressPatch({
+      completedPuzzleIds: alreadyCompleted
+        ? progress.completedPuzzleIds
+        : [...progress.completedPuzzleIds, puzzle.id],
+
+      totalSolved: alreadyCompleted
+        ? progress.totalSolved
+        : progress.totalSolved + 1,
+
+      currentStreak: wasFailed
+        ? progress.currentStreak
+        : progress.currentStreak + 1,
+
+      lastPuzzleIndex: puzzleIndex,
+      recentPuzzleIndexes,
+    });
+  }
+
+  async function incrementHintUsage() {
+    if (!progress) return;
+
+    await saveProgressPatch({
+      hintsUsed: progress.hintsUsed + 1,
+    });
+  }
+
   function hapticSelection() {
-    if (settings?.hapticsEnabled) {
-      Haptics.selectionAsync();
-    }
+    if (settings?.hapticsEnabled) Haptics.selectionAsync();
   }
 
   function hapticImpact() {
@@ -223,10 +249,10 @@ export default function PlayScreen() {
     setSolved(false);
     setFailed(false);
     setAttemptsLeft(MAX_ATTEMPTS);
-    setShowHintPulse(false);
+    setHintLevel(0);
   }
 
-  function goToNextPuzzle() {
+  async function goToNextPuzzle() {
     hapticSelection();
     playSfx("tap", settings);
 
@@ -235,37 +261,57 @@ export default function PlayScreen() {
       return;
     }
 
-    if (!hasNextPuzzle) {
+    if (params.mode !== "random" && !hasNextPuzzle) {
       Alert.alert("Finished", "You completed all puzzles.");
       return;
     }
 
-    setPuzzleIndex((current) => current + 1);
+    const nextIndex =
+      params.mode === "random"
+        ? await smartRandomPuzzleIndex()
+        : puzzleIndex + 1;
+
+        if (progress) {
+          const recentPuzzleIndexes = [
+            ...(progress.recentPuzzleIndexes || []),
+            puzzleIndex,
+          ].slice(-RECENT_HISTORY_LIMIT);
+
+          await saveProgressPatch({
+            lastPuzzleIndex: nextIndex,
+            recentPuzzleIndexes,
+          });
+        }
+
+    setPuzzleIndex(nextIndex);
     setSolved(false);
     setFailed(false);
     setAttemptsLeft(MAX_ATTEMPTS);
-    setShowHintPulse(false);
+    setHintLevel(0);
   }
 
-  async function useHint() {
-    hapticImpact();
-    playSfx("hint", settings);
+  function requestHint() {
+    if (hintLevel >= MAX_HINT_LEVEL || solved) return;
 
-    if (progress) {
-      const updated = {
-        ...progress,
-        hintsUsed: progress.hintsUsed + 1,
-      };
+    Alert.alert(
+      "Watch Ad for Hint",
+      "Rewarded ad placeholder.\n\nIn production, this will show a rewarded video ad before unlocking the next hint.",
+      [
+        { text: "Cancel", style: "cancel" },
+        {
+          text: "🎬 Watch Ad",
+          onPress: async () => {
+            hapticImpact();
+            playSfx("hint", settings);
+            await incrementHintUsage();
 
-      setProgress(updated);
-      saveProgress(updated);
-    }
-
-    setShowHintPulse(true);
-
-    setTimeout(() => {
-      setShowHintPulse(false);
-    }, 1000);
+            setHintLevel((current) =>
+              Math.min(current + 1, MAX_HINT_LEVEL)
+            );
+          },
+        },
+      ]
+    );
   }
 
   function handlePress(event: any) {
@@ -277,7 +323,7 @@ export default function PlayScreen() {
     const originalX = (tapX - layout.offsetX) / layout.scale;
     const originalY = (tapY - layout.offsetY) / layout.scale;
 
-    if (isInsideAnswerBox(originalX, originalY, puzzle)) {
+    if (engine.checkTap({ x: originalX, y: originalY }, puzzle)) {
       hapticSuccess();
       playSfx("correct", settings);
 
@@ -322,29 +368,34 @@ export default function PlayScreen() {
             ]}
           />
 
-          {puzzle.slots.map((slot, index) => {
-            const isTarget = index === puzzle.target_slot_index;
+          {engine.kind === "find_anomaly" &&
+            puzzle.slots.map((slot, index) => {
+              const isTarget = index === puzzle.target_slot_index;
 
-            return (
-              <Image
-                key={`${puzzle.id}-${index}`}
-                source={isTarget ? puzzle.anomalyItemSource : puzzle.normalItemSource}
-                resizeMode="stretch"
-                style={[
-                  styles.item,
-                  itemStyleForSlot(
-                    slot,
-                    puzzle,
-                    layout.scale,
-                    layout.offsetX,
-                    layout.offsetY
-                  ),
-                ]}
-              />
-            );
-          })}
+              return (
+                <Image
+                  key={`${puzzle.id}-${index}`}
+                  source={
+                    isTarget
+                      ? puzzle.anomalyItemSource
+                      : puzzle.normalItemSource
+                  }
+                  resizeMode="stretch"
+                  style={[
+                    styles.item,
+                    itemStyleForSlot(
+                      slot,
+                      puzzle,
+                      layout.scale,
+                      layout.offsetX,
+                      layout.offsetY
+                    ),
+                  ]}
+                />
+              );
+            })}
 
-          {(solved || showHintPulse) && (
+          {(solved || showHintCircle) && (
             <View
               pointerEvents="none"
               style={[
@@ -354,7 +405,7 @@ export default function PlayScreen() {
                   layout.scale,
                   layout.offsetX,
                   layout.offsetY,
-                  solved ? 22 : 70
+                  solved ? 22 : 90
                 ),
               ]}
             />
@@ -376,9 +427,12 @@ export default function PlayScreen() {
 
           <View style={styles.titlePill}>
             <Text style={styles.levelText}>
-              {isDailyMode ? "Daily Puzzle" : `Puzzle ${puzzleIndex + 1}/${PUZZLES.length}`}
+              {isDailyMode
+                ? "Daily Puzzle"
+                : `Puzzle ${puzzleIndex + 1}/${PUZZLES.length}`}
             </Text>
-            <Text style={styles.subText}>{puzzle.difficulty.toUpperCase()}</Text>
+
+            <Text style={styles.subText}>{engine.subtitle}</Text>
           </View>
 
           <View style={styles.triesPill}>
@@ -391,7 +445,13 @@ export default function PlayScreen() {
         <View style={[styles.bottomPanel, failed && styles.failedPanel]}>
           {solved ? (
             <>
-              <View style={failed ? styles.answerBadgeFailed : styles.answerBadgeSuccess}>
+              <View
+                style={
+                  failed
+                    ? styles.answerBadgeFailed
+                    : styles.answerBadgeSuccess
+                }
+              >
                 <Text style={styles.answerBadgeText}>
                   {failed ? "Answer Revealed" : "Found It!"}
                 </Text>
@@ -400,24 +460,58 @@ export default function PlayScreen() {
               <Text style={styles.panelAnswer}>{puzzle.answer}</Text>
 
               <View style={styles.buttonRow}>
-                <Pressable style={styles.secondaryButton} onPress={resetCurrentPuzzle}>
+                <Pressable
+                  style={styles.secondaryButton}
+                  onPress={resetCurrentPuzzle}
+                >
                   <Text style={styles.secondaryButtonText}>Replay</Text>
                 </Pressable>
 
-                <Pressable style={styles.primaryButton} onPress={goToNextPuzzle}>
+                <Pressable
+                  style={styles.primaryButton}
+                  onPress={goToNextPuzzle}
+                >
                   <Text style={styles.primaryButtonText}>
-                    {isDailyMode ? "Back Home" : hasNextPuzzle ? "Next Puzzle" : "Done"}
+                    {isDailyMode
+                      ? "Back Home"
+                      : hasNextPuzzle
+                        ? "Next Puzzle"
+                        : "Done"}
                   </Text>
                 </Pressable>
               </View>
             </>
           ) : (
             <>
-              <Text style={styles.panelTitle}>Find the anomaly</Text>
-              <Text style={styles.panelText}>Tap the tiny difference.</Text>
+              <Text style={styles.panelTitle}>{engine.title}</Text>
+              <Text style={styles.panelText}>{engine.subtitle}</Text>
 
-              <Pressable style={styles.hintButton} onPress={useHint}>
-                <Text style={styles.secondaryButtonText}>Use Hint</Text>
+              {hintLevel > 0 && (
+                <View style={styles.hintBox}>
+                  <Text style={styles.hintLabel}>
+                    Hint {hintLevel}/{MAX_HINT_LEVEL}
+                  </Text>
+
+                  <Text style={styles.hintText}>
+                    {hintLevel === 1 && engine.genericHint(puzzle)}
+                    {hintLevel >= 2 && engine.preciseHint(puzzle)}
+                  </Text>
+                </View>
+              )}
+
+              <Pressable
+                disabled={hintLevel >= MAX_HINT_LEVEL}
+                style={[
+                  styles.hintButton,
+                  hintLevel >= MAX_HINT_LEVEL && styles.disabledButton,
+                ]}
+                onPress={requestHint}
+              >
+                <Text style={styles.secondaryButtonText}>
+                  {hintLevel >= MAX_HINT_LEVEL
+                    ? "Max Hints Used"
+                    : "🎬 Watch Ad for Hint"}
+                </Text>
               </Pressable>
             </>
           )}
@@ -451,7 +545,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 
-  iconText: { fontSize: 40, color: "#4B2E20", marginTop: -5 },
+  iconText: {
+    fontSize: 40,
+    color: "#4B2E20",
+    marginTop: -5,
+  },
 
   titlePill: {
     paddingHorizontal: 20,
@@ -461,8 +559,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 
-  levelText: { fontSize: 20, fontWeight: "900", color: "#4B2E20" },
-  subText: { fontSize: 13, fontWeight: "900", color: "#9B745A" },
+  levelText: {
+    fontSize: 20,
+    fontWeight: "900",
+    color: "#4B2E20",
+  },
+
+  subText: {
+    fontSize: 13,
+    fontWeight: "900",
+    color: "#9B745A",
+    textAlign: "center",
+  },
 
   triesPill: {
     paddingHorizontal: 16,
@@ -471,7 +579,12 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(255,255,255,0.90)",
   },
 
-  triesText: { fontSize: 16, fontWeight: "900", color: "#4B2E20" },
+  triesText: {
+    fontSize: 16,
+    fontWeight: "900",
+    color: "#4B2E20",
+  },
+
   spacer: { flex: 1 },
 
   bottomPanel: {
@@ -496,13 +609,44 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
 
-  panelText: { fontSize: 15, color: "#7B5A43", marginBottom: 14 },
+  panelText: {
+    fontSize: 15,
+    color: "#7B5A43",
+    marginBottom: 14,
+  },
 
   panelAnswer: {
     fontSize: 24,
     fontWeight: "900",
     color: "#4B2E20",
     marginBottom: 16,
+  },
+
+  hintBox: {
+    marginBottom: 14,
+    paddingHorizontal: 14,
+    paddingVertical: 12,
+    borderRadius: 18,
+    backgroundColor: "rgba(15,23,42,0.94)",
+    borderWidth: 2,
+    borderColor: "#f59e0b",
+  },
+
+  hintLabel: {
+    color: "#fbbf24",
+    fontSize: 12,
+    fontWeight: "900",
+    textAlign: "center",
+    marginBottom: 4,
+    textTransform: "uppercase",
+  },
+
+  hintText: {
+    color: "white",
+    fontSize: 15,
+    lineHeight: 22,
+    fontWeight: "700",
+    textAlign: "center",
   },
 
   answerBadgeSuccess: {
@@ -538,6 +682,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 
+  disabledButton: { opacity: 0.45 },
   buttonRow: { flexDirection: "row", gap: 12 },
 
   primaryButton: {
@@ -548,7 +693,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 
-  primaryButtonText: { color: "white", fontSize: 16, fontWeight: "900" },
+  primaryButtonText: {
+    color: "white",
+    fontSize: 16,
+    fontWeight: "900",
+  },
 
   secondaryButton: {
     flex: 1,
@@ -558,7 +707,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 
-  secondaryButtonText: { color: "#6A3F2B", fontSize: 16, fontWeight: "900" },
+  secondaryButtonText: {
+    color: "#6A3F2B",
+    fontSize: 16,
+    fontWeight: "900",
+  },
 
   answerCircle: {
     position: "absolute",
@@ -591,6 +744,15 @@ const styles = StyleSheet.create({
     padding: 24,
   },
 
-  title: { fontSize: 28, fontWeight: "900", color: "#4B2E20" },
-  subtitle: { marginTop: 8, fontSize: 16, color: "#7B5A43" },
+  title: {
+    fontSize: 28,
+    fontWeight: "900",
+    color: "#4B2E20",
+  },
+
+  subtitle: {
+    marginTop: 8,
+    fontSize: 16,
+    color: "#7B5A43",
+  },
 });

@@ -1,0 +1,15 @@
+{
+  "asset": "tanuki",
+  "variant": "missing_bag",
+  "size": 175,
+  "width": 175,
+  "height": 209,
+  "anchor": "bottom_center",
+  "answer": "One tanuki is missing a bag.",
+  "local_box": [
+    15,
+    115,
+    38,
+    157
+  ]
+}

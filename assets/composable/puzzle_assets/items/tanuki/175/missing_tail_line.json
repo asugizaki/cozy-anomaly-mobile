@@ -1,0 +1,15 @@
+{
+  "asset": "tanuki",
+  "variant": "missing_tail_line",
+  "size": 175,
+  "width": 175,
+  "height": 209,
+  "anchor": "bottom_center",
+  "answer": "One tanuki is missing a tail line.",
+  "local_box": [
+    145,
+    141,
+    170,
+    177
+  ]
+}

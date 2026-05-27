@@ -5,6 +5,8 @@ export type PlayerProgress = {
   currentStreak: number;
   totalSolved: number;
   hintsUsed: number;
+  lastPuzzleIndex: number;
+  recentPuzzleIndexes: number[];
 };
 
 const KEY = "player_progress";
@@ -14,15 +16,14 @@ export const DEFAULT_PROGRESS: PlayerProgress = {
   currentStreak: 0,
   totalSolved: 0,
   hintsUsed: 0,
+  lastPuzzleIndex: 0,
+  recentPuzzleIndexes: [],
 };
 
 export async function loadProgress(): Promise<PlayerProgress> {
   try {
     const raw = await AsyncStorage.getItem(KEY);
-
-    if (!raw) {
-      return DEFAULT_PROGRESS;
-    }
+    if (!raw) return DEFAULT_PROGRESS;
 
     return {
       ...DEFAULT_PROGRESS,
@@ -33,11 +34,6 @@ export async function loadProgress(): Promise<PlayerProgress> {
   }
 }
 
-export async function saveProgress(
-  progress: PlayerProgress
-) {
-  await AsyncStorage.setItem(
-    KEY,
-    JSON.stringify(progress)
-  );
+export async function saveProgress(progress: PlayerProgress) {
+  await AsyncStorage.setItem(KEY, JSON.stringify(progress));
 }

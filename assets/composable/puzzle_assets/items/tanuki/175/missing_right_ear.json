@@ -1,0 +1,15 @@
+{
+  "asset": "tanuki",
+  "variant": "missing_right_ear",
+  "size": 175,
+  "width": 175,
+  "height": 209,
+  "anchor": "bottom_center",
+  "answer": "One tanuki is missing a right ear.",
+  "local_box": [
+    123,
+    44,
+    139,
+    64
+  ]
+}

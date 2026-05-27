@@ -7,113 +7,161 @@ export const PUZZLES: ComposablePuzzle[] = [
         "version": 2,
         "scene": "teahouse",
         "profile": "mobile",
-        "difficulty": "medium",
+        "difficulty": "hard",
         "background": "puzzle_assets/scenes/teahouse/mobile.png",
-        "asset": "teddy_bear",
-        "item_size": 250,
-        "normal_item": "puzzle_assets/items/teddy_bear/250/normal.png",
-        "normal_item_meta": "puzzle_assets/items/teddy_bear/250/normal.json",
-        "anomaly": "missing_nose",
-        "anomaly_item": "puzzle_assets/items/teddy_bear/250/missing_nose.png",
-        "anomaly_item_meta": "puzzle_assets/items/teddy_bear/250/missing_nose.json",
-        "target_slot_index": 1,
+        "asset": "tanuki",
+        "item_size": 175,
+        "normal_item": "puzzle_assets/items/tanuki/175/normal.png",
+        "normal_item_meta": "puzzle_assets/items/tanuki/175/normal.json",
+        "anomaly": "missing_right_eye",
+        "anomaly_item": "puzzle_assets/items/tanuki/175/missing_right_eye.png",
+        "anomaly_item_meta": "puzzle_assets/items/tanuki/175/missing_right_eye.json",
+        "target_slot_index": 25,
         "slots": [
             {
-                "surface_y": 433,
-                "x": 231
+                "surface_y": 418,
+                "x": 111
             },
             {
-                "surface_y": 433,
-                "x": 428
+                "surface_y": 418,
+                "x": 730
             },
             {
-                "surface_y": 433,
-                "x": 624
+                "surface_y": 418,
+                "x": 266
             },
             {
-                "surface_y": 627,
-                "x": 234
+                "surface_y": 418,
+                "x": 575
             },
             {
-                "surface_y": 627,
-                "x": 431
+                "surface_y": 418,
+                "x": 421
             },
             {
-                "surface_y": 627,
-                "x": 627
+                "surface_y": 611,
+                "x": 111
             },
             {
-                "surface_y": 824,
-                "x": 228
+                "surface_y": 611,
+                "x": 266
             },
             {
-                "surface_y": 824,
-                "x": 425
+                "surface_y": 611,
+                "x": 421
             },
             {
-                "surface_y": 824,
-                "x": 621
+                "surface_y": 611,
+                "x": 575
             },
             {
-                "surface_y": 1026,
-                "x": 236
+                "surface_y": 611,
+                "x": 730
             },
             {
-                "surface_y": 1026,
-                "x": 433
+                "surface_y": 809,
+                "x": 111
             },
             {
-                "surface_y": 1026,
-                "x": 629
+                "surface_y": 809,
+                "x": 266
             },
             {
-                "surface_y": 1233,
-                "x": 240
+                "surface_y": 809,
+                "x": 421
             },
             {
-                "surface_y": 1233,
-                "x": 437
+                "surface_y": 809,
+                "x": 575
             },
             {
-                "surface_y": 1233,
-                "x": 633
+                "surface_y": 809,
+                "x": 730
             },
             {
-                "surface_y": 1454,
-                "x": 242
+                "surface_y": 1011,
+                "x": 111
             },
             {
-                "surface_y": 1454,
-                "x": 439
+                "surface_y": 1011,
+                "x": 266
             },
             {
-                "surface_y": 1454,
-                "x": 635
+                "surface_y": 1011,
+                "x": 421
+            },
+            {
+                "surface_y": 1011,
+                "x": 575
+            },
+            {
+                "surface_y": 1011,
+                "x": 730
+            },
+            {
+                "surface_y": 1215,
+                "x": 111
+            },
+            {
+                "surface_y": 1215,
+                "x": 266
+            },
+            {
+                "surface_y": 1215,
+                "x": 421
+            },
+            {
+                "surface_y": 1215,
+                "x": 575
+            },
+            {
+                "surface_y": 1215,
+                "x": 730
+            },
+            {
+                "surface_y": 1436,
+                "x": 109
+            },
+            {
+                "surface_y": 1436,
+                "x": 264
+            },
+            {
+                "surface_y": 1436,
+                "x": 419
+            },
+            {
+                "surface_y": 1436,
+                "x": 573
+            },
+            {
+                "surface_y": 1436,
+                "x": 728
             }
         ],
         "rendering": {
             "anchor": "bottom_center",
             "foot_overlap": 10,
-            "item_width": 250,
-            "item_height": 250
+            "item_width": 175,
+            "item_height": 209
         },
-        "answer": "Missing nose",
+        "answer": "One tanuki is missing a right eye.",
         "answer_box": {
-            "x1": 382,
-            "y1": 247,
-            "x2": 472,
-            "y2": 337
+            "x1": 81,
+            "y1": 1285,
+            "x2": 171,
+            "y2": 1375
         },
         "answer_visual_box": {
-            "x1": 420,
-            "y1": 287,
-            "x2": 435,
-            "y2": 297
+            "x1": 115,
+            "y1": 1318,
+            "x2": 137,
+            "y2": 1342
         }
     },
     backgroundSource: require("../../assets/composable/puzzle_assets/scenes/teahouse/mobile.png"),
-    normalItemSource: require("../../assets/composable/puzzle_assets/items/teddy_bear/250/normal.png"),
-    anomalyItemSource: require("../../assets/composable/puzzle_assets/items/teddy_bear/250/missing_nose.png"),
+    normalItemSource: require("../../assets/composable/puzzle_assets/items/tanuki/175/normal.png"),
+    anomalyItemSource: require("../../assets/composable/puzzle_assets/items/tanuki/175/missing_right_eye.png"),
   },
   {
     ...{
@@ -121,113 +169,161 @@ export const PUZZLES: ComposablePuzzle[] = [
         "version": 2,
         "scene": "teahouse",
         "profile": "mobile",
-        "difficulty": "medium",
+        "difficulty": "hard",
         "background": "puzzle_assets/scenes/teahouse/mobile.png",
-        "asset": "teddy_bear",
-        "item_size": 250,
-        "normal_item": "puzzle_assets/items/teddy_bear/250/normal.png",
-        "normal_item_meta": "puzzle_assets/items/teddy_bear/250/normal.json",
-        "anomaly": "missing_eye",
-        "anomaly_item": "puzzle_assets/items/teddy_bear/250/missing_eye.png",
-        "anomaly_item_meta": "puzzle_assets/items/teddy_bear/250/missing_eye.json",
-        "target_slot_index": 6,
+        "asset": "tanuki",
+        "item_size": 175,
+        "normal_item": "puzzle_assets/items/tanuki/175/normal.png",
+        "normal_item_meta": "puzzle_assets/items/tanuki/175/normal.json",
+        "anomaly": "missing_mouth",
+        "anomaly_item": "puzzle_assets/items/tanuki/175/missing_mouth.png",
+        "anomaly_item_meta": "puzzle_assets/items/tanuki/175/missing_mouth.json",
+        "target_slot_index": 7,
         "slots": [
             {
-                "surface_y": 433,
-                "x": 231
+                "surface_y": 418,
+                "x": 111
             },
             {
-                "surface_y": 433,
-                "x": 428
+                "surface_y": 418,
+                "x": 730
             },
             {
-                "surface_y": 433,
-                "x": 624
+                "surface_y": 418,
+                "x": 266
             },
             {
-                "surface_y": 627,
-                "x": 234
+                "surface_y": 418,
+                "x": 575
             },
             {
-                "surface_y": 627,
-                "x": 431
+                "surface_y": 418,
+                "x": 421
             },
             {
-                "surface_y": 627,
-                "x": 627
+                "surface_y": 611,
+                "x": 111
             },
             {
-                "surface_y": 824,
-                "x": 228
+                "surface_y": 611,
+                "x": 266
             },
             {
-                "surface_y": 824,
-                "x": 425
+                "surface_y": 611,
+                "x": 421
             },
             {
-                "surface_y": 824,
-                "x": 621
+                "surface_y": 611,
+                "x": 575
             },
             {
-                "surface_y": 1026,
-                "x": 236
+                "surface_y": 611,
+                "x": 730
             },
             {
-                "surface_y": 1026,
-                "x": 433
+                "surface_y": 809,
+                "x": 111
             },
             {
-                "surface_y": 1026,
-                "x": 629
+                "surface_y": 809,
+                "x": 266
             },
             {
-                "surface_y": 1233,
-                "x": 240
+                "surface_y": 809,
+                "x": 421
             },
             {
-                "surface_y": 1233,
-                "x": 437
+                "surface_y": 809,
+                "x": 575
             },
             {
-                "surface_y": 1233,
-                "x": 633
+                "surface_y": 809,
+                "x": 730
             },
             {
-                "surface_y": 1454,
-                "x": 242
+                "surface_y": 1011,
+                "x": 111
             },
             {
-                "surface_y": 1454,
-                "x": 439
+                "surface_y": 1011,
+                "x": 266
             },
             {
-                "surface_y": 1454,
-                "x": 635
+                "surface_y": 1011,
+                "x": 421
+            },
+            {
+                "surface_y": 1011,
+                "x": 575
+            },
+            {
+                "surface_y": 1011,
+                "x": 730
+            },
+            {
+                "surface_y": 1215,
+                "x": 111
+            },
+            {
+                "surface_y": 1215,
+                "x": 266
+            },
+            {
+                "surface_y": 1215,
+                "x": 421
+            },
+            {
+                "surface_y": 1215,
+                "x": 575
+            },
+            {
+                "surface_y": 1215,
+                "x": 730
+            },
+            {
+                "surface_y": 1436,
+                "x": 109
+            },
+            {
+                "surface_y": 1436,
+                "x": 264
+            },
+            {
+                "surface_y": 1436,
+                "x": 419
+            },
+            {
+                "surface_y": 1436,
+                "x": 573
+            },
+            {
+                "surface_y": 1436,
+                "x": 728
             }
         ],
         "rendering": {
             "anchor": "bottom_center",
             "foot_overlap": 10,
-            "item_width": 250,
-            "item_height": 250
+            "item_width": 175,
+            "item_height": 209
         },
-        "answer": "Missing eye",
+        "answer": "One tanuki is missing a mouth.",
         "answer_box": {
-            "x1": 160,
-            "y1": 631,
-            "x2": 250,
-            "y2": 721
+            "x1": 368,
+            "y1": 476,
+            "x2": 458,
+            "y2": 566
         },
         "answer_visual_box": {
-            "x1": 198,
-            "y1": 668,
-            "x2": 212,
-            "y2": 684
+            "x1": 401,
+            "y1": 513,
+            "x2": 425,
+            "y2": 529
         }
     },
     backgroundSource: require("../../assets/composable/puzzle_assets/scenes/teahouse/mobile.png"),
-    normalItemSource: require("../../assets/composable/puzzle_assets/items/teddy_bear/250/normal.png"),
-    anomalyItemSource: require("../../assets/composable/puzzle_assets/items/teddy_bear/250/missing_eye.png"),
+    normalItemSource: require("../../assets/composable/puzzle_assets/items/tanuki/175/normal.png"),
+    anomalyItemSource: require("../../assets/composable/puzzle_assets/items/tanuki/175/missing_mouth.png"),
   },
   {
     ...{
@@ -235,113 +331,161 @@ export const PUZZLES: ComposablePuzzle[] = [
         "version": 2,
         "scene": "teahouse",
         "profile": "mobile",
-        "difficulty": "medium",
+        "difficulty": "hard",
         "background": "puzzle_assets/scenes/teahouse/mobile.png",
-        "asset": "teddy_bear",
-        "item_size": 250,
-        "normal_item": "puzzle_assets/items/teddy_bear/250/normal.png",
-        "normal_item_meta": "puzzle_assets/items/teddy_bear/250/normal.json",
-        "anomaly": "missing_bow",
-        "anomaly_item": "puzzle_assets/items/teddy_bear/250/missing_bow.png",
-        "anomaly_item_meta": "puzzle_assets/items/teddy_bear/250/missing_bow.json",
-        "target_slot_index": 13,
+        "asset": "tanuki",
+        "item_size": 175,
+        "normal_item": "puzzle_assets/items/tanuki/175/normal.png",
+        "normal_item_meta": "puzzle_assets/items/tanuki/175/normal.json",
+        "anomaly": "missing_right_eye",
+        "anomaly_item": "puzzle_assets/items/tanuki/175/missing_right_eye.png",
+        "anomaly_item_meta": "puzzle_assets/items/tanuki/175/missing_right_eye.json",
+        "target_slot_index": 1,
         "slots": [
             {
-                "surface_y": 433,
-                "x": 231
+                "surface_y": 418,
+                "x": 111
             },
             {
-                "surface_y": 433,
-                "x": 428
+                "surface_y": 418,
+                "x": 730
             },
             {
-                "surface_y": 433,
-                "x": 624
+                "surface_y": 418,
+                "x": 266
             },
             {
-                "surface_y": 627,
-                "x": 234
+                "surface_y": 418,
+                "x": 575
             },
             {
-                "surface_y": 627,
-                "x": 431
+                "surface_y": 418,
+                "x": 421
             },
             {
-                "surface_y": 627,
-                "x": 627
+                "surface_y": 611,
+                "x": 111
             },
             {
-                "surface_y": 824,
-                "x": 228
+                "surface_y": 611,
+                "x": 266
             },
             {
-                "surface_y": 824,
-                "x": 425
+                "surface_y": 611,
+                "x": 421
             },
             {
-                "surface_y": 824,
-                "x": 621
+                "surface_y": 611,
+                "x": 575
             },
             {
-                "surface_y": 1026,
-                "x": 236
+                "surface_y": 611,
+                "x": 730
             },
             {
-                "surface_y": 1026,
-                "x": 433
+                "surface_y": 809,
+                "x": 111
             },
             {
-                "surface_y": 1026,
-                "x": 629
+                "surface_y": 809,
+                "x": 266
             },
             {
-                "surface_y": 1233,
-                "x": 240
+                "surface_y": 809,
+                "x": 421
             },
             {
-                "surface_y": 1233,
-                "x": 437
+                "surface_y": 809,
+                "x": 575
             },
             {
-                "surface_y": 1233,
-                "x": 633
+                "surface_y": 809,
+                "x": 730
             },
             {
-                "surface_y": 1454,
-                "x": 242
+                "surface_y": 1011,
+                "x": 111
             },
             {
-                "surface_y": 1454,
-                "x": 439
+                "surface_y": 1011,
+                "x": 266
             },
             {
-                "surface_y": 1454,
-                "x": 635
+                "surface_y": 1011,
+                "x": 421
+            },
+            {
+                "surface_y": 1011,
+                "x": 575
+            },
+            {
+                "surface_y": 1011,
+                "x": 730
+            },
+            {
+                "surface_y": 1215,
+                "x": 111
+            },
+            {
+                "surface_y": 1215,
+                "x": 266
+            },
+            {
+                "surface_y": 1215,
+                "x": 421
+            },
+            {
+                "surface_y": 1215,
+                "x": 575
+            },
+            {
+                "surface_y": 1215,
+                "x": 730
+            },
+            {
+                "surface_y": 1436,
+                "x": 109
+            },
+            {
+                "surface_y": 1436,
+                "x": 264
+            },
+            {
+                "surface_y": 1436,
+                "x": 419
+            },
+            {
+                "surface_y": 1436,
+                "x": 573
+            },
+            {
+                "surface_y": 1436,
+                "x": 728
             }
         ],
         "rendering": {
             "anchor": "bottom_center",
             "foot_overlap": 10,
-            "item_width": 250,
-            "item_height": 250
+            "item_width": 175,
+            "item_height": 209
         },
-        "answer": "Missing bow",
+        "answer": "One tanuki is missing a right eye.",
         "answer_box": {
-            "x1": 391,
-            "y1": 1090,
-            "x2": 481,
-            "y2": 1180
+            "x1": 702,
+            "y1": 267,
+            "x2": 792,
+            "y2": 357
         },
         "answer_visual_box": {
-            "x1": 402,
-            "y1": 1113,
-            "x2": 470,
-            "y2": 1156
+            "x1": 736,
+            "y1": 300,
+            "x2": 758,
+            "y2": 324
         }
     },
     backgroundSource: require("../../assets/composable/puzzle_assets/scenes/teahouse/mobile.png"),
-    normalItemSource: require("../../assets/composable/puzzle_assets/items/teddy_bear/250/normal.png"),
-    anomalyItemSource: require("../../assets/composable/puzzle_assets/items/teddy_bear/250/missing_bow.png"),
+    normalItemSource: require("../../assets/composable/puzzle_assets/items/tanuki/175/normal.png"),
+    anomalyItemSource: require("../../assets/composable/puzzle_assets/items/tanuki/175/missing_right_eye.png"),
   },
   {
     ...{
@@ -349,113 +493,161 @@ export const PUZZLES: ComposablePuzzle[] = [
         "version": 2,
         "scene": "teahouse",
         "profile": "mobile",
-        "difficulty": "medium",
+        "difficulty": "hard",
         "background": "puzzle_assets/scenes/teahouse/mobile.png",
-        "asset": "teddy_bear",
-        "item_size": 250,
-        "normal_item": "puzzle_assets/items/teddy_bear/250/normal.png",
-        "normal_item_meta": "puzzle_assets/items/teddy_bear/250/normal.json",
-        "anomaly": "missing_nose",
-        "anomaly_item": "puzzle_assets/items/teddy_bear/250/missing_nose.png",
-        "anomaly_item_meta": "puzzle_assets/items/teddy_bear/250/missing_nose.json",
-        "target_slot_index": 5,
+        "asset": "tanuki",
+        "item_size": 175,
+        "normal_item": "puzzle_assets/items/tanuki/175/normal.png",
+        "normal_item_meta": "puzzle_assets/items/tanuki/175/normal.json",
+        "anomaly": "missing_right_eye",
+        "anomaly_item": "puzzle_assets/items/tanuki/175/missing_right_eye.png",
+        "anomaly_item_meta": "puzzle_assets/items/tanuki/175/missing_right_eye.json",
+        "target_slot_index": 11,
         "slots": [
             {
-                "surface_y": 433,
-                "x": 231
+                "surface_y": 418,
+                "x": 111
             },
             {
-                "surface_y": 433,
-                "x": 428
+                "surface_y": 418,
+                "x": 730
             },
             {
-                "surface_y": 433,
-                "x": 624
+                "surface_y": 418,
+                "x": 266
             },
             {
-                "surface_y": 627,
-                "x": 234
+                "surface_y": 418,
+                "x": 575
             },
             {
-                "surface_y": 627,
-                "x": 431
+                "surface_y": 418,
+                "x": 421
             },
             {
-                "surface_y": 627,
-                "x": 627
+                "surface_y": 611,
+                "x": 111
             },
             {
-                "surface_y": 824,
-                "x": 228
+                "surface_y": 611,
+                "x": 266
             },
             {
-                "surface_y": 824,
-                "x": 425
+                "surface_y": 611,
+                "x": 421
             },
             {
-                "surface_y": 824,
-                "x": 621
+                "surface_y": 611,
+                "x": 575
             },
             {
-                "surface_y": 1026,
-                "x": 236
+                "surface_y": 611,
+                "x": 730
             },
             {
-                "surface_y": 1026,
-                "x": 433
+                "surface_y": 809,
+                "x": 111
             },
             {
-                "surface_y": 1026,
-                "x": 629
+                "surface_y": 809,
+                "x": 266
             },
             {
-                "surface_y": 1233,
-                "x": 240
+                "surface_y": 809,
+                "x": 421
             },
             {
-                "surface_y": 1233,
-                "x": 437
+                "surface_y": 809,
+                "x": 575
             },
             {
-                "surface_y": 1233,
-                "x": 633
+                "surface_y": 809,
+                "x": 730
             },
             {
-                "surface_y": 1454,
-                "x": 242
+                "surface_y": 1011,
+                "x": 111
             },
             {
-                "surface_y": 1454,
-                "x": 439
+                "surface_y": 1011,
+                "x": 266
             },
             {
-                "surface_y": 1454,
-                "x": 635
+                "surface_y": 1011,
+                "x": 421
+            },
+            {
+                "surface_y": 1011,
+                "x": 575
+            },
+            {
+                "surface_y": 1011,
+                "x": 730
+            },
+            {
+                "surface_y": 1215,
+                "x": 111
+            },
+            {
+                "surface_y": 1215,
+                "x": 266
+            },
+            {
+                "surface_y": 1215,
+                "x": 421
+            },
+            {
+                "surface_y": 1215,
+                "x": 575
+            },
+            {
+                "surface_y": 1215,
+                "x": 730
+            },
+            {
+                "surface_y": 1436,
+                "x": 109
+            },
+            {
+                "surface_y": 1436,
+                "x": 264
+            },
+            {
+                "surface_y": 1436,
+                "x": 419
+            },
+            {
+                "surface_y": 1436,
+                "x": 573
+            },
+            {
+                "surface_y": 1436,
+                "x": 728
             }
         ],
         "rendering": {
             "anchor": "bottom_center",
             "foot_overlap": 10,
-            "item_width": 250,
-            "item_height": 250
+            "item_width": 175,
+            "item_height": 209
         },
-        "answer": "Missing nose",
+        "answer": "One tanuki is missing a right eye.",
         "answer_box": {
-            "x1": 582,
-            "y1": 441,
-            "x2": 672,
-            "y2": 531
+            "x1": 238,
+            "y1": 658,
+            "x2": 328,
+            "y2": 748
         },
         "answer_visual_box": {
-            "x1": 619,
-            "y1": 481,
-            "x2": 634,
-            "y2": 491
+            "x1": 272,
+            "y1": 691,
+            "x2": 294,
+            "y2": 715
         }
     },
     backgroundSource: require("../../assets/composable/puzzle_assets/scenes/teahouse/mobile.png"),
-    normalItemSource: require("../../assets/composable/puzzle_assets/items/teddy_bear/250/normal.png"),
-    anomalyItemSource: require("../../assets/composable/puzzle_assets/items/teddy_bear/250/missing_nose.png"),
+    normalItemSource: require("../../assets/composable/puzzle_assets/items/tanuki/175/normal.png"),
+    anomalyItemSource: require("../../assets/composable/puzzle_assets/items/tanuki/175/missing_right_eye.png"),
   },
   {
     ...{
@@ -463,113 +655,161 @@ export const PUZZLES: ComposablePuzzle[] = [
         "version": 2,
         "scene": "teahouse",
         "profile": "mobile",
-        "difficulty": "medium",
+        "difficulty": "hard",
         "background": "puzzle_assets/scenes/teahouse/mobile.png",
-        "asset": "teddy_bear",
-        "item_size": 250,
-        "normal_item": "puzzle_assets/items/teddy_bear/250/normal.png",
-        "normal_item_meta": "puzzle_assets/items/teddy_bear/250/normal.json",
-        "anomaly": "missing_nose",
-        "anomaly_item": "puzzle_assets/items/teddy_bear/250/missing_nose.png",
-        "anomaly_item_meta": "puzzle_assets/items/teddy_bear/250/missing_nose.json",
-        "target_slot_index": 5,
+        "asset": "tanuki",
+        "item_size": 175,
+        "normal_item": "puzzle_assets/items/tanuki/175/normal.png",
+        "normal_item_meta": "puzzle_assets/items/tanuki/175/normal.json",
+        "anomaly": "missing_mouth",
+        "anomaly_item": "puzzle_assets/items/tanuki/175/missing_mouth.png",
+        "anomaly_item_meta": "puzzle_assets/items/tanuki/175/missing_mouth.json",
+        "target_slot_index": 1,
         "slots": [
             {
-                "surface_y": 433,
-                "x": 231
+                "surface_y": 418,
+                "x": 111
             },
             {
-                "surface_y": 433,
-                "x": 428
+                "surface_y": 418,
+                "x": 730
             },
             {
-                "surface_y": 433,
-                "x": 624
+                "surface_y": 418,
+                "x": 266
             },
             {
-                "surface_y": 627,
-                "x": 234
+                "surface_y": 418,
+                "x": 575
             },
             {
-                "surface_y": 627,
-                "x": 431
+                "surface_y": 418,
+                "x": 421
             },
             {
-                "surface_y": 627,
-                "x": 627
+                "surface_y": 611,
+                "x": 111
             },
             {
-                "surface_y": 824,
-                "x": 228
+                "surface_y": 611,
+                "x": 266
             },
             {
-                "surface_y": 824,
-                "x": 425
+                "surface_y": 611,
+                "x": 421
             },
             {
-                "surface_y": 824,
-                "x": 621
+                "surface_y": 611,
+                "x": 575
             },
             {
-                "surface_y": 1026,
-                "x": 236
+                "surface_y": 611,
+                "x": 730
             },
             {
-                "surface_y": 1026,
-                "x": 433
+                "surface_y": 809,
+                "x": 111
             },
             {
-                "surface_y": 1026,
-                "x": 629
+                "surface_y": 809,
+                "x": 266
             },
             {
-                "surface_y": 1233,
-                "x": 240
+                "surface_y": 809,
+                "x": 421
             },
             {
-                "surface_y": 1233,
-                "x": 437
+                "surface_y": 809,
+                "x": 575
             },
             {
-                "surface_y": 1233,
-                "x": 633
+                "surface_y": 809,
+                "x": 730
             },
             {
-                "surface_y": 1454,
-                "x": 242
+                "surface_y": 1011,
+                "x": 111
             },
             {
-                "surface_y": 1454,
-                "x": 439
+                "surface_y": 1011,
+                "x": 266
             },
             {
-                "surface_y": 1454,
-                "x": 635
+                "surface_y": 1011,
+                "x": 421
+            },
+            {
+                "surface_y": 1011,
+                "x": 575
+            },
+            {
+                "surface_y": 1011,
+                "x": 730
+            },
+            {
+                "surface_y": 1215,
+                "x": 111
+            },
+            {
+                "surface_y": 1215,
+                "x": 266
+            },
+            {
+                "surface_y": 1215,
+                "x": 421
+            },
+            {
+                "surface_y": 1215,
+                "x": 575
+            },
+            {
+                "surface_y": 1215,
+                "x": 730
+            },
+            {
+                "surface_y": 1436,
+                "x": 109
+            },
+            {
+                "surface_y": 1436,
+                "x": 264
+            },
+            {
+                "surface_y": 1436,
+                "x": 419
+            },
+            {
+                "surface_y": 1436,
+                "x": 573
+            },
+            {
+                "surface_y": 1436,
+                "x": 728
             }
         ],
         "rendering": {
             "anchor": "bottom_center",
             "foot_overlap": 10,
-            "item_width": 250,
-            "item_height": 250
+            "item_width": 175,
+            "item_height": 209
         },
-        "answer": "Missing nose",
+        "answer": "One tanuki is missing a mouth.",
         "answer_box": {
-            "x1": 582,
-            "y1": 441,
-            "x2": 672,
-            "y2": 531
+            "x1": 677,
+            "y1": 283,
+            "x2": 767,
+            "y2": 373
         },
         "answer_visual_box": {
-            "x1": 619,
-            "y1": 481,
-            "x2": 634,
-            "y2": 491
+            "x1": 710,
+            "y1": 320,
+            "x2": 734,
+            "y2": 336
         }
     },
     backgroundSource: require("../../assets/composable/puzzle_assets/scenes/teahouse/mobile.png"),
-    normalItemSource: require("../../assets/composable/puzzle_assets/items/teddy_bear/250/normal.png"),
-    anomalyItemSource: require("../../assets/composable/puzzle_assets/items/teddy_bear/250/missing_nose.png"),
+    normalItemSource: require("../../assets/composable/puzzle_assets/items/tanuki/175/normal.png"),
+    anomalyItemSource: require("../../assets/composable/puzzle_assets/items/tanuki/175/missing_mouth.png"),
   },
   {
     ...{
@@ -577,113 +817,161 @@ export const PUZZLES: ComposablePuzzle[] = [
         "version": 2,
         "scene": "teahouse",
         "profile": "mobile",
-        "difficulty": "medium",
+        "difficulty": "hard",
         "background": "puzzle_assets/scenes/teahouse/mobile.png",
-        "asset": "teddy_bear",
-        "item_size": 250,
-        "normal_item": "puzzle_assets/items/teddy_bear/250/normal.png",
-        "normal_item_meta": "puzzle_assets/items/teddy_bear/250/normal.json",
-        "anomaly": "missing_bow",
-        "anomaly_item": "puzzle_assets/items/teddy_bear/250/missing_bow.png",
-        "anomaly_item_meta": "puzzle_assets/items/teddy_bear/250/missing_bow.json",
-        "target_slot_index": 7,
+        "asset": "tanuki",
+        "item_size": 175,
+        "normal_item": "puzzle_assets/items/tanuki/175/normal.png",
+        "normal_item_meta": "puzzle_assets/items/tanuki/175/normal.json",
+        "anomaly": "missing_right_ear",
+        "anomaly_item": "puzzle_assets/items/tanuki/175/missing_right_ear.png",
+        "anomaly_item_meta": "puzzle_assets/items/tanuki/175/missing_right_ear.json",
+        "target_slot_index": 13,
         "slots": [
             {
-                "surface_y": 433,
-                "x": 231
+                "surface_y": 418,
+                "x": 111
             },
             {
-                "surface_y": 433,
-                "x": 428
+                "surface_y": 418,
+                "x": 730
             },
             {
-                "surface_y": 433,
-                "x": 624
+                "surface_y": 418,
+                "x": 266
             },
             {
-                "surface_y": 627,
-                "x": 234
+                "surface_y": 418,
+                "x": 575
             },
             {
-                "surface_y": 627,
-                "x": 431
+                "surface_y": 418,
+                "x": 421
             },
             {
-                "surface_y": 627,
-                "x": 627
+                "surface_y": 611,
+                "x": 111
             },
             {
-                "surface_y": 824,
-                "x": 228
+                "surface_y": 611,
+                "x": 266
             },
             {
-                "surface_y": 824,
-                "x": 425
+                "surface_y": 611,
+                "x": 421
             },
             {
-                "surface_y": 824,
-                "x": 621
+                "surface_y": 611,
+                "x": 575
             },
             {
-                "surface_y": 1026,
-                "x": 236
+                "surface_y": 611,
+                "x": 730
             },
             {
-                "surface_y": 1026,
-                "x": 433
+                "surface_y": 809,
+                "x": 111
             },
             {
-                "surface_y": 1026,
-                "x": 629
+                "surface_y": 809,
+                "x": 266
             },
             {
-                "surface_y": 1233,
-                "x": 240
+                "surface_y": 809,
+                "x": 421
             },
             {
-                "surface_y": 1233,
-                "x": 437
+                "surface_y": 809,
+                "x": 575
             },
             {
-                "surface_y": 1233,
-                "x": 633
+                "surface_y": 809,
+                "x": 730
             },
             {
-                "surface_y": 1454,
-                "x": 242
+                "surface_y": 1011,
+                "x": 111
             },
             {
-                "surface_y": 1454,
-                "x": 439
+                "surface_y": 1011,
+                "x": 266
             },
             {
-                "surface_y": 1454,
-                "x": 635
+                "surface_y": 1011,
+                "x": 421
+            },
+            {
+                "surface_y": 1011,
+                "x": 575
+            },
+            {
+                "surface_y": 1011,
+                "x": 730
+            },
+            {
+                "surface_y": 1215,
+                "x": 111
+            },
+            {
+                "surface_y": 1215,
+                "x": 266
+            },
+            {
+                "surface_y": 1215,
+                "x": 421
+            },
+            {
+                "surface_y": 1215,
+                "x": 575
+            },
+            {
+                "surface_y": 1215,
+                "x": 730
+            },
+            {
+                "surface_y": 1436,
+                "x": 109
+            },
+            {
+                "surface_y": 1436,
+                "x": 264
+            },
+            {
+                "surface_y": 1436,
+                "x": 419
+            },
+            {
+                "surface_y": 1436,
+                "x": 573
+            },
+            {
+                "surface_y": 1436,
+                "x": 728
             }
         ],
         "rendering": {
             "anchor": "bottom_center",
             "foot_overlap": 10,
-            "item_width": 250,
-            "item_height": 250
+            "item_width": 175,
+            "item_height": 209
         },
-        "answer": "Missing bow",
+        "answer": "One tanuki is missing a right ear.",
         "answer_box": {
-            "x1": 379,
-            "y1": 680,
-            "x2": 469,
-            "y2": 770
+            "x1": 573,
+            "y1": 619,
+            "x2": 663,
+            "y2": 709
         },
         "answer_visual_box": {
-            "x1": 390,
-            "y1": 704,
-            "x2": 458,
-            "y2": 747
+            "x1": 610,
+            "y1": 654,
+            "x2": 626,
+            "y2": 674
         }
     },
     backgroundSource: require("../../assets/composable/puzzle_assets/scenes/teahouse/mobile.png"),
-    normalItemSource: require("../../assets/composable/puzzle_assets/items/teddy_bear/250/normal.png"),
-    anomalyItemSource: require("../../assets/composable/puzzle_assets/items/teddy_bear/250/missing_bow.png"),
+    normalItemSource: require("../../assets/composable/puzzle_assets/items/tanuki/175/normal.png"),
+    anomalyItemSource: require("../../assets/composable/puzzle_assets/items/tanuki/175/missing_right_ear.png"),
   },
   {
     ...{
@@ -691,113 +979,161 @@ export const PUZZLES: ComposablePuzzle[] = [
         "version": 2,
         "scene": "teahouse",
         "profile": "mobile",
-        "difficulty": "medium",
+        "difficulty": "hard",
         "background": "puzzle_assets/scenes/teahouse/mobile.png",
-        "asset": "teddy_bear",
-        "item_size": 250,
-        "normal_item": "puzzle_assets/items/teddy_bear/250/normal.png",
-        "normal_item_meta": "puzzle_assets/items/teddy_bear/250/normal.json",
-        "anomaly": "missing_nose",
-        "anomaly_item": "puzzle_assets/items/teddy_bear/250/missing_nose.png",
-        "anomaly_item_meta": "puzzle_assets/items/teddy_bear/250/missing_nose.json",
-        "target_slot_index": 16,
+        "asset": "tanuki",
+        "item_size": 175,
+        "normal_item": "puzzle_assets/items/tanuki/175/normal.png",
+        "normal_item_meta": "puzzle_assets/items/tanuki/175/normal.json",
+        "anomaly": "missing_right_eye",
+        "anomaly_item": "puzzle_assets/items/tanuki/175/missing_right_eye.png",
+        "anomaly_item_meta": "puzzle_assets/items/tanuki/175/missing_right_eye.json",
+        "target_slot_index": 11,
         "slots": [
             {
-                "surface_y": 433,
-                "x": 231
+                "surface_y": 418,
+                "x": 111
             },
             {
-                "surface_y": 433,
-                "x": 428
+                "surface_y": 418,
+                "x": 730
             },
             {
-                "surface_y": 433,
-                "x": 624
+                "surface_y": 418,
+                "x": 266
             },
             {
-                "surface_y": 627,
-                "x": 234
+                "surface_y": 418,
+                "x": 575
             },
             {
-                "surface_y": 627,
-                "x": 431
+                "surface_y": 418,
+                "x": 421
             },
             {
-                "surface_y": 627,
-                "x": 627
+                "surface_y": 611,
+                "x": 111
             },
             {
-                "surface_y": 824,
-                "x": 228
+                "surface_y": 611,
+                "x": 266
             },
             {
-                "surface_y": 824,
-                "x": 425
+                "surface_y": 611,
+                "x": 421
             },
             {
-                "surface_y": 824,
-                "x": 621
+                "surface_y": 611,
+                "x": 575
             },
             {
-                "surface_y": 1026,
-                "x": 236
+                "surface_y": 611,
+                "x": 730
             },
             {
-                "surface_y": 1026,
-                "x": 433
+                "surface_y": 809,
+                "x": 111
             },
             {
-                "surface_y": 1026,
-                "x": 629
+                "surface_y": 809,
+                "x": 266
             },
             {
-                "surface_y": 1233,
-                "x": 240
+                "surface_y": 809,
+                "x": 421
             },
             {
-                "surface_y": 1233,
-                "x": 437
+                "surface_y": 809,
+                "x": 575
             },
             {
-                "surface_y": 1233,
-                "x": 633
+                "surface_y": 809,
+                "x": 730
             },
             {
-                "surface_y": 1454,
-                "x": 242
+                "surface_y": 1011,
+                "x": 111
             },
             {
-                "surface_y": 1454,
-                "x": 439
+                "surface_y": 1011,
+                "x": 266
             },
             {
-                "surface_y": 1454,
-                "x": 635
+                "surface_y": 1011,
+                "x": 421
+            },
+            {
+                "surface_y": 1011,
+                "x": 575
+            },
+            {
+                "surface_y": 1011,
+                "x": 730
+            },
+            {
+                "surface_y": 1215,
+                "x": 111
+            },
+            {
+                "surface_y": 1215,
+                "x": 266
+            },
+            {
+                "surface_y": 1215,
+                "x": 421
+            },
+            {
+                "surface_y": 1215,
+                "x": 575
+            },
+            {
+                "surface_y": 1215,
+                "x": 730
+            },
+            {
+                "surface_y": 1436,
+                "x": 109
+            },
+            {
+                "surface_y": 1436,
+                "x": 264
+            },
+            {
+                "surface_y": 1436,
+                "x": 419
+            },
+            {
+                "surface_y": 1436,
+                "x": 573
+            },
+            {
+                "surface_y": 1436,
+                "x": 728
             }
         ],
         "rendering": {
             "anchor": "bottom_center",
             "foot_overlap": 10,
-            "item_width": 250,
-            "item_height": 250
+            "item_width": 175,
+            "item_height": 209
         },
-        "answer": "Missing nose",
+        "answer": "One tanuki is missing a right eye.",
         "answer_box": {
-            "x1": 394,
-            "y1": 1268,
-            "x2": 484,
-            "y2": 1358
+            "x1": 238,
+            "y1": 658,
+            "x2": 328,
+            "y2": 748
         },
         "answer_visual_box": {
-            "x1": 431,
-            "y1": 1308,
-            "x2": 446,
-            "y2": 1318
+            "x1": 272,
+            "y1": 691,
+            "x2": 294,
+            "y2": 715
         }
     },
     backgroundSource: require("../../assets/composable/puzzle_assets/scenes/teahouse/mobile.png"),
-    normalItemSource: require("../../assets/composable/puzzle_assets/items/teddy_bear/250/normal.png"),
-    anomalyItemSource: require("../../assets/composable/puzzle_assets/items/teddy_bear/250/missing_nose.png"),
+    normalItemSource: require("../../assets/composable/puzzle_assets/items/tanuki/175/normal.png"),
+    anomalyItemSource: require("../../assets/composable/puzzle_assets/items/tanuki/175/missing_right_eye.png"),
   },
   {
     ...{
@@ -805,113 +1141,161 @@ export const PUZZLES: ComposablePuzzle[] = [
         "version": 2,
         "scene": "teahouse",
         "profile": "mobile",
-        "difficulty": "medium",
+        "difficulty": "hard",
         "background": "puzzle_assets/scenes/teahouse/mobile.png",
-        "asset": "teddy_bear",
-        "item_size": 250,
-        "normal_item": "puzzle_assets/items/teddy_bear/250/normal.png",
-        "normal_item_meta": "puzzle_assets/items/teddy_bear/250/normal.json",
-        "anomaly": "missing_nose",
-        "anomaly_item": "puzzle_assets/items/teddy_bear/250/missing_nose.png",
-        "anomaly_item_meta": "puzzle_assets/items/teddy_bear/250/missing_nose.json",
-        "target_slot_index": 6,
+        "asset": "tanuki",
+        "item_size": 175,
+        "normal_item": "puzzle_assets/items/tanuki/175/normal.png",
+        "normal_item_meta": "puzzle_assets/items/tanuki/175/normal.json",
+        "anomaly": "missing_left_eye",
+        "anomaly_item": "puzzle_assets/items/tanuki/175/missing_left_eye.png",
+        "anomaly_item_meta": "puzzle_assets/items/tanuki/175/missing_left_eye.json",
+        "target_slot_index": 4,
         "slots": [
             {
-                "surface_y": 433,
-                "x": 231
+                "surface_y": 418,
+                "x": 111
             },
             {
-                "surface_y": 433,
-                "x": 428
+                "surface_y": 418,
+                "x": 730
             },
             {
-                "surface_y": 433,
-                "x": 624
+                "surface_y": 418,
+                "x": 266
             },
             {
-                "surface_y": 627,
-                "x": 234
+                "surface_y": 418,
+                "x": 575
             },
             {
-                "surface_y": 627,
-                "x": 431
+                "surface_y": 418,
+                "x": 421
             },
             {
-                "surface_y": 627,
-                "x": 627
+                "surface_y": 611,
+                "x": 111
             },
             {
-                "surface_y": 824,
-                "x": 228
+                "surface_y": 611,
+                "x": 266
             },
             {
-                "surface_y": 824,
-                "x": 425
+                "surface_y": 611,
+                "x": 421
             },
             {
-                "surface_y": 824,
-                "x": 621
+                "surface_y": 611,
+                "x": 575
             },
             {
-                "surface_y": 1026,
-                "x": 236
+                "surface_y": 611,
+                "x": 730
             },
             {
-                "surface_y": 1026,
-                "x": 433
+                "surface_y": 809,
+                "x": 111
             },
             {
-                "surface_y": 1026,
-                "x": 629
+                "surface_y": 809,
+                "x": 266
             },
             {
-                "surface_y": 1233,
-                "x": 240
+                "surface_y": 809,
+                "x": 421
             },
             {
-                "surface_y": 1233,
-                "x": 437
+                "surface_y": 809,
+                "x": 575
             },
             {
-                "surface_y": 1233,
-                "x": 633
+                "surface_y": 809,
+                "x": 730
             },
             {
-                "surface_y": 1454,
-                "x": 242
+                "surface_y": 1011,
+                "x": 111
             },
             {
-                "surface_y": 1454,
-                "x": 439
+                "surface_y": 1011,
+                "x": 266
             },
             {
-                "surface_y": 1454,
-                "x": 635
+                "surface_y": 1011,
+                "x": 421
+            },
+            {
+                "surface_y": 1011,
+                "x": 575
+            },
+            {
+                "surface_y": 1011,
+                "x": 730
+            },
+            {
+                "surface_y": 1215,
+                "x": 111
+            },
+            {
+                "surface_y": 1215,
+                "x": 266
+            },
+            {
+                "surface_y": 1215,
+                "x": 421
+            },
+            {
+                "surface_y": 1215,
+                "x": 575
+            },
+            {
+                "surface_y": 1215,
+                "x": 730
+            },
+            {
+                "surface_y": 1436,
+                "x": 109
+            },
+            {
+                "surface_y": 1436,
+                "x": 264
+            },
+            {
+                "surface_y": 1436,
+                "x": 419
+            },
+            {
+                "surface_y": 1436,
+                "x": 573
+            },
+            {
+                "surface_y": 1436,
+                "x": 728
             }
         ],
         "rendering": {
             "anchor": "bottom_center",
             "foot_overlap": 10,
-            "item_width": 250,
-            "item_height": 250
+            "item_width": 175,
+            "item_height": 209
         },
-        "answer": "Missing nose",
+        "answer": "One tanuki is missing a left eye.",
         "answer_box": {
-            "x1": 182,
-            "y1": 638,
-            "x2": 272,
-            "y2": 728
+            "x1": 348,
+            "y1": 264,
+            "x2": 438,
+            "y2": 354
         },
         "answer_visual_box": {
-            "x1": 220,
-            "y1": 678,
-            "x2": 235,
-            "y2": 688
+            "x1": 383,
+            "y1": 298,
+            "x2": 403,
+            "y2": 321
         }
     },
     backgroundSource: require("../../assets/composable/puzzle_assets/scenes/teahouse/mobile.png"),
-    normalItemSource: require("../../assets/composable/puzzle_assets/items/teddy_bear/250/normal.png"),
-    anomalyItemSource: require("../../assets/composable/puzzle_assets/items/teddy_bear/250/missing_nose.png"),
+    normalItemSource: require("../../assets/composable/puzzle_assets/items/tanuki/175/normal.png"),
+    anomalyItemSource: require("../../assets/composable/puzzle_assets/items/tanuki/175/missing_left_eye.png"),
   },
   {
     ...{
@@ -919,113 +1303,161 @@ export const PUZZLES: ComposablePuzzle[] = [
         "version": 2,
         "scene": "teahouse",
         "profile": "mobile",
-        "difficulty": "medium",
+        "difficulty": "hard",
         "background": "puzzle_assets/scenes/teahouse/mobile.png",
-        "asset": "teddy_bear",
-        "item_size": 250,
-        "normal_item": "puzzle_assets/items/teddy_bear/250/normal.png",
-        "normal_item_meta": "puzzle_assets/items/teddy_bear/250/normal.json",
-        "anomaly": "missing_nose",
-        "anomaly_item": "puzzle_assets/items/teddy_bear/250/missing_nose.png",
-        "anomaly_item_meta": "puzzle_assets/items/teddy_bear/250/missing_nose.json",
-        "target_slot_index": 3,
+        "asset": "tanuki",
+        "item_size": 175,
+        "normal_item": "puzzle_assets/items/tanuki/175/normal.png",
+        "normal_item_meta": "puzzle_assets/items/tanuki/175/normal.json",
+        "anomaly": "missing_bag",
+        "anomaly_item": "puzzle_assets/items/tanuki/175/missing_bag.png",
+        "anomaly_item_meta": "puzzle_assets/items/tanuki/175/missing_bag.json",
+        "target_slot_index": 14,
         "slots": [
             {
-                "surface_y": 433,
-                "x": 231
+                "surface_y": 418,
+                "x": 111
             },
             {
-                "surface_y": 433,
-                "x": 428
+                "surface_y": 418,
+                "x": 730
             },
             {
-                "surface_y": 433,
-                "x": 624
+                "surface_y": 418,
+                "x": 266
             },
             {
-                "surface_y": 627,
-                "x": 234
+                "surface_y": 418,
+                "x": 575
             },
             {
-                "surface_y": 627,
-                "x": 431
+                "surface_y": 418,
+                "x": 421
             },
             {
-                "surface_y": 627,
-                "x": 627
+                "surface_y": 611,
+                "x": 111
             },
             {
-                "surface_y": 824,
-                "x": 228
+                "surface_y": 611,
+                "x": 266
             },
             {
-                "surface_y": 824,
-                "x": 425
+                "surface_y": 611,
+                "x": 421
             },
             {
-                "surface_y": 824,
-                "x": 621
+                "surface_y": 611,
+                "x": 575
             },
             {
-                "surface_y": 1026,
-                "x": 236
+                "surface_y": 611,
+                "x": 730
             },
             {
-                "surface_y": 1026,
-                "x": 433
+                "surface_y": 809,
+                "x": 111
             },
             {
-                "surface_y": 1026,
-                "x": 629
+                "surface_y": 809,
+                "x": 266
             },
             {
-                "surface_y": 1233,
-                "x": 240
+                "surface_y": 809,
+                "x": 421
             },
             {
-                "surface_y": 1233,
-                "x": 437
+                "surface_y": 809,
+                "x": 575
             },
             {
-                "surface_y": 1233,
-                "x": 633
+                "surface_y": 809,
+                "x": 730
             },
             {
-                "surface_y": 1454,
-                "x": 242
+                "surface_y": 1011,
+                "x": 111
             },
             {
-                "surface_y": 1454,
-                "x": 439
+                "surface_y": 1011,
+                "x": 266
             },
             {
-                "surface_y": 1454,
-                "x": 635
+                "surface_y": 1011,
+                "x": 421
+            },
+            {
+                "surface_y": 1011,
+                "x": 575
+            },
+            {
+                "surface_y": 1011,
+                "x": 730
+            },
+            {
+                "surface_y": 1215,
+                "x": 111
+            },
+            {
+                "surface_y": 1215,
+                "x": 266
+            },
+            {
+                "surface_y": 1215,
+                "x": 421
+            },
+            {
+                "surface_y": 1215,
+                "x": 575
+            },
+            {
+                "surface_y": 1215,
+                "x": 730
+            },
+            {
+                "surface_y": 1436,
+                "x": 109
+            },
+            {
+                "surface_y": 1436,
+                "x": 264
+            },
+            {
+                "surface_y": 1436,
+                "x": 419
+            },
+            {
+                "surface_y": 1436,
+                "x": 573
+            },
+            {
+                "surface_y": 1436,
+                "x": 728
             }
         ],
         "rendering": {
             "anchor": "bottom_center",
             "foot_overlap": 10,
-            "item_width": 250,
-            "item_height": 250
+            "item_width": 175,
+            "item_height": 209
         },
-        "answer": "Missing nose",
+        "answer": "One tanuki is missing a bag.",
         "answer_box": {
-            "x1": 188,
-            "y1": 441,
-            "x2": 278,
-            "y2": 531
+            "x1": 624,
+            "y1": 701,
+            "x2": 714,
+            "y2": 791
         },
         "answer_visual_box": {
-            "x1": 226,
-            "y1": 481,
-            "x2": 241,
-            "y2": 491
+            "x1": 657,
+            "y1": 725,
+            "x2": 680,
+            "y2": 767
         }
     },
     backgroundSource: require("../../assets/composable/puzzle_assets/scenes/teahouse/mobile.png"),
-    normalItemSource: require("../../assets/composable/puzzle_assets/items/teddy_bear/250/normal.png"),
-    anomalyItemSource: require("../../assets/composable/puzzle_assets/items/teddy_bear/250/missing_nose.png"),
+    normalItemSource: require("../../assets/composable/puzzle_assets/items/tanuki/175/normal.png"),
+    anomalyItemSource: require("../../assets/composable/puzzle_assets/items/tanuki/175/missing_bag.png"),
   },
   {
     ...{
@@ -1033,112 +1465,160 @@ export const PUZZLES: ComposablePuzzle[] = [
         "version": 2,
         "scene": "teahouse",
         "profile": "mobile",
-        "difficulty": "medium",
+        "difficulty": "hard",
         "background": "puzzle_assets/scenes/teahouse/mobile.png",
-        "asset": "teddy_bear",
-        "item_size": 250,
-        "normal_item": "puzzle_assets/items/teddy_bear/250/normal.png",
-        "normal_item_meta": "puzzle_assets/items/teddy_bear/250/normal.json",
-        "anomaly": "missing_eye",
-        "anomaly_item": "puzzle_assets/items/teddy_bear/250/missing_eye.png",
-        "anomaly_item_meta": "puzzle_assets/items/teddy_bear/250/missing_eye.json",
-        "target_slot_index": 10,
+        "asset": "tanuki",
+        "item_size": 175,
+        "normal_item": "puzzle_assets/items/tanuki/175/normal.png",
+        "normal_item_meta": "puzzle_assets/items/tanuki/175/normal.json",
+        "anomaly": "missing_bag",
+        "anomaly_item": "puzzle_assets/items/tanuki/175/missing_bag.png",
+        "anomaly_item_meta": "puzzle_assets/items/tanuki/175/missing_bag.json",
+        "target_slot_index": 22,
         "slots": [
             {
-                "surface_y": 433,
-                "x": 231
+                "surface_y": 418,
+                "x": 111
             },
             {
-                "surface_y": 433,
-                "x": 428
+                "surface_y": 418,
+                "x": 730
             },
             {
-                "surface_y": 433,
-                "x": 624
+                "surface_y": 418,
+                "x": 266
             },
             {
-                "surface_y": 627,
-                "x": 234
+                "surface_y": 418,
+                "x": 575
             },
             {
-                "surface_y": 627,
-                "x": 431
+                "surface_y": 418,
+                "x": 421
             },
             {
-                "surface_y": 627,
-                "x": 627
+                "surface_y": 611,
+                "x": 111
             },
             {
-                "surface_y": 824,
-                "x": 228
+                "surface_y": 611,
+                "x": 266
             },
             {
-                "surface_y": 824,
-                "x": 425
+                "surface_y": 611,
+                "x": 421
             },
             {
-                "surface_y": 824,
-                "x": 621
+                "surface_y": 611,
+                "x": 575
             },
             {
-                "surface_y": 1026,
-                "x": 236
+                "surface_y": 611,
+                "x": 730
             },
             {
-                "surface_y": 1026,
-                "x": 433
+                "surface_y": 809,
+                "x": 111
             },
             {
-                "surface_y": 1026,
-                "x": 629
+                "surface_y": 809,
+                "x": 266
             },
             {
-                "surface_y": 1233,
-                "x": 240
+                "surface_y": 809,
+                "x": 421
             },
             {
-                "surface_y": 1233,
-                "x": 437
+                "surface_y": 809,
+                "x": 575
             },
             {
-                "surface_y": 1233,
-                "x": 633
+                "surface_y": 809,
+                "x": 730
             },
             {
-                "surface_y": 1454,
-                "x": 242
+                "surface_y": 1011,
+                "x": 111
             },
             {
-                "surface_y": 1454,
-                "x": 439
+                "surface_y": 1011,
+                "x": 266
             },
             {
-                "surface_y": 1454,
-                "x": 635
+                "surface_y": 1011,
+                "x": 421
+            },
+            {
+                "surface_y": 1011,
+                "x": 575
+            },
+            {
+                "surface_y": 1011,
+                "x": 730
+            },
+            {
+                "surface_y": 1215,
+                "x": 111
+            },
+            {
+                "surface_y": 1215,
+                "x": 266
+            },
+            {
+                "surface_y": 1215,
+                "x": 421
+            },
+            {
+                "surface_y": 1215,
+                "x": 575
+            },
+            {
+                "surface_y": 1215,
+                "x": 730
+            },
+            {
+                "surface_y": 1436,
+                "x": 109
+            },
+            {
+                "surface_y": 1436,
+                "x": 264
+            },
+            {
+                "surface_y": 1436,
+                "x": 419
+            },
+            {
+                "surface_y": 1436,
+                "x": 573
+            },
+            {
+                "surface_y": 1436,
+                "x": 728
             }
         ],
         "rendering": {
             "anchor": "bottom_center",
             "foot_overlap": 10,
-            "item_width": 250,
-            "item_height": 250
+            "item_width": 175,
+            "item_height": 209
         },
-        "answer": "Missing eye",
+        "answer": "One tanuki is missing a bag.",
         "answer_box": {
-            "x1": 365,
-            "y1": 833,
-            "x2": 455,
-            "y2": 923
+            "x1": 314,
+            "y1": 1107,
+            "x2": 404,
+            "y2": 1197
         },
         "answer_visual_box": {
-            "x1": 403,
-            "y1": 870,
-            "x2": 417,
-            "y2": 886
+            "x1": 348,
+            "y1": 1131,
+            "x2": 371,
+            "y2": 1173
         }
     },
     backgroundSource: require("../../assets/composable/puzzle_assets/scenes/teahouse/mobile.png"),
-    normalItemSource: require("../../assets/composable/puzzle_assets/items/teddy_bear/250/normal.png"),
-    anomalyItemSource: require("../../assets/composable/puzzle_assets/items/teddy_bear/250/missing_eye.png"),
+    normalItemSource: require("../../assets/composable/puzzle_assets/items/tanuki/175/normal.png"),
+    anomalyItemSource: require("../../assets/composable/puzzle_assets/items/tanuki/175/missing_bag.png"),
   }
 ];

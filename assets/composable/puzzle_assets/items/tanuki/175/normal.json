@@ -1,9 +1,9 @@
 {
-  "asset": "teddy_bear",
+  "asset": "tanuki",
   "variant": "normal",
-  "size": 250,
-  "width": 250,
-  "height": 250,
+  "size": 175,
+  "width": 175,
+  "height": 209,
   "anchor": "bottom_center",
   "local_box": null
 }

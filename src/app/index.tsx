@@ -1,8 +1,9 @@
 import { PUZZLES } from "@/data/puzzles";
 import { getDailyPuzzleIndex } from "@/lib/daily-puzzle";
 import { loadProgress } from "@/lib/player-progress";
-import { Link } from "expo-router";
-import { useEffect, useState } from "react";
+import { smartRandomPuzzleIndex } from "@/lib/puzzle-library";
+import { Link, useFocusEffect } from "expo-router";
+import { useCallback, useState } from "react";
 import {
   ImageBackground,
   Pressable,
@@ -17,14 +18,28 @@ import {
 
 export default function HomeScreen() {
   const [completedCount, setCompletedCount] = useState(0);
+  const [lastPuzzleIndex, setLastPuzzleIndex] = useState(0);
 
   const insets = useSafeAreaInsets();
+  const [randomIndex, setRandomIndex] = useState(0);
 
-  useEffect(() => {
-    loadProgress().then((progress) => {
-      setCompletedCount(progress.completedPuzzleIds.length);
-    });
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      loadProgress().then((progress) => {
+        setCompletedCount(progress.completedPuzzleIds.length);
+
+        const safeIndex =
+          progress.lastPuzzleIndex >= 0 &&
+          progress.lastPuzzleIndex < PUZZLES.length
+            ? progress.lastPuzzleIndex
+            : 0;
+
+        setLastPuzzleIndex(safeIndex);
+      });
+
+      smartRandomPuzzleIndex().then(setRandomIndex);
+    }, [])
+  );
 
   const dailyPuzzleIndex = getDailyPuzzleIndex();
 
@@ -70,11 +85,9 @@ export default function HomeScreen() {
           </View>
 
           <View style={styles.buttonGroup}>
-            <Link href="/play" asChild>
+            <Link href={`/play?index=${lastPuzzleIndex}`} asChild>
               <Pressable style={styles.primaryButton}>
-                <Text style={styles.primaryButtonText}>
-                  Continue
-                </Text>
+                <Text style={styles.primaryButtonText}>Continue</Text>
               </Pressable>
             </Link>
 
@@ -83,9 +96,13 @@ export default function HomeScreen() {
               asChild
             >
               <Pressable style={styles.secondaryButton}>
-                <Text style={styles.secondaryButtonText}>
-                  Daily Puzzle
-                </Text>
+                <Text style={styles.secondaryButtonText}>Daily Puzzle</Text>
+              </Pressable>
+            </Link>
+
+            <Link href={`/play?mode=random&index=${randomIndex}`} asChild>
+              <Pressable style={styles.secondaryButton}>
+                <Text style={styles.secondaryButtonText}>Random Puzzle</Text>
               </Pressable>
             </Link>
 

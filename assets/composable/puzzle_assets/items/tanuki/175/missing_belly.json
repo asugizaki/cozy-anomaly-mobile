@@ -1,0 +1,15 @@
+{
+  "asset": "tanuki",
+  "variant": "missing_belly",
+  "size": 175,
+  "width": 175,
+  "height": 209,
+  "anchor": "bottom_center",
+  "answer": "One tanuki is missing a belly.",
+  "local_box": [
+    40,
+    134,
+    117,
+    182
+  ]
+}

@@ -40,4 +40,8 @@ export type ComposablePuzzle = {
   backgroundSource: ImageSourcePropType;
   normalItemSource: ImageSourcePropType;
   anomalyItemSource: ImageSourcePropType;
+  category?: string;
+  tags?: string[];
+  game_type?: string;
+  difficulty_rating?: number;
 };
