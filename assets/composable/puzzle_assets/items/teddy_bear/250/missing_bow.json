@@ -1,0 +1,15 @@
+{
+  "asset": "teddy_bear",
+  "variant": "missing_bow",
+  "size": 250,
+  "width": 250,
+  "height": 250,
+  "anchor": "bottom_center",
+  "answer": "Missing bow",
+  "local_box": [
+    90,
+    120,
+    158,
+    163
+  ]
+}

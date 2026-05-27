@@ -1,0 +1,9 @@
+{
+  "asset": "teddy_bear",
+  "variant": "normal",
+  "size": 250,
+  "width": 250,
+  "height": 250,
+  "anchor": "bottom_center",
+  "local_box": null
+}

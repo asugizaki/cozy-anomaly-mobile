@@ -4,14 +4,10 @@
     "strict": true,
     "paths": {
       "@/*": [
-<<<<<<< HEAD
         "./src/*"
       ],
       "@/assets/*": [
         "./assets/*"
-=======
-        "./*"
->>>>>>> c1c27eb (Initial commit)
       ]
     }
   },

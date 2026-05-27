@@ -1,0 +1,15 @@
+{
+  "asset": "teddy_bear",
+  "variant": "missing_eye",
+  "size": 250,
+  "width": 250,
+  "height": 250,
+  "anchor": "bottom_center",
+  "answer": "Missing eye",
+  "local_box": [
+    95,
+    84,
+    109,
+    100
+  ]
+}

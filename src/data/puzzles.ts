@@ -1,0 +1,1 @@
+export { PUZZLES } from "./generatedPuzzles";

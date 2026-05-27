@@ -1,0 +1,109 @@
+{
+  "id": "cozy_puzzle_006",
+  "version": 2,
+  "scene": "teahouse",
+  "profile": "mobile",
+  "difficulty": "medium",
+  "background": "puzzle_assets/scenes/teahouse/mobile.png",
+  "asset": "teddy_bear",
+  "item_size": 250,
+  "normal_item": "puzzle_assets/items/teddy_bear/250/normal.png",
+  "normal_item_meta": "puzzle_assets/items/teddy_bear/250/normal.json",
+  "anomaly": "missing_bow",
+  "anomaly_item": "puzzle_assets/items/teddy_bear/250/missing_bow.png",
+  "anomaly_item_meta": "puzzle_assets/items/teddy_bear/250/missing_bow.json",
+  "target_slot_index": 7,
+  "slots": [
+    {
+      "surface_y": 433,
+      "x": 231
+    },
+    {
+      "surface_y": 433,
+      "x": 428
+    },
+    {
+      "surface_y": 433,
+      "x": 624
+    },
+    {
+      "surface_y": 627,
+      "x": 234
+    },
+    {
+      "surface_y": 627,
+      "x": 431
+    },
+    {
+      "surface_y": 627,
+      "x": 627
+    },
+    {
+      "surface_y": 824,
+      "x": 228
+    },
+    {
+      "surface_y": 824,
+      "x": 425
+    },
+    {
+      "surface_y": 824,
+      "x": 621
+    },
+    {
+      "surface_y": 1026,
+      "x": 236
+    },
+    {
+      "surface_y": 1026,
+      "x": 433
+    },
+    {
+      "surface_y": 1026,
+      "x": 629
+    },
+    {
+      "surface_y": 1233,
+      "x": 240
+    },
+    {
+      "surface_y": 1233,
+      "x": 437
+    },
+    {
+      "surface_y": 1233,
+      "x": 633
+    },
+    {
+      "surface_y": 1454,
+      "x": 242
+    },
+    {
+      "surface_y": 1454,
+      "x": 439
+    },
+    {
+      "surface_y": 1454,
+      "x": 635
+    }
+  ],
+  "rendering": {
+    "anchor": "bottom_center",
+    "foot_overlap": 10,
+    "item_width": 250,
+    "item_height": 250
+  },
+  "answer": "Missing bow",
+  "answer_box": {
+    "x1": 379,
+    "y1": 680,
+    "x2": 469,
+    "y2": 770
+  },
+  "answer_visual_box": {
+    "x1": 390,
+    "y1": 704,
+    "x2": 458,
+    "y2": 747
+  }
+}

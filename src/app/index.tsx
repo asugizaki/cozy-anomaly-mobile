@@ -1,98 +1,243 @@
-import * as Device from 'expo-device';
-import { Platform, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-
-import { AnimatedIcon } from '@/components/animated-icon';
-import { HintRow } from '@/components/hint-row';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { WebBadge } from '@/components/web-badge';
-import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
-
-function getDevMenuHint() {
-  if (Platform.OS === 'web') {
-    return <ThemedText type="small">use browser devtools</ThemedText>;
-  }
-  if (Device.isDevice) {
-    return (
-      <ThemedText type="small">
-        shake device or press <ThemedText type="code">m</ThemedText> in terminal
-      </ThemedText>
-    );
-  }
-  const shortcut = Platform.OS === 'android' ? 'cmd+m (or ctrl+m)' : 'cmd+d';
-  return (
-    <ThemedText type="small">
-      press <ThemedText type="code">{shortcut}</ThemedText>
-    </ThemedText>
-  );
-}
+import { PUZZLES } from "@/data/puzzles";
+import { getDailyPuzzleIndex } from "@/lib/daily-puzzle";
+import { loadProgress } from "@/lib/player-progress";
+import { Link } from "expo-router";
+import { useEffect, useState } from "react";
+import {
+  ImageBackground,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
+import {
+  SafeAreaView,
+  useSafeAreaInsets,
+} from "react-native-safe-area-context";
 
 export default function HomeScreen() {
+  const [completedCount, setCompletedCount] = useState(0);
+
+  const insets = useSafeAreaInsets();
+
+  useEffect(() => {
+    loadProgress().then((progress) => {
+      setCompletedCount(progress.completedPuzzleIds.length);
+    });
+  }, []);
+
+  const dailyPuzzleIndex = getDailyPuzzleIndex();
+
   return (
-    <ThemedView style={styles.container}>
-      <SafeAreaView style={styles.safeArea}>
-        <ThemedView style={styles.heroSection}>
-          <AnimatedIcon />
-          <ThemedText type="title" style={styles.title}>
-            Welcome to&nbsp;Expo
-          </ThemedText>
-        </ThemedView>
+    <ImageBackground
+      source={require("../../assets/home-bg.png")}
+      resizeMode="cover"
+      style={styles.background}
+    >
+      <SafeAreaView style={styles.overlay}>
+        <View
+          style={[
+            styles.topBar,
+            {
+              paddingTop: Math.max(insets.top + 10, 42),
+            },
+          ]}
+        >
+          <Link href="/settings" asChild>
+            <Pressable style={styles.iconButton}>
+              <Text style={styles.iconText}>⚙</Text>
+            </Pressable>
+          </Link>
 
-        <ThemedText type="code" style={styles.code}>
-          get started
-        </ThemedText>
+          <Link href="/stats" asChild>
+            <Pressable style={styles.iconButton}>
+              <Text style={styles.iconText}>📊</Text>
+            </Pressable>
+          </Link>
+        </View>
 
-        <ThemedView type="backgroundElement" style={styles.stepContainer}>
-          <HintRow
-            title="Try editing"
-            hint={<ThemedText type="code">src/app/index.tsx</ThemedText>}
-          />
-          <HintRow title="Dev tools" hint={getDevMenuHint()} />
-          <HintRow
-            title="Fresh start"
-            hint={<ThemedText type="code">npm run reset-project</ThemedText>}
-          />
-        </ThemedView>
+        <View style={styles.content}>
+          <Text style={styles.logo}>Cozy Anomaly</Text>
 
-        {Platform.OS === 'web' && <WebBadge />}
+          <Text style={styles.subtitle}>
+            Find the tiny difference in cozy scenes.
+          </Text>
+
+          <View style={styles.statsPill}>
+            <Text style={styles.statsText}>
+              {completedCount} / {PUZZLES.length} solved
+            </Text>
+          </View>
+
+          <View style={styles.buttonGroup}>
+            <Link href="/play" asChild>
+              <Pressable style={styles.primaryButton}>
+                <Text style={styles.primaryButtonText}>
+                  Continue
+                </Text>
+              </Pressable>
+            </Link>
+
+            <Link
+              href={`/play?mode=daily&index=${dailyPuzzleIndex}`}
+              asChild
+            >
+              <Pressable style={styles.secondaryButton}>
+                <Text style={styles.secondaryButtonText}>
+                  Daily Puzzle
+                </Text>
+              </Pressable>
+            </Link>
+
+            <Link href="/play?index=0" asChild>
+              <Pressable style={styles.ghostButton}>
+                <Text style={styles.ghostButtonText}>
+                  Start From Beginning
+                </Text>
+              </Pressable>
+            </Link>
+          </View>
+        </View>
+
+        <View style={styles.footer}>
+          <Text style={styles.footerText}>
+            Cozy café vibes ✦ relaxing puzzles ✦ daily challenges
+          </Text>
+        </View>
       </SafeAreaView>
-    </ThemedView>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  background: {
     flex: 1,
-    justifyContent: 'center',
-    flexDirection: 'row',
+    backgroundColor: "#120B07",
   },
-  safeArea: {
+
+  overlay: {
     flex: 1,
-    paddingHorizontal: Spacing.four,
-    alignItems: 'center',
-    gap: Spacing.three,
-    paddingBottom: BottomTabInset + Spacing.three,
-    maxWidth: MaxContentWidth,
+    paddingHorizontal: 24,
+    backgroundColor: "rgba(0,0,0,0.18)",
   },
-  heroSection: {
-    alignItems: 'center',
-    justifyContent: 'center',
+
+  topBar: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+
+  iconButton: {
+    width: 52,
+    height: 52,
+    borderRadius: 26,
+    backgroundColor: "rgba(255,255,255,0.92)",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  iconText: {
+    fontSize: 24,
+  },
+
+  content: {
     flex: 1,
-    paddingHorizontal: Spacing.four,
-    gap: Spacing.four,
+    alignItems: "center",
+    justifyContent: "center",
   },
-  title: {
-    textAlign: 'center',
+
+  logo: {
+    fontSize: 48,
+    fontWeight: "900",
+    color: "white",
+    textAlign: "center",
+    textShadowColor: "rgba(0,0,0,0.45)",
+    textShadowOffset: { width: 0, height: 3 },
+    textShadowRadius: 10,
   },
-  code: {
-    textTransform: 'uppercase',
+
+  subtitle: {
+    marginTop: 12,
+    fontSize: 18,
+    color: "rgba(255,255,255,0.92)",
+    textAlign: "center",
+    lineHeight: 26,
+    maxWidth: 300,
   },
-  stepContainer: {
-    gap: Spacing.three,
-    alignSelf: 'stretch',
-    paddingHorizontal: Spacing.three,
-    paddingVertical: Spacing.four,
-    borderRadius: Spacing.four,
+
+  statsPill: {
+    marginTop: 24,
+    paddingHorizontal: 18,
+    paddingVertical: 10,
+    borderRadius: 999,
+    backgroundColor: "rgba(255,255,255,0.90)",
+  },
+
+  statsText: {
+    fontSize: 15,
+    fontWeight: "800",
+    color: "#4B2E20",
+  },
+
+  buttonGroup: {
+    width: "100%",
+    marginTop: 34,
+    gap: 14,
+  },
+
+  primaryButton: {
+    backgroundColor: "#FF5C8A",
+    paddingVertical: 18,
+    borderRadius: 999,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOpacity: 0.22,
+    shadowRadius: 10,
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    elevation: 6,
+  },
+
+  primaryButtonText: {
+    color: "white",
+    fontSize: 20,
+    fontWeight: "900",
+  },
+
+  secondaryButton: {
+    backgroundColor: "#F6E1D0",
+    paddingVertical: 18,
+    borderRadius: 999,
+    alignItems: "center",
+  },
+
+  secondaryButtonText: {
+    color: "#6A3F2B",
+    fontSize: 18,
+    fontWeight: "900",
+  },
+
+  ghostButton: {
+    alignItems: "center",
+    paddingVertical: 14,
+  },
+
+  ghostButtonText: {
+    color: "white",
+    fontSize: 16,
+    fontWeight: "700",
+    textDecorationLine: "underline",
+  },
+
+  footer: {
+    paddingBottom: 18,
+    alignItems: "center",
+  },
+
+  footerText: {
+    color: "rgba(255,255,255,0.82)",
+    fontSize: 13,
+    textAlign: "center",
   },
 });
