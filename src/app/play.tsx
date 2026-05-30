@@ -101,6 +101,14 @@ function gameTitle(isDailyMode: boolean, engineTitle: string) {
   return isDailyMode ? "Daily Challenge" : engineTitle;
 }
 
+function dailyKey(date = new Date()) {
+  const year = date.getFullYear();
+  const month = `${date.getMonth() + 1}`.padStart(2, "0");
+  const day = `${date.getDate()}`.padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+}
+
 function screenPointToOriginalPoint(
   screenX: number,
   screenY: number,
@@ -142,6 +150,7 @@ export default function PlayScreen() {
   const [settings, setSettings] = useState<any>(null);
   const [progress, setProgress] = useState<PlayerProgress | null>(null);
   const [wrongMarkers, setWrongMarkers] = useState<WrongMarker[]>([]);
+  const [wrongTapCountInPuzzle, setWrongTapCountInPuzzle] = useState(0);
 
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
@@ -173,6 +182,7 @@ export default function PlayScreen() {
     setReady(false);
     fadeAnim.setValue(0);
     setWrongMarkers([]);
+    setWrongTapCountInPuzzle(0);
 
     const timer = setTimeout(() => {
       setReady(true);
@@ -249,14 +259,45 @@ export default function PlayScreen() {
       puzzleIndex,
     ].slice(-RECENT_HISTORY_LIMIT);
 
+    const nextStreak = wasFailed ? 0 : progress.currentStreak + 1;
+    const isPerfect =
+      !wasFailed &&
+      wrongTapCountInPuzzle === 0 &&
+      hintLevel === 0 &&
+      attemptsLeft === MAX_ATTEMPTS;
+
+    const todayKey = dailyKey();
+    const completedDailyKeys = progress.completedDailyKeys || [];
+    const hasCompletedDailyToday = completedDailyKeys.includes(todayKey);
+    const shouldCountDaily =
+      isDailyMode && !wasFailed && !hasCompletedDailyToday;
+
     await saveProgressPatch({
       completedPuzzleIds: alreadyCompleted
         ? progress.completedPuzzleIds
         : [...progress.completedPuzzleIds, puzzle.id],
+
       totalSolved: alreadyCompleted
         ? progress.totalSolved
         : progress.totalSolved + 1,
-      currentStreak: wasFailed ? 0 : progress.currentStreak + 1,
+
+      currentStreak: nextStreak,
+
+      bestStreak: Math.max(progress.bestStreak || 0, nextStreak),
+
+      perfectGames:
+        isPerfect && !alreadyCompleted
+          ? progress.perfectGames + 1
+          : progress.perfectGames,
+
+      dailyChallengesCompleted: shouldCountDaily
+        ? progress.dailyChallengesCompleted + 1
+        : progress.dailyChallengesCompleted,
+
+      completedDailyKeys: shouldCountDaily
+        ? [...completedDailyKeys, todayKey]
+        : completedDailyKeys,
+
       lastPuzzleIndex: puzzleIndex,
       recentPuzzleIndexes,
     });
@@ -267,6 +308,14 @@ export default function PlayScreen() {
 
     await saveProgressPatch({
       hintsUsed: progress.hintsUsed + 1,
+    });
+  }
+
+  async function recordWrongTap() {
+    if (!progress) return;
+
+    await saveProgressPatch({
+      totalWrongTaps: progress.totalWrongTaps + 1,
     });
   }
 
@@ -302,6 +351,7 @@ export default function PlayScreen() {
     setHintLevel(0);
     setHintExpanded(false);
     setWrongMarkers([]);
+    setWrongTapCountInPuzzle(0);
   }
 
   async function goToNextPuzzle() {
@@ -336,6 +386,7 @@ export default function PlayScreen() {
     setHintLevel(0);
     setHintExpanded(false);
     setWrongMarkers([]);
+    setWrongTapCountInPuzzle(0);
   }
 
   function requestHint() {
@@ -400,6 +451,9 @@ export default function PlayScreen() {
       markSolved(false);
       return;
     }
+
+    setWrongTapCountInPuzzle((current) => current + 1);
+    recordWrongTap();
 
     const nextAttempts = attemptsLeft - 1;
     setAttemptsLeft(nextAttempts);

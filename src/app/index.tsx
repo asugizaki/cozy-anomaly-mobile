@@ -22,6 +22,7 @@ export default function HomeScreen() {
   const [randomIndex, setRandomIndex] = useState(0);
 
   const insets = useSafeAreaInsets();
+  const dailyPuzzleIndex = getDailyPuzzleIndex();
 
   useFocusEffect(
     useCallback(() => {
@@ -33,8 +34,6 @@ export default function HomeScreen() {
       smartRandomPuzzleIndex().then(setRandomIndex);
     }, [])
   );
-
-  const dailyPuzzleIndex = getDailyPuzzleIndex();
 
   return (
     <ImageBackground
@@ -72,19 +71,30 @@ export default function HomeScreen() {
           <Text style={styles.logo}>Cozy Anomaly</Text>
 
           <Text style={styles.subtitle}>
-            Find tiny differences in cozy scenes.
+            Spot tiny differences in cozy scenes.
           </Text>
 
-          <View style={styles.statsPill}>
-            <Text style={styles.statsText}>
-              {completedCount} / {PUZZLES.length} solved
-            </Text>
+          <View style={styles.statCardRow}>
+            <View style={styles.statCard}>
+              <Text style={styles.statNumber}>{completedCount}</Text>
+              <Text style={styles.statLabel}>Solved</Text>
+            </View>
+
+            <View style={styles.statCard}>
+              <Text style={styles.statNumber}>{PUZZLES.length}</Text>
+              <Text style={styles.statLabel}>Puzzles</Text>
+            </View>
+
+            <View style={styles.statCard}>
+              <Text style={styles.statNumber}>{currentStreak}</Text>
+              <Text style={styles.statLabel}>Streak</Text>
+            </View>
           </View>
 
           <View style={styles.buttonGroup}>
             <Link href={`/play?mode=random&index=${randomIndex}`} asChild>
               <Pressable style={styles.primaryButton}>
-                <Text style={styles.primaryButtonText}>Play</Text>
+                <Text style={styles.primaryButtonText}>🎲 Play Random</Text>
               </Pressable>
             </Link>
 
@@ -93,7 +103,9 @@ export default function HomeScreen() {
               asChild
             >
               <Pressable style={styles.secondaryButton}>
-                <Text style={styles.secondaryButtonText}>Daily Challenge</Text>
+                <Text style={styles.secondaryButtonText}>
+                  ☀ Daily Challenge
+                </Text>
               </Pressable>
             </Link>
           </View>
@@ -101,7 +113,7 @@ export default function HomeScreen() {
 
         <View style={styles.footer}>
           <Text style={styles.footerText}>
-            Cozy café vibes ✦ relaxing puzzles ✦ daily challenges
+            Relaxing puzzles ✦ cozy vibes ✦ tiny details
           </Text>
         </View>
       </SafeAreaView>
@@ -118,7 +130,7 @@ const styles = StyleSheet.create({
   overlay: {
     flex: 1,
     paddingHorizontal: 24,
-    backgroundColor: "rgba(0,0,0,0.18)",
+    backgroundColor: "rgba(0,0,0,0.20)",
   },
 
   topBar: {
@@ -175,21 +187,36 @@ const styles = StyleSheet.create({
     color: "rgba(255,255,255,0.92)",
     textAlign: "center",
     lineHeight: 26,
-    maxWidth: 300,
+    maxWidth: 310,
   },
 
-  statsPill: {
-    marginTop: 24,
-    paddingHorizontal: 18,
-    paddingVertical: 10,
-    borderRadius: 999,
+  statCardRow: {
+    width: "100%",
+    marginTop: 28,
+    flexDirection: "row",
+    gap: 10,
+  },
+
+  statCard: {
+    flex: 1,
+    paddingVertical: 14,
+    borderRadius: 20,
     backgroundColor: "rgba(255,255,255,0.90)",
+    alignItems: "center",
   },
 
-  statsText: {
-    fontSize: 15,
-    fontWeight: "800",
+  statNumber: {
+    fontSize: 22,
+    fontWeight: "900",
     color: "#4B2E20",
+  },
+
+  statLabel: {
+    marginTop: 2,
+    fontSize: 12,
+    fontWeight: "800",
+    color: "#8A654C",
+    textTransform: "uppercase",
   },
 
   buttonGroup: {
@@ -206,10 +233,7 @@ const styles = StyleSheet.create({
     shadowColor: "#000",
     shadowOpacity: 0.22,
     shadowRadius: 10,
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
+    shadowOffset: { width: 0, height: 4 },
     elevation: 6,
   },
 

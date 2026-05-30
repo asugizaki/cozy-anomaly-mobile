@@ -4,6 +4,13 @@ import { loadProgress } from "./player-progress";
 
 const RECENT_HISTORY_LIMIT = 15;
 
+type SmartRandomOptions =
+  | string
+  | {
+      type?: string;
+      excludeIndexes?: number[];
+    };
+
 export function allPuzzles(): ComposablePuzzle[] {
   return PUZZLES;
 }
@@ -18,7 +25,7 @@ export function safePuzzleIndex(index: number): number {
 }
 
 export async function smartRandomPuzzleIndex(
-  type?: string
+  options?: SmartRandomOptions
 ): Promise<number> {
   if (!PUZZLES.length) {
     return 0;
@@ -26,10 +33,20 @@ export async function smartRandomPuzzleIndex(
 
   const progress = await loadProgress();
 
-  const recent =
-    (progress.recentPuzzleIndexes || []).slice(
-      -RECENT_HISTORY_LIMIT
-    );
+  const type =
+    typeof options === "string"
+      ? options
+      : options?.type;
+
+  const externalExcludes =
+    typeof options === "object"
+      ? options.excludeIndexes || []
+      : [];
+
+  const recent = [
+    ...(progress.recentPuzzleIndexes || []),
+    ...externalExcludes,
+  ].slice(-RECENT_HISTORY_LIMIT);
 
   const indexed = PUZZLES.map((puzzle, index) => ({
     puzzle,
@@ -38,10 +55,7 @@ export async function smartRandomPuzzleIndex(
 
   let pool = type
     ? indexed.filter(({ puzzle }) => {
-        return (
-          (puzzle.game_type || "find_anomaly") ===
-          type
-        );
+        return (puzzle.game_type || "find_anomaly") === type;
       })
     : indexed;
 
@@ -49,16 +63,13 @@ export async function smartRandomPuzzleIndex(
     return 0;
   }
 
-  const filtered = pool.filter(
-    ({ index }) => !recent.includes(index)
-  );
+  const filtered = pool.filter(({ index }) => !recent.includes(index));
 
   if (filtered.length) {
     pool = filtered;
   }
 
-  const random =
-    pool[Math.floor(Math.random() * pool.length)];
+  const random = pool[Math.floor(Math.random() * pool.length)];
 
   return random.index;
 }
@@ -72,8 +83,7 @@ export async function randomPuzzle(): Promise<ComposablePuzzle> {
 export async function randomPuzzleByType(
   type: string
 ): Promise<ComposablePuzzle> {
-  const index =
-    await smartRandomPuzzleIndex(type);
+  const index = await smartRandomPuzzleIndex(type);
 
   return PUZZLES[index];
 }
