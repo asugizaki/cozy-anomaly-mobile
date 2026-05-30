@@ -1,0 +1,16 @@
+{
+  "exported_at": "2026-05-29T13:09:02.882787",
+  "scene": "teahouse",
+  "profile": "mobile",
+  "difficulty": "hard",
+  "asset": "tanuki",
+  "puzzle_count": 5,
+  "puzzles": [
+    "puzzles/cozy_puzzle_001.json",
+    "puzzles/cozy_puzzle_002.json",
+    "puzzles/cozy_puzzle_003.json",
+    "puzzles/cozy_puzzle_004.json",
+    "puzzles/cozy_puzzle_005.json"
+  ],
+  "warnings": []
+}

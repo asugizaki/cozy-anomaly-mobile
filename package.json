@@ -6,6 +6,7 @@
   "scripts": {
     "start": "expo start",
     "import:puzzles": "node scripts/import-composable-export.js",
+    "import:puzzle-folder": "node scripts/import-composable-folder.js",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web"

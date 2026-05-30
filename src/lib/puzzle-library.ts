@@ -2,6 +2,8 @@ import { PUZZLES } from "@/data/puzzles";
 import { ComposablePuzzle } from "@/types/puzzle";
 import { loadProgress } from "./player-progress";
 
+const RECENT_HISTORY_LIMIT = 15;
+
 export function allPuzzles(): ComposablePuzzle[] {
   return PUZZLES;
 }
@@ -11,28 +13,67 @@ export function safePuzzleIndex(index: number): number {
   if (!Number.isFinite(index)) return 0;
   if (index < 0) return 0;
   if (index >= PUZZLES.length) return 0;
+
   return index;
 }
 
-export async function smartRandomPuzzleIndex(type?: string): Promise<number> {
-  const progress = await loadProgress();
-  const recent = progress.recentPuzzleIndexes || [];
+export async function smartRandomPuzzleIndex(
+  type?: string
+): Promise<number> {
+  if (!PUZZLES.length) {
+    return 0;
+  }
 
-  const indexed = PUZZLES.map((puzzle, index) => ({ puzzle, index }));
+  const progress = await loadProgress();
+
+  const recent =
+    (progress.recentPuzzleIndexes || []).slice(
+      -RECENT_HISTORY_LIMIT
+    );
+
+  const indexed = PUZZLES.map((puzzle, index) => ({
+    puzzle,
+    index,
+  }));
 
   let pool = type
     ? indexed.filter(({ puzzle }) => {
-        return (puzzle.game_type || "find_anomaly") === type;
+        return (
+          (puzzle.game_type || "find_anomaly") ===
+          type
+        );
       })
     : indexed;
 
-  const filtered = pool.filter(({ index }) => !recent.includes(index));
+  if (!pool.length) {
+    return 0;
+  }
+
+  const filtered = pool.filter(
+    ({ index }) => !recent.includes(index)
+  );
 
   if (filtered.length) {
     pool = filtered;
   }
 
-  if (!pool.length) return 0;
+  const random =
+    pool[Math.floor(Math.random() * pool.length)];
 
-  return pool[Math.floor(Math.random() * pool.length)].index;
+  return random.index;
+}
+
+export async function randomPuzzle(): Promise<ComposablePuzzle> {
+  const index = await smartRandomPuzzleIndex();
+
+  return PUZZLES[index];
+}
+
+export async function randomPuzzleByType(
+  type: string
+): Promise<ComposablePuzzle> {
+  const index =
+    await smartRandomPuzzleIndex(type);
+
+  return PUZZLES[index];
 }

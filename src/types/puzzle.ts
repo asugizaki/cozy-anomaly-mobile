@@ -42,6 +42,8 @@ export type ComposablePuzzle = {
   anomalyItemSource: ImageSourcePropType;
   category?: string;
   tags?: string[];
-  game_type?: string;
+  game_type?: "find_anomaly" | "find_tanuki";
   difficulty_rating?: number;
+  hint_type?: string;
+  hint_target?: string;
 };

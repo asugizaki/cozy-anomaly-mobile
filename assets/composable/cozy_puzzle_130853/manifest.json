@@ -1,0 +1,16 @@
+{
+  "exported_at": "2026-05-29T13:08:53.831441",
+  "scene": "teahouse",
+  "profile": "mobile",
+  "difficulty": "hard",
+  "asset": "shiba_inu",
+  "puzzle_count": 5,
+  "puzzles": [
+    "puzzles/cozy_puzzle_001.json",
+    "puzzles/cozy_puzzle_002.json",
+    "puzzles/cozy_puzzle_003.json",
+    "puzzles/cozy_puzzle_004.json",
+    "puzzles/cozy_puzzle_005.json"
+  ],
+  "warnings": []
+}

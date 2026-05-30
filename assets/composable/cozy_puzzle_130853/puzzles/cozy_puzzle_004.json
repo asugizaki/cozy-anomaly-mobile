@@ -1,0 +1,165 @@
+{
+  "id": "cozy_puzzle_004",
+  "scene": "teahouse",
+  "profile": "mobile",
+  "difficulty": "hard",
+  "asset": "shiba_inu",
+  "anomaly": "missing_pocket",
+  "answer": "One shiba_inu is missing a pocket.",
+  "background": "assets/backgrounds/mobile.png",
+  "normal_item": "assets/items/shiba_inu/200/normal.png",
+  "anomaly_item": "assets/items/shiba_inu/200/missing_pocket.png",
+  "answer_box": {
+    "x1": 404,
+    "y1": 550,
+    "x2": 434,
+    "y2": 576
+  },
+  "answer_visual_box": {
+    "x1": 404,
+    "y1": 550,
+    "x2": 434,
+    "y2": 576
+  },
+  "target_slot_index": 7,
+  "slots": [
+    {
+      "surface_y": 417,
+      "x": 110
+    },
+    {
+      "surface_y": 417,
+      "x": 729
+    },
+    {
+      "surface_y": 417,
+      "x": 265
+    },
+    {
+      "surface_y": 417,
+      "x": 574
+    },
+    {
+      "surface_y": 417,
+      "x": 420
+    },
+    {
+      "surface_y": 605,
+      "x": 110
+    },
+    {
+      "surface_y": 605,
+      "x": 265
+    },
+    {
+      "surface_y": 605,
+      "x": 420
+    },
+    {
+      "surface_y": 605,
+      "x": 574
+    },
+    {
+      "surface_y": 605,
+      "x": 729
+    },
+    {
+      "surface_y": 803,
+      "x": 112
+    },
+    {
+      "surface_y": 803,
+      "x": 267
+    },
+    {
+      "surface_y": 803,
+      "x": 422
+    },
+    {
+      "surface_y": 803,
+      "x": 576
+    },
+    {
+      "surface_y": 803,
+      "x": 731
+    },
+    {
+      "surface_y": 1006,
+      "x": 112
+    },
+    {
+      "surface_y": 1006,
+      "x": 267
+    },
+    {
+      "surface_y": 1006,
+      "x": 422
+    },
+    {
+      "surface_y": 1006,
+      "x": 576
+    },
+    {
+      "surface_y": 1006,
+      "x": 731
+    },
+    {
+      "surface_y": 1208,
+      "x": 112
+    },
+    {
+      "surface_y": 1208,
+      "x": 267
+    },
+    {
+      "surface_y": 1208,
+      "x": 422
+    },
+    {
+      "surface_y": 1208,
+      "x": 576
+    },
+    {
+      "surface_y": 1208,
+      "x": 731
+    },
+    {
+      "surface_y": 1418,
+      "x": 110
+    },
+    {
+      "surface_y": 1418,
+      "x": 265
+    },
+    {
+      "surface_y": 1418,
+      "x": 420
+    },
+    {
+      "surface_y": 1418,
+      "x": 574
+    },
+    {
+      "surface_y": 1418,
+      "x": 729
+    }
+  ],
+  "object_size": 200,
+  "rendering": {
+    "anchor": "bottom_center",
+    "foot_overlap": 10,
+    "source_width": 200,
+    "source_height": 109,
+    "item_width": 367,
+    "item_height": 200
+  },
+  "game_type": "find_anomaly",
+  "category": "cozy_cafe",
+  "tags": [
+    "hard",
+    "shiba_inu",
+    "tanuki",
+    "teahouse"
+  ],
+  "difficulty_rating": 3
+}

@@ -18,23 +18,16 @@ import {
 
 export default function HomeScreen() {
   const [completedCount, setCompletedCount] = useState(0);
-  const [lastPuzzleIndex, setLastPuzzleIndex] = useState(0);
+  const [currentStreak, setCurrentStreak] = useState(0);
+  const [randomIndex, setRandomIndex] = useState(0);
 
   const insets = useSafeAreaInsets();
-  const [randomIndex, setRandomIndex] = useState(0);
 
   useFocusEffect(
     useCallback(() => {
       loadProgress().then((progress) => {
         setCompletedCount(progress.completedPuzzleIds.length);
-
-        const safeIndex =
-          progress.lastPuzzleIndex >= 0 &&
-          progress.lastPuzzleIndex < PUZZLES.length
-            ? progress.lastPuzzleIndex
-            : 0;
-
-        setLastPuzzleIndex(safeIndex);
+        setCurrentStreak(progress.currentStreak || 0);
       });
 
       smartRandomPuzzleIndex().then(setRandomIndex);
@@ -64,6 +57,10 @@ export default function HomeScreen() {
             </Pressable>
           </Link>
 
+          <View style={styles.streakPill}>
+            <Text style={styles.streakText}>🔥 {currentStreak}</Text>
+          </View>
+
           <Link href="/stats" asChild>
             <Pressable style={styles.iconButton}>
               <Text style={styles.iconText}>📊</Text>
@@ -75,7 +72,7 @@ export default function HomeScreen() {
           <Text style={styles.logo}>Cozy Anomaly</Text>
 
           <Text style={styles.subtitle}>
-            Find the tiny difference in cozy scenes.
+            Find tiny differences in cozy scenes.
           </Text>
 
           <View style={styles.statsPill}>
@@ -85,9 +82,9 @@ export default function HomeScreen() {
           </View>
 
           <View style={styles.buttonGroup}>
-            <Link href={`/play?index=${lastPuzzleIndex}`} asChild>
+            <Link href={`/play?mode=random&index=${randomIndex}`} asChild>
               <Pressable style={styles.primaryButton}>
-                <Text style={styles.primaryButtonText}>Continue</Text>
+                <Text style={styles.primaryButtonText}>Play</Text>
               </Pressable>
             </Link>
 
@@ -96,21 +93,7 @@ export default function HomeScreen() {
               asChild
             >
               <Pressable style={styles.secondaryButton}>
-                <Text style={styles.secondaryButtonText}>Daily Puzzle</Text>
-              </Pressable>
-            </Link>
-
-            <Link href={`/play?mode=random&index=${randomIndex}`} asChild>
-              <Pressable style={styles.secondaryButton}>
-                <Text style={styles.secondaryButtonText}>Random Puzzle</Text>
-              </Pressable>
-            </Link>
-
-            <Link href="/play?index=0" asChild>
-              <Pressable style={styles.ghostButton}>
-                <Text style={styles.ghostButtonText}>
-                  Start From Beginning
-                </Text>
+                <Text style={styles.secondaryButtonText}>Daily Challenge</Text>
               </Pressable>
             </Link>
           </View>
@@ -141,6 +124,7 @@ const styles = StyleSheet.create({
   topBar: {
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "center",
   },
 
   iconButton: {
@@ -154,6 +138,19 @@ const styles = StyleSheet.create({
 
   iconText: {
     fontSize: 24,
+  },
+
+  streakPill: {
+    paddingHorizontal: 18,
+    paddingVertical: 10,
+    borderRadius: 999,
+    backgroundColor: "rgba(255,255,255,0.92)",
+  },
+
+  streakText: {
+    fontSize: 16,
+    fontWeight: "900",
+    color: "#4B2E20",
   },
 
   content: {
@@ -233,18 +230,6 @@ const styles = StyleSheet.create({
     color: "#6A3F2B",
     fontSize: 18,
     fontWeight: "900",
-  },
-
-  ghostButton: {
-    alignItems: "center",
-    paddingVertical: 14,
-  },
-
-  ghostButtonText: {
-    color: "white",
-    fontSize: 16,
-    fontWeight: "700",
-    textDecorationLine: "underline",
   },
 
   footer: {

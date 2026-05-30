@@ -3,1622 +3,4272 @@ import { ComposablePuzzle } from "@/types/puzzle";
 export const PUZZLES: ComposablePuzzle[] = [
   {
     ...{
-        "id": "cozy_puzzle_001",
-        "version": 2,
+        "id": "cozy_puzzle_130814/cozy_puzzle_001",
         "scene": "teahouse",
         "profile": "mobile",
         "difficulty": "hard",
-        "background": "puzzle_assets/scenes/teahouse/mobile.png",
-        "asset": "tanuki",
-        "item_size": 175,
-        "normal_item": "puzzle_assets/items/tanuki/175/normal.png",
-        "normal_item_meta": "puzzle_assets/items/tanuki/175/normal.json",
-        "anomaly": "missing_right_eye",
-        "anomaly_item": "puzzle_assets/items/tanuki/175/missing_right_eye.png",
-        "anomaly_item_meta": "puzzle_assets/items/tanuki/175/missing_right_eye.json",
-        "target_slot_index": 25,
+        "asset": "daruma",
+        "anomaly": "missing_left_yellow_stripe",
+        "answer": "One daruma is missing a left yellow stripe.",
+        "background": "assets/backgrounds/mobile.png",
+        "normal_item": "assets/items/daruma/200/normal.png",
+        "anomaly_item": "assets/items/daruma/200/missing_left_yellow_stripe.png",
+        "answer_box": {
+            "x1": 59,
+            "y1": 539,
+            "x2": 73,
+            "y2": 580
+        },
+        "answer_visual_box": {
+            "x1": 59,
+            "y1": 539,
+            "x2": 73,
+            "y2": 580
+        },
+        "target_slot_index": 5,
         "slots": [
             {
-                "surface_y": 418,
-                "x": 111
+                "surface_y": 417,
+                "x": 110
             },
             {
-                "surface_y": 418,
-                "x": 730
+                "surface_y": 417,
+                "x": 729
             },
             {
-                "surface_y": 418,
-                "x": 266
+                "surface_y": 417,
+                "x": 265
             },
             {
-                "surface_y": 418,
-                "x": 575
+                "surface_y": 417,
+                "x": 574
             },
             {
-                "surface_y": 418,
-                "x": 421
+                "surface_y": 417,
+                "x": 420
             },
             {
-                "surface_y": 611,
-                "x": 111
+                "surface_y": 605,
+                "x": 110
             },
             {
-                "surface_y": 611,
-                "x": 266
+                "surface_y": 605,
+                "x": 265
             },
             {
-                "surface_y": 611,
-                "x": 421
+                "surface_y": 605,
+                "x": 420
             },
             {
-                "surface_y": 611,
-                "x": 575
+                "surface_y": 605,
+                "x": 574
             },
             {
-                "surface_y": 611,
-                "x": 730
+                "surface_y": 605,
+                "x": 729
             },
             {
-                "surface_y": 809,
-                "x": 111
+                "surface_y": 803,
+                "x": 112
             },
             {
-                "surface_y": 809,
-                "x": 266
+                "surface_y": 803,
+                "x": 267
             },
             {
-                "surface_y": 809,
-                "x": 421
+                "surface_y": 803,
+                "x": 422
             },
             {
-                "surface_y": 809,
-                "x": 575
+                "surface_y": 803,
+                "x": 576
             },
             {
-                "surface_y": 809,
-                "x": 730
+                "surface_y": 803,
+                "x": 731
             },
             {
-                "surface_y": 1011,
-                "x": 111
+                "surface_y": 1006,
+                "x": 112
             },
             {
-                "surface_y": 1011,
-                "x": 266
+                "surface_y": 1006,
+                "x": 267
             },
             {
-                "surface_y": 1011,
-                "x": 421
+                "surface_y": 1006,
+                "x": 422
             },
             {
-                "surface_y": 1011,
-                "x": 575
+                "surface_y": 1006,
+                "x": 576
             },
             {
-                "surface_y": 1011,
-                "x": 730
+                "surface_y": 1006,
+                "x": 731
             },
             {
-                "surface_y": 1215,
-                "x": 111
+                "surface_y": 1208,
+                "x": 112
             },
             {
-                "surface_y": 1215,
-                "x": 266
+                "surface_y": 1208,
+                "x": 267
             },
             {
-                "surface_y": 1215,
-                "x": 421
+                "surface_y": 1208,
+                "x": 422
             },
             {
-                "surface_y": 1215,
-                "x": 575
+                "surface_y": 1208,
+                "x": 576
             },
             {
-                "surface_y": 1215,
-                "x": 730
+                "surface_y": 1208,
+                "x": 731
             },
             {
-                "surface_y": 1436,
-                "x": 109
+                "surface_y": 1418,
+                "x": 110
             },
             {
-                "surface_y": 1436,
-                "x": 264
+                "surface_y": 1418,
+                "x": 265
             },
             {
-                "surface_y": 1436,
-                "x": 419
+                "surface_y": 1418,
+                "x": 420
             },
             {
-                "surface_y": 1436,
-                "x": 573
+                "surface_y": 1418,
+                "x": 574
             },
             {
-                "surface_y": 1436,
-                "x": 728
+                "surface_y": 1418,
+                "x": 729
             }
         ],
+        "object_size": 200,
         "rendering": {
             "anchor": "bottom_center",
             "foot_overlap": 10,
-            "item_width": 175,
-            "item_height": 209
+            "source_width": 200,
+            "source_height": 109,
+            "item_width": 367,
+            "item_height": 200
         },
-        "answer": "One tanuki is missing a right eye.",
-        "answer_box": {
-            "x1": 81,
-            "y1": 1285,
-            "x2": 171,
-            "y2": 1375
-        },
-        "answer_visual_box": {
-            "x1": 115,
-            "y1": 1318,
-            "x2": 137,
-            "y2": 1342
-        }
+        "game_type": "find_anomaly",
+        "category": "cozy_cafe",
+        "tags": [
+            "daruma",
+            "hard",
+            "tanuki",
+            "teahouse"
+        ],
+        "difficulty_rating": 3,
+        "import_pack": "cozy_puzzle_130814"
     },
-    backgroundSource: require("../../assets/composable/puzzle_assets/scenes/teahouse/mobile.png"),
-    normalItemSource: require("../../assets/composable/puzzle_assets/items/tanuki/175/normal.png"),
-    anomalyItemSource: require("../../assets/composable/puzzle_assets/items/tanuki/175/missing_right_eye.png"),
+    backgroundSource: require("../../assets/composable/cozy_puzzle_130814/assets/backgrounds/mobile.png"),
+    normalItemSource: require("../../assets/composable/cozy_puzzle_130814/assets/items/daruma/200/normal.png"),
+    anomalyItemSource: require("../../assets/composable/cozy_puzzle_130814/assets/items/daruma/200/missing_left_yellow_stripe.png"),
   },
   {
     ...{
-        "id": "cozy_puzzle_002",
-        "version": 2,
+        "id": "cozy_puzzle_130814/cozy_puzzle_002",
         "scene": "teahouse",
         "profile": "mobile",
         "difficulty": "hard",
-        "background": "puzzle_assets/scenes/teahouse/mobile.png",
-        "asset": "tanuki",
-        "item_size": 175,
-        "normal_item": "puzzle_assets/items/tanuki/175/normal.png",
-        "normal_item_meta": "puzzle_assets/items/tanuki/175/normal.json",
+        "asset": "daruma",
         "anomaly": "missing_mouth",
-        "anomaly_item": "puzzle_assets/items/tanuki/175/missing_mouth.png",
-        "anomaly_item_meta": "puzzle_assets/items/tanuki/175/missing_mouth.json",
-        "target_slot_index": 7,
+        "answer": "One daruma is missing a mouth.",
+        "background": "assets/backgrounds/mobile.png",
+        "normal_item": "assets/items/daruma/200/normal.png",
+        "anomaly_item": "assets/items/daruma/200/missing_mouth.png",
+        "answer_box": {
+            "x1": 553,
+            "y1": 924,
+            "x2": 597,
+            "y2": 933
+        },
+        "answer_visual_box": {
+            "x1": 553,
+            "y1": 924,
+            "x2": 597,
+            "y2": 933
+        },
+        "target_slot_index": 18,
         "slots": [
             {
-                "surface_y": 418,
-                "x": 111
+                "surface_y": 417,
+                "x": 110
             },
             {
-                "surface_y": 418,
-                "x": 730
+                "surface_y": 417,
+                "x": 729
             },
             {
-                "surface_y": 418,
-                "x": 266
+                "surface_y": 417,
+                "x": 265
             },
             {
-                "surface_y": 418,
-                "x": 575
+                "surface_y": 417,
+                "x": 574
             },
             {
-                "surface_y": 418,
-                "x": 421
+                "surface_y": 417,
+                "x": 420
             },
             {
-                "surface_y": 611,
-                "x": 111
+                "surface_y": 605,
+                "x": 110
             },
             {
-                "surface_y": 611,
-                "x": 266
+                "surface_y": 605,
+                "x": 265
             },
             {
-                "surface_y": 611,
-                "x": 421
+                "surface_y": 605,
+                "x": 420
             },
             {
-                "surface_y": 611,
-                "x": 575
+                "surface_y": 605,
+                "x": 574
             },
             {
-                "surface_y": 611,
-                "x": 730
+                "surface_y": 605,
+                "x": 729
             },
             {
-                "surface_y": 809,
-                "x": 111
+                "surface_y": 803,
+                "x": 112
             },
             {
-                "surface_y": 809,
-                "x": 266
+                "surface_y": 803,
+                "x": 267
             },
             {
-                "surface_y": 809,
-                "x": 421
+                "surface_y": 803,
+                "x": 422
             },
             {
-                "surface_y": 809,
-                "x": 575
+                "surface_y": 803,
+                "x": 576
             },
             {
-                "surface_y": 809,
-                "x": 730
+                "surface_y": 803,
+                "x": 731
             },
             {
-                "surface_y": 1011,
-                "x": 111
+                "surface_y": 1006,
+                "x": 112
             },
             {
-                "surface_y": 1011,
-                "x": 266
+                "surface_y": 1006,
+                "x": 267
             },
             {
-                "surface_y": 1011,
-                "x": 421
+                "surface_y": 1006,
+                "x": 422
             },
             {
-                "surface_y": 1011,
-                "x": 575
+                "surface_y": 1006,
+                "x": 576
             },
             {
-                "surface_y": 1011,
-                "x": 730
+                "surface_y": 1006,
+                "x": 731
             },
             {
-                "surface_y": 1215,
-                "x": 111
+                "surface_y": 1208,
+                "x": 112
             },
             {
-                "surface_y": 1215,
-                "x": 266
+                "surface_y": 1208,
+                "x": 267
             },
             {
-                "surface_y": 1215,
-                "x": 421
+                "surface_y": 1208,
+                "x": 422
             },
             {
-                "surface_y": 1215,
-                "x": 575
+                "surface_y": 1208,
+                "x": 576
             },
             {
-                "surface_y": 1215,
-                "x": 730
+                "surface_y": 1208,
+                "x": 731
             },
             {
-                "surface_y": 1436,
-                "x": 109
+                "surface_y": 1418,
+                "x": 110
             },
             {
-                "surface_y": 1436,
-                "x": 264
+                "surface_y": 1418,
+                "x": 265
             },
             {
-                "surface_y": 1436,
-                "x": 419
+                "surface_y": 1418,
+                "x": 420
             },
             {
-                "surface_y": 1436,
-                "x": 573
+                "surface_y": 1418,
+                "x": 574
             },
             {
-                "surface_y": 1436,
-                "x": 728
+                "surface_y": 1418,
+                "x": 729
             }
         ],
+        "object_size": 200,
         "rendering": {
             "anchor": "bottom_center",
             "foot_overlap": 10,
-            "item_width": 175,
-            "item_height": 209
+            "source_width": 200,
+            "source_height": 109,
+            "item_width": 367,
+            "item_height": 200
         },
-        "answer": "One tanuki is missing a mouth.",
-        "answer_box": {
-            "x1": 368,
-            "y1": 476,
-            "x2": 458,
-            "y2": 566
-        },
-        "answer_visual_box": {
-            "x1": 401,
-            "y1": 513,
-            "x2": 425,
-            "y2": 529
-        }
+        "game_type": "find_anomaly",
+        "category": "cozy_cafe",
+        "tags": [
+            "daruma",
+            "hard",
+            "tanuki",
+            "teahouse"
+        ],
+        "difficulty_rating": 3,
+        "import_pack": "cozy_puzzle_130814"
     },
-    backgroundSource: require("../../assets/composable/puzzle_assets/scenes/teahouse/mobile.png"),
-    normalItemSource: require("../../assets/composable/puzzle_assets/items/tanuki/175/normal.png"),
-    anomalyItemSource: require("../../assets/composable/puzzle_assets/items/tanuki/175/missing_mouth.png"),
+    backgroundSource: require("../../assets/composable/cozy_puzzle_130814/assets/backgrounds/mobile.png"),
+    normalItemSource: require("../../assets/composable/cozy_puzzle_130814/assets/items/daruma/200/normal.png"),
+    anomalyItemSource: require("../../assets/composable/cozy_puzzle_130814/assets/items/daruma/200/missing_mouth.png"),
   },
   {
     ...{
-        "id": "cozy_puzzle_003",
-        "version": 2,
+        "id": "cozy_puzzle_130814/cozy_puzzle_003",
         "scene": "teahouse",
         "profile": "mobile",
         "difficulty": "hard",
-        "background": "puzzle_assets/scenes/teahouse/mobile.png",
-        "asset": "tanuki",
-        "item_size": 175,
-        "normal_item": "puzzle_assets/items/tanuki/175/normal.png",
-        "normal_item_meta": "puzzle_assets/items/tanuki/175/normal.json",
-        "anomaly": "missing_right_eye",
-        "anomaly_item": "puzzle_assets/items/tanuki/175/missing_right_eye.png",
-        "anomaly_item_meta": "puzzle_assets/items/tanuki/175/missing_right_eye.json",
-        "target_slot_index": 1,
+        "asset": "daruma",
+        "anomaly": "missing_top_bow",
+        "answer": "One daruma is missing a top bow.",
+        "background": "assets/backgrounds/mobile.png",
+        "normal_item": "assets/items/daruma/200/normal.png",
+        "anomaly_item": "assets/items/daruma/200/missing_top_bow.png",
+        "answer_box": {
+            "x1": 242,
+            "y1": 1242,
+            "x2": 286,
+            "y2": 1251
+        },
+        "answer_visual_box": {
+            "x1": 242,
+            "y1": 1242,
+            "x2": 286,
+            "y2": 1251
+        },
+        "target_slot_index": 26,
         "slots": [
             {
-                "surface_y": 418,
-                "x": 111
+                "surface_y": 417,
+                "x": 110
             },
             {
-                "surface_y": 418,
-                "x": 730
+                "surface_y": 417,
+                "x": 729
             },
             {
-                "surface_y": 418,
-                "x": 266
+                "surface_y": 417,
+                "x": 265
             },
             {
-                "surface_y": 418,
-                "x": 575
+                "surface_y": 417,
+                "x": 574
             },
             {
-                "surface_y": 418,
-                "x": 421
+                "surface_y": 417,
+                "x": 420
             },
             {
-                "surface_y": 611,
-                "x": 111
+                "surface_y": 605,
+                "x": 110
             },
             {
-                "surface_y": 611,
-                "x": 266
+                "surface_y": 605,
+                "x": 265
             },
             {
-                "surface_y": 611,
-                "x": 421
+                "surface_y": 605,
+                "x": 420
             },
             {
-                "surface_y": 611,
-                "x": 575
+                "surface_y": 605,
+                "x": 574
             },
             {
-                "surface_y": 611,
-                "x": 730
+                "surface_y": 605,
+                "x": 729
             },
             {
-                "surface_y": 809,
-                "x": 111
+                "surface_y": 803,
+                "x": 112
             },
             {
-                "surface_y": 809,
-                "x": 266
+                "surface_y": 803,
+                "x": 267
             },
             {
-                "surface_y": 809,
-                "x": 421
+                "surface_y": 803,
+                "x": 422
             },
             {
-                "surface_y": 809,
-                "x": 575
+                "surface_y": 803,
+                "x": 576
             },
             {
-                "surface_y": 809,
-                "x": 730
+                "surface_y": 803,
+                "x": 731
             },
             {
-                "surface_y": 1011,
-                "x": 111
+                "surface_y": 1006,
+                "x": 112
             },
             {
-                "surface_y": 1011,
-                "x": 266
+                "surface_y": 1006,
+                "x": 267
             },
             {
-                "surface_y": 1011,
-                "x": 421
+                "surface_y": 1006,
+                "x": 422
             },
             {
-                "surface_y": 1011,
-                "x": 575
+                "surface_y": 1006,
+                "x": 576
             },
             {
-                "surface_y": 1011,
-                "x": 730
+                "surface_y": 1006,
+                "x": 731
             },
             {
-                "surface_y": 1215,
-                "x": 111
+                "surface_y": 1208,
+                "x": 112
             },
             {
-                "surface_y": 1215,
-                "x": 266
+                "surface_y": 1208,
+                "x": 267
             },
             {
-                "surface_y": 1215,
-                "x": 421
+                "surface_y": 1208,
+                "x": 422
             },
             {
-                "surface_y": 1215,
-                "x": 575
+                "surface_y": 1208,
+                "x": 576
             },
             {
-                "surface_y": 1215,
-                "x": 730
+                "surface_y": 1208,
+                "x": 731
             },
             {
-                "surface_y": 1436,
-                "x": 109
+                "surface_y": 1418,
+                "x": 110
             },
             {
-                "surface_y": 1436,
-                "x": 264
+                "surface_y": 1418,
+                "x": 265
             },
             {
-                "surface_y": 1436,
-                "x": 419
+                "surface_y": 1418,
+                "x": 420
             },
             {
-                "surface_y": 1436,
-                "x": 573
+                "surface_y": 1418,
+                "x": 574
             },
             {
-                "surface_y": 1436,
-                "x": 728
+                "surface_y": 1418,
+                "x": 729
             }
         ],
+        "object_size": 200,
         "rendering": {
             "anchor": "bottom_center",
             "foot_overlap": 10,
-            "item_width": 175,
-            "item_height": 209
+            "source_width": 200,
+            "source_height": 109,
+            "item_width": 367,
+            "item_height": 200
         },
-        "answer": "One tanuki is missing a right eye.",
+        "game_type": "find_anomaly",
+        "category": "cozy_cafe",
+        "tags": [
+            "daruma",
+            "hard",
+            "tanuki",
+            "teahouse"
+        ],
+        "difficulty_rating": 3,
+        "import_pack": "cozy_puzzle_130814"
+    },
+    backgroundSource: require("../../assets/composable/cozy_puzzle_130814/assets/backgrounds/mobile.png"),
+    normalItemSource: require("../../assets/composable/cozy_puzzle_130814/assets/items/daruma/200/normal.png"),
+    anomalyItemSource: require("../../assets/composable/cozy_puzzle_130814/assets/items/daruma/200/missing_top_bow.png"),
+  },
+  {
+    ...{
+        "id": "cozy_puzzle_130814/cozy_puzzle_004",
+        "scene": "teahouse",
+        "profile": "mobile",
+        "difficulty": "hard",
+        "asset": "daruma",
+        "anomaly": "missing_left_world",
+        "answer": "One daruma is missing a left world.",
+        "background": "assets/backgrounds/mobile.png",
+        "normal_item": "assets/items/daruma/200/normal.png",
+        "anomaly_item": "assets/items/daruma/200/missing_left_world.png",
         "answer_box": {
-            "x1": 702,
-            "y1": 267,
-            "x2": 792,
-            "y2": 357
+            "x1": 503,
+            "y1": 488,
+            "x2": 514,
+            "y2": 504
+        },
+        "answer_visual_box": {
+            "x1": 503,
+            "y1": 488,
+            "x2": 514,
+            "y2": 504
+        },
+        "target_slot_index": 8,
+        "slots": [
+            {
+                "surface_y": 417,
+                "x": 110
+            },
+            {
+                "surface_y": 417,
+                "x": 729
+            },
+            {
+                "surface_y": 417,
+                "x": 265
+            },
+            {
+                "surface_y": 417,
+                "x": 574
+            },
+            {
+                "surface_y": 417,
+                "x": 420
+            },
+            {
+                "surface_y": 605,
+                "x": 110
+            },
+            {
+                "surface_y": 605,
+                "x": 265
+            },
+            {
+                "surface_y": 605,
+                "x": 420
+            },
+            {
+                "surface_y": 605,
+                "x": 574
+            },
+            {
+                "surface_y": 605,
+                "x": 729
+            },
+            {
+                "surface_y": 803,
+                "x": 112
+            },
+            {
+                "surface_y": 803,
+                "x": 267
+            },
+            {
+                "surface_y": 803,
+                "x": 422
+            },
+            {
+                "surface_y": 803,
+                "x": 576
+            },
+            {
+                "surface_y": 803,
+                "x": 731
+            },
+            {
+                "surface_y": 1006,
+                "x": 112
+            },
+            {
+                "surface_y": 1006,
+                "x": 267
+            },
+            {
+                "surface_y": 1006,
+                "x": 422
+            },
+            {
+                "surface_y": 1006,
+                "x": 576
+            },
+            {
+                "surface_y": 1006,
+                "x": 731
+            },
+            {
+                "surface_y": 1208,
+                "x": 112
+            },
+            {
+                "surface_y": 1208,
+                "x": 267
+            },
+            {
+                "surface_y": 1208,
+                "x": 422
+            },
+            {
+                "surface_y": 1208,
+                "x": 576
+            },
+            {
+                "surface_y": 1208,
+                "x": 731
+            },
+            {
+                "surface_y": 1418,
+                "x": 110
+            },
+            {
+                "surface_y": 1418,
+                "x": 265
+            },
+            {
+                "surface_y": 1418,
+                "x": 420
+            },
+            {
+                "surface_y": 1418,
+                "x": 574
+            },
+            {
+                "surface_y": 1418,
+                "x": 729
+            }
+        ],
+        "object_size": 200,
+        "rendering": {
+            "anchor": "bottom_center",
+            "foot_overlap": 10,
+            "source_width": 200,
+            "source_height": 109,
+            "item_width": 367,
+            "item_height": 200
+        },
+        "game_type": "find_anomaly",
+        "category": "cozy_cafe",
+        "tags": [
+            "daruma",
+            "hard",
+            "tanuki",
+            "teahouse"
+        ],
+        "difficulty_rating": 3,
+        "import_pack": "cozy_puzzle_130814"
+    },
+    backgroundSource: require("../../assets/composable/cozy_puzzle_130814/assets/backgrounds/mobile.png"),
+    normalItemSource: require("../../assets/composable/cozy_puzzle_130814/assets/items/daruma/200/normal.png"),
+    anomalyItemSource: require("../../assets/composable/cozy_puzzle_130814/assets/items/daruma/200/missing_left_world.png"),
+  },
+  {
+    ...{
+        "id": "cozy_puzzle_130814/cozy_puzzle_005",
+        "scene": "teahouse",
+        "profile": "mobile",
+        "difficulty": "hard",
+        "asset": "daruma",
+        "anomaly": "missing_bottom_right_mustache",
+        "answer": "One daruma is missing a bottom right mustache.",
+        "background": "assets/backgrounds/mobile.png",
+        "normal_item": "assets/items/daruma/200/normal.png",
+        "anomaly_item": "assets/items/daruma/200/missing_bottom_right_mustache.png",
+        "answer_box": {
+            "x1": 286,
+            "y1": 1341,
+            "x2": 301,
+            "y2": 1349
+        },
+        "answer_visual_box": {
+            "x1": 286,
+            "y1": 1341,
+            "x2": 301,
+            "y2": 1349
+        },
+        "target_slot_index": 26,
+        "slots": [
+            {
+                "surface_y": 417,
+                "x": 110
+            },
+            {
+                "surface_y": 417,
+                "x": 729
+            },
+            {
+                "surface_y": 417,
+                "x": 265
+            },
+            {
+                "surface_y": 417,
+                "x": 574
+            },
+            {
+                "surface_y": 417,
+                "x": 420
+            },
+            {
+                "surface_y": 605,
+                "x": 110
+            },
+            {
+                "surface_y": 605,
+                "x": 265
+            },
+            {
+                "surface_y": 605,
+                "x": 420
+            },
+            {
+                "surface_y": 605,
+                "x": 574
+            },
+            {
+                "surface_y": 605,
+                "x": 729
+            },
+            {
+                "surface_y": 803,
+                "x": 112
+            },
+            {
+                "surface_y": 803,
+                "x": 267
+            },
+            {
+                "surface_y": 803,
+                "x": 422
+            },
+            {
+                "surface_y": 803,
+                "x": 576
+            },
+            {
+                "surface_y": 803,
+                "x": 731
+            },
+            {
+                "surface_y": 1006,
+                "x": 112
+            },
+            {
+                "surface_y": 1006,
+                "x": 267
+            },
+            {
+                "surface_y": 1006,
+                "x": 422
+            },
+            {
+                "surface_y": 1006,
+                "x": 576
+            },
+            {
+                "surface_y": 1006,
+                "x": 731
+            },
+            {
+                "surface_y": 1208,
+                "x": 112
+            },
+            {
+                "surface_y": 1208,
+                "x": 267
+            },
+            {
+                "surface_y": 1208,
+                "x": 422
+            },
+            {
+                "surface_y": 1208,
+                "x": 576
+            },
+            {
+                "surface_y": 1208,
+                "x": 731
+            },
+            {
+                "surface_y": 1418,
+                "x": 110
+            },
+            {
+                "surface_y": 1418,
+                "x": 265
+            },
+            {
+                "surface_y": 1418,
+                "x": 420
+            },
+            {
+                "surface_y": 1418,
+                "x": 574
+            },
+            {
+                "surface_y": 1418,
+                "x": 729
+            }
+        ],
+        "object_size": 200,
+        "rendering": {
+            "anchor": "bottom_center",
+            "foot_overlap": 10,
+            "source_width": 200,
+            "source_height": 109,
+            "item_width": 367,
+            "item_height": 200
+        },
+        "game_type": "find_anomaly",
+        "category": "cozy_cafe",
+        "tags": [
+            "daruma",
+            "hard",
+            "tanuki",
+            "teahouse"
+        ],
+        "difficulty_rating": 3,
+        "import_pack": "cozy_puzzle_130814"
+    },
+    backgroundSource: require("../../assets/composable/cozy_puzzle_130814/assets/backgrounds/mobile.png"),
+    normalItemSource: require("../../assets/composable/cozy_puzzle_130814/assets/items/daruma/200/normal.png"),
+    anomalyItemSource: require("../../assets/composable/cozy_puzzle_130814/assets/items/daruma/200/missing_bottom_right_mustache.png"),
+  },
+  {
+    ...{
+        "id": "cozy_puzzle_130835/cozy_puzzle_001",
+        "scene": "teahouse",
+        "profile": "mobile",
+        "difficulty": "hard",
+        "asset": "kokeshi",
+        "anomaly": "missing_right_sleeve_flower",
+        "answer": "One kokeshi is missing a right sleeve flower.",
+        "background": "assets/backgrounds/mobile.png",
+        "normal_item": "assets/items/kokeshi/200/normal.png",
+        "anomaly_item": "assets/items/kokeshi/200/missing_right_sleeve_flower.png",
+        "answer_box": {
+            "x1": 736,
+            "y1": 1142,
+            "x2": 745,
+            "y2": 1153
         },
         "answer_visual_box": {
             "x1": 736,
-            "y1": 300,
-            "x2": 758,
-            "y2": 324
-        }
-    },
-    backgroundSource: require("../../assets/composable/puzzle_assets/scenes/teahouse/mobile.png"),
-    normalItemSource: require("../../assets/composable/puzzle_assets/items/tanuki/175/normal.png"),
-    anomalyItemSource: require("../../assets/composable/puzzle_assets/items/tanuki/175/missing_right_eye.png"),
-  },
-  {
-    ...{
-        "id": "cozy_puzzle_004",
-        "version": 2,
-        "scene": "teahouse",
-        "profile": "mobile",
-        "difficulty": "hard",
-        "background": "puzzle_assets/scenes/teahouse/mobile.png",
-        "asset": "tanuki",
-        "item_size": 175,
-        "normal_item": "puzzle_assets/items/tanuki/175/normal.png",
-        "normal_item_meta": "puzzle_assets/items/tanuki/175/normal.json",
-        "anomaly": "missing_right_eye",
-        "anomaly_item": "puzzle_assets/items/tanuki/175/missing_right_eye.png",
-        "anomaly_item_meta": "puzzle_assets/items/tanuki/175/missing_right_eye.json",
-        "target_slot_index": 11,
+            "y1": 1142,
+            "x2": 745,
+            "y2": 1153
+        },
+        "target_slot_index": 24,
         "slots": [
             {
-                "surface_y": 418,
-                "x": 111
+                "surface_y": 417,
+                "x": 110
             },
             {
-                "surface_y": 418,
-                "x": 730
+                "surface_y": 417,
+                "x": 729
             },
             {
-                "surface_y": 418,
-                "x": 266
+                "surface_y": 417,
+                "x": 265
             },
             {
-                "surface_y": 418,
-                "x": 575
+                "surface_y": 417,
+                "x": 574
             },
             {
-                "surface_y": 418,
-                "x": 421
+                "surface_y": 417,
+                "x": 420
             },
             {
-                "surface_y": 611,
-                "x": 111
+                "surface_y": 605,
+                "x": 110
             },
             {
-                "surface_y": 611,
-                "x": 266
+                "surface_y": 605,
+                "x": 265
             },
             {
-                "surface_y": 611,
-                "x": 421
+                "surface_y": 605,
+                "x": 420
             },
             {
-                "surface_y": 611,
-                "x": 575
+                "surface_y": 605,
+                "x": 574
             },
             {
-                "surface_y": 611,
-                "x": 730
+                "surface_y": 605,
+                "x": 729
             },
             {
-                "surface_y": 809,
-                "x": 111
+                "surface_y": 803,
+                "x": 112
             },
             {
-                "surface_y": 809,
-                "x": 266
+                "surface_y": 803,
+                "x": 267
             },
             {
-                "surface_y": 809,
-                "x": 421
+                "surface_y": 803,
+                "x": 422
             },
             {
-                "surface_y": 809,
-                "x": 575
+                "surface_y": 803,
+                "x": 576
             },
             {
-                "surface_y": 809,
-                "x": 730
+                "surface_y": 803,
+                "x": 731
             },
             {
-                "surface_y": 1011,
-                "x": 111
+                "surface_y": 1006,
+                "x": 112
             },
             {
-                "surface_y": 1011,
-                "x": 266
+                "surface_y": 1006,
+                "x": 267
             },
             {
-                "surface_y": 1011,
-                "x": 421
+                "surface_y": 1006,
+                "x": 422
             },
             {
-                "surface_y": 1011,
-                "x": 575
+                "surface_y": 1006,
+                "x": 576
             },
             {
-                "surface_y": 1011,
-                "x": 730
+                "surface_y": 1006,
+                "x": 731
             },
             {
-                "surface_y": 1215,
-                "x": 111
+                "surface_y": 1208,
+                "x": 112
             },
             {
-                "surface_y": 1215,
-                "x": 266
+                "surface_y": 1208,
+                "x": 267
             },
             {
-                "surface_y": 1215,
-                "x": 421
+                "surface_y": 1208,
+                "x": 422
             },
             {
-                "surface_y": 1215,
-                "x": 575
+                "surface_y": 1208,
+                "x": 576
             },
             {
-                "surface_y": 1215,
-                "x": 730
+                "surface_y": 1208,
+                "x": 731
             },
             {
-                "surface_y": 1436,
-                "x": 109
+                "surface_y": 1418,
+                "x": 110
             },
             {
-                "surface_y": 1436,
-                "x": 264
+                "surface_y": 1418,
+                "x": 265
             },
             {
-                "surface_y": 1436,
-                "x": 419
+                "surface_y": 1418,
+                "x": 420
             },
             {
-                "surface_y": 1436,
-                "x": 573
+                "surface_y": 1418,
+                "x": 574
             },
             {
-                "surface_y": 1436,
-                "x": 728
+                "surface_y": 1418,
+                "x": 729
             }
         ],
+        "object_size": 200,
         "rendering": {
             "anchor": "bottom_center",
             "foot_overlap": 10,
-            "item_width": 175,
-            "item_height": 209
+            "source_width": 200,
+            "source_height": 109,
+            "item_width": 367,
+            "item_height": 200
         },
-        "answer": "One tanuki is missing a right eye.",
-        "answer_box": {
-            "x1": 238,
-            "y1": 658,
-            "x2": 328,
-            "y2": 748
-        },
-        "answer_visual_box": {
-            "x1": 272,
-            "y1": 691,
-            "x2": 294,
-            "y2": 715
-        }
+        "game_type": "find_anomaly",
+        "category": "cozy_cafe",
+        "tags": [
+            "hard",
+            "kokeshi",
+            "tanuki",
+            "teahouse"
+        ],
+        "difficulty_rating": 3,
+        "import_pack": "cozy_puzzle_130835"
     },
-    backgroundSource: require("../../assets/composable/puzzle_assets/scenes/teahouse/mobile.png"),
-    normalItemSource: require("../../assets/composable/puzzle_assets/items/tanuki/175/normal.png"),
-    anomalyItemSource: require("../../assets/composable/puzzle_assets/items/tanuki/175/missing_right_eye.png"),
+    backgroundSource: require("../../assets/composable/cozy_puzzle_130835/assets/backgrounds/mobile.png"),
+    normalItemSource: require("../../assets/composable/cozy_puzzle_130835/assets/items/kokeshi/200/normal.png"),
+    anomalyItemSource: require("../../assets/composable/cozy_puzzle_130835/assets/items/kokeshi/200/missing_right_sleeve_flower.png"),
   },
   {
     ...{
-        "id": "cozy_puzzle_005",
-        "version": 2,
+        "id": "cozy_puzzle_130835/cozy_puzzle_002",
         "scene": "teahouse",
         "profile": "mobile",
         "difficulty": "hard",
-        "background": "puzzle_assets/scenes/teahouse/mobile.png",
-        "asset": "tanuki",
-        "item_size": 175,
-        "normal_item": "puzzle_assets/items/tanuki/175/normal.png",
-        "normal_item_meta": "puzzle_assets/items/tanuki/175/normal.json",
-        "anomaly": "missing_mouth",
-        "anomaly_item": "puzzle_assets/items/tanuki/175/missing_mouth.png",
-        "anomaly_item_meta": "puzzle_assets/items/tanuki/175/missing_mouth.json",
+        "asset": "kokeshi",
+        "anomaly": "missing_left_eye",
+        "answer": "One kokeshi is missing a left eye.",
+        "background": "assets/backgrounds/mobile.png",
+        "normal_item": "assets/items/kokeshi/200/normal.png",
+        "anomaly_item": "assets/items/kokeshi/200/missing_left_eye.png",
+        "answer_box": {
+            "x1": 553,
+            "y1": 1305,
+            "x2": 562,
+            "y2": 1314
+        },
+        "answer_visual_box": {
+            "x1": 553,
+            "y1": 1305,
+            "x2": 562,
+            "y2": 1314
+        },
+        "target_slot_index": 28,
+        "slots": [
+            {
+                "surface_y": 417,
+                "x": 110
+            },
+            {
+                "surface_y": 417,
+                "x": 729
+            },
+            {
+                "surface_y": 417,
+                "x": 265
+            },
+            {
+                "surface_y": 417,
+                "x": 574
+            },
+            {
+                "surface_y": 417,
+                "x": 420
+            },
+            {
+                "surface_y": 605,
+                "x": 110
+            },
+            {
+                "surface_y": 605,
+                "x": 265
+            },
+            {
+                "surface_y": 605,
+                "x": 420
+            },
+            {
+                "surface_y": 605,
+                "x": 574
+            },
+            {
+                "surface_y": 605,
+                "x": 729
+            },
+            {
+                "surface_y": 803,
+                "x": 112
+            },
+            {
+                "surface_y": 803,
+                "x": 267
+            },
+            {
+                "surface_y": 803,
+                "x": 422
+            },
+            {
+                "surface_y": 803,
+                "x": 576
+            },
+            {
+                "surface_y": 803,
+                "x": 731
+            },
+            {
+                "surface_y": 1006,
+                "x": 112
+            },
+            {
+                "surface_y": 1006,
+                "x": 267
+            },
+            {
+                "surface_y": 1006,
+                "x": 422
+            },
+            {
+                "surface_y": 1006,
+                "x": 576
+            },
+            {
+                "surface_y": 1006,
+                "x": 731
+            },
+            {
+                "surface_y": 1208,
+                "x": 112
+            },
+            {
+                "surface_y": 1208,
+                "x": 267
+            },
+            {
+                "surface_y": 1208,
+                "x": 422
+            },
+            {
+                "surface_y": 1208,
+                "x": 576
+            },
+            {
+                "surface_y": 1208,
+                "x": 731
+            },
+            {
+                "surface_y": 1418,
+                "x": 110
+            },
+            {
+                "surface_y": 1418,
+                "x": 265
+            },
+            {
+                "surface_y": 1418,
+                "x": 420
+            },
+            {
+                "surface_y": 1418,
+                "x": 574
+            },
+            {
+                "surface_y": 1418,
+                "x": 729
+            }
+        ],
+        "object_size": 200,
+        "rendering": {
+            "anchor": "bottom_center",
+            "foot_overlap": 10,
+            "source_width": 200,
+            "source_height": 109,
+            "item_width": 367,
+            "item_height": 200
+        },
+        "game_type": "find_anomaly",
+        "category": "cozy_cafe",
+        "tags": [
+            "hard",
+            "kokeshi",
+            "tanuki",
+            "teahouse"
+        ],
+        "difficulty_rating": 3,
+        "import_pack": "cozy_puzzle_130835"
+    },
+    backgroundSource: require("../../assets/composable/cozy_puzzle_130835/assets/backgrounds/mobile.png"),
+    normalItemSource: require("../../assets/composable/cozy_puzzle_130835/assets/items/kokeshi/200/normal.png"),
+    anomalyItemSource: require("../../assets/composable/cozy_puzzle_130835/assets/items/kokeshi/200/missing_left_eye.png"),
+  },
+  {
+    ...{
+        "id": "cozy_puzzle_130835/cozy_puzzle_003",
+        "scene": "teahouse",
+        "profile": "mobile",
+        "difficulty": "hard",
+        "asset": "kokeshi",
+        "anomaly": "missing_left_eye",
+        "answer": "One kokeshi is missing a left eye.",
+        "background": "assets/backgrounds/mobile.png",
+        "normal_item": "assets/items/kokeshi/200/normal.png",
+        "anomaly_item": "assets/items/kokeshi/200/missing_left_eye.png",
+        "answer_box": {
+            "x1": 92,
+            "y1": 690,
+            "x2": 101,
+            "y2": 699
+        },
+        "answer_visual_box": {
+            "x1": 92,
+            "y1": 690,
+            "x2": 101,
+            "y2": 699
+        },
+        "target_slot_index": 10,
+        "slots": [
+            {
+                "surface_y": 417,
+                "x": 110
+            },
+            {
+                "surface_y": 417,
+                "x": 729
+            },
+            {
+                "surface_y": 417,
+                "x": 265
+            },
+            {
+                "surface_y": 417,
+                "x": 574
+            },
+            {
+                "surface_y": 417,
+                "x": 420
+            },
+            {
+                "surface_y": 605,
+                "x": 110
+            },
+            {
+                "surface_y": 605,
+                "x": 265
+            },
+            {
+                "surface_y": 605,
+                "x": 420
+            },
+            {
+                "surface_y": 605,
+                "x": 574
+            },
+            {
+                "surface_y": 605,
+                "x": 729
+            },
+            {
+                "surface_y": 803,
+                "x": 112
+            },
+            {
+                "surface_y": 803,
+                "x": 267
+            },
+            {
+                "surface_y": 803,
+                "x": 422
+            },
+            {
+                "surface_y": 803,
+                "x": 576
+            },
+            {
+                "surface_y": 803,
+                "x": 731
+            },
+            {
+                "surface_y": 1006,
+                "x": 112
+            },
+            {
+                "surface_y": 1006,
+                "x": 267
+            },
+            {
+                "surface_y": 1006,
+                "x": 422
+            },
+            {
+                "surface_y": 1006,
+                "x": 576
+            },
+            {
+                "surface_y": 1006,
+                "x": 731
+            },
+            {
+                "surface_y": 1208,
+                "x": 112
+            },
+            {
+                "surface_y": 1208,
+                "x": 267
+            },
+            {
+                "surface_y": 1208,
+                "x": 422
+            },
+            {
+                "surface_y": 1208,
+                "x": 576
+            },
+            {
+                "surface_y": 1208,
+                "x": 731
+            },
+            {
+                "surface_y": 1418,
+                "x": 110
+            },
+            {
+                "surface_y": 1418,
+                "x": 265
+            },
+            {
+                "surface_y": 1418,
+                "x": 420
+            },
+            {
+                "surface_y": 1418,
+                "x": 574
+            },
+            {
+                "surface_y": 1418,
+                "x": 729
+            }
+        ],
+        "object_size": 200,
+        "rendering": {
+            "anchor": "bottom_center",
+            "foot_overlap": 10,
+            "source_width": 200,
+            "source_height": 109,
+            "item_width": 367,
+            "item_height": 200
+        },
+        "game_type": "find_anomaly",
+        "category": "cozy_cafe",
+        "tags": [
+            "hard",
+            "kokeshi",
+            "tanuki",
+            "teahouse"
+        ],
+        "difficulty_rating": 3,
+        "import_pack": "cozy_puzzle_130835"
+    },
+    backgroundSource: require("../../assets/composable/cozy_puzzle_130835/assets/backgrounds/mobile.png"),
+    normalItemSource: require("../../assets/composable/cozy_puzzle_130835/assets/items/kokeshi/200/normal.png"),
+    anomalyItemSource: require("../../assets/composable/cozy_puzzle_130835/assets/items/kokeshi/200/missing_left_eye.png"),
+  },
+  {
+    ...{
+        "id": "cozy_puzzle_130835/cozy_puzzle_004",
+        "scene": "teahouse",
+        "profile": "mobile",
+        "difficulty": "hard",
+        "asset": "kokeshi",
+        "anomaly": "missing_left_eye",
+        "answer": "One kokeshi is missing a left eye.",
+        "background": "assets/backgrounds/mobile.png",
+        "normal_item": "assets/items/kokeshi/200/normal.png",
+        "anomaly_item": "assets/items/kokeshi/200/missing_left_eye.png",
+        "answer_box": {
+            "x1": 708,
+            "y1": 304,
+            "x2": 717,
+            "y2": 313
+        },
+        "answer_visual_box": {
+            "x1": 708,
+            "y1": 304,
+            "x2": 717,
+            "y2": 313
+        },
         "target_slot_index": 1,
         "slots": [
             {
-                "surface_y": 418,
-                "x": 111
+                "surface_y": 417,
+                "x": 110
             },
             {
-                "surface_y": 418,
-                "x": 730
+                "surface_y": 417,
+                "x": 729
             },
             {
-                "surface_y": 418,
-                "x": 266
+                "surface_y": 417,
+                "x": 265
             },
             {
-                "surface_y": 418,
-                "x": 575
+                "surface_y": 417,
+                "x": 574
             },
             {
-                "surface_y": 418,
-                "x": 421
+                "surface_y": 417,
+                "x": 420
             },
             {
-                "surface_y": 611,
-                "x": 111
+                "surface_y": 605,
+                "x": 110
             },
             {
-                "surface_y": 611,
-                "x": 266
+                "surface_y": 605,
+                "x": 265
             },
             {
-                "surface_y": 611,
-                "x": 421
+                "surface_y": 605,
+                "x": 420
             },
             {
-                "surface_y": 611,
-                "x": 575
+                "surface_y": 605,
+                "x": 574
             },
             {
-                "surface_y": 611,
-                "x": 730
+                "surface_y": 605,
+                "x": 729
             },
             {
-                "surface_y": 809,
-                "x": 111
+                "surface_y": 803,
+                "x": 112
             },
             {
-                "surface_y": 809,
-                "x": 266
+                "surface_y": 803,
+                "x": 267
             },
             {
-                "surface_y": 809,
-                "x": 421
+                "surface_y": 803,
+                "x": 422
             },
             {
-                "surface_y": 809,
-                "x": 575
+                "surface_y": 803,
+                "x": 576
             },
             {
-                "surface_y": 809,
-                "x": 730
+                "surface_y": 803,
+                "x": 731
             },
             {
-                "surface_y": 1011,
-                "x": 111
+                "surface_y": 1006,
+                "x": 112
             },
             {
-                "surface_y": 1011,
-                "x": 266
+                "surface_y": 1006,
+                "x": 267
             },
             {
-                "surface_y": 1011,
-                "x": 421
+                "surface_y": 1006,
+                "x": 422
             },
             {
-                "surface_y": 1011,
-                "x": 575
+                "surface_y": 1006,
+                "x": 576
             },
             {
-                "surface_y": 1011,
-                "x": 730
+                "surface_y": 1006,
+                "x": 731
             },
             {
-                "surface_y": 1215,
-                "x": 111
+                "surface_y": 1208,
+                "x": 112
             },
             {
-                "surface_y": 1215,
-                "x": 266
+                "surface_y": 1208,
+                "x": 267
             },
             {
-                "surface_y": 1215,
-                "x": 421
+                "surface_y": 1208,
+                "x": 422
             },
             {
-                "surface_y": 1215,
-                "x": 575
+                "surface_y": 1208,
+                "x": 576
             },
             {
-                "surface_y": 1215,
-                "x": 730
+                "surface_y": 1208,
+                "x": 731
             },
             {
-                "surface_y": 1436,
-                "x": 109
+                "surface_y": 1418,
+                "x": 110
             },
             {
-                "surface_y": 1436,
-                "x": 264
+                "surface_y": 1418,
+                "x": 265
             },
             {
-                "surface_y": 1436,
-                "x": 419
+                "surface_y": 1418,
+                "x": 420
             },
             {
-                "surface_y": 1436,
-                "x": 573
+                "surface_y": 1418,
+                "x": 574
             },
             {
-                "surface_y": 1436,
-                "x": 728
+                "surface_y": 1418,
+                "x": 729
             }
         ],
+        "object_size": 200,
         "rendering": {
             "anchor": "bottom_center",
             "foot_overlap": 10,
-            "item_width": 175,
-            "item_height": 209
+            "source_width": 200,
+            "source_height": 109,
+            "item_width": 367,
+            "item_height": 200
         },
-        "answer": "One tanuki is missing a mouth.",
-        "answer_box": {
-            "x1": 677,
-            "y1": 283,
-            "x2": 767,
-            "y2": 373
-        },
-        "answer_visual_box": {
-            "x1": 710,
-            "y1": 320,
-            "x2": 734,
-            "y2": 336
-        }
+        "game_type": "find_anomaly",
+        "category": "cozy_cafe",
+        "tags": [
+            "hard",
+            "kokeshi",
+            "tanuki",
+            "teahouse"
+        ],
+        "difficulty_rating": 3,
+        "import_pack": "cozy_puzzle_130835"
     },
-    backgroundSource: require("../../assets/composable/puzzle_assets/scenes/teahouse/mobile.png"),
-    normalItemSource: require("../../assets/composable/puzzle_assets/items/tanuki/175/normal.png"),
-    anomalyItemSource: require("../../assets/composable/puzzle_assets/items/tanuki/175/missing_mouth.png"),
+    backgroundSource: require("../../assets/composable/cozy_puzzle_130835/assets/backgrounds/mobile.png"),
+    normalItemSource: require("../../assets/composable/cozy_puzzle_130835/assets/items/kokeshi/200/normal.png"),
+    anomalyItemSource: require("../../assets/composable/cozy_puzzle_130835/assets/items/kokeshi/200/missing_left_eye.png"),
   },
   {
     ...{
-        "id": "cozy_puzzle_006",
-        "version": 2,
+        "id": "cozy_puzzle_130835/cozy_puzzle_005",
         "scene": "teahouse",
         "profile": "mobile",
         "difficulty": "hard",
-        "background": "puzzle_assets/scenes/teahouse/mobile.png",
-        "asset": "tanuki",
-        "item_size": 175,
-        "normal_item": "puzzle_assets/items/tanuki/175/normal.png",
-        "normal_item_meta": "puzzle_assets/items/tanuki/175/normal.json",
-        "anomaly": "missing_right_ear",
-        "anomaly_item": "puzzle_assets/items/tanuki/175/missing_right_ear.png",
-        "anomaly_item_meta": "puzzle_assets/items/tanuki/175/missing_right_ear.json",
-        "target_slot_index": 13,
+        "asset": "kokeshi",
+        "anomaly": "missing_yellow_in_flower",
+        "answer": "One kokeshi is missing a yellow in flower.",
+        "background": "assets/backgrounds/mobile.png",
+        "normal_item": "assets/items/kokeshi/200/normal.png",
+        "anomaly_item": "assets/items/kokeshi/200/missing_yellow_in_flower.png",
+        "answer_box": {
+            "x1": 748,
+            "y1": 1259,
+            "x2": 761,
+            "y2": 1270
+        },
+        "answer_visual_box": {
+            "x1": 748,
+            "y1": 1259,
+            "x2": 761,
+            "y2": 1270
+        },
+        "target_slot_index": 29,
         "slots": [
             {
-                "surface_y": 418,
-                "x": 111
+                "surface_y": 417,
+                "x": 110
             },
             {
-                "surface_y": 418,
-                "x": 730
+                "surface_y": 417,
+                "x": 729
             },
             {
-                "surface_y": 418,
-                "x": 266
+                "surface_y": 417,
+                "x": 265
             },
             {
-                "surface_y": 418,
-                "x": 575
+                "surface_y": 417,
+                "x": 574
             },
             {
-                "surface_y": 418,
-                "x": 421
+                "surface_y": 417,
+                "x": 420
             },
             {
-                "surface_y": 611,
-                "x": 111
+                "surface_y": 605,
+                "x": 110
             },
             {
-                "surface_y": 611,
-                "x": 266
+                "surface_y": 605,
+                "x": 265
             },
             {
-                "surface_y": 611,
-                "x": 421
+                "surface_y": 605,
+                "x": 420
             },
             {
-                "surface_y": 611,
-                "x": 575
+                "surface_y": 605,
+                "x": 574
             },
             {
-                "surface_y": 611,
-                "x": 730
+                "surface_y": 605,
+                "x": 729
             },
             {
-                "surface_y": 809,
-                "x": 111
+                "surface_y": 803,
+                "x": 112
             },
             {
-                "surface_y": 809,
-                "x": 266
+                "surface_y": 803,
+                "x": 267
             },
             {
-                "surface_y": 809,
-                "x": 421
+                "surface_y": 803,
+                "x": 422
             },
             {
-                "surface_y": 809,
-                "x": 575
+                "surface_y": 803,
+                "x": 576
             },
             {
-                "surface_y": 809,
-                "x": 730
+                "surface_y": 803,
+                "x": 731
             },
             {
-                "surface_y": 1011,
-                "x": 111
+                "surface_y": 1006,
+                "x": 112
             },
             {
-                "surface_y": 1011,
-                "x": 266
+                "surface_y": 1006,
+                "x": 267
             },
             {
-                "surface_y": 1011,
-                "x": 421
+                "surface_y": 1006,
+                "x": 422
             },
             {
-                "surface_y": 1011,
-                "x": 575
+                "surface_y": 1006,
+                "x": 576
             },
             {
-                "surface_y": 1011,
-                "x": 730
+                "surface_y": 1006,
+                "x": 731
             },
             {
-                "surface_y": 1215,
-                "x": 111
+                "surface_y": 1208,
+                "x": 112
             },
             {
-                "surface_y": 1215,
-                "x": 266
+                "surface_y": 1208,
+                "x": 267
             },
             {
-                "surface_y": 1215,
-                "x": 421
+                "surface_y": 1208,
+                "x": 422
             },
             {
-                "surface_y": 1215,
-                "x": 575
+                "surface_y": 1208,
+                "x": 576
             },
             {
-                "surface_y": 1215,
-                "x": 730
+                "surface_y": 1208,
+                "x": 731
             },
             {
-                "surface_y": 1436,
-                "x": 109
+                "surface_y": 1418,
+                "x": 110
             },
             {
-                "surface_y": 1436,
-                "x": 264
+                "surface_y": 1418,
+                "x": 265
             },
             {
-                "surface_y": 1436,
-                "x": 419
+                "surface_y": 1418,
+                "x": 420
             },
             {
-                "surface_y": 1436,
-                "x": 573
+                "surface_y": 1418,
+                "x": 574
             },
             {
-                "surface_y": 1436,
-                "x": 728
+                "surface_y": 1418,
+                "x": 729
             }
         ],
+        "object_size": 200,
         "rendering": {
             "anchor": "bottom_center",
             "foot_overlap": 10,
-            "item_width": 175,
-            "item_height": 209
+            "source_width": 200,
+            "source_height": 109,
+            "item_width": 367,
+            "item_height": 200
         },
-        "answer": "One tanuki is missing a right ear.",
-        "answer_box": {
-            "x1": 573,
-            "y1": 619,
-            "x2": 663,
-            "y2": 709
-        },
-        "answer_visual_box": {
-            "x1": 610,
-            "y1": 654,
-            "x2": 626,
-            "y2": 674
-        }
+        "game_type": "find_anomaly",
+        "category": "cozy_cafe",
+        "tags": [
+            "hard",
+            "kokeshi",
+            "tanuki",
+            "teahouse"
+        ],
+        "difficulty_rating": 3,
+        "import_pack": "cozy_puzzle_130835"
     },
-    backgroundSource: require("../../assets/composable/puzzle_assets/scenes/teahouse/mobile.png"),
-    normalItemSource: require("../../assets/composable/puzzle_assets/items/tanuki/175/normal.png"),
-    anomalyItemSource: require("../../assets/composable/puzzle_assets/items/tanuki/175/missing_right_ear.png"),
+    backgroundSource: require("../../assets/composable/cozy_puzzle_130835/assets/backgrounds/mobile.png"),
+    normalItemSource: require("../../assets/composable/cozy_puzzle_130835/assets/items/kokeshi/200/normal.png"),
+    anomalyItemSource: require("../../assets/composable/cozy_puzzle_130835/assets/items/kokeshi/200/missing_yellow_in_flower.png"),
   },
   {
     ...{
-        "id": "cozy_puzzle_007",
-        "version": 2,
+        "id": "cozy_puzzle_130845/cozy_puzzle_001",
         "scene": "teahouse",
         "profile": "mobile",
         "difficulty": "hard",
-        "background": "puzzle_assets/scenes/teahouse/mobile.png",
-        "asset": "tanuki",
-        "item_size": 175,
-        "normal_item": "puzzle_assets/items/tanuki/175/normal.png",
-        "normal_item_meta": "puzzle_assets/items/tanuki/175/normal.json",
-        "anomaly": "missing_right_eye",
-        "anomaly_item": "puzzle_assets/items/tanuki/175/missing_right_eye.png",
-        "anomaly_item_meta": "puzzle_assets/items/tanuki/175/missing_right_eye.json",
-        "target_slot_index": 11,
+        "asset": "ramen",
+        "anomaly": "missing_ramen_characters",
+        "answer": "One ramen is missing a ramen characters.",
+        "background": "assets/backgrounds/mobile.png",
+        "normal_item": "assets/items/ramen/200/normal.png",
+        "anomaly_item": "assets/items/ramen/200/missing_ramen_characters.png",
+        "answer_box": {
+            "x1": 84,
+            "y1": 1157,
+            "x2": 140,
+            "y2": 1175
+        },
+        "answer_visual_box": {
+            "x1": 84,
+            "y1": 1157,
+            "x2": 140,
+            "y2": 1175
+        },
+        "target_slot_index": 20,
         "slots": [
             {
-                "surface_y": 418,
-                "x": 111
+                "surface_y": 417,
+                "x": 110
             },
             {
-                "surface_y": 418,
-                "x": 730
+                "surface_y": 417,
+                "x": 729
             },
             {
-                "surface_y": 418,
-                "x": 266
+                "surface_y": 417,
+                "x": 265
             },
             {
-                "surface_y": 418,
-                "x": 575
+                "surface_y": 417,
+                "x": 574
             },
             {
-                "surface_y": 418,
-                "x": 421
+                "surface_y": 417,
+                "x": 420
             },
             {
-                "surface_y": 611,
-                "x": 111
+                "surface_y": 605,
+                "x": 110
             },
             {
-                "surface_y": 611,
-                "x": 266
+                "surface_y": 605,
+                "x": 265
             },
             {
-                "surface_y": 611,
-                "x": 421
+                "surface_y": 605,
+                "x": 420
             },
             {
-                "surface_y": 611,
-                "x": 575
+                "surface_y": 605,
+                "x": 574
             },
             {
-                "surface_y": 611,
-                "x": 730
+                "surface_y": 605,
+                "x": 729
             },
             {
-                "surface_y": 809,
-                "x": 111
+                "surface_y": 803,
+                "x": 112
             },
             {
-                "surface_y": 809,
-                "x": 266
+                "surface_y": 803,
+                "x": 267
             },
             {
-                "surface_y": 809,
-                "x": 421
+                "surface_y": 803,
+                "x": 422
             },
             {
-                "surface_y": 809,
-                "x": 575
+                "surface_y": 803,
+                "x": 576
             },
             {
-                "surface_y": 809,
-                "x": 730
+                "surface_y": 803,
+                "x": 731
             },
             {
-                "surface_y": 1011,
-                "x": 111
+                "surface_y": 1006,
+                "x": 112
             },
             {
-                "surface_y": 1011,
-                "x": 266
+                "surface_y": 1006,
+                "x": 267
             },
             {
-                "surface_y": 1011,
-                "x": 421
+                "surface_y": 1006,
+                "x": 422
             },
             {
-                "surface_y": 1011,
-                "x": 575
+                "surface_y": 1006,
+                "x": 576
             },
             {
-                "surface_y": 1011,
-                "x": 730
+                "surface_y": 1006,
+                "x": 731
             },
             {
-                "surface_y": 1215,
-                "x": 111
+                "surface_y": 1208,
+                "x": 112
             },
             {
-                "surface_y": 1215,
-                "x": 266
+                "surface_y": 1208,
+                "x": 267
             },
             {
-                "surface_y": 1215,
-                "x": 421
+                "surface_y": 1208,
+                "x": 422
             },
             {
-                "surface_y": 1215,
-                "x": 575
+                "surface_y": 1208,
+                "x": 576
             },
             {
-                "surface_y": 1215,
-                "x": 730
+                "surface_y": 1208,
+                "x": 731
             },
             {
-                "surface_y": 1436,
-                "x": 109
+                "surface_y": 1418,
+                "x": 110
             },
             {
-                "surface_y": 1436,
-                "x": 264
+                "surface_y": 1418,
+                "x": 265
             },
             {
-                "surface_y": 1436,
-                "x": 419
+                "surface_y": 1418,
+                "x": 420
             },
             {
-                "surface_y": 1436,
-                "x": 573
+                "surface_y": 1418,
+                "x": 574
             },
             {
-                "surface_y": 1436,
-                "x": 728
+                "surface_y": 1418,
+                "x": 729
             }
         ],
+        "object_size": 200,
         "rendering": {
             "anchor": "bottom_center",
             "foot_overlap": 10,
-            "item_width": 175,
-            "item_height": 209
+            "source_width": 200,
+            "source_height": 109,
+            "item_width": 367,
+            "item_height": 200
         },
-        "answer": "One tanuki is missing a right eye.",
-        "answer_box": {
-            "x1": 238,
-            "y1": 658,
-            "x2": 328,
-            "y2": 748
-        },
-        "answer_visual_box": {
-            "x1": 272,
-            "y1": 691,
-            "x2": 294,
-            "y2": 715
-        }
+        "game_type": "find_anomaly",
+        "category": "cozy_cafe",
+        "tags": [
+            "hard",
+            "ramen",
+            "tanuki",
+            "teahouse"
+        ],
+        "difficulty_rating": 3,
+        "import_pack": "cozy_puzzle_130845"
     },
-    backgroundSource: require("../../assets/composable/puzzle_assets/scenes/teahouse/mobile.png"),
-    normalItemSource: require("../../assets/composable/puzzle_assets/items/tanuki/175/normal.png"),
-    anomalyItemSource: require("../../assets/composable/puzzle_assets/items/tanuki/175/missing_right_eye.png"),
+    backgroundSource: require("../../assets/composable/cozy_puzzle_130845/assets/backgrounds/mobile.png"),
+    normalItemSource: require("../../assets/composable/cozy_puzzle_130845/assets/items/ramen/200/normal.png"),
+    anomalyItemSource: require("../../assets/composable/cozy_puzzle_130845/assets/items/ramen/200/missing_ramen_characters.png"),
   },
   {
     ...{
-        "id": "cozy_puzzle_008",
-        "version": 2,
+        "id": "cozy_puzzle_130845/cozy_puzzle_002",
         "scene": "teahouse",
         "profile": "mobile",
         "difficulty": "hard",
-        "background": "puzzle_assets/scenes/teahouse/mobile.png",
-        "asset": "tanuki",
-        "item_size": 175,
-        "normal_item": "puzzle_assets/items/tanuki/175/normal.png",
-        "normal_item_meta": "puzzle_assets/items/tanuki/175/normal.json",
-        "anomaly": "missing_left_eye",
-        "anomaly_item": "puzzle_assets/items/tanuki/175/missing_left_eye.png",
-        "anomaly_item_meta": "puzzle_assets/items/tanuki/175/missing_left_eye.json",
+        "asset": "ramen",
+        "anomaly": "missing_egg_yolk",
+        "answer": "One ramen is missing an egg yolk.",
+        "background": "assets/backgrounds/mobile.png",
+        "normal_item": "assets/items/ramen/200/normal.png",
+        "anomaly_item": "assets/items/ramen/200/missing_egg_yolk.png",
+        "answer_box": {
+            "x1": 522,
+            "y1": 504,
+            "x2": 544,
+            "y2": 523
+        },
+        "answer_visual_box": {
+            "x1": 522,
+            "y1": 504,
+            "x2": 544,
+            "y2": 523
+        },
+        "target_slot_index": 8,
+        "slots": [
+            {
+                "surface_y": 417,
+                "x": 110
+            },
+            {
+                "surface_y": 417,
+                "x": 729
+            },
+            {
+                "surface_y": 417,
+                "x": 265
+            },
+            {
+                "surface_y": 417,
+                "x": 574
+            },
+            {
+                "surface_y": 417,
+                "x": 420
+            },
+            {
+                "surface_y": 605,
+                "x": 110
+            },
+            {
+                "surface_y": 605,
+                "x": 265
+            },
+            {
+                "surface_y": 605,
+                "x": 420
+            },
+            {
+                "surface_y": 605,
+                "x": 574
+            },
+            {
+                "surface_y": 605,
+                "x": 729
+            },
+            {
+                "surface_y": 803,
+                "x": 112
+            },
+            {
+                "surface_y": 803,
+                "x": 267
+            },
+            {
+                "surface_y": 803,
+                "x": 422
+            },
+            {
+                "surface_y": 803,
+                "x": 576
+            },
+            {
+                "surface_y": 803,
+                "x": 731
+            },
+            {
+                "surface_y": 1006,
+                "x": 112
+            },
+            {
+                "surface_y": 1006,
+                "x": 267
+            },
+            {
+                "surface_y": 1006,
+                "x": 422
+            },
+            {
+                "surface_y": 1006,
+                "x": 576
+            },
+            {
+                "surface_y": 1006,
+                "x": 731
+            },
+            {
+                "surface_y": 1208,
+                "x": 112
+            },
+            {
+                "surface_y": 1208,
+                "x": 267
+            },
+            {
+                "surface_y": 1208,
+                "x": 422
+            },
+            {
+                "surface_y": 1208,
+                "x": 576
+            },
+            {
+                "surface_y": 1208,
+                "x": 731
+            },
+            {
+                "surface_y": 1418,
+                "x": 110
+            },
+            {
+                "surface_y": 1418,
+                "x": 265
+            },
+            {
+                "surface_y": 1418,
+                "x": 420
+            },
+            {
+                "surface_y": 1418,
+                "x": 574
+            },
+            {
+                "surface_y": 1418,
+                "x": 729
+            }
+        ],
+        "object_size": 200,
+        "rendering": {
+            "anchor": "bottom_center",
+            "foot_overlap": 10,
+            "source_width": 200,
+            "source_height": 109,
+            "item_width": 367,
+            "item_height": 200
+        },
+        "game_type": "find_anomaly",
+        "category": "cozy_cafe",
+        "tags": [
+            "hard",
+            "ramen",
+            "tanuki",
+            "teahouse"
+        ],
+        "difficulty_rating": 3,
+        "import_pack": "cozy_puzzle_130845"
+    },
+    backgroundSource: require("../../assets/composable/cozy_puzzle_130845/assets/backgrounds/mobile.png"),
+    normalItemSource: require("../../assets/composable/cozy_puzzle_130845/assets/items/ramen/200/normal.png"),
+    anomalyItemSource: require("../../assets/composable/cozy_puzzle_130845/assets/items/ramen/200/missing_egg_yolk.png"),
+  },
+  {
+    ...{
+        "id": "cozy_puzzle_130845/cozy_puzzle_003",
+        "scene": "teahouse",
+        "profile": "mobile",
+        "difficulty": "hard",
+        "asset": "ramen",
+        "anomaly": "missing_naruto_swirls",
+        "answer": "One ramen is missing a naruto swirls.",
+        "background": "assets/backgrounds/mobile.png",
+        "normal_item": "assets/items/ramen/200/normal.png",
+        "anomaly_item": "assets/items/ramen/200/missing_naruto_swirls.png",
+        "answer_box": {
+            "x1": 684,
+            "y1": 1297,
+            "x2": 710,
+            "y2": 1316
+        },
+        "answer_visual_box": {
+            "x1": 684,
+            "y1": 1297,
+            "x2": 710,
+            "y2": 1316
+        },
+        "target_slot_index": 29,
+        "slots": [
+            {
+                "surface_y": 417,
+                "x": 110
+            },
+            {
+                "surface_y": 417,
+                "x": 729
+            },
+            {
+                "surface_y": 417,
+                "x": 265
+            },
+            {
+                "surface_y": 417,
+                "x": 574
+            },
+            {
+                "surface_y": 417,
+                "x": 420
+            },
+            {
+                "surface_y": 605,
+                "x": 110
+            },
+            {
+                "surface_y": 605,
+                "x": 265
+            },
+            {
+                "surface_y": 605,
+                "x": 420
+            },
+            {
+                "surface_y": 605,
+                "x": 574
+            },
+            {
+                "surface_y": 605,
+                "x": 729
+            },
+            {
+                "surface_y": 803,
+                "x": 112
+            },
+            {
+                "surface_y": 803,
+                "x": 267
+            },
+            {
+                "surface_y": 803,
+                "x": 422
+            },
+            {
+                "surface_y": 803,
+                "x": 576
+            },
+            {
+                "surface_y": 803,
+                "x": 731
+            },
+            {
+                "surface_y": 1006,
+                "x": 112
+            },
+            {
+                "surface_y": 1006,
+                "x": 267
+            },
+            {
+                "surface_y": 1006,
+                "x": 422
+            },
+            {
+                "surface_y": 1006,
+                "x": 576
+            },
+            {
+                "surface_y": 1006,
+                "x": 731
+            },
+            {
+                "surface_y": 1208,
+                "x": 112
+            },
+            {
+                "surface_y": 1208,
+                "x": 267
+            },
+            {
+                "surface_y": 1208,
+                "x": 422
+            },
+            {
+                "surface_y": 1208,
+                "x": 576
+            },
+            {
+                "surface_y": 1208,
+                "x": 731
+            },
+            {
+                "surface_y": 1418,
+                "x": 110
+            },
+            {
+                "surface_y": 1418,
+                "x": 265
+            },
+            {
+                "surface_y": 1418,
+                "x": 420
+            },
+            {
+                "surface_y": 1418,
+                "x": 574
+            },
+            {
+                "surface_y": 1418,
+                "x": 729
+            }
+        ],
+        "object_size": 200,
+        "rendering": {
+            "anchor": "bottom_center",
+            "foot_overlap": 10,
+            "source_width": 200,
+            "source_height": 109,
+            "item_width": 367,
+            "item_height": 200
+        },
+        "game_type": "find_anomaly",
+        "category": "cozy_cafe",
+        "tags": [
+            "hard",
+            "ramen",
+            "tanuki",
+            "teahouse"
+        ],
+        "difficulty_rating": 3,
+        "import_pack": "cozy_puzzle_130845"
+    },
+    backgroundSource: require("../../assets/composable/cozy_puzzle_130845/assets/backgrounds/mobile.png"),
+    normalItemSource: require("../../assets/composable/cozy_puzzle_130845/assets/items/ramen/200/normal.png"),
+    anomalyItemSource: require("../../assets/composable/cozy_puzzle_130845/assets/items/ramen/200/missing_naruto_swirls.png"),
+  },
+  {
+    ...{
+        "id": "cozy_puzzle_130845/cozy_puzzle_004",
+        "scene": "teahouse",
+        "profile": "mobile",
+        "difficulty": "hard",
+        "asset": "ramen",
+        "anomaly": "missing_green_onion",
+        "answer": "One ramen is missing a green onion.",
+        "background": "assets/backgrounds/mobile.png",
+        "normal_item": "assets/items/ramen/200/normal.png",
+        "anomaly_item": "assets/items/ramen/200/missing_green_onion.png",
+        "answer_box": {
+            "x1": 92,
+            "y1": 893,
+            "x2": 129,
+            "y2": 915
+        },
+        "answer_visual_box": {
+            "x1": 92,
+            "y1": 893,
+            "x2": 129,
+            "y2": 915
+        },
+        "target_slot_index": 15,
+        "slots": [
+            {
+                "surface_y": 417,
+                "x": 110
+            },
+            {
+                "surface_y": 417,
+                "x": 729
+            },
+            {
+                "surface_y": 417,
+                "x": 265
+            },
+            {
+                "surface_y": 417,
+                "x": 574
+            },
+            {
+                "surface_y": 417,
+                "x": 420
+            },
+            {
+                "surface_y": 605,
+                "x": 110
+            },
+            {
+                "surface_y": 605,
+                "x": 265
+            },
+            {
+                "surface_y": 605,
+                "x": 420
+            },
+            {
+                "surface_y": 605,
+                "x": 574
+            },
+            {
+                "surface_y": 605,
+                "x": 729
+            },
+            {
+                "surface_y": 803,
+                "x": 112
+            },
+            {
+                "surface_y": 803,
+                "x": 267
+            },
+            {
+                "surface_y": 803,
+                "x": 422
+            },
+            {
+                "surface_y": 803,
+                "x": 576
+            },
+            {
+                "surface_y": 803,
+                "x": 731
+            },
+            {
+                "surface_y": 1006,
+                "x": 112
+            },
+            {
+                "surface_y": 1006,
+                "x": 267
+            },
+            {
+                "surface_y": 1006,
+                "x": 422
+            },
+            {
+                "surface_y": 1006,
+                "x": 576
+            },
+            {
+                "surface_y": 1006,
+                "x": 731
+            },
+            {
+                "surface_y": 1208,
+                "x": 112
+            },
+            {
+                "surface_y": 1208,
+                "x": 267
+            },
+            {
+                "surface_y": 1208,
+                "x": 422
+            },
+            {
+                "surface_y": 1208,
+                "x": 576
+            },
+            {
+                "surface_y": 1208,
+                "x": 731
+            },
+            {
+                "surface_y": 1418,
+                "x": 110
+            },
+            {
+                "surface_y": 1418,
+                "x": 265
+            },
+            {
+                "surface_y": 1418,
+                "x": 420
+            },
+            {
+                "surface_y": 1418,
+                "x": 574
+            },
+            {
+                "surface_y": 1418,
+                "x": 729
+            }
+        ],
+        "object_size": 200,
+        "rendering": {
+            "anchor": "bottom_center",
+            "foot_overlap": 10,
+            "source_width": 200,
+            "source_height": 109,
+            "item_width": 367,
+            "item_height": 200
+        },
+        "game_type": "find_anomaly",
+        "category": "cozy_cafe",
+        "tags": [
+            "hard",
+            "ramen",
+            "tanuki",
+            "teahouse"
+        ],
+        "difficulty_rating": 3,
+        "import_pack": "cozy_puzzle_130845"
+    },
+    backgroundSource: require("../../assets/composable/cozy_puzzle_130845/assets/backgrounds/mobile.png"),
+    normalItemSource: require("../../assets/composable/cozy_puzzle_130845/assets/items/ramen/200/normal.png"),
+    anomalyItemSource: require("../../assets/composable/cozy_puzzle_130845/assets/items/ramen/200/missing_green_onion.png"),
+  },
+  {
+    ...{
+        "id": "cozy_puzzle_130845/cozy_puzzle_005",
+        "scene": "teahouse",
+        "profile": "mobile",
+        "difficulty": "hard",
+        "asset": "ramen",
+        "anomaly": "missing_ramen_characters",
+        "answer": "One ramen is missing a ramen characters.",
+        "background": "assets/backgrounds/mobile.png",
+        "normal_item": "assets/items/ramen/200/normal.png",
+        "anomaly_item": "assets/items/ramen/200/missing_ramen_characters.png",
+        "answer_box": {
+            "x1": 391,
+            "y1": 1367,
+            "x2": 447,
+            "y2": 1385
+        },
+        "answer_visual_box": {
+            "x1": 391,
+            "y1": 1367,
+            "x2": 447,
+            "y2": 1385
+        },
+        "target_slot_index": 27,
+        "slots": [
+            {
+                "surface_y": 417,
+                "x": 110
+            },
+            {
+                "surface_y": 417,
+                "x": 729
+            },
+            {
+                "surface_y": 417,
+                "x": 265
+            },
+            {
+                "surface_y": 417,
+                "x": 574
+            },
+            {
+                "surface_y": 417,
+                "x": 420
+            },
+            {
+                "surface_y": 605,
+                "x": 110
+            },
+            {
+                "surface_y": 605,
+                "x": 265
+            },
+            {
+                "surface_y": 605,
+                "x": 420
+            },
+            {
+                "surface_y": 605,
+                "x": 574
+            },
+            {
+                "surface_y": 605,
+                "x": 729
+            },
+            {
+                "surface_y": 803,
+                "x": 112
+            },
+            {
+                "surface_y": 803,
+                "x": 267
+            },
+            {
+                "surface_y": 803,
+                "x": 422
+            },
+            {
+                "surface_y": 803,
+                "x": 576
+            },
+            {
+                "surface_y": 803,
+                "x": 731
+            },
+            {
+                "surface_y": 1006,
+                "x": 112
+            },
+            {
+                "surface_y": 1006,
+                "x": 267
+            },
+            {
+                "surface_y": 1006,
+                "x": 422
+            },
+            {
+                "surface_y": 1006,
+                "x": 576
+            },
+            {
+                "surface_y": 1006,
+                "x": 731
+            },
+            {
+                "surface_y": 1208,
+                "x": 112
+            },
+            {
+                "surface_y": 1208,
+                "x": 267
+            },
+            {
+                "surface_y": 1208,
+                "x": 422
+            },
+            {
+                "surface_y": 1208,
+                "x": 576
+            },
+            {
+                "surface_y": 1208,
+                "x": 731
+            },
+            {
+                "surface_y": 1418,
+                "x": 110
+            },
+            {
+                "surface_y": 1418,
+                "x": 265
+            },
+            {
+                "surface_y": 1418,
+                "x": 420
+            },
+            {
+                "surface_y": 1418,
+                "x": 574
+            },
+            {
+                "surface_y": 1418,
+                "x": 729
+            }
+        ],
+        "object_size": 200,
+        "rendering": {
+            "anchor": "bottom_center",
+            "foot_overlap": 10,
+            "source_width": 200,
+            "source_height": 109,
+            "item_width": 367,
+            "item_height": 200
+        },
+        "game_type": "find_anomaly",
+        "category": "cozy_cafe",
+        "tags": [
+            "hard",
+            "ramen",
+            "tanuki",
+            "teahouse"
+        ],
+        "difficulty_rating": 3,
+        "import_pack": "cozy_puzzle_130845"
+    },
+    backgroundSource: require("../../assets/composable/cozy_puzzle_130845/assets/backgrounds/mobile.png"),
+    normalItemSource: require("../../assets/composable/cozy_puzzle_130845/assets/items/ramen/200/normal.png"),
+    anomalyItemSource: require("../../assets/composable/cozy_puzzle_130845/assets/items/ramen/200/missing_ramen_characters.png"),
+  },
+  {
+    ...{
+        "id": "cozy_puzzle_130853/cozy_puzzle_001",
+        "scene": "teahouse",
+        "profile": "mobile",
+        "difficulty": "hard",
+        "asset": "shiba_inu",
+        "anomaly": "missing_tail",
+        "answer": "One shiba_inu is missing a tail.",
+        "background": "assets/backgrounds/mobile.png",
+        "normal_item": "assets/items/shiba_inu/200/normal.png",
+        "anomaly_item": "assets/items/shiba_inu/200/missing_tail.png",
+        "answer_box": {
+            "x1": 448,
+            "y1": 333,
+            "x2": 469,
+            "y2": 368
+        },
+        "answer_visual_box": {
+            "x1": 448,
+            "y1": 333,
+            "x2": 469,
+            "y2": 368
+        },
         "target_slot_index": 4,
         "slots": [
             {
-                "surface_y": 418,
-                "x": 111
+                "surface_y": 417,
+                "x": 110
             },
             {
-                "surface_y": 418,
-                "x": 730
+                "surface_y": 417,
+                "x": 729
             },
             {
-                "surface_y": 418,
-                "x": 266
+                "surface_y": 417,
+                "x": 265
             },
             {
-                "surface_y": 418,
-                "x": 575
+                "surface_y": 417,
+                "x": 574
             },
             {
-                "surface_y": 418,
-                "x": 421
+                "surface_y": 417,
+                "x": 420
             },
             {
-                "surface_y": 611,
-                "x": 111
+                "surface_y": 605,
+                "x": 110
             },
             {
-                "surface_y": 611,
-                "x": 266
+                "surface_y": 605,
+                "x": 265
             },
             {
-                "surface_y": 611,
-                "x": 421
+                "surface_y": 605,
+                "x": 420
             },
             {
-                "surface_y": 611,
-                "x": 575
+                "surface_y": 605,
+                "x": 574
             },
             {
-                "surface_y": 611,
-                "x": 730
+                "surface_y": 605,
+                "x": 729
             },
             {
-                "surface_y": 809,
-                "x": 111
+                "surface_y": 803,
+                "x": 112
             },
             {
-                "surface_y": 809,
-                "x": 266
+                "surface_y": 803,
+                "x": 267
             },
             {
-                "surface_y": 809,
-                "x": 421
+                "surface_y": 803,
+                "x": 422
             },
             {
-                "surface_y": 809,
-                "x": 575
+                "surface_y": 803,
+                "x": 576
             },
             {
-                "surface_y": 809,
-                "x": 730
+                "surface_y": 803,
+                "x": 731
             },
             {
-                "surface_y": 1011,
-                "x": 111
+                "surface_y": 1006,
+                "x": 112
             },
             {
-                "surface_y": 1011,
-                "x": 266
+                "surface_y": 1006,
+                "x": 267
             },
             {
-                "surface_y": 1011,
-                "x": 421
+                "surface_y": 1006,
+                "x": 422
             },
             {
-                "surface_y": 1011,
-                "x": 575
+                "surface_y": 1006,
+                "x": 576
             },
             {
-                "surface_y": 1011,
-                "x": 730
+                "surface_y": 1006,
+                "x": 731
             },
             {
-                "surface_y": 1215,
-                "x": 111
+                "surface_y": 1208,
+                "x": 112
             },
             {
-                "surface_y": 1215,
-                "x": 266
+                "surface_y": 1208,
+                "x": 267
             },
             {
-                "surface_y": 1215,
-                "x": 421
+                "surface_y": 1208,
+                "x": 422
             },
             {
-                "surface_y": 1215,
-                "x": 575
+                "surface_y": 1208,
+                "x": 576
             },
             {
-                "surface_y": 1215,
-                "x": 730
+                "surface_y": 1208,
+                "x": 731
             },
             {
-                "surface_y": 1436,
-                "x": 109
+                "surface_y": 1418,
+                "x": 110
             },
             {
-                "surface_y": 1436,
-                "x": 264
+                "surface_y": 1418,
+                "x": 265
             },
             {
-                "surface_y": 1436,
-                "x": 419
+                "surface_y": 1418,
+                "x": 420
             },
             {
-                "surface_y": 1436,
-                "x": 573
+                "surface_y": 1418,
+                "x": 574
             },
             {
-                "surface_y": 1436,
-                "x": 728
+                "surface_y": 1418,
+                "x": 729
             }
         ],
+        "object_size": 200,
         "rendering": {
             "anchor": "bottom_center",
             "foot_overlap": 10,
-            "item_width": 175,
-            "item_height": 209
+            "source_width": 200,
+            "source_height": 109,
+            "item_width": 367,
+            "item_height": 200
         },
-        "answer": "One tanuki is missing a left eye.",
-        "answer_box": {
-            "x1": 348,
-            "y1": 264,
-            "x2": 438,
-            "y2": 354
-        },
-        "answer_visual_box": {
-            "x1": 383,
-            "y1": 298,
-            "x2": 403,
-            "y2": 321
-        }
+        "game_type": "find_anomaly",
+        "category": "cozy_cafe",
+        "tags": [
+            "hard",
+            "shiba_inu",
+            "tanuki",
+            "teahouse"
+        ],
+        "difficulty_rating": 3,
+        "import_pack": "cozy_puzzle_130853"
     },
-    backgroundSource: require("../../assets/composable/puzzle_assets/scenes/teahouse/mobile.png"),
-    normalItemSource: require("../../assets/composable/puzzle_assets/items/tanuki/175/normal.png"),
-    anomalyItemSource: require("../../assets/composable/puzzle_assets/items/tanuki/175/missing_left_eye.png"),
+    backgroundSource: require("../../assets/composable/cozy_puzzle_130853/assets/backgrounds/mobile.png"),
+    normalItemSource: require("../../assets/composable/cozy_puzzle_130853/assets/items/shiba_inu/200/normal.png"),
+    anomalyItemSource: require("../../assets/composable/cozy_puzzle_130853/assets/items/shiba_inu/200/missing_tail.png"),
   },
   {
     ...{
-        "id": "cozy_puzzle_009",
-        "version": 2,
+        "id": "cozy_puzzle_130853/cozy_puzzle_002",
         "scene": "teahouse",
         "profile": "mobile",
         "difficulty": "hard",
-        "background": "puzzle_assets/scenes/teahouse/mobile.png",
+        "asset": "shiba_inu",
+        "anomaly": "missing_nose",
+        "answer": "One shiba_inu is missing a nose.",
+        "background": "assets/backgrounds/mobile.png",
+        "normal_item": "assets/items/shiba_inu/200/normal.png",
+        "anomaly_item": "assets/items/shiba_inu/200/missing_nose.png",
+        "answer_box": {
+            "x1": 106,
+            "y1": 679,
+            "x2": 118,
+            "y2": 688
+        },
+        "answer_visual_box": {
+            "x1": 106,
+            "y1": 679,
+            "x2": 118,
+            "y2": 688
+        },
+        "target_slot_index": 10,
+        "slots": [
+            {
+                "surface_y": 417,
+                "x": 110
+            },
+            {
+                "surface_y": 417,
+                "x": 729
+            },
+            {
+                "surface_y": 417,
+                "x": 265
+            },
+            {
+                "surface_y": 417,
+                "x": 574
+            },
+            {
+                "surface_y": 417,
+                "x": 420
+            },
+            {
+                "surface_y": 605,
+                "x": 110
+            },
+            {
+                "surface_y": 605,
+                "x": 265
+            },
+            {
+                "surface_y": 605,
+                "x": 420
+            },
+            {
+                "surface_y": 605,
+                "x": 574
+            },
+            {
+                "surface_y": 605,
+                "x": 729
+            },
+            {
+                "surface_y": 803,
+                "x": 112
+            },
+            {
+                "surface_y": 803,
+                "x": 267
+            },
+            {
+                "surface_y": 803,
+                "x": 422
+            },
+            {
+                "surface_y": 803,
+                "x": 576
+            },
+            {
+                "surface_y": 803,
+                "x": 731
+            },
+            {
+                "surface_y": 1006,
+                "x": 112
+            },
+            {
+                "surface_y": 1006,
+                "x": 267
+            },
+            {
+                "surface_y": 1006,
+                "x": 422
+            },
+            {
+                "surface_y": 1006,
+                "x": 576
+            },
+            {
+                "surface_y": 1006,
+                "x": 731
+            },
+            {
+                "surface_y": 1208,
+                "x": 112
+            },
+            {
+                "surface_y": 1208,
+                "x": 267
+            },
+            {
+                "surface_y": 1208,
+                "x": 422
+            },
+            {
+                "surface_y": 1208,
+                "x": 576
+            },
+            {
+                "surface_y": 1208,
+                "x": 731
+            },
+            {
+                "surface_y": 1418,
+                "x": 110
+            },
+            {
+                "surface_y": 1418,
+                "x": 265
+            },
+            {
+                "surface_y": 1418,
+                "x": 420
+            },
+            {
+                "surface_y": 1418,
+                "x": 574
+            },
+            {
+                "surface_y": 1418,
+                "x": 729
+            }
+        ],
+        "object_size": 200,
+        "rendering": {
+            "anchor": "bottom_center",
+            "foot_overlap": 10,
+            "source_width": 200,
+            "source_height": 109,
+            "item_width": 367,
+            "item_height": 200
+        },
+        "game_type": "find_anomaly",
+        "category": "cozy_cafe",
+        "tags": [
+            "hard",
+            "shiba_inu",
+            "tanuki",
+            "teahouse"
+        ],
+        "difficulty_rating": 3,
+        "import_pack": "cozy_puzzle_130853"
+    },
+    backgroundSource: require("../../assets/composable/cozy_puzzle_130853/assets/backgrounds/mobile.png"),
+    normalItemSource: require("../../assets/composable/cozy_puzzle_130853/assets/items/shiba_inu/200/normal.png"),
+    anomalyItemSource: require("../../assets/composable/cozy_puzzle_130853/assets/items/shiba_inu/200/missing_nose.png"),
+  },
+  {
+    ...{
+        "id": "cozy_puzzle_130853/cozy_puzzle_003",
+        "scene": "teahouse",
+        "profile": "mobile",
+        "difficulty": "hard",
+        "asset": "shiba_inu",
+        "anomaly": "missing_nose",
+        "answer": "One shiba_inu is missing a nose.",
+        "background": "assets/backgrounds/mobile.png",
+        "normal_item": "assets/items/shiba_inu/200/normal.png",
+        "anomaly_item": "assets/items/shiba_inu/200/missing_nose.png",
+        "answer_box": {
+            "x1": 106,
+            "y1": 1084,
+            "x2": 118,
+            "y2": 1093
+        },
+        "answer_visual_box": {
+            "x1": 106,
+            "y1": 1084,
+            "x2": 118,
+            "y2": 1093
+        },
+        "target_slot_index": 20,
+        "slots": [
+            {
+                "surface_y": 417,
+                "x": 110
+            },
+            {
+                "surface_y": 417,
+                "x": 729
+            },
+            {
+                "surface_y": 417,
+                "x": 265
+            },
+            {
+                "surface_y": 417,
+                "x": 574
+            },
+            {
+                "surface_y": 417,
+                "x": 420
+            },
+            {
+                "surface_y": 605,
+                "x": 110
+            },
+            {
+                "surface_y": 605,
+                "x": 265
+            },
+            {
+                "surface_y": 605,
+                "x": 420
+            },
+            {
+                "surface_y": 605,
+                "x": 574
+            },
+            {
+                "surface_y": 605,
+                "x": 729
+            },
+            {
+                "surface_y": 803,
+                "x": 112
+            },
+            {
+                "surface_y": 803,
+                "x": 267
+            },
+            {
+                "surface_y": 803,
+                "x": 422
+            },
+            {
+                "surface_y": 803,
+                "x": 576
+            },
+            {
+                "surface_y": 803,
+                "x": 731
+            },
+            {
+                "surface_y": 1006,
+                "x": 112
+            },
+            {
+                "surface_y": 1006,
+                "x": 267
+            },
+            {
+                "surface_y": 1006,
+                "x": 422
+            },
+            {
+                "surface_y": 1006,
+                "x": 576
+            },
+            {
+                "surface_y": 1006,
+                "x": 731
+            },
+            {
+                "surface_y": 1208,
+                "x": 112
+            },
+            {
+                "surface_y": 1208,
+                "x": 267
+            },
+            {
+                "surface_y": 1208,
+                "x": 422
+            },
+            {
+                "surface_y": 1208,
+                "x": 576
+            },
+            {
+                "surface_y": 1208,
+                "x": 731
+            },
+            {
+                "surface_y": 1418,
+                "x": 110
+            },
+            {
+                "surface_y": 1418,
+                "x": 265
+            },
+            {
+                "surface_y": 1418,
+                "x": 420
+            },
+            {
+                "surface_y": 1418,
+                "x": 574
+            },
+            {
+                "surface_y": 1418,
+                "x": 729
+            }
+        ],
+        "object_size": 200,
+        "rendering": {
+            "anchor": "bottom_center",
+            "foot_overlap": 10,
+            "source_width": 200,
+            "source_height": 109,
+            "item_width": 367,
+            "item_height": 200
+        },
+        "game_type": "find_anomaly",
+        "category": "cozy_cafe",
+        "tags": [
+            "hard",
+            "shiba_inu",
+            "tanuki",
+            "teahouse"
+        ],
+        "difficulty_rating": 3,
+        "import_pack": "cozy_puzzle_130853"
+    },
+    backgroundSource: require("../../assets/composable/cozy_puzzle_130853/assets/backgrounds/mobile.png"),
+    normalItemSource: require("../../assets/composable/cozy_puzzle_130853/assets/items/shiba_inu/200/normal.png"),
+    anomalyItemSource: require("../../assets/composable/cozy_puzzle_130853/assets/items/shiba_inu/200/missing_nose.png"),
+  },
+  {
+    ...{
+        "id": "cozy_puzzle_130853/cozy_puzzle_004",
+        "scene": "teahouse",
+        "profile": "mobile",
+        "difficulty": "hard",
+        "asset": "shiba_inu",
+        "anomaly": "missing_pocket",
+        "answer": "One shiba_inu is missing a pocket.",
+        "background": "assets/backgrounds/mobile.png",
+        "normal_item": "assets/items/shiba_inu/200/normal.png",
+        "anomaly_item": "assets/items/shiba_inu/200/missing_pocket.png",
+        "answer_box": {
+            "x1": 404,
+            "y1": 550,
+            "x2": 434,
+            "y2": 576
+        },
+        "answer_visual_box": {
+            "x1": 404,
+            "y1": 550,
+            "x2": 434,
+            "y2": 576
+        },
+        "target_slot_index": 7,
+        "slots": [
+            {
+                "surface_y": 417,
+                "x": 110
+            },
+            {
+                "surface_y": 417,
+                "x": 729
+            },
+            {
+                "surface_y": 417,
+                "x": 265
+            },
+            {
+                "surface_y": 417,
+                "x": 574
+            },
+            {
+                "surface_y": 417,
+                "x": 420
+            },
+            {
+                "surface_y": 605,
+                "x": 110
+            },
+            {
+                "surface_y": 605,
+                "x": 265
+            },
+            {
+                "surface_y": 605,
+                "x": 420
+            },
+            {
+                "surface_y": 605,
+                "x": 574
+            },
+            {
+                "surface_y": 605,
+                "x": 729
+            },
+            {
+                "surface_y": 803,
+                "x": 112
+            },
+            {
+                "surface_y": 803,
+                "x": 267
+            },
+            {
+                "surface_y": 803,
+                "x": 422
+            },
+            {
+                "surface_y": 803,
+                "x": 576
+            },
+            {
+                "surface_y": 803,
+                "x": 731
+            },
+            {
+                "surface_y": 1006,
+                "x": 112
+            },
+            {
+                "surface_y": 1006,
+                "x": 267
+            },
+            {
+                "surface_y": 1006,
+                "x": 422
+            },
+            {
+                "surface_y": 1006,
+                "x": 576
+            },
+            {
+                "surface_y": 1006,
+                "x": 731
+            },
+            {
+                "surface_y": 1208,
+                "x": 112
+            },
+            {
+                "surface_y": 1208,
+                "x": 267
+            },
+            {
+                "surface_y": 1208,
+                "x": 422
+            },
+            {
+                "surface_y": 1208,
+                "x": 576
+            },
+            {
+                "surface_y": 1208,
+                "x": 731
+            },
+            {
+                "surface_y": 1418,
+                "x": 110
+            },
+            {
+                "surface_y": 1418,
+                "x": 265
+            },
+            {
+                "surface_y": 1418,
+                "x": 420
+            },
+            {
+                "surface_y": 1418,
+                "x": 574
+            },
+            {
+                "surface_y": 1418,
+                "x": 729
+            }
+        ],
+        "object_size": 200,
+        "rendering": {
+            "anchor": "bottom_center",
+            "foot_overlap": 10,
+            "source_width": 200,
+            "source_height": 109,
+            "item_width": 367,
+            "item_height": 200
+        },
+        "game_type": "find_anomaly",
+        "category": "cozy_cafe",
+        "tags": [
+            "hard",
+            "shiba_inu",
+            "tanuki",
+            "teahouse"
+        ],
+        "difficulty_rating": 3,
+        "import_pack": "cozy_puzzle_130853"
+    },
+    backgroundSource: require("../../assets/composable/cozy_puzzle_130853/assets/backgrounds/mobile.png"),
+    normalItemSource: require("../../assets/composable/cozy_puzzle_130853/assets/items/shiba_inu/200/normal.png"),
+    anomalyItemSource: require("../../assets/composable/cozy_puzzle_130853/assets/items/shiba_inu/200/missing_pocket.png"),
+  },
+  {
+    ...{
+        "id": "cozy_puzzle_130853/cozy_puzzle_005",
+        "scene": "teahouse",
+        "profile": "mobile",
+        "difficulty": "hard",
+        "asset": "shiba_inu",
+        "anomaly": "missing_toes",
+        "answer": "One shiba_inu is missing a toes.",
+        "background": "assets/backgrounds/mobile.png",
+        "normal_item": "assets/items/shiba_inu/200/normal.png",
+        "anomaly_item": "assets/items/shiba_inu/200/missing_toes.png",
+        "answer_box": {
+            "x1": 700,
+            "y1": 1396,
+            "x2": 756,
+            "y2": 1405
+        },
+        "answer_visual_box": {
+            "x1": 700,
+            "y1": 1396,
+            "x2": 756,
+            "y2": 1405
+        },
+        "target_slot_index": 29,
+        "slots": [
+            {
+                "surface_y": 417,
+                "x": 110
+            },
+            {
+                "surface_y": 417,
+                "x": 729
+            },
+            {
+                "surface_y": 417,
+                "x": 265
+            },
+            {
+                "surface_y": 417,
+                "x": 574
+            },
+            {
+                "surface_y": 417,
+                "x": 420
+            },
+            {
+                "surface_y": 605,
+                "x": 110
+            },
+            {
+                "surface_y": 605,
+                "x": 265
+            },
+            {
+                "surface_y": 605,
+                "x": 420
+            },
+            {
+                "surface_y": 605,
+                "x": 574
+            },
+            {
+                "surface_y": 605,
+                "x": 729
+            },
+            {
+                "surface_y": 803,
+                "x": 112
+            },
+            {
+                "surface_y": 803,
+                "x": 267
+            },
+            {
+                "surface_y": 803,
+                "x": 422
+            },
+            {
+                "surface_y": 803,
+                "x": 576
+            },
+            {
+                "surface_y": 803,
+                "x": 731
+            },
+            {
+                "surface_y": 1006,
+                "x": 112
+            },
+            {
+                "surface_y": 1006,
+                "x": 267
+            },
+            {
+                "surface_y": 1006,
+                "x": 422
+            },
+            {
+                "surface_y": 1006,
+                "x": 576
+            },
+            {
+                "surface_y": 1006,
+                "x": 731
+            },
+            {
+                "surface_y": 1208,
+                "x": 112
+            },
+            {
+                "surface_y": 1208,
+                "x": 267
+            },
+            {
+                "surface_y": 1208,
+                "x": 422
+            },
+            {
+                "surface_y": 1208,
+                "x": 576
+            },
+            {
+                "surface_y": 1208,
+                "x": 731
+            },
+            {
+                "surface_y": 1418,
+                "x": 110
+            },
+            {
+                "surface_y": 1418,
+                "x": 265
+            },
+            {
+                "surface_y": 1418,
+                "x": 420
+            },
+            {
+                "surface_y": 1418,
+                "x": 574
+            },
+            {
+                "surface_y": 1418,
+                "x": 729
+            }
+        ],
+        "object_size": 200,
+        "rendering": {
+            "anchor": "bottom_center",
+            "foot_overlap": 10,
+            "source_width": 200,
+            "source_height": 109,
+            "item_width": 367,
+            "item_height": 200
+        },
+        "game_type": "find_anomaly",
+        "category": "cozy_cafe",
+        "tags": [
+            "hard",
+            "shiba_inu",
+            "tanuki",
+            "teahouse"
+        ],
+        "difficulty_rating": 3,
+        "import_pack": "cozy_puzzle_130853"
+    },
+    backgroundSource: require("../../assets/composable/cozy_puzzle_130853/assets/backgrounds/mobile.png"),
+    normalItemSource: require("../../assets/composable/cozy_puzzle_130853/assets/items/shiba_inu/200/normal.png"),
+    anomalyItemSource: require("../../assets/composable/cozy_puzzle_130853/assets/items/shiba_inu/200/missing_toes.png"),
+  },
+  {
+    ...{
+        "id": "cozy_puzzle_130902/cozy_puzzle_001",
+        "scene": "teahouse",
+        "profile": "mobile",
+        "difficulty": "hard",
         "asset": "tanuki",
-        "item_size": 175,
-        "normal_item": "puzzle_assets/items/tanuki/175/normal.png",
-        "normal_item_meta": "puzzle_assets/items/tanuki/175/normal.json",
-        "anomaly": "missing_bag",
-        "anomaly_item": "puzzle_assets/items/tanuki/175/missing_bag.png",
-        "anomaly_item_meta": "puzzle_assets/items/tanuki/175/missing_bag.json",
+        "anomaly": "missing_mouth",
+        "answer": "One tanuki is missing a mouth.",
+        "background": "assets/backgrounds/mobile.png",
+        "normal_item": "assets/items/tanuki/200/normal.png",
+        "anomaly_item": "assets/items/tanuki/200/missing_mouth.png",
+        "answer_box": {
+            "x1": 712,
+            "y1": 1115,
+            "x2": 734,
+            "y2": 1130
+        },
+        "answer_visual_box": {
+            "x1": 712,
+            "y1": 1115,
+            "x2": 734,
+            "y2": 1130
+        },
+        "target_slot_index": 24,
+        "slots": [
+            {
+                "surface_y": 417,
+                "x": 110
+            },
+            {
+                "surface_y": 417,
+                "x": 729
+            },
+            {
+                "surface_y": 417,
+                "x": 265
+            },
+            {
+                "surface_y": 417,
+                "x": 574
+            },
+            {
+                "surface_y": 417,
+                "x": 420
+            },
+            {
+                "surface_y": 605,
+                "x": 110
+            },
+            {
+                "surface_y": 605,
+                "x": 265
+            },
+            {
+                "surface_y": 605,
+                "x": 420
+            },
+            {
+                "surface_y": 605,
+                "x": 574
+            },
+            {
+                "surface_y": 605,
+                "x": 729
+            },
+            {
+                "surface_y": 803,
+                "x": 112
+            },
+            {
+                "surface_y": 803,
+                "x": 267
+            },
+            {
+                "surface_y": 803,
+                "x": 422
+            },
+            {
+                "surface_y": 803,
+                "x": 576
+            },
+            {
+                "surface_y": 803,
+                "x": 731
+            },
+            {
+                "surface_y": 1006,
+                "x": 112
+            },
+            {
+                "surface_y": 1006,
+                "x": 267
+            },
+            {
+                "surface_y": 1006,
+                "x": 422
+            },
+            {
+                "surface_y": 1006,
+                "x": 576
+            },
+            {
+                "surface_y": 1006,
+                "x": 731
+            },
+            {
+                "surface_y": 1208,
+                "x": 112
+            },
+            {
+                "surface_y": 1208,
+                "x": 267
+            },
+            {
+                "surface_y": 1208,
+                "x": 422
+            },
+            {
+                "surface_y": 1208,
+                "x": 576
+            },
+            {
+                "surface_y": 1208,
+                "x": 731
+            },
+            {
+                "surface_y": 1418,
+                "x": 110
+            },
+            {
+                "surface_y": 1418,
+                "x": 265
+            },
+            {
+                "surface_y": 1418,
+                "x": 420
+            },
+            {
+                "surface_y": 1418,
+                "x": 574
+            },
+            {
+                "surface_y": 1418,
+                "x": 729
+            }
+        ],
+        "object_size": 200,
+        "rendering": {
+            "anchor": "bottom_center",
+            "foot_overlap": 10,
+            "source_width": 200,
+            "source_height": 239,
+            "item_width": 167,
+            "item_height": 200
+        },
+        "game_type": "find_anomaly",
+        "category": "cozy_cafe",
+        "tags": [
+            "hard",
+            "tanuki",
+            "teahouse"
+        ],
+        "difficulty_rating": 3,
+        "import_pack": "cozy_puzzle_130902"
+    },
+    backgroundSource: require("../../assets/composable/cozy_puzzle_130902/assets/backgrounds/mobile.png"),
+    normalItemSource: require("../../assets/composable/cozy_puzzle_130902/assets/items/tanuki/200/normal.png"),
+    anomalyItemSource: require("../../assets/composable/cozy_puzzle_130902/assets/items/tanuki/200/missing_mouth.png"),
+  },
+  {
+    ...{
+        "id": "cozy_puzzle_130902/cozy_puzzle_002",
+        "scene": "teahouse",
+        "profile": "mobile",
+        "difficulty": "hard",
+        "asset": "tanuki",
+        "anomaly": "missing_belly",
+        "answer": "One tanuki is missing a belly.",
+        "background": "assets/backgrounds/mobile.png",
+        "normal_item": "assets/items/tanuki/200/normal.png",
+        "anomaly_item": "assets/items/tanuki/200/missing_belly.png",
+        "answer_box": {
+            "x1": 374,
+            "y1": 355,
+            "x2": 447,
+            "y2": 401
+        },
+        "answer_visual_box": {
+            "x1": 374,
+            "y1": 355,
+            "x2": 447,
+            "y2": 401
+        },
+        "target_slot_index": 4,
+        "slots": [
+            {
+                "surface_y": 417,
+                "x": 110
+            },
+            {
+                "surface_y": 417,
+                "x": 729
+            },
+            {
+                "surface_y": 417,
+                "x": 265
+            },
+            {
+                "surface_y": 417,
+                "x": 574
+            },
+            {
+                "surface_y": 417,
+                "x": 420
+            },
+            {
+                "surface_y": 605,
+                "x": 110
+            },
+            {
+                "surface_y": 605,
+                "x": 265
+            },
+            {
+                "surface_y": 605,
+                "x": 420
+            },
+            {
+                "surface_y": 605,
+                "x": 574
+            },
+            {
+                "surface_y": 605,
+                "x": 729
+            },
+            {
+                "surface_y": 803,
+                "x": 112
+            },
+            {
+                "surface_y": 803,
+                "x": 267
+            },
+            {
+                "surface_y": 803,
+                "x": 422
+            },
+            {
+                "surface_y": 803,
+                "x": 576
+            },
+            {
+                "surface_y": 803,
+                "x": 731
+            },
+            {
+                "surface_y": 1006,
+                "x": 112
+            },
+            {
+                "surface_y": 1006,
+                "x": 267
+            },
+            {
+                "surface_y": 1006,
+                "x": 422
+            },
+            {
+                "surface_y": 1006,
+                "x": 576
+            },
+            {
+                "surface_y": 1006,
+                "x": 731
+            },
+            {
+                "surface_y": 1208,
+                "x": 112
+            },
+            {
+                "surface_y": 1208,
+                "x": 267
+            },
+            {
+                "surface_y": 1208,
+                "x": 422
+            },
+            {
+                "surface_y": 1208,
+                "x": 576
+            },
+            {
+                "surface_y": 1208,
+                "x": 731
+            },
+            {
+                "surface_y": 1418,
+                "x": 110
+            },
+            {
+                "surface_y": 1418,
+                "x": 265
+            },
+            {
+                "surface_y": 1418,
+                "x": 420
+            },
+            {
+                "surface_y": 1418,
+                "x": 574
+            },
+            {
+                "surface_y": 1418,
+                "x": 729
+            }
+        ],
+        "object_size": 200,
+        "rendering": {
+            "anchor": "bottom_center",
+            "foot_overlap": 10,
+            "source_width": 200,
+            "source_height": 239,
+            "item_width": 167,
+            "item_height": 200
+        },
+        "game_type": "find_anomaly",
+        "category": "cozy_cafe",
+        "tags": [
+            "hard",
+            "tanuki",
+            "teahouse"
+        ],
+        "difficulty_rating": 3,
+        "import_pack": "cozy_puzzle_130902"
+    },
+    backgroundSource: require("../../assets/composable/cozy_puzzle_130902/assets/backgrounds/mobile.png"),
+    normalItemSource: require("../../assets/composable/cozy_puzzle_130902/assets/items/tanuki/200/normal.png"),
+    anomalyItemSource: require("../../assets/composable/cozy_puzzle_130902/assets/items/tanuki/200/missing_belly.png"),
+  },
+  {
+    ...{
+        "id": "cozy_puzzle_130902/cozy_puzzle_003",
+        "scene": "teahouse",
+        "profile": "mobile",
+        "difficulty": "hard",
+        "asset": "tanuki",
+        "anomaly": "missing_nose",
+        "answer": "One tanuki is missing a nose.",
+        "background": "assets/backgrounds/mobile.png",
+        "normal_item": "assets/items/tanuki/200/normal.png",
+        "anomaly_item": "assets/items/tanuki/200/missing_nose.png",
+        "answer_box": {
+            "x1": 98,
+            "y1": 1108,
+            "x2": 108,
+            "y2": 1115
+        },
+        "answer_visual_box": {
+            "x1": 98,
+            "y1": 1108,
+            "x2": 108,
+            "y2": 1115
+        },
+        "target_slot_index": 20,
+        "slots": [
+            {
+                "surface_y": 417,
+                "x": 110
+            },
+            {
+                "surface_y": 417,
+                "x": 729
+            },
+            {
+                "surface_y": 417,
+                "x": 265
+            },
+            {
+                "surface_y": 417,
+                "x": 574
+            },
+            {
+                "surface_y": 417,
+                "x": 420
+            },
+            {
+                "surface_y": 605,
+                "x": 110
+            },
+            {
+                "surface_y": 605,
+                "x": 265
+            },
+            {
+                "surface_y": 605,
+                "x": 420
+            },
+            {
+                "surface_y": 605,
+                "x": 574
+            },
+            {
+                "surface_y": 605,
+                "x": 729
+            },
+            {
+                "surface_y": 803,
+                "x": 112
+            },
+            {
+                "surface_y": 803,
+                "x": 267
+            },
+            {
+                "surface_y": 803,
+                "x": 422
+            },
+            {
+                "surface_y": 803,
+                "x": 576
+            },
+            {
+                "surface_y": 803,
+                "x": 731
+            },
+            {
+                "surface_y": 1006,
+                "x": 112
+            },
+            {
+                "surface_y": 1006,
+                "x": 267
+            },
+            {
+                "surface_y": 1006,
+                "x": 422
+            },
+            {
+                "surface_y": 1006,
+                "x": 576
+            },
+            {
+                "surface_y": 1006,
+                "x": 731
+            },
+            {
+                "surface_y": 1208,
+                "x": 112
+            },
+            {
+                "surface_y": 1208,
+                "x": 267
+            },
+            {
+                "surface_y": 1208,
+                "x": 422
+            },
+            {
+                "surface_y": 1208,
+                "x": 576
+            },
+            {
+                "surface_y": 1208,
+                "x": 731
+            },
+            {
+                "surface_y": 1418,
+                "x": 110
+            },
+            {
+                "surface_y": 1418,
+                "x": 265
+            },
+            {
+                "surface_y": 1418,
+                "x": 420
+            },
+            {
+                "surface_y": 1418,
+                "x": 574
+            },
+            {
+                "surface_y": 1418,
+                "x": 729
+            }
+        ],
+        "object_size": 200,
+        "rendering": {
+            "anchor": "bottom_center",
+            "foot_overlap": 10,
+            "source_width": 200,
+            "source_height": 239,
+            "item_width": 167,
+            "item_height": 200
+        },
+        "game_type": "find_anomaly",
+        "category": "cozy_cafe",
+        "tags": [
+            "hard",
+            "tanuki",
+            "teahouse"
+        ],
+        "difficulty_rating": 3,
+        "import_pack": "cozy_puzzle_130902"
+    },
+    backgroundSource: require("../../assets/composable/cozy_puzzle_130902/assets/backgrounds/mobile.png"),
+    normalItemSource: require("../../assets/composable/cozy_puzzle_130902/assets/items/tanuki/200/normal.png"),
+    anomalyItemSource: require("../../assets/composable/cozy_puzzle_130902/assets/items/tanuki/200/missing_nose.png"),
+  },
+  {
+    ...{
+        "id": "cozy_puzzle_130902/cozy_puzzle_004",
+        "scene": "teahouse",
+        "profile": "mobile",
+        "difficulty": "hard",
+        "asset": "tanuki",
+        "anomaly": "missing_left_ear",
+        "answer": "One tanuki is missing a left ear.",
+        "background": "assets/backgrounds/mobile.png",
+        "normal_item": "assets/items/tanuki/200/normal.png",
+        "anomaly_item": "assets/items/tanuki/200/missing_left_ear.png",
+        "answer_box": {
+            "x1": 688,
+            "y1": 649,
+            "x2": 703,
+            "y2": 668
+        },
+        "answer_visual_box": {
+            "x1": 688,
+            "y1": 649,
+            "x2": 703,
+            "y2": 668
+        },
         "target_slot_index": 14,
         "slots": [
             {
-                "surface_y": 418,
-                "x": 111
+                "surface_y": 417,
+                "x": 110
             },
             {
-                "surface_y": 418,
-                "x": 730
+                "surface_y": 417,
+                "x": 729
             },
             {
-                "surface_y": 418,
-                "x": 266
+                "surface_y": 417,
+                "x": 265
             },
             {
-                "surface_y": 418,
-                "x": 575
+                "surface_y": 417,
+                "x": 574
             },
             {
-                "surface_y": 418,
-                "x": 421
+                "surface_y": 417,
+                "x": 420
             },
             {
-                "surface_y": 611,
-                "x": 111
+                "surface_y": 605,
+                "x": 110
             },
             {
-                "surface_y": 611,
-                "x": 266
+                "surface_y": 605,
+                "x": 265
             },
             {
-                "surface_y": 611,
-                "x": 421
+                "surface_y": 605,
+                "x": 420
             },
             {
-                "surface_y": 611,
-                "x": 575
+                "surface_y": 605,
+                "x": 574
             },
             {
-                "surface_y": 611,
-                "x": 730
+                "surface_y": 605,
+                "x": 729
             },
             {
-                "surface_y": 809,
-                "x": 111
+                "surface_y": 803,
+                "x": 112
             },
             {
-                "surface_y": 809,
-                "x": 266
+                "surface_y": 803,
+                "x": 267
             },
             {
-                "surface_y": 809,
-                "x": 421
+                "surface_y": 803,
+                "x": 422
             },
             {
-                "surface_y": 809,
-                "x": 575
+                "surface_y": 803,
+                "x": 576
             },
             {
-                "surface_y": 809,
-                "x": 730
+                "surface_y": 803,
+                "x": 731
             },
             {
-                "surface_y": 1011,
-                "x": 111
+                "surface_y": 1006,
+                "x": 112
             },
             {
-                "surface_y": 1011,
-                "x": 266
+                "surface_y": 1006,
+                "x": 267
             },
             {
-                "surface_y": 1011,
-                "x": 421
+                "surface_y": 1006,
+                "x": 422
             },
             {
-                "surface_y": 1011,
-                "x": 575
+                "surface_y": 1006,
+                "x": 576
             },
             {
-                "surface_y": 1011,
-                "x": 730
+                "surface_y": 1006,
+                "x": 731
             },
             {
-                "surface_y": 1215,
-                "x": 111
+                "surface_y": 1208,
+                "x": 112
             },
             {
-                "surface_y": 1215,
-                "x": 266
+                "surface_y": 1208,
+                "x": 267
             },
             {
-                "surface_y": 1215,
-                "x": 421
+                "surface_y": 1208,
+                "x": 422
             },
             {
-                "surface_y": 1215,
-                "x": 575
+                "surface_y": 1208,
+                "x": 576
             },
             {
-                "surface_y": 1215,
-                "x": 730
+                "surface_y": 1208,
+                "x": 731
             },
             {
-                "surface_y": 1436,
-                "x": 109
+                "surface_y": 1418,
+                "x": 110
             },
             {
-                "surface_y": 1436,
-                "x": 264
+                "surface_y": 1418,
+                "x": 265
             },
             {
-                "surface_y": 1436,
-                "x": 419
+                "surface_y": 1418,
+                "x": 420
             },
             {
-                "surface_y": 1436,
-                "x": 573
+                "surface_y": 1418,
+                "x": 574
             },
             {
-                "surface_y": 1436,
-                "x": 728
+                "surface_y": 1418,
+                "x": 729
             }
         ],
+        "object_size": 200,
         "rendering": {
             "anchor": "bottom_center",
             "foot_overlap": 10,
-            "item_width": 175,
-            "item_height": 209
+            "source_width": 200,
+            "source_height": 239,
+            "item_width": 167,
+            "item_height": 200
         },
-        "answer": "One tanuki is missing a bag.",
-        "answer_box": {
-            "x1": 624,
-            "y1": 701,
-            "x2": 714,
-            "y2": 791
-        },
-        "answer_visual_box": {
-            "x1": 657,
-            "y1": 725,
-            "x2": 680,
-            "y2": 767
-        }
+        "game_type": "find_anomaly",
+        "category": "cozy_cafe",
+        "tags": [
+            "hard",
+            "tanuki",
+            "teahouse"
+        ],
+        "difficulty_rating": 3,
+        "import_pack": "cozy_puzzle_130902"
     },
-    backgroundSource: require("../../assets/composable/puzzle_assets/scenes/teahouse/mobile.png"),
-    normalItemSource: require("../../assets/composable/puzzle_assets/items/tanuki/175/normal.png"),
-    anomalyItemSource: require("../../assets/composable/puzzle_assets/items/tanuki/175/missing_bag.png"),
+    backgroundSource: require("../../assets/composable/cozy_puzzle_130902/assets/backgrounds/mobile.png"),
+    normalItemSource: require("../../assets/composable/cozy_puzzle_130902/assets/items/tanuki/200/normal.png"),
+    anomalyItemSource: require("../../assets/composable/cozy_puzzle_130902/assets/items/tanuki/200/missing_left_ear.png"),
   },
   {
     ...{
-        "id": "cozy_puzzle_010",
-        "version": 2,
+        "id": "cozy_puzzle_130902/cozy_puzzle_005",
         "scene": "teahouse",
         "profile": "mobile",
         "difficulty": "hard",
-        "background": "puzzle_assets/scenes/teahouse/mobile.png",
         "asset": "tanuki",
-        "item_size": 175,
-        "normal_item": "puzzle_assets/items/tanuki/175/normal.png",
-        "normal_item_meta": "puzzle_assets/items/tanuki/175/normal.json",
-        "anomaly": "missing_bag",
-        "anomaly_item": "puzzle_assets/items/tanuki/175/missing_bag.png",
-        "anomaly_item_meta": "puzzle_assets/items/tanuki/175/missing_bag.json",
+        "anomaly": "missing_left_eye",
+        "answer": "One tanuki is missing a left eye.",
+        "background": "assets/backgrounds/mobile.png",
+        "normal_item": "assets/items/tanuki/200/normal.png",
+        "anomaly_item": "assets/items/tanuki/200/missing_left_eye.png",
+        "answer_box": {
+            "x1": 386,
+            "y1": 1093,
+            "x2": 404,
+            "y2": 1115
+        },
+        "answer_visual_box": {
+            "x1": 386,
+            "y1": 1093,
+            "x2": 404,
+            "y2": 1115
+        },
         "target_slot_index": 22,
         "slots": [
             {
-                "surface_y": 418,
-                "x": 111
+                "surface_y": 417,
+                "x": 110
             },
             {
-                "surface_y": 418,
-                "x": 730
+                "surface_y": 417,
+                "x": 729
             },
             {
-                "surface_y": 418,
-                "x": 266
+                "surface_y": 417,
+                "x": 265
             },
             {
-                "surface_y": 418,
-                "x": 575
+                "surface_y": 417,
+                "x": 574
             },
             {
-                "surface_y": 418,
-                "x": 421
+                "surface_y": 417,
+                "x": 420
             },
             {
-                "surface_y": 611,
-                "x": 111
+                "surface_y": 605,
+                "x": 110
             },
             {
-                "surface_y": 611,
-                "x": 266
+                "surface_y": 605,
+                "x": 265
             },
             {
-                "surface_y": 611,
-                "x": 421
+                "surface_y": 605,
+                "x": 420
             },
             {
-                "surface_y": 611,
-                "x": 575
+                "surface_y": 605,
+                "x": 574
             },
             {
-                "surface_y": 611,
-                "x": 730
+                "surface_y": 605,
+                "x": 729
             },
             {
-                "surface_y": 809,
-                "x": 111
+                "surface_y": 803,
+                "x": 112
             },
             {
-                "surface_y": 809,
-                "x": 266
+                "surface_y": 803,
+                "x": 267
             },
             {
-                "surface_y": 809,
-                "x": 421
+                "surface_y": 803,
+                "x": 422
             },
             {
-                "surface_y": 809,
-                "x": 575
+                "surface_y": 803,
+                "x": 576
             },
             {
-                "surface_y": 809,
-                "x": 730
+                "surface_y": 803,
+                "x": 731
             },
             {
-                "surface_y": 1011,
-                "x": 111
+                "surface_y": 1006,
+                "x": 112
             },
             {
-                "surface_y": 1011,
-                "x": 266
+                "surface_y": 1006,
+                "x": 267
             },
             {
-                "surface_y": 1011,
-                "x": 421
+                "surface_y": 1006,
+                "x": 422
             },
             {
-                "surface_y": 1011,
-                "x": 575
+                "surface_y": 1006,
+                "x": 576
             },
             {
-                "surface_y": 1011,
-                "x": 730
+                "surface_y": 1006,
+                "x": 731
             },
             {
-                "surface_y": 1215,
-                "x": 111
+                "surface_y": 1208,
+                "x": 112
             },
             {
-                "surface_y": 1215,
-                "x": 266
+                "surface_y": 1208,
+                "x": 267
             },
             {
-                "surface_y": 1215,
-                "x": 421
+                "surface_y": 1208,
+                "x": 422
             },
             {
-                "surface_y": 1215,
-                "x": 575
+                "surface_y": 1208,
+                "x": 576
             },
             {
-                "surface_y": 1215,
-                "x": 730
+                "surface_y": 1208,
+                "x": 731
             },
             {
-                "surface_y": 1436,
-                "x": 109
+                "surface_y": 1418,
+                "x": 110
             },
             {
-                "surface_y": 1436,
-                "x": 264
+                "surface_y": 1418,
+                "x": 265
             },
             {
-                "surface_y": 1436,
-                "x": 419
+                "surface_y": 1418,
+                "x": 420
             },
             {
-                "surface_y": 1436,
-                "x": 573
+                "surface_y": 1418,
+                "x": 574
             },
             {
-                "surface_y": 1436,
-                "x": 728
+                "surface_y": 1418,
+                "x": 729
             }
         ],
+        "object_size": 200,
         "rendering": {
             "anchor": "bottom_center",
             "foot_overlap": 10,
-            "item_width": 175,
-            "item_height": 209
+            "source_width": 200,
+            "source_height": 239,
+            "item_width": 167,
+            "item_height": 200
         },
-        "answer": "One tanuki is missing a bag.",
-        "answer_box": {
-            "x1": 314,
-            "y1": 1107,
-            "x2": 404,
-            "y2": 1197
-        },
-        "answer_visual_box": {
-            "x1": 348,
-            "y1": 1131,
-            "x2": 371,
-            "y2": 1173
-        }
+        "game_type": "find_anomaly",
+        "category": "cozy_cafe",
+        "tags": [
+            "hard",
+            "tanuki",
+            "teahouse"
+        ],
+        "difficulty_rating": 3,
+        "import_pack": "cozy_puzzle_130902"
     },
-    backgroundSource: require("../../assets/composable/puzzle_assets/scenes/teahouse/mobile.png"),
-    normalItemSource: require("../../assets/composable/puzzle_assets/items/tanuki/175/normal.png"),
-    anomalyItemSource: require("../../assets/composable/puzzle_assets/items/tanuki/175/missing_bag.png"),
+    backgroundSource: require("../../assets/composable/cozy_puzzle_130902/assets/backgrounds/mobile.png"),
+    normalItemSource: require("../../assets/composable/cozy_puzzle_130902/assets/items/tanuki/200/normal.png"),
+    anomalyItemSource: require("../../assets/composable/cozy_puzzle_130902/assets/items/tanuki/200/missing_left_eye.png"),
   }
 ];
