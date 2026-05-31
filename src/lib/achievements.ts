@@ -84,6 +84,30 @@ export function achievementsForProgress(
       current: clampProgress(bestStreak, 30),
       target: 30,
     },
+    {
+      id: "level_5",
+      title: "Level 5",
+      description: "Reach Level 5.",
+      emoji: "⭐",
+      current: clampProgress(progress.level || 1, 5),
+      target: 5,
+    },
+    {
+      id: "coin_collector",
+      title: "Coin Collector",
+      description: "Earn 1,000 lifetime coins.",
+      emoji: "🪙",
+      current: clampProgress(progress.lifetimeCoins || 0, 1000),
+      target: 1000,
+    },
+    {
+      id: "avatar_collector",
+      title: "Avatar Collector",
+      description: "Unlock 5 avatars.",
+      emoji: "🎭",
+      current: clampProgress((progress.unlockedAvatarIds || []).length, 5),
+      target: 5,
+    },
   ];
 }
 

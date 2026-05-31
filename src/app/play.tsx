@@ -1,4 +1,5 @@
 import { AnimatedWrongMarker } from "@/components/AnimatedWrongMarker";
+import { FavoriteButton } from "@/components/FavoriteButton";
 import { ZoomablePuzzle, ZoomTransform } from "@/components/ZoomablePuzzle";
 import { PUZZLES } from "@/data/puzzles";
 import { getPuzzleEngine } from "@/game-engines";
@@ -10,6 +11,7 @@ import {
   saveProgress,
 } from "@/lib/player-progress";
 import { safePuzzleIndex, smartRandomPuzzleIndex } from "@/lib/puzzle-library";
+import { calculatePuzzleReward, PuzzleReward } from "@/lib/progression";
 import { ComposablePuzzle, PuzzleSlot } from "@/types/puzzle";
 import * as Haptics from "expo-haptics";
 import { router, useLocalSearchParams } from "expo-router";
@@ -151,6 +153,7 @@ export default function PlayScreen() {
   const [progress, setProgress] = useState<PlayerProgress | null>(null);
   const [wrongMarkers, setWrongMarkers] = useState<WrongMarker[]>([]);
   const [wrongTapCountInPuzzle, setWrongTapCountInPuzzle] = useState(0);
+  const [lastReward, setLastReward] = useState<PuzzleReward | null>(null);
 
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
@@ -183,6 +186,8 @@ export default function PlayScreen() {
     fadeAnim.setValue(0);
     setWrongMarkers([]);
     setWrongTapCountInPuzzle(0);
+    setLastReward(null);
+    setLastReward(null);
 
     const timer = setTimeout(() => {
       setReady(true);
@@ -259,6 +264,11 @@ export default function PlayScreen() {
       puzzleIndex,
     ].slice(-RECENT_HISTORY_LIMIT);
 
+    const recentPlayedPuzzleIds = [
+      puzzle.id,
+      ...(progress.recentPlayedPuzzleIds || []).filter((id) => id !== puzzle.id),
+    ].slice(0, RECENT_HISTORY_LIMIT);
+
     const nextStreak = wasFailed ? 0 : progress.currentStreak + 1;
     const isPerfect =
       !wasFailed &&
@@ -271,6 +281,20 @@ export default function PlayScreen() {
     const hasCompletedDailyToday = completedDailyKeys.includes(todayKey);
     const shouldCountDaily =
       isDailyMode && !wasFailed && !hasCompletedDailyToday;
+
+    const willCompletePuzzle = !alreadyCompleted && !wasFailed;
+    const reward = calculatePuzzleReward({
+      puzzle,
+      progress,
+      wasFailed,
+      alreadyCompleted,
+      isPerfect,
+      usedNoHints: hintLevel === 0,
+      isDailyMode,
+      completedCollection: false,
+    });
+
+    setLastReward(reward);
 
     await saveProgressPatch({
       completedPuzzleIds: alreadyCompleted
@@ -286,7 +310,7 @@ export default function PlayScreen() {
       bestStreak: Math.max(progress.bestStreak || 0, nextStreak),
 
       perfectGames:
-        isPerfect && !alreadyCompleted
+        isPerfect && willCompletePuzzle
           ? progress.perfectGames + 1
           : progress.perfectGames,
 
@@ -300,6 +324,12 @@ export default function PlayScreen() {
 
       lastPuzzleIndex: puzzleIndex,
       recentPuzzleIndexes,
+      recentPlayedPuzzleIds,
+
+      xp: (progress.xp || 0) + reward.xp,
+      level: reward.levelAfter,
+      coins: (progress.coins || 0) + reward.coins,
+      lifetimeCoins: (progress.lifetimeCoins || 0) + reward.coins,
     });
   }
 
@@ -352,6 +382,7 @@ export default function PlayScreen() {
     setHintExpanded(false);
     setWrongMarkers([]);
     setWrongTapCountInPuzzle(0);
+    setLastReward(null);
   }
 
   async function goToNextPuzzle() {
@@ -387,6 +418,7 @@ export default function PlayScreen() {
     setHintExpanded(false);
     setWrongMarkers([]);
     setWrongTapCountInPuzzle(0);
+    setLastReward(null);
   }
 
   function requestHint() {
@@ -565,15 +597,19 @@ export default function PlayScreen() {
               {gameTitle(isDailyMode, engine.title)}
             </Text>
 
-            <View
-              style={[
-                styles.difficultyBadge,
-                { backgroundColor: difficulty.color },
-              ]}
-            >
-              <Text style={styles.difficultyText}>
-                {difficulty.emoji} {difficulty.label}
-              </Text>
+            <View style={styles.titleActions}>
+              <View
+                style={[
+                  styles.difficultyBadge,
+                  { backgroundColor: difficulty.color },
+                ]}
+              >
+                <Text style={styles.difficultyText}>
+                  {difficulty.emoji} {difficulty.label}
+                </Text>
+              </View>
+
+              <FavoriteButton puzzleId={puzzle.id} />
             </View>
           </View>
 
@@ -601,6 +637,25 @@ export default function PlayScreen() {
                 {failed ? "Answer Revealed" : "Found It!"}
               </Text>
             </View>
+
+            {lastReward && !failed && (
+              <View style={styles.rewardBox}>
+                <Text style={styles.rewardTitle}>
+                  {lastReward.leveledUp
+                    ? `🎉 Level ${lastReward.levelAfter}!`
+                    : "Rewards Earned"}
+                </Text>
+
+                <View style={styles.rewardRow}>
+                  <Text style={styles.rewardPill}>+{lastReward.xp} XP</Text>
+                  <Text style={styles.rewardPill}>+{lastReward.coins} Coins</Text>
+                </View>
+
+                <Text style={styles.rewardReason}>
+                  {lastReward.reasons.join(" · ")}
+                </Text>
+              </View>
+            )}
 
             <Text style={styles.panelAnswer}>{puzzle.answer}</Text>
 
@@ -725,8 +780,15 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
 
-  difficultyBadge: {
+  titleActions: {
     marginTop: 5,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 8,
+  },
+
+  difficultyBadge: {
     paddingHorizontal: 10,
     paddingVertical: 4,
     borderRadius: 999,
@@ -908,6 +970,43 @@ const styles = StyleSheet.create({
     fontSize: 13,
     letterSpacing: 0.4,
     textTransform: "uppercase",
+  },
+
+  rewardBox: {
+    marginBottom: 14,
+    padding: 14,
+    borderRadius: 20,
+    backgroundColor: "rgba(255,255,255,0.72)",
+  },
+
+  rewardTitle: {
+    fontSize: 16,
+    fontWeight: "900",
+    color: "#4B2E20",
+    marginBottom: 8,
+  },
+
+  rewardRow: {
+    flexDirection: "row",
+    gap: 8,
+  },
+
+  rewardPill: {
+    overflow: "hidden",
+    paddingHorizontal: 11,
+    paddingVertical: 7,
+    borderRadius: 999,
+    backgroundColor: "#FF5C8A",
+    color: "white",
+    fontSize: 13,
+    fontWeight: "900",
+  },
+
+  rewardReason: {
+    marginTop: 8,
+    fontSize: 12,
+    fontWeight: "800",
+    color: "#7B5A43",
   },
 
   disabledButton: { opacity: 0.45 },

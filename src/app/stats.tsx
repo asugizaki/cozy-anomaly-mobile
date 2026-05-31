@@ -1,4 +1,5 @@
 import { AchievementCard } from "@/components/AchievementCard";
+import { avatarById } from "@/lib/avatars";
 import {
   achievementsForProgress,
   unlockedAchievementCount,
@@ -8,6 +9,7 @@ import {
   loadProgress,
   PlayerProgress,
 } from "@/lib/player-progress";
+import { xpProgress } from "@/lib/progression";
 import { router, useFocusEffect } from "expo-router";
 import { useCallback, useState } from "react";
 import {
@@ -31,6 +33,7 @@ export default function StatsScreen() {
 
   const achievements = achievementsForProgress(progress);
   const unlockedCount = unlockedAchievementCount(progress);
+  const xp = xpProgress(progress.xp || 0);
 
   return (
     <SafeAreaView style={styles.screen}>
@@ -49,21 +52,36 @@ export default function StatsScreen() {
         </Text>
 
         <View style={styles.heroCard}>
-          <Text style={styles.heroNumber}>🔥 {progress.currentStreak}</Text>
-          <Text style={styles.heroLabel}>Current Streak</Text>
+          <Text style={styles.heroNumber}>{avatarById(progress.currentAvatarId).emoji} Level {xp.level}</Text>
+          <Text style={styles.heroLabel}>🪙 {progress.coins || 0} Coins</Text>
+
+          <View style={styles.xpTrack}>
+            <View
+              style={[
+                styles.xpFill,
+                {
+                  width: `${Math.round(xp.progress * 100)}%`,
+                },
+              ]}
+            />
+          </View>
 
           <Text style={styles.heroSubLabel}>
-            Best streak: {progress.bestStreak || progress.currentStreak || 0}
+            {xp.xpIntoLevel}/{xp.xpNeeded} XP to Level {xp.level + 1}
           </Text>
         </View>
 
         <View style={styles.grid}>
           <Stat label="Solved" value={progress.totalSolved} />
+          <Stat label="Streak" value={progress.currentStreak} />
           <Stat label="Unique" value={progress.completedPuzzleIds.length} />
           <Stat label="Perfect" value={progress.perfectGames} />
           <Stat label="Daily" value={progress.dailyChallengesCompleted} />
           <Stat label="Hints" value={progress.hintsUsed} />
           <Stat label="Wrong Taps" value={progress.totalWrongTaps} />
+          <Stat label="Lifetime Coins" value={progress.lifetimeCoins || 0} />
+          <Stat label="Avatars" value={(progress.unlockedAvatarIds || []).length} />
+          <Stat label="Favorites" value={progress.favoritePuzzleIds?.length || 0} />
         </View>
 
         <View style={styles.sectionHeader}>
@@ -157,6 +175,20 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "800",
     color: "rgba(255,255,255,0.82)",
+  },
+
+  xpTrack: {
+    height: 12,
+    marginTop: 16,
+    borderRadius: 999,
+    backgroundColor: "rgba(255,255,255,0.25)",
+    overflow: "hidden",
+  },
+
+  xpFill: {
+    height: "100%",
+    borderRadius: 999,
+    backgroundColor: "white",
   },
 
   grid: {
