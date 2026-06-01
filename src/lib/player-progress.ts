@@ -1,6 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { defaultAvatarId } from "./avatars";
 import { levelForXp } from "./progression";
+
+const STARTER_AVATAR_ID = "tanuki";
 
 export type PlayerProgress = {
   completedPuzzleIds: string[];
@@ -22,8 +23,20 @@ export type PlayerProgress = {
   coins: number;
   lifetimeCoins: number;
 
+  skillPoints: number;
+  spentSkillPoints: number;
+  unlockedSkillNodeIds: string[];
+
+  lootBoxes: number;
+  lootBoxesOpened: number;
+
   currentAvatarId: string;
   unlockedAvatarIds: string[];
+
+  unlockedTitleIds: string[];
+  equippedTitleId?: string;
+
+  claimedCollectionRewardIds: string[];
 };
 
 const KEY = "player_progress";
@@ -48,9 +61,25 @@ export const DEFAULT_PROGRESS: PlayerProgress = {
   coins: 0,
   lifetimeCoins: 0,
 
-  currentAvatarId: defaultAvatarId(),
-  unlockedAvatarIds: [defaultAvatarId()],
+  skillPoints: 0,
+  spentSkillPoints: 0,
+  unlockedSkillNodeIds: [],
+
+  lootBoxes: 0,
+  lootBoxesOpened: 0,
+
+  currentAvatarId: STARTER_AVATAR_ID,
+  unlockedAvatarIds: [STARTER_AVATAR_ID],
+
+  unlockedTitleIds: ["rookie_observer"],
+  equippedTitleId: "rookie_observer",
+
+  claimedCollectionRewardIds: [],
 };
+
+function safeArray(value: unknown): string[] {
+  return Array.isArray(value) ? value.filter((item) => typeof item === "string") : [];
+}
 
 export async function loadProgress(): Promise<PlayerProgress> {
   try {
@@ -61,40 +90,49 @@ export async function loadProgress(): Promise<PlayerProgress> {
     }
 
     const parsed = JSON.parse(raw);
-
     const xp = Number(parsed.xp || 0);
-    const unlockedAvatarIds = Array.isArray(parsed.unlockedAvatarIds)
-      ? parsed.unlockedAvatarIds
-      : [defaultAvatarId()];
 
-    if (!unlockedAvatarIds.includes(defaultAvatarId())) {
-      unlockedAvatarIds.push(defaultAvatarId());
+    const unlockedAvatarIds = safeArray(parsed.unlockedAvatarIds);
+    if (!unlockedAvatarIds.includes(STARTER_AVATAR_ID)) {
+      unlockedAvatarIds.push(STARTER_AVATAR_ID);
+    }
+
+    const unlockedTitleIds = safeArray(parsed.unlockedTitleIds);
+    if (!unlockedTitleIds.includes("rookie_observer")) {
+      unlockedTitleIds.push("rookie_observer");
     }
 
     return {
       ...DEFAULT_PROGRESS,
       ...parsed,
-      completedPuzzleIds: Array.isArray(parsed.completedPuzzleIds)
-        ? parsed.completedPuzzleIds
-        : [],
-      favoritePuzzleIds: Array.isArray(parsed.favoritePuzzleIds)
-        ? parsed.favoritePuzzleIds
-        : [],
-      recentPlayedPuzzleIds: Array.isArray(parsed.recentPlayedPuzzleIds)
-        ? parsed.recentPlayedPuzzleIds
-        : [],
-      completedDailyKeys: Array.isArray(parsed.completedDailyKeys)
-        ? parsed.completedDailyKeys
-        : [],
+
+      completedPuzzleIds: safeArray(parsed.completedPuzzleIds),
+      favoritePuzzleIds: safeArray(parsed.favoritePuzzleIds),
+      recentPlayedPuzzleIds: safeArray(parsed.recentPlayedPuzzleIds),
+      completedDailyKeys: safeArray(parsed.completedDailyKeys),
       recentPuzzleIndexes: Array.isArray(parsed.recentPuzzleIndexes)
-        ? parsed.recentPuzzleIndexes
+        ? parsed.recentPuzzleIndexes.filter((item: unknown) => typeof item === "number")
         : [],
+
       xp,
       level: levelForXp(xp),
       coins: Number(parsed.coins || 0),
       lifetimeCoins: Number(parsed.lifetimeCoins || parsed.coins || 0),
-      currentAvatarId: parsed.currentAvatarId || defaultAvatarId(),
+
+      skillPoints: Number(parsed.skillPoints || 0),
+      spentSkillPoints: Number(parsed.spentSkillPoints || 0),
+      unlockedSkillNodeIds: safeArray(parsed.unlockedSkillNodeIds),
+
+      lootBoxes: Number(parsed.lootBoxes || 0),
+      lootBoxesOpened: Number(parsed.lootBoxesOpened || 0),
+
+      currentAvatarId: parsed.currentAvatarId || STARTER_AVATAR_ID,
       unlockedAvatarIds,
+
+      unlockedTitleIds,
+      equippedTitleId: parsed.equippedTitleId || "rookie_observer",
+
+      claimedCollectionRewardIds: safeArray(parsed.claimedCollectionRewardIds),
     };
   } catch {
     return DEFAULT_PROGRESS;
@@ -102,18 +140,27 @@ export async function loadProgress(): Promise<PlayerProgress> {
 }
 
 export async function saveProgress(progress: PlayerProgress) {
-  const unlockedAvatarIds = progress.unlockedAvatarIds || [defaultAvatarId()];
+  const unlockedAvatarIds = progress.unlockedAvatarIds || [STARTER_AVATAR_ID];
 
-  if (!unlockedAvatarIds.includes(defaultAvatarId())) {
-    unlockedAvatarIds.push(defaultAvatarId());
+  if (!unlockedAvatarIds.includes(STARTER_AVATAR_ID)) {
+    unlockedAvatarIds.push(STARTER_AVATAR_ID);
+  }
+
+  const unlockedTitleIds = progress.unlockedTitleIds || ["rookie_observer"];
+
+  if (!unlockedTitleIds.includes("rookie_observer")) {
+    unlockedTitleIds.push("rookie_observer");
   }
 
   const normalized: PlayerProgress = {
     ...DEFAULT_PROGRESS,
     ...progress,
     level: levelForXp(progress.xp || 0),
-    currentAvatarId: progress.currentAvatarId || defaultAvatarId(),
+    currentAvatarId: progress.currentAvatarId || STARTER_AVATAR_ID,
     unlockedAvatarIds,
+    unlockedTitleIds,
+    equippedTitleId: progress.equippedTitleId || "rookie_observer",
+    claimedCollectionRewardIds: progress.claimedCollectionRewardIds || [],
   };
 
   await AsyncStorage.setItem(KEY, JSON.stringify(normalized));

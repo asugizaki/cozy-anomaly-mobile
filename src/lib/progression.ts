@@ -1,9 +1,12 @@
 import { ComposablePuzzle } from "@/types/puzzle";
 import { PlayerProgress } from "./player-progress";
+import { coinMultiplier, hasSkill, xpMultiplier } from "./skill-tree";
 
 export type PuzzleReward = {
   xp: number;
   coins: number;
+  lootBoxes: number;
+  skillPoints: number;
   levelBefore: number;
   levelAfter: number;
   leveledUp: boolean;
@@ -76,14 +79,16 @@ export function calculatePuzzleReward(options: {
     completedCollection,
   } = options;
 
-  if (wasFailed) {
-    const level = levelForXp(progress.xp || 0);
+  const levelBefore = levelForXp(progress.xp || 0);
 
+  if (wasFailed) {
     return {
       xp: 0,
       coins: 0,
-      levelBefore: level,
-      levelAfter: level,
+      lootBoxes: 0,
+      skillPoints: 0,
+      levelBefore,
+      levelAfter: levelBefore,
       leveledUp: false,
       reasons: ["No reward on reveal"],
     };
@@ -91,12 +96,19 @@ export function calculatePuzzleReward(options: {
 
   let xp = BASE_XP_BY_DIFFICULTY[puzzle.difficulty] || 20;
   let coins = BASE_COINS_BY_DIFFICULTY[puzzle.difficulty] || 10;
+  let lootBoxes = 0;
+
   const reasons = [`${puzzle.difficulty.toUpperCase()} clear`];
 
   if (isPerfect) {
     xp += 10;
     coins += 5;
     reasons.push("Perfect bonus");
+
+    if (hasSkill(progress, "perfect_bonus_1")) {
+      coins += 10;
+      reasons.push("Perfect Eye");
+    }
   }
 
   if (usedNoHints) {
@@ -108,12 +120,18 @@ export function calculatePuzzleReward(options: {
     xp += 20;
     coins += 10;
     reasons.push("Daily bonus");
+
+    if (hasSkill(progress, "daily_bonus_1")) {
+      xp += 10;
+      reasons.push("Daily Focus");
+    }
   }
 
   if (completedCollection) {
     xp += 50;
     coins += 25;
-    reasons.push("Collection complete");
+    lootBoxes += 1;
+    reasons.push("Collection complete crate");
   }
 
   if (alreadyCompleted) {
@@ -122,14 +140,22 @@ export function calculatePuzzleReward(options: {
     reasons.push("Replay reward");
   }
 
-  const beforeXp = progress.xp || 0;
-  const afterXp = beforeXp + xp;
-  const levelBefore = levelForXp(beforeXp);
+  xp = Math.max(1, Math.round(xp * xpMultiplier(progress)));
+  coins = Math.max(1, Math.round(coins * coinMultiplier(progress)));
+
+  const afterXp = (progress.xp || 0) + xp;
   const levelAfter = levelForXp(afterXp);
+  const skillPoints = Math.max(0, levelAfter - levelBefore);
+
+  if (skillPoints > 0) {
+    reasons.push(`+${skillPoints} skill point${skillPoints === 1 ? "" : "s"}`);
+  }
 
   return {
     xp,
     coins,
+    lootBoxes,
+    skillPoints,
     levelBefore,
     levelAfter,
     leveledUp: levelAfter > levelBefore,

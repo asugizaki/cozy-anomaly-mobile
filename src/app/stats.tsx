@@ -81,6 +81,9 @@ export default function StatsScreen() {
           <Stat label="Wrong Taps" value={progress.totalWrongTaps} />
           <Stat label="Lifetime Coins" value={progress.lifetimeCoins || 0} />
           <Stat label="Avatars" value={(progress.unlockedAvatarIds || []).length} />
+          <Stat label="Loot Boxes" value={progress.lootBoxes || 0} />
+          <Stat label="Skill Points" value={progress.skillPoints || 0} />
+          <Stat label="Titles" value={(progress.unlockedTitleIds || []).length} />
           <Stat label="Favorites" value={progress.favoritePuzzleIds?.length || 0} />
         </View>
 

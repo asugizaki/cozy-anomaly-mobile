@@ -4,6 +4,7 @@ import { ZoomablePuzzle, ZoomTransform } from "@/components/ZoomablePuzzle";
 import { PUZZLES } from "@/data/puzzles";
 import { getPuzzleEngine } from "@/game-engines";
 import { loadGameAudio, playSfx, startMusic, updateMusic } from "@/lib/audio";
+import { puzzleCollectionId, puzzlesForCollection } from "@/lib/collections";
 import { loadSettings } from "@/lib/game-settings";
 import {
   loadProgress,
@@ -258,6 +259,31 @@ export default function PlayScreen() {
     if (!progress) return;
 
     const alreadyCompleted = progress.completedPuzzleIds.includes(puzzle.id);
+    const completedPuzzleIds = alreadyCompleted
+      ? progress.completedPuzzleIds
+      : [...progress.completedPuzzleIds, puzzle.id];
+
+    const collectionId = puzzleCollectionId(puzzle);
+    const collectionPuzzleIds = puzzlesForCollection(collectionId).map(
+      (item) => item.id
+    );
+
+    const wasCollectionComplete =
+      collectionPuzzleIds.length > 0 &&
+      collectionPuzzleIds.every((id) =>
+        progress.completedPuzzleIds.includes(id)
+      );
+
+    const isCollectionCompleteNow =
+      collectionPuzzleIds.length > 0 &&
+      collectionPuzzleIds.every((id) => completedPuzzleIds.includes(id));
+
+    const collectionRewardId = `collection:${collectionId}`;
+    const shouldGrantCollectionReward =
+      !wasFailed &&
+      !wasCollectionComplete &&
+      isCollectionCompleteNow &&
+      !(progress.claimedCollectionRewardIds || []).includes(collectionRewardId);
 
     const recentPuzzleIndexes = [
       ...(progress.recentPuzzleIndexes || []),
@@ -291,15 +317,13 @@ export default function PlayScreen() {
       isPerfect,
       usedNoHints: hintLevel === 0,
       isDailyMode,
-      completedCollection: false,
+      completedCollection: shouldGrantCollectionReward,
     });
 
     setLastReward(reward);
 
     await saveProgressPatch({
-      completedPuzzleIds: alreadyCompleted
-        ? progress.completedPuzzleIds
-        : [...progress.completedPuzzleIds, puzzle.id],
+      completedPuzzleIds,
 
       totalSolved: alreadyCompleted
         ? progress.totalSolved
@@ -330,6 +354,12 @@ export default function PlayScreen() {
       level: reward.levelAfter,
       coins: (progress.coins || 0) + reward.coins,
       lifetimeCoins: (progress.lifetimeCoins || 0) + reward.coins,
+
+      skillPoints: (progress.skillPoints || 0) + reward.skillPoints,
+      lootBoxes: (progress.lootBoxes || 0) + reward.lootBoxes,
+      claimedCollectionRewardIds: shouldGrantCollectionReward
+        ? [...(progress.claimedCollectionRewardIds || []), collectionRewardId]
+        : progress.claimedCollectionRewardIds || [],
     });
   }
 
@@ -649,6 +679,12 @@ export default function PlayScreen() {
                 <View style={styles.rewardRow}>
                   <Text style={styles.rewardPill}>+{lastReward.xp} XP</Text>
                   <Text style={styles.rewardPill}>+{lastReward.coins} Coins</Text>
+                  {lastReward.skillPoints > 0 && (
+                    <Text style={styles.rewardPill}>+{lastReward.skillPoints} SP</Text>
+                  )}
+                  {lastReward.lootBoxes > 0 && (
+                    <Text style={styles.rewardPill}>+{lastReward.lootBoxes} Crate</Text>
+                  )}
                 </View>
 
                 <Text style={styles.rewardReason}>
