@@ -61,6 +61,12 @@ const ITEMS: HubItem[] = [
     subtitle: "Unlock and equip cozy profile avatars.",
   },
   {
+    href: "/account",
+    emoji: "☁️",
+    title: "Account",
+    subtitle: "Cloud save and Google sign-in.",
+  },
+  {
     href: "/stats",
     emoji: "🏆",
     title: "Stats",

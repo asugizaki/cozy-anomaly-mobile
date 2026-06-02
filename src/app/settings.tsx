@@ -41,7 +41,13 @@ export default function SettingsScreen() {
     <AppBackground>
       <Text style={styles.title}>Settings</Text>
 
-      <View style={styles.card}>
+      <Link href="/account" asChild>
+          <Pressable style={styles.accountButton}>
+            <Text style={styles.accountButtonText}>☁️ Account & Cloud Save</Text>
+          </Pressable>
+        </Link>
+
+        <View style={styles.card}>
         <Row
           label="Music"
           value={settings.musicEnabled}
@@ -92,6 +98,20 @@ function Row({
 }
 
 const styles = StyleSheet.create({
+  accountButton: {
+    marginBottom: 14,
+    paddingVertical: 14,
+    borderRadius: 999,
+    backgroundColor: "rgba(255,255,255,0.94)",
+    alignItems: "center",
+  },
+
+  accountButtonText: {
+    color: "#4B2E20",
+    fontSize: 15,
+    fontWeight: "900",
+  },
+
   screen: {
     flex: 1,
     backgroundColor: "#F7EAD8",

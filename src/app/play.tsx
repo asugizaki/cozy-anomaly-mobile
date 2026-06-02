@@ -853,7 +853,7 @@ export default function PlayScreen() {
                   onPress={() => setHintExpanded((current) => !current)}
                 >
                   <Text style={styles.hintToggleText}>
-                    💡 {hintLevel}/{MAX_HINT_LEVEL}
+                    {hintExpanded ? "Hide" : `💡 ${hintLevel}/${MAX_HINT_LEVEL}`}
                   </Text>
                 </Pressable>
               )}
@@ -865,17 +865,28 @@ export default function PlayScreen() {
                 onPress={() => setHintExpanded(false)}
               >
                 <Text style={styles.hintLabel}>
-                  Hint {hintLevel}/{MAX_HINT_LEVEL} · Tap to hide
+                  Hint {hintLevel}/{MAX_HINT_LEVEL} · tap to collapse
                 </Text>
 
-                <Text style={styles.hintText}>{hintText()}</Text>
+                <Text
+                  style={styles.hintText}
+                  numberOfLines={2}
+                  adjustsFontSizeToFit
+                >
+                  {hintText()}
+                </Text>
               </Pressable>
             )}
 
             {hintLevel >= MAX_HINT_LEVEL && !hintExpanded && (
-              <Text style={styles.finalHintText}>
-                Final hint is active. Look for the glowing circle.
-              </Text>
+              <Pressable
+                style={styles.finalHintCollapsed}
+                onPress={() => setHintExpanded(true)}
+              >
+                <Text style={styles.finalHintText}>
+                  🎯 Final hint active
+                </Text>
+              </Pressable>
             )}
 
             <Pressable
@@ -886,10 +897,10 @@ export default function PlayScreen() {
               ]}
               onPress={requestHint}
             >
-              <Text style={styles.secondaryButtonText}>
+              <Text style={styles.compactHintButtonText}>
                 {hintLevel >= MAX_HINT_LEVEL
-                  ? "Max Hints Used"
-                  : "🎬 Watch Ad for Hint"}
+                  ? "Max Hints"
+                  : "🎬 Hint"}
               </Text>
             </Pressable>
           </View>
@@ -1009,19 +1020,19 @@ const styles = StyleSheet.create({
   spacer: { flex: 1 },
 
   compactHintDock: {
-    marginBottom: 10,
-    padding: 14,
-    borderRadius: 24,
-    backgroundColor: "rgba(255,247,236,0.92)",
-    borderWidth: 2,
-    borderColor: "rgba(255,255,255,0.55)",
+    marginBottom: 6,
+    padding: 10,
+    borderRadius: 20,
+    backgroundColor: "rgba(255,247,236,0.90)",
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.50)",
   },
 
   compactHeader: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    gap: 10,
+    gap: 8,
   },
 
   compactTitleWrap: {
@@ -1029,72 +1040,80 @@ const styles = StyleSheet.create({
   },
 
   compactTitle: {
-    fontSize: 20,
+    fontSize: 15,
     fontWeight: "900",
     color: "#4B2E20",
   },
 
   compactSubtitle: {
-    marginTop: 2,
-    fontSize: 14,
+    marginTop: 1,
+    fontSize: 11,
     color: "#7B5A43",
-    fontWeight: "700",
+    fontWeight: "800",
   },
 
   hintTogglePill: {
-    paddingHorizontal: 12,
-    paddingVertical: 9,
+    paddingHorizontal: 10,
+    paddingVertical: 6,
     borderRadius: 999,
     backgroundColor: "#0f172a",
   },
 
   hintToggleText: {
     color: "white",
-    fontSize: 13,
+    fontSize: 11,
     fontWeight: "900",
   },
 
   collapsibleHintBox: {
-    marginTop: 12,
-    marginBottom: 10,
-    paddingHorizontal: 14,
-    paddingVertical: 12,
-    borderRadius: 16,
+    marginTop: 7,
+    marginBottom: 7,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    borderRadius: 14,
     backgroundColor: "rgba(15,23,42,0.94)",
-    borderWidth: 2,
+    borderWidth: 1,
     borderColor: "#f59e0b",
   },
 
   hintLabel: {
     color: "#fbbf24",
-    fontSize: 12,
+    fontSize: 10,
     fontWeight: "900",
     textAlign: "center",
-    marginBottom: 4,
+    marginBottom: 2,
     textTransform: "uppercase",
   },
 
   hintText: {
     color: "white",
-    fontSize: 15,
-    lineHeight: 21,
+    fontSize: 12,
+    lineHeight: 16,
     fontWeight: "800",
     textAlign: "center",
   },
 
+  finalHintCollapsed: {
+    marginTop: 6,
+    marginBottom: 6,
+    alignSelf: "center",
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderRadius: 999,
+    backgroundColor: "rgba(255,209,102,0.35)",
+  },
+
   finalHintText: {
-    marginTop: 8,
-    marginBottom: 8,
-    color: "#7B5A43",
-    fontSize: 13,
-    fontWeight: "800",
+    color: "#6A3F2B",
+    fontSize: 11,
+    fontWeight: "900",
     textAlign: "center",
   },
 
   compactHintButton: {
-    marginTop: 12,
+    marginTop: 6,
     backgroundColor: "#F4D7C4",
-    paddingVertical: 13,
+    paddingVertical: 8,
     borderRadius: 999,
     alignItems: "center",
   },
@@ -1207,6 +1226,12 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     borderRadius: 999,
     alignItems: "center",
+  },
+
+  compactHintButtonText: {
+    color: "#6A3F2B",
+    fontSize: 12,
+    fontWeight: "900",
   },
 
   secondaryButtonText: {

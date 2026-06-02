@@ -7,6 +7,7 @@ import {
 } from "@/lib/collections";
 import { ComposablePuzzle } from "@/types/puzzle";
 import { loadProgress, PlayerProgress } from "./player-progress";
+import { randomPuzzleIndexFromDb } from "./puzzle-db";
 
 const RECENT_HISTORY_LIMIT = 15;
 
@@ -116,6 +117,50 @@ export async function smartRandomPuzzleIndex(
     ...externalExcludes,
   ].slice(-RECENT_HISTORY_LIMIT);
 
+  const type = typeof options === "string" ? options : options?.type;
+  const difficulty =
+    typeof options === "object" ? options.difficulty : undefined;
+  const collection =
+    typeof options === "object" ? options.collection : undefined;
+  const unsolvedOnly =
+    typeof options === "object" ? options.unsolvedOnly : false;
+  const favoritesOnly =
+    typeof options === "object" ? options.favoritesOnly : false;
+
+  // DB-backed random selection is the scalable path. Keep the in-memory fallback
+  // for favorites because favorites are currently stored in AsyncStorage.
+  if (!favoritesOnly) {
+    try {
+      const dbIndex = await randomPuzzleIndexFromDb({
+        type,
+        difficulty,
+        collection,
+        excludeIndexes: recent,
+        excludeIds: unsolvedOnly ? progress.completedPuzzleIds || [] : [],
+      });
+
+      if (typeof dbIndex === "number") {
+        return safePuzzleIndex(dbIndex);
+      }
+
+      if (unsolvedOnly) {
+        const fallbackDbIndex = await randomPuzzleIndexFromDb({
+          type,
+          difficulty,
+          collection,
+          excludeIndexes: recent,
+        });
+
+        if (typeof fallbackDbIndex === "number") {
+          return safePuzzleIndex(fallbackDbIndex);
+        }
+      }
+    } catch {
+      // Fall back to the original in-memory path if SQLite is unavailable during
+      // development or before dependencies are installed.
+    }
+  }
+
   let pool = filteredPool(progress, options);
 
   if (!pool.length && typeof options === "object" && options.unsolvedOnly) {
@@ -139,6 +184,7 @@ export async function smartRandomPuzzleIndex(
 
   return random.index;
 }
+
 
 export async function nextCollectionPuzzleIndex(collectionId: string) {
   const progress = await loadProgress();

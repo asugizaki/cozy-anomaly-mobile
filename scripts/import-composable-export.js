@@ -6,7 +6,7 @@ const sourceExportDir = process.argv[2];
 
 if (!sourceExportDir) {
   console.error("Usage:");
-  console.error("  npm run import:puzzles -- /path/to/export/YYYY-MM-DD");
+  console.error("  npm run import:puzzles -- /path/to/export/YYYY-MM-DD/pack-folder");
   process.exit(1);
 }
 
@@ -21,29 +21,19 @@ if (!fs.existsSync(manifestPath)) {
 const targetAssetDir = path.join(repoRoot, "assets", "composable");
 const generatedFile = path.join(repoRoot, "src", "data", "generatedPuzzles.ts");
 
-function rmrf(target) {
-  if (fs.existsSync(target)) {
-    fs.rmSync(target, { recursive: true, force: true });
+function copyFileIfMissing(src, dest) {
+  if (!fs.existsSync(src)) {
+    throw new Error(`Missing asset source: ${src}`);
   }
-}
 
-function copyDir(src, dest) {
-  fs.mkdirSync(dest, { recursive: true });
+  fs.mkdirSync(path.dirname(dest), { recursive: true });
 
-  for (const entry of fs.readdirSync(src, { withFileTypes: true })) {
-    const srcPath = path.join(src, entry.name);
-    const destPath = path.join(dest, entry.name);
-
-    if (entry.isDirectory()) {
-      copyDir(srcPath, destPath);
-    } else {
-      fs.copyFileSync(srcPath, destPath);
-    }
+  if (!fs.existsSync(dest)) {
+    fs.copyFileSync(src, dest);
+    return true;
   }
-}
 
-function toRequirePath(relativePath) {
-  return `../../assets/composable/${relativePath.replace(/\\/g, "/")}`;
+  return false;
 }
 
 function readPngSize(filePath) {
@@ -62,9 +52,43 @@ function readPngSize(filePath) {
   return null;
 }
 
-function normalizePuzzleRendering(puzzle, exportRoot) {
-  const normalPath = path.join(exportRoot, puzzle.normal_item || "");
-  const size = fs.existsSync(normalPath) ? readPngSize(normalPath) : null;
+function toRequirePath(relativePath) {
+  return `../../assets/composable/${relativePath.replace(/\\/g, "/")}`;
+}
+
+function centralAssetRootForManifest(manifest) {
+  return manifest.asset_root || "central_assets";
+}
+
+function resolveSourceAssetPath(packDir, manifest, assetRef, legacyPath) {
+  const assetRoot = centralAssetRootForManifest(manifest);
+
+  if (assetRef) {
+    const centralSource = path.join(packDir, assetRoot, assetRef);
+
+    if (fs.existsSync(centralSource)) {
+      return centralSource;
+    }
+  }
+
+  if (legacyPath) {
+    const legacySource = path.join(packDir, legacyPath);
+
+    if (fs.existsSync(legacySource)) {
+      return legacySource;
+    }
+  }
+
+  const requested = assetRef || legacyPath;
+  throw new Error(`Cannot resolve asset '${requested}' in ${packDir}`);
+}
+
+function normalizeAssetRef(puzzle, key, legacyKey) {
+  return puzzle[key] || puzzle[legacyKey];
+}
+
+function normalizePuzzleRendering(puzzle, normalAssetPath) {
+  const size = readPngSize(normalAssetPath);
 
   if (!size) {
     return puzzle;
@@ -92,43 +116,128 @@ function normalizePuzzleRendering(puzzle, exportRoot) {
   };
 }
 
+function importPuzzlePack(packDir, packKey = "") {
+  const manifestPath = path.join(packDir, "manifest.json");
+  const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
 
-rmrf(targetAssetDir);
-copyDir(absoluteSource, targetAssetDir);
+  const imported = [];
+  let copiedAssetCount = 0;
+  let skippedAssetCount = 0;
 
-const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
+  for (const puzzlePath of manifest.puzzles || []) {
+    const fullPuzzlePath = path.join(packDir, puzzlePath);
+    const rawPuzzle = JSON.parse(fs.readFileSync(fullPuzzlePath, "utf8"));
 
-const puzzles = manifest.puzzles.map((puzzlePath) => {
-  const fullPath = path.join(absoluteSource, puzzlePath);
-  const rawPuzzle = JSON.parse(fs.readFileSync(fullPath, "utf8"));
-  const puzzle = normalizePuzzleRendering(rawPuzzle, absoluteSource);
+    const backgroundRef = normalizeAssetRef(rawPuzzle, "background_ref", "background");
+    const normalItemRef = normalizeAssetRef(rawPuzzle, "normal_item_ref", "normal_item");
+    const anomalyItemRef = normalizeAssetRef(rawPuzzle, "anomaly_item_ref", "anomaly_item");
+    const normalMetaRef = normalizeAssetRef(rawPuzzle, "normal_item_meta_ref", "normal_item_meta");
+    const anomalyMetaRef = normalizeAssetRef(rawPuzzle, "anomaly_item_meta_ref", "anomaly_item_meta");
 
-  for (const assetPath of [
-    puzzle.background,
-    puzzle.normal_item,
-    puzzle.anomaly_item,
-  ]) {
-    const fullAssetPath = path.join(absoluteSource, assetPath);
+    const backgroundSource = resolveSourceAssetPath(
+      packDir,
+      manifest,
+      rawPuzzle.background_ref,
+      rawPuzzle.background
+    );
 
-    if (!fs.existsSync(fullAssetPath)) {
-      throw new Error(`Missing puzzle asset: ${fullAssetPath}`);
+    const normalSource = resolveSourceAssetPath(
+      packDir,
+      manifest,
+      rawPuzzle.normal_item_ref,
+      rawPuzzle.normal_item
+    );
+
+    const anomalySource = resolveSourceAssetPath(
+      packDir,
+      manifest,
+      rawPuzzle.anomaly_item_ref,
+      rawPuzzle.anomaly_item
+    );
+
+    const assetsToCopy = [
+      [backgroundSource, backgroundRef],
+      [normalSource, normalItemRef],
+      [anomalySource, anomalyItemRef],
+    ];
+
+    if (normalMetaRef) {
+      const normalMetaSource = resolveSourceAssetPath(
+        packDir,
+        manifest,
+        rawPuzzle.normal_item_meta_ref,
+        rawPuzzle.normal_item_meta
+      );
+      assetsToCopy.push([normalMetaSource, normalMetaRef]);
     }
+
+    if (anomalyMetaRef) {
+      const anomalyMetaSource = resolveSourceAssetPath(
+        packDir,
+        manifest,
+        rawPuzzle.anomaly_item_meta_ref,
+        rawPuzzle.anomaly_item_meta
+      );
+      assetsToCopy.push([anomalyMetaSource, anomalyMetaRef]);
+    }
+
+    for (const [src, ref] of assetsToCopy) {
+      const copied = copyFileIfMissing(
+        src,
+        path.join(targetAssetDir, ref)
+      );
+
+      if (copied) {
+        copiedAssetCount += 1;
+      } else {
+        skippedAssetCount += 1;
+      }
+    }
+
+    const normalizedPuzzle = normalizePuzzleRendering(
+      {
+        ...rawPuzzle,
+        id: packKey ? `${packKey}/${rawPuzzle.id}` : rawPuzzle.id,
+        import_pack: packKey || rawPuzzle.import_pack,
+        background: backgroundRef,
+        background_ref: backgroundRef,
+        normal_item: normalItemRef,
+        normal_item_ref: normalItemRef,
+        normal_item_meta: normalMetaRef,
+        normal_item_meta_ref: normalMetaRef,
+        anomaly_item: anomalyItemRef,
+        anomaly_item_ref: anomalyItemRef,
+        anomaly_item_meta: anomalyMetaRef,
+        anomaly_item_meta_ref: anomalyMetaRef,
+      },
+      normalSource
+    );
+
+    imported.push({
+      puzzle: normalizedPuzzle,
+      backgroundRequire: toRequirePath(backgroundRef),
+      normalRequire: toRequirePath(normalItemRef),
+      anomalyRequire: toRequirePath(anomalyItemRef),
+    });
   }
 
   return {
-    puzzle,
-    backgroundRequire: toRequirePath(puzzle.background),
-    normalRequire: toRequirePath(puzzle.normal_item),
-    anomalyRequire: toRequirePath(puzzle.anomaly_item),
+    imported,
+    copiedAssetCount,
+    skippedAssetCount,
   };
-});
+}
+
+fs.mkdirSync(targetAssetDir, { recursive: true });
+
+const result = importPuzzlePack(absoluteSource);
 
 fs.mkdirSync(path.dirname(generatedFile), { recursive: true });
 
 const fileContents = `import { ComposablePuzzle } from "@/types/puzzle";
 
 export const PUZZLES: ComposablePuzzle[] = [
-${puzzles
+${result.imported
   .map(({ puzzle, backgroundRequire, normalRequire, anomalyRequire }) => {
     return `  {
     ...${JSON.stringify(puzzle, null, 4).replace(/\n/g, "\n    ")},
@@ -143,6 +252,8 @@ ${puzzles
 
 fs.writeFileSync(generatedFile, fileContents);
 
-console.log(`Imported ${puzzles.length} puzzle(s).`);
-console.log(`Copied assets to: ${targetAssetDir}`);
+console.log(`Imported ${result.imported.length} puzzle(s).`);
+console.log(`Central assets copied: ${result.copiedAssetCount}`);
+console.log(`Central assets already present: ${result.skippedAssetCount}`);
+console.log(`Assets root: ${targetAssetDir}`);
 console.log(`Generated: ${generatedFile}`);
