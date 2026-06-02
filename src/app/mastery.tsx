@@ -1,3 +1,4 @@
+import { AppBackground } from "@/components/AppBackground";
 import { View, Text } from 'react-native';
 
 export default function MasteryScreen() {

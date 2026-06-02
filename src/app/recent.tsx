@@ -1,3 +1,4 @@
+import { AppBackground } from "@/components/AppBackground";
 import { FavoriteButton } from "@/components/FavoriteButton";
 import {
   DEFAULT_PROGRESS,
@@ -35,7 +36,7 @@ export default function RecentScreen() {
   const recentPuzzles = puzzlesByIds(progress.recentPlayedPuzzleIds || []);
 
   return (
-    <SafeAreaView style={styles.screen}>
+    <AppBackground>
       <ScrollView
         contentContainerStyle={styles.content}
         showsVerticalScrollIndicator={false}
@@ -93,7 +94,7 @@ export default function RecentScreen() {
           </View>
         )}
       </ScrollView>
-    </SafeAreaView>
+    </AppBackground>
   );
 }
 
@@ -116,13 +117,19 @@ const styles = StyleSheet.create({
   backText: {
     fontSize: 20,
     fontWeight: "900",
-    color: "#4B2E20",
+    color: "white",
+    textShadowColor: "rgba(0,0,0,0.35)",
+    textShadowOffset: { width: 0, height: 2 },
+    textShadowRadius: 4,
   },
 
   title: {
     fontSize: 38,
     fontWeight: "900",
-    color: "#4B2E20",
+    color: "white",
+    textShadowColor: "rgba(0,0,0,0.45)",
+    textShadowOffset: { width: 0, height: 3 },
+    textShadowRadius: 10,
   },
 
   subtitle: {
@@ -151,7 +158,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     lineHeight: 21,
     fontWeight: "700",
-    color: "#7B5A43",
+    color: "rgba(255,255,255,0.88)",
   },
 
   list: {

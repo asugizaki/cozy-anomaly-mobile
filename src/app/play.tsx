@@ -1,10 +1,10 @@
 import { AnimatedWrongMarker } from "@/components/AnimatedWrongMarker";
-import { FavoriteButton } from "@/components/FavoriteButton";
 import { ZoomablePuzzle, ZoomTransform } from "@/components/ZoomablePuzzle";
 import { PUZZLES } from "@/data/puzzles";
 import { getPuzzleEngine } from "@/game-engines";
 import { loadGameAudio, playSfx, startMusic, updateMusic } from "@/lib/audio";
 import { puzzleCollectionId, puzzlesForCollection } from "@/lib/collections";
+import { spendEnergy } from "@/lib/energy";
 import { loadSettings } from "@/lib/game-settings";
 import {
   loadProgress,
@@ -148,6 +148,7 @@ export default function PlayScreen() {
   const [solved, setSolved] = useState(false);
   const [failed, setFailed] = useState(false);
   const [ready, setReady] = useState(false);
+  const [assetsReady, setAssetsReady] = useState(false);
   const [hintLevel, setHintLevel] = useState(0);
   const [hintExpanded, setHintExpanded] = useState(false);
   const [settings, setSettings] = useState<any>(null);
@@ -157,6 +158,7 @@ export default function PlayScreen() {
   const [lastReward, setLastReward] = useState<PuzzleReward | null>(null);
 
   const fadeAnim = useRef(new Animated.Value(0)).current;
+  const consumedEnergyKeyRef = useRef<string | null>(null);
 
   const puzzle = PUZZLES[puzzleIndex];
   const engine = useMemo(() => getPuzzleEngine(puzzle), [puzzle]);
@@ -178,30 +180,93 @@ export default function PlayScreen() {
   }, []);
 
   useEffect(() => {
+    if (!puzzle) return;
+
+    async function consumeEnergyForPuzzle() {
+      const key = `${puzzle.id}:${puzzleIndex}`;
+
+      if (consumedEnergyKeyRef.current === key) {
+        return;
+      }
+
+      consumedEnergyKeyRef.current = key;
+
+      const result = await spendEnergy();
+
+      setProgress(result.progress);
+
+      if (!result.success) {
+        Alert.alert(
+          "Out of Energy",
+          "You need energy to start a puzzle. Watch an ad refill, buy an energy pack with coins, or wait for recharge.",
+          [
+            {
+              text: "Energy Shop",
+              onPress: () => router.replace("/energy-shop"),
+            },
+            {
+              text: "Back Home",
+              style: "cancel",
+              onPress: () => router.replace("/"),
+            },
+          ]
+        );
+      }
+    }
+
+    consumeEnergyForPuzzle();
+  }, [puzzle, puzzleIndex]);
+
+  useEffect(() => {
     if (!settings) return;
     updateMusic(settings);
   }, [settings]);
 
   useEffect(() => {
-    setReady(false);
-    fadeAnim.setValue(0);
-    setWrongMarkers([]);
-    setWrongTapCountInPuzzle(0);
-    setLastReward(null);
-    setLastReward(null);
+    let cancelled = false;
 
-    const timer = setTimeout(() => {
+    async function preparePuzzleAssets() {
+      setReady(false);
+      setAssetsReady(false);
+      fadeAnim.setValue(0);
+      setWrongMarkers([]);
+      setWrongTapCountInPuzzle(0);
+      setLastReward(null);
+
+      const sources = [
+        puzzle.backgroundSource,
+        puzzle.normalItemSource,
+        puzzle.anomalyItemSource,
+      ]
+        .map((source) => Image.resolveAssetSource(source)?.uri)
+        .filter(Boolean) as string[];
+
+      await Promise.all(
+        sources.map((uri) =>
+          Image.prefetch(uri).catch(() => {
+            return false;
+          })
+        )
+      );
+
+      if (cancelled) return;
+
+      setAssetsReady(true);
       setReady(true);
 
       Animated.timing(fadeAnim, {
         toValue: 1,
-        duration: 220,
+        duration: 260,
         useNativeDriver: true,
       }).start();
-    }, 350);
+    }
 
-    return () => clearTimeout(timer);
-  }, [puzzleIndex, fadeAnim]);
+    preparePuzzleAssets();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [puzzle, puzzleIndex, fadeAnim]);
 
   const backgroundSize = useMemo(() => {
     if (!puzzle) return { width: 1080, height: 2400 };
@@ -321,6 +386,14 @@ export default function PlayScreen() {
     });
 
     setLastReward(reward);
+
+    if (!wasFailed && reward.leveledUp) {
+      playSfx("levelup", settings);
+    } else if (!wasFailed && reward.coins > 0) {
+      playSfx("coin", settings);
+    } else if (!wasFailed && reward.xp > 0) {
+      playSfx("reward", settings);
+    }
 
     await saveProgressPatch({
       completedPuzzleIds,
@@ -547,8 +620,8 @@ export default function PlayScreen() {
 
   return (
     <View style={styles.screen}>
-      <ZoomablePuzzle disabled={!ready || solved} onTap={handlePuzzleTap}>
-        <Animated.View style={[styles.renderLayer, { opacity: fadeAnim }]}>
+      <ZoomablePuzzle disabled={!assetsReady || !ready || solved} onTap={handlePuzzleTap}>
+        <Animated.View style={[styles.renderLayer, { opacity: assetsReady ? fadeAnim : 0 }]}>
           <Image
             source={puzzle.backgroundSource}
             resizeMode="stretch"
@@ -605,9 +678,10 @@ export default function PlayScreen() {
           )}
         </Animated.View>
 
-        {!ready && (
+        {(!assetsReady || !ready) && (
           <View style={styles.loadingOverlay}>
             <ActivityIndicator size="large" color="#ffffff" />
+          <Text style={styles.loadingText}>Preparing scene...</Text>
           </View>
         )}
       </ZoomablePuzzle>
@@ -638,14 +712,21 @@ export default function PlayScreen() {
                   {difficulty.emoji} {difficulty.label}
                 </Text>
               </View>
-
-              <FavoriteButton puzzleId={puzzle.id} />
             </View>
           </View>
 
           <View style={styles.statusStack}>
-            <View style={styles.streakPill}>
-              <Text style={styles.streakText}>🔥 {currentStreak}</Text>
+            <View style={styles.resourcePill}>
+              <Text style={styles.resourceText}>⚡ {progress?.energy ?? 0}</Text>
+            </View>
+
+            <View style={styles.resourcePill}>
+              <Image
+                source={require("../../assets/ui/coin.png")}
+                style={styles.resourceCoin}
+                resizeMode="contain"
+              />
+              <Text style={styles.resourceText}>{progress?.coins ?? 0}</Text>
             </View>
 
             <View style={styles.triesPill}>
@@ -696,13 +777,6 @@ export default function PlayScreen() {
             <Text style={styles.panelAnswer}>{puzzle.answer}</Text>
 
             <View style={styles.buttonRow}>
-              <Pressable
-                style={styles.secondaryButton}
-                onPress={resetCurrentPuzzle}
-              >
-                <Text style={styles.secondaryButtonText}>Replay</Text>
-              </Pressable>
-
               <Pressable style={styles.primaryButton} onPress={goToNextPuzzle}>
                 <Text style={styles.primaryButtonText}>
                   {isDailyMode ? "Back Home" : "Next Random"}
@@ -841,17 +915,27 @@ const styles = StyleSheet.create({
     alignItems: "flex-end",
   },
 
-  streakPill: {
-    paddingHorizontal: 12,
+  resourcePill: {
+    minWidth: 64,
+    paddingHorizontal: 10,
     paddingVertical: 7,
     borderRadius: 999,
     backgroundColor: "rgba(255,255,255,0.90)",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 4,
   },
 
-  streakText: {
+  resourceText: {
     fontSize: 14,
     fontWeight: "900",
     color: "#4B2E20",
+  },
+
+  resourceCoin: {
+    width: 16,
+    height: 16,
   },
 
   triesPill: {

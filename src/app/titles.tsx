@@ -1,3 +1,5 @@
+import { AppBackground } from "@/components/AppBackground";
+import { ScreenHeader } from "@/components/ScreenHeader";
 import {
   DEFAULT_PROGRESS,
   loadProgress,
@@ -39,20 +41,15 @@ export default function TitlesScreen() {
   const unlocked = new Set(progress.unlockedTitleIds || []);
 
   return (
-    <SafeAreaView style={styles.screen}>
+    <AppBackground>
       <ScrollView
         contentContainerStyle={styles.content}
         showsVerticalScrollIndicator={false}
       >
-        <Pressable onPress={() => router.back()} style={styles.backButton}>
-          <Text style={styles.backText}>‹ Back</Text>
-        </Pressable>
-
-        <Text style={styles.title}>Titles</Text>
-
-        <Text style={styles.subtitle}>
-          Equip titles earned from loot boxes and progression.
-        </Text>
+        <ScreenHeader
+          title="Titles"
+          subtitle="Equip your player title."
+        />
 
         <View style={styles.list}>
           {TITLES.map((title) => {
@@ -84,7 +81,7 @@ export default function TitlesScreen() {
           })}
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </AppBackground>
   );
 }
 
@@ -107,13 +104,19 @@ const styles = StyleSheet.create({
   backText: {
     fontSize: 20,
     fontWeight: "900",
-    color: "#4B2E20",
+    color: "white",
+    textShadowColor: "rgba(0,0,0,0.35)",
+    textShadowOffset: { width: 0, height: 2 },
+    textShadowRadius: 4,
   },
 
   title: {
     fontSize: 38,
     fontWeight: "900",
-    color: "#4B2E20",
+    color: "white",
+    textShadowColor: "rgba(0,0,0,0.45)",
+    textShadowOffset: { width: 0, height: 3 },
+    textShadowRadius: 10,
   },
 
   subtitle: {
@@ -122,7 +125,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 22,
     fontWeight: "700",
-    color: "#7B5A43",
+    color: "rgba(255,255,255,0.88)",
   },
 
   list: {

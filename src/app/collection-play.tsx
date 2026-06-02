@@ -1,3 +1,4 @@
+import { AppBackground } from "@/components/AppBackground";
 import {
   collectionEmoji,
   collectionLabel,
@@ -61,7 +62,7 @@ export default function CollectionPlayScreen() {
   }
 
   return (
-    <SafeAreaView style={styles.screen}>
+    <AppBackground>
       <ScrollView
         contentContainerStyle={styles.content}
         showsVerticalScrollIndicator={false}
@@ -138,7 +139,7 @@ export default function CollectionPlayScreen() {
           </View>
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </AppBackground>
   );
 }
 

@@ -1,3 +1,6 @@
+import { AppBackground } from "@/components/AppBackground";
+import { ResourceSummary } from "@/components/ResourceSummary";
+import { ScreenHeader } from "@/components/ScreenHeader";
 import {
   buyLootBox,
   lootBoxPrice,
@@ -5,15 +8,18 @@ import {
   openLootBox,
 } from "@/lib/lootbox-service";
 import { rarityEmoji, rarityLabel, LootBoxRarity } from "@/lib/lootbox-engine";
+import { loadGameAudio, playSfx } from "@/lib/audio";
+import { avatarById } from "@/lib/avatars";
 import {
   DEFAULT_PROGRESS,
   loadProgress,
   PlayerProgress,
 } from "@/lib/player-progress";
 import { router, useFocusEffect } from "expo-router";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   Alert,
+  Image,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -28,9 +34,14 @@ type LastOpen = {
 };
 
 export default function LootBoxesScreen() {
+  useEffect(() => {
+    loadGameAudio();
+  }, []);
+
   const [progress, setProgress] =
     useState<PlayerProgress>(DEFAULT_PROGRESS);
   const [lastOpen, setLastOpen] = useState<LastOpen | null>(null);
+  const [notice, setNotice] = useState<string | null>(null);
 
   async function refresh() {
     const loaded = await loadProgress();
@@ -53,6 +64,9 @@ export default function LootBoxesScreen() {
       return;
     }
 
+    setNotice(result.message);
+    setTimeout(() => setNotice(null), 1400);
+    playSfx("coin");
     setLastOpen(null);
   }
 
@@ -66,32 +80,41 @@ export default function LootBoxesScreen() {
       return;
     }
 
+    playSfx("lootbox");
+
     setLastOpen({
       rarity: result.rarity,
       reward: result.reward,
     });
+
+    setNotice("Crate opened!");
+    setTimeout(() => setNotice(null), 1400);
+
+    setTimeout(() => {
+      playSfx("reward");
+    }, 450);
   }
 
   const price = lootBoxPrice(progress);
 
   return (
-    <SafeAreaView style={styles.screen}>
+    <AppBackground>
       <ScrollView
         contentContainerStyle={styles.content}
         showsVerticalScrollIndicator={false}
       >
-        <Pressable onPress={() => router.back()} style={styles.backButton}>
-          <Text style={styles.backText}>‹ Back</Text>
-        </Pressable>
-
-        <Text style={styles.title}>Loot Boxes</Text>
-
-        <Text style={styles.subtitle}>
-          Spend coins or open crates earned from collection completions.
-        </Text>
+        <ScreenHeader
+          title="Loot Boxes"
+          subtitle="Open cozy crates for coins, avatars, and rare titles."
+        />
+        <ResourceSummary progress={progress} notice={notice} compact />
 
         <View style={styles.heroCard}>
-          <Text style={styles.crateEmoji}>🎁</Text>
+          <Image
+            source={require("../../assets/ui/crate.png")}
+            style={styles.crateImage}
+            resizeMode="contain"
+          />
           <Text style={styles.crateTitle}>Cozy Crate</Text>
           <Text style={styles.crateMeta}>
             Owned: {progress.lootBoxes || 0} · Coins: {progress.coins || 0}
@@ -104,7 +127,23 @@ export default function LootBoxesScreen() {
               {rarityEmoji(lastOpen.rarity)} {rarityLabel(lastOpen.rarity)}
             </Text>
 
-            <Text style={styles.rewardEmoji}>{lastOpen.reward.emoji}</Text>
+            <View style={styles.rewardImageWrap}>
+              {lastOpen.reward.type === "coins" ? (
+                <Image
+                  source={require("../../assets/ui/coin.png")}
+                  style={styles.rewardImage}
+                  resizeMode="contain"
+                />
+              ) : lastOpen.reward.type === "avatar" ? (
+                <Image
+                  source={avatarById(lastOpen.reward.avatarId).image}
+                  style={styles.rewardImage}
+                  resizeMode="contain"
+                />
+              ) : (
+                <Text style={styles.rewardEmoji}>{lastOpen.reward.emoji}</Text>
+              )}
+            </View>
             <Text style={styles.rewardTitle}>{lastOpen.reward.label}</Text>
 
             <Text style={styles.rewardMeta}>
@@ -139,7 +178,7 @@ export default function LootBoxesScreen() {
           </Text>
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </AppBackground>
   );
 }
 
@@ -162,13 +201,19 @@ const styles = StyleSheet.create({
   backText: {
     fontSize: 20,
     fontWeight: "900",
-    color: "#4B2E20",
+    color: "white",
+    textShadowColor: "rgba(0,0,0,0.35)",
+    textShadowOffset: { width: 0, height: 2 },
+    textShadowRadius: 4,
   },
 
   title: {
     fontSize: 38,
     fontWeight: "900",
-    color: "#4B2E20",
+    color: "white",
+    textShadowColor: "rgba(0,0,0,0.45)",
+    textShadowOffset: { width: 0, height: 3 },
+    textShadowRadius: 10,
   },
 
   subtitle: {
@@ -177,18 +222,26 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 22,
     fontWeight: "700",
-    color: "#7B5A43",
+    color: "rgba(255,255,255,0.92)",
   },
 
   heroCard: {
     alignItems: "center",
     padding: 26,
     borderRadius: 30,
-    backgroundColor: "white",
+    backgroundColor: "rgba(255,255,255,0.95)",
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.75)",
+    shadowColor: "#000",
+    shadowOpacity: 0.14,
+    shadowRadius: 12,
+    shadowOffset: { width: 0, height: 6 },
+    elevation: 4,
   },
 
-  crateEmoji: {
-    fontSize: 72,
+  crateImage: {
+    width: 132,
+    height: 132,
   },
 
   crateTitle: {
@@ -219,8 +272,19 @@ const styles = StyleSheet.create({
     fontWeight: "900",
   },
 
-  rewardEmoji: {
+  rewardImageWrap: {
     marginTop: 8,
+    minHeight: 74,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  rewardImage: {
+    width: 82,
+    height: 82,
+  },
+
+  rewardEmoji: {
     fontSize: 54,
   },
 

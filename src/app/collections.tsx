@@ -1,3 +1,6 @@
+import { AppBackground } from "@/components/AppBackground";
+import { ResourceSummary } from "@/components/ResourceSummary";
+import { ScreenHeader } from "@/components/ScreenHeader";
 import {
   collectionSummary,
   CollectionSummary,
@@ -45,20 +48,16 @@ export default function CollectionsScreen() {
   }
 
   return (
-    <SafeAreaView style={styles.screen}>
+    <AppBackground>
       <ScrollView
         contentContainerStyle={styles.content}
         showsVerticalScrollIndicator={false}
       >
-        <Pressable onPress={() => router.back()} style={styles.backButton}>
-          <Text style={styles.backText}>‹ Back</Text>
-        </Pressable>
-
-        <Text style={styles.title}>Collections</Text>
-
-        <Text style={styles.subtitle}>
-          Complete themed puzzle packs and keep your progress growing.
-        </Text>
+        <ScreenHeader
+          title="Collections"
+          subtitle="Complete themed packs and claim collection rewards."
+        />
+        <ResourceSummary progress={progress} compact />
 
         <View style={styles.list}>
           {collections.map((collection) => (
@@ -74,7 +73,7 @@ export default function CollectionsScreen() {
           ))}
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </AppBackground>
   );
 }
 
@@ -125,10 +124,6 @@ function CollectionCard({
           </Text>
         </Pressable>
 
-        <Pressable style={styles.secondarySmallButton} onPress={onRandom}>
-          <Text style={styles.secondarySmallButtonText}>Random</Text>
-        </Pressable>
-
         <Pressable style={styles.secondarySmallButton} onPress={onOpen}>
           <Text style={styles.secondarySmallButtonText}>Details</Text>
         </Pressable>
@@ -156,13 +151,19 @@ const styles = StyleSheet.create({
   backText: {
     fontSize: 20,
     fontWeight: "900",
-    color: "#4B2E20",
+    color: "white",
+    textShadowColor: "rgba(0,0,0,0.35)",
+    textShadowOffset: { width: 0, height: 2 },
+    textShadowRadius: 4,
   },
 
   title: {
     fontSize: 38,
     fontWeight: "900",
-    color: "#4B2E20",
+    color: "white",
+    textShadowColor: "rgba(0,0,0,0.45)",
+    textShadowOffset: { width: 0, height: 3 },
+    textShadowRadius: 10,
   },
 
   subtitle: {
@@ -171,7 +172,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 22,
     fontWeight: "700",
-    color: "#7B5A43",
+    color: "rgba(255,255,255,0.88)",
   },
 
   list: {

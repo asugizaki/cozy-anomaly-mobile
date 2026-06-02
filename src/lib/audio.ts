@@ -2,6 +2,7 @@ import { AudioPlayer, createAudioPlayer } from "expo-audio";
 import { GameSettings } from "@/lib/game-settings";
 
 let musicPlayer: AudioPlayer | null = null;
+let isMusicPlaying = false;
 
 const players: Record<string, AudioPlayer | null> = {
   correct: null,
@@ -9,10 +10,19 @@ const players: Record<string, AudioPlayer | null> = {
   reveal: null,
   hint: null,
   tap: null,
+
+  coin: null,
+  reward: null,
+  levelup: null,
+  lootbox: null,
 };
 
 function makePlayer(asset: any) {
   return createAudioPlayer(asset);
+}
+
+async function ensureAudioLoaded() {
+  await loadGameAudio();
 }
 
 export async function loadGameAudio() {
@@ -36,6 +46,22 @@ export async function loadGameAudio() {
     players.tap = makePlayer(
       require("../../assets/sounds/tap.mp3")
     );
+
+    players.coin = makePlayer(
+      require("../../assets/sounds/coin.mp3")
+    );
+
+    players.reward = makePlayer(
+      require("../../assets/sounds/reward.mp3")
+    );
+
+    players.levelup = makePlayer(
+      require("../../assets/sounds/levelup.mp3")
+    );
+
+    players.lootbox = makePlayer(
+      require("../../assets/sounds/lootbox.mp3")
+    );
   }
 
   if (!musicPlayer) {
@@ -49,15 +75,17 @@ export async function loadGameAudio() {
 
 export async function playSfx(
   name: keyof typeof players,
-  settings: GameSettings
+  settings?: GameSettings | null
 ) {
-  if (!settings.sfxEnabled) return;
+  await ensureAudioLoaded();
+
+  if (settings && !settings.sfxEnabled) return;
 
   const player = players[name];
 
   if (!player) return;
 
-  player.volume = settings.sfxVolume;
+  player.volume = settings?.sfxVolume ?? 1;
 
   player.seekTo(0);
 
@@ -67,12 +95,15 @@ export async function playSfx(
 export async function startMusic(
   settings: GameSettings
 ) {
+  await ensureAudioLoaded();
+
   if (!musicPlayer) return;
 
   musicPlayer.volume = settings.musicVolume;
 
-  if (settings.musicEnabled) {
+  if (settings.musicEnabled && !isMusicPlaying) {
     musicPlayer.play();
+    isMusicPlaying = true;
   }
 }
 
@@ -80,18 +111,25 @@ export async function stopMusic() {
   if (!musicPlayer) return;
 
   musicPlayer.pause();
+  isMusicPlaying = false;
 }
 
 export async function updateMusic(
   settings: GameSettings
 ) {
+  await ensureAudioLoaded();
+
   if (!musicPlayer) return;
 
   musicPlayer.volume = settings.musicVolume;
 
   if (settings.musicEnabled) {
-    musicPlayer.play();
+    if (!isMusicPlaying) {
+      musicPlayer.play();
+      isMusicPlaying = true;
+    }
   } else {
     musicPlayer.pause();
+    isMusicPlaying = false;
   }
 }

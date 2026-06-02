@@ -1,3 +1,6 @@
+import { AppBackground } from "@/components/AppBackground";
+import { ResourceSummary } from "@/components/ResourceSummary";
+import { ScreenHeader } from "@/components/ScreenHeader";
 import { AchievementCard } from "@/components/AchievementCard";
 import { avatarById } from "@/lib/avatars";
 import {
@@ -9,10 +12,11 @@ import {
   loadProgress,
   PlayerProgress,
 } from "@/lib/player-progress";
-import { xpProgress } from "@/lib/progression";
+import { xpProgress } from "@/lib/levels";
 import { router, useFocusEffect } from "expo-router";
 import { useCallback, useState } from "react";
 import {
+  Image,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -36,25 +40,32 @@ export default function StatsScreen() {
   const xp = xpProgress(progress.xp || 0);
 
   return (
-    <SafeAreaView style={styles.screen}>
+    <AppBackground>
       <ScrollView
         contentContainerStyle={styles.content}
         showsVerticalScrollIndicator={false}
       >
-        <Pressable onPress={() => router.back()} style={styles.backButton}>
-          <Text style={styles.backText}>‹ Back</Text>
-        </Pressable>
-
-        <Text style={styles.title}>Your Stats</Text>
-
-        <Text style={styles.subtitle}>
-          Track your cozy detective progress.
-        </Text>
+        <ScreenHeader
+          title="Stats"
+          subtitle="Your progress, achievements, and rewards."
+        />
+        <ResourceSummary progress={progress} compact />
 
         <View style={styles.heroCard}>
-          <Text style={styles.heroNumber}>{avatarById(progress.currentAvatarId).emoji} Level {xp.level}</Text>
-          <Text style={styles.heroLabel}>🪙 {progress.coins || 0} Coins</Text>
+          <View style={styles.heroHeader}>
+            <Image
+              source={avatarById(progress.currentAvatarId).image}
+              style={styles.heroAvatar}
+              resizeMode="contain"
+            />
 
+            <View style={styles.heroTextWrap}>
+              <Text style={styles.heroNumber}>Level {xp.level}</Text>
+              <Text style={styles.heroLabel}>
+                {progress.coins || 0} Coins
+              </Text>
+            </View>
+          </View>
           <View style={styles.xpTrack}>
             <View
               style={[
@@ -85,6 +96,9 @@ export default function StatsScreen() {
           <Stat label="Skill Points" value={progress.skillPoints || 0} />
           <Stat label="Titles" value={(progress.unlockedTitleIds || []).length} />
           <Stat label="Favorites" value={progress.favoritePuzzleIds?.length || 0} />
+          <Stat label="Energy" value={progress.energy || 0} />
+          <Stat label="Energy Spent" value={progress.totalEnergySpent || 0} />
+          <Stat label="Ad Refills" value={progress.totalEnergyFromAds || 0} />
         </View>
 
         <View style={styles.sectionHeader}>
@@ -103,7 +117,7 @@ export default function StatsScreen() {
           ))}
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </AppBackground>
   );
 }
 
@@ -135,13 +149,19 @@ const styles = StyleSheet.create({
   backText: {
     fontSize: 20,
     fontWeight: "900",
-    color: "#4B2E20",
+    color: "white",
+    textShadowColor: "rgba(0,0,0,0.35)",
+    textShadowOffset: { width: 0, height: 2 },
+    textShadowRadius: 4,
   },
 
   title: {
     fontSize: 38,
     fontWeight: "900",
-    color: "#4B2E20",
+    color: "white",
+    textShadowColor: "rgba(0,0,0,0.45)",
+    textShadowOffset: { width: 0, height: 3 },
+    textShadowRadius: 10,
   },
 
   subtitle: {
@@ -150,7 +170,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 22,
     fontWeight: "700",
-    color: "#7B5A43",
+    color: "rgba(255,255,255,0.92)",
   },
 
   heroCard: {
@@ -160,8 +180,23 @@ const styles = StyleSheet.create({
     marginBottom: 18,
   },
 
+  heroHeader: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 14,
+  },
+
+  heroAvatar: {
+    width: 76,
+    height: 76,
+  },
+
+  heroTextWrap: {
+    flex: 1,
+  },
+
   heroNumber: {
-    fontSize: 42,
+    fontSize: 36,
     fontWeight: "900",
     color: "white",
   },
@@ -191,7 +226,14 @@ const styles = StyleSheet.create({
   xpFill: {
     height: "100%",
     borderRadius: 999,
-    backgroundColor: "white",
+    backgroundColor: "rgba(255,255,255,0.95)",
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.75)",
+    shadowColor: "#000",
+    shadowOpacity: 0.14,
+    shadowRadius: 12,
+    shadowOffset: { width: 0, height: 6 },
+    elevation: 4,
   },
 
   grid: {

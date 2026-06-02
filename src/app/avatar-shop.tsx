@@ -1,3 +1,6 @@
+import { AppBackground } from "@/components/AppBackground";
+import { ResourceSummary } from "@/components/ResourceSummary";
+import { ScreenHeader } from "@/components/ScreenHeader";
 import {
   AVATARS,
   avatarById,
@@ -15,6 +18,7 @@ import { router, useFocusEffect } from "expo-router";
 import { useCallback, useState } from "react";
 import {
   Alert,
+  Image,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -26,6 +30,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 export default function AvatarShopScreen() {
   const [progress, setProgress] =
     useState<PlayerProgress>(DEFAULT_PROGRESS);
+  const [notice, setNotice] = useState<string | null>(null);
 
   async function refresh() {
     const loaded = await loadProgress();
@@ -48,6 +53,8 @@ export default function AvatarShopScreen() {
     if (unlocked) {
       const result = await selectAvatar(avatar.id);
       setProgress(result.progress);
+      setNotice(`${avatar.name} equipped!`);
+      setTimeout(() => setNotice(null), 1400);
       return;
     }
 
@@ -61,29 +68,30 @@ export default function AvatarShopScreen() {
     const selectResult = await selectAvatar(avatar.id);
     setProgress(selectResult.progress);
 
-    Alert.alert("Unlocked", result.message);
+    setNotice(result.message);
+    setTimeout(() => setNotice(null), 1400);
   }
 
   const currentAvatar = avatarById(progress.currentAvatarId);
 
   return (
-    <SafeAreaView style={styles.screen}>
+    <AppBackground>
       <ScrollView
         contentContainerStyle={styles.content}
         showsVerticalScrollIndicator={false}
       >
-        <Pressable onPress={() => router.back()} style={styles.backButton}>
-          <Text style={styles.backText}>‹ Back</Text>
-        </Pressable>
-
-        <Text style={styles.title}>Avatar Shop</Text>
-
-        <Text style={styles.subtitle}>
-          Spend coins to unlock cozy avatars.
-        </Text>
+        <ScreenHeader
+          title="Avatars"
+          subtitle="Collect and equip cozy profile art."
+        />
+        <ResourceSummary progress={progress} notice={notice} compact />
 
         <View style={styles.profileCard}>
-          <Text style={styles.currentEmoji}>{currentAvatar.emoji}</Text>
+          <Image
+            source={currentAvatar.image}
+            style={styles.currentAvatarImage}
+            resizeMode="contain"
+          />
 
           <View style={styles.profileText}>
             <Text style={styles.profileTitle}>{currentAvatar.name}</Text>
@@ -119,7 +127,11 @@ export default function AvatarShopScreen() {
                 ]}
                 onPress={() => handleAvatarPress(avatar.id)}
               >
-                <Text style={styles.avatarEmoji}>{avatar.emoji}</Text>
+                <Image
+                  source={avatar.image}
+                  style={styles.avatarImage}
+                  resizeMode="contain"
+                />
 
                 <Text style={styles.avatarName}>{avatar.name}</Text>
 
@@ -152,7 +164,7 @@ export default function AvatarShopScreen() {
           })}
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </AppBackground>
   );
 }
 
@@ -175,13 +187,19 @@ const styles = StyleSheet.create({
   backText: {
     fontSize: 20,
     fontWeight: "900",
-    color: "#4B2E20",
+    color: "white",
+    textShadowColor: "rgba(0,0,0,0.35)",
+    textShadowOffset: { width: 0, height: 2 },
+    textShadowRadius: 4,
   },
 
   title: {
     fontSize: 38,
     fontWeight: "900",
-    color: "#4B2E20",
+    color: "white",
+    textShadowColor: "rgba(0,0,0,0.45)",
+    textShadowOffset: { width: 0, height: 3 },
+    textShadowRadius: 10,
   },
 
   subtitle: {
@@ -190,7 +208,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 22,
     fontWeight: "700",
-    color: "#7B5A43",
+    color: "rgba(255,255,255,0.92)",
   },
 
   profileCard: {
@@ -203,8 +221,9 @@ const styles = StyleSheet.create({
     marginBottom: 18,
   },
 
-  currentEmoji: {
-    fontSize: 54,
+  currentAvatarImage: {
+    width: 72,
+    height: 72,
   },
 
   profileText: {
@@ -249,9 +268,10 @@ const styles = StyleSheet.create({
     opacity: 0.58,
   },
 
-  avatarEmoji: {
-    fontSize: 46,
-    textAlign: "center",
+  avatarImage: {
+    width: 92,
+    height: 92,
+    alignSelf: "center",
   },
 
   avatarName: {

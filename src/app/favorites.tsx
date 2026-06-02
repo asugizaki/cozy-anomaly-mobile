@@ -1,3 +1,4 @@
+import { AppBackground } from "@/components/AppBackground";
 import { PUZZLES } from "@/data/puzzles";
 import {
   DEFAULT_PROGRESS,
@@ -45,7 +46,7 @@ export default function FavoritesScreen() {
   }
 
   return (
-    <SafeAreaView style={styles.screen}>
+    <AppBackground>
       <ScrollView
         contentContainerStyle={styles.content}
         showsVerticalScrollIndicator={false}
@@ -96,7 +97,7 @@ export default function FavoritesScreen() {
           </View>
         )}
       </ScrollView>
-    </SafeAreaView>
+    </AppBackground>
   );
 }
 
@@ -119,13 +120,19 @@ const styles = StyleSheet.create({
   backText: {
     fontSize: 20,
     fontWeight: "900",
-    color: "#4B2E20",
+    color: "white",
+    textShadowColor: "rgba(0,0,0,0.35)",
+    textShadowOffset: { width: 0, height: 2 },
+    textShadowRadius: 4,
   },
 
   title: {
     fontSize: 38,
     fontWeight: "900",
-    color: "#4B2E20",
+    color: "white",
+    textShadowColor: "rgba(0,0,0,0.45)",
+    textShadowOffset: { width: 0, height: 3 },
+    textShadowRadius: 10,
   },
 
   subtitle: {

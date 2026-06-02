@@ -1,3 +1,5 @@
+import { AppBackground } from "@/components/AppBackground";
+import { ScreenHeader } from "@/components/ScreenHeader";
 import {
   DEFAULT_SETTINGS,
   GameSettings,
@@ -36,7 +38,7 @@ export default function SettingsScreen() {
   }
 
   return (
-    <SafeAreaView style={styles.screen}>
+    <AppBackground>
       <Text style={styles.title}>Settings</Text>
 
       <View style={styles.card}>
@@ -64,7 +66,7 @@ export default function SettingsScreen() {
           }
         />
       </View>
-    </SafeAreaView>
+    </AppBackground>
   );
 }
 

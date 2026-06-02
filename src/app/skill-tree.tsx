@@ -1,3 +1,6 @@
+import { AppBackground } from "@/components/AppBackground";
+import { ResourceSummary } from "@/components/ResourceSummary";
+import { ScreenHeader } from "@/components/ScreenHeader";
 import {
   canUnlockSkill,
   SkillNode,
@@ -24,6 +27,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 export default function SkillTreeScreen() {
   const [progress, setProgress] =
     useState<PlayerProgress>(DEFAULT_PROGRESS);
+  const [notice, setNotice] = useState<string | null>(null);
 
   async function refresh() {
     const loaded = await loadProgress();
@@ -43,26 +47,26 @@ export default function SkillTreeScreen() {
 
     if (!result.success) {
       Alert.alert("Skill Locked", result.message);
+      return;
     }
+
+    setNotice(result.message);
+    setTimeout(() => setNotice(null), 1400);
   }
 
   const unlocked = new Set(progress.unlockedSkillNodeIds || []);
 
   return (
-    <SafeAreaView style={styles.screen}>
+    <AppBackground>
       <ScrollView
         contentContainerStyle={styles.content}
         showsVerticalScrollIndicator={false}
       >
-        <Pressable onPress={() => router.back()} style={styles.backButton}>
-          <Text style={styles.backText}>‹ Back</Text>
-        </Pressable>
-
-        <Text style={styles.title}>Skill Tree</Text>
-
-        <Text style={styles.subtitle}>
-          Spend skill points earned from leveling up.
-        </Text>
+        <ScreenHeader
+          title="Skill Tree"
+          subtitle="Spend points on permanent bonuses."
+        />
+        <ResourceSummary progress={progress} notice={notice} compact />
 
         <View style={styles.pointsCard}>
           <Text style={styles.pointsNumber}>🌟 {progress.skillPoints || 0}</Text>
@@ -110,7 +114,7 @@ export default function SkillTreeScreen() {
           })}
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </AppBackground>
   );
 }
 
@@ -133,13 +137,19 @@ const styles = StyleSheet.create({
   backText: {
     fontSize: 20,
     fontWeight: "900",
-    color: "#4B2E20",
+    color: "white",
+    textShadowColor: "rgba(0,0,0,0.35)",
+    textShadowOffset: { width: 0, height: 2 },
+    textShadowRadius: 4,
   },
 
   title: {
     fontSize: 38,
     fontWeight: "900",
-    color: "#4B2E20",
+    color: "white",
+    textShadowColor: "rgba(0,0,0,0.45)",
+    textShadowOffset: { width: 0, height: 3 },
+    textShadowRadius: 10,
   },
 
   subtitle: {

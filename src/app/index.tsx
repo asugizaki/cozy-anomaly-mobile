@@ -5,16 +5,17 @@ import {
   collectionSummary,
 } from "@/lib/collections";
 import { getDailyPuzzleIndex } from "@/lib/daily-puzzle";
-import { loadProgress } from "@/lib/player-progress";
-import { xpProgress } from "@/lib/progression";
+import { loadProgressWithEnergy } from "@/lib/energy";
+import { xpProgress } from "@/lib/levels";
 import {
   nextCollectionPuzzleIndex,
   smartRandomPuzzleIndex,
 } from "@/lib/puzzle-library";
 import { titleById } from "@/lib/titles";
 import { Link, router, useFocusEffect } from "expo-router";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
+  Image,
   ImageBackground,
   Pressable,
   StyleSheet,
@@ -45,12 +46,12 @@ type FeaturedCollection = {
 export default function HomeScreen() {
   const [completedCount, setCompletedCount] = useState(0);
   const [currentStreak, setCurrentStreak] = useState(0);
-  const [favoriteCount, setFavoriteCount] = useState(0);
-  const [recentCount, setRecentCount] = useState(0);
+  const [energy, setEnergy] = useState(20);
+  const [maxEnergy, setMaxEnergy] = useState(20);
+  const [lootBoxes, setLootBoxes] = useState(0);
   const [randomIndex, setRandomIndex] = useState(0);
   const [level, setLevel] = useState(1);
   const [coins, setCoins] = useState(0);
-  const [lootBoxes, setLootBoxes] = useState(0);
   const [skillPoints, setSkillPoints] = useState(0);
   const [xpPercent, setXpPercent] = useState(0);
   const [currentAvatarId, setCurrentAvatarId] = useState("tanuki");
@@ -69,11 +70,12 @@ export default function HomeScreen() {
 
   useFocusEffect(
     useCallback(() => {
-      loadProgress().then((progress) => {
+      loadProgressWithEnergy().then((progress) => {
         setCompletedCount(progress.completedPuzzleIds.length);
         setCurrentStreak(progress.currentStreak || 0);
-        setFavoriteCount((progress.favoritePuzzleIds || []).length);
-        setRecentCount((progress.recentPlayedPuzzleIds || []).length);
+        setEnergy(progress.energy || 0);
+        setMaxEnergy(progress.maxEnergy || 20);
+        setLootBoxes(progress.lootBoxes || 0);
         setCoins(progress.coins || 0);
         setLootBoxes(progress.lootBoxes || 0);
         setSkillPoints(progress.skillPoints || 0);
@@ -180,6 +182,21 @@ export default function HomeScreen() {
             </Pressable>
           </Link>
 
+          <View style={styles.energyCard}>
+            <View>
+              <Text style={styles.energyTitle}>⚡ Energy</Text>
+              <Text style={styles.energySubtitle}>
+                {energy}/{maxEnergy} available
+              </Text>
+            </View>
+
+            <Link href="/energy-shop" asChild>
+              <Pressable style={styles.energyButton}>
+                <Text style={styles.energyButtonText}>Refill</Text>
+              </Pressable>
+            </Link>
+          </View>
+
           <View style={styles.statCardRow}>
             <View style={styles.statCard}>
               <Text style={styles.statNumber}>{completedCount}</Text>
@@ -192,8 +209,8 @@ export default function HomeScreen() {
             </View>
 
             <View style={styles.statCard}>
-              <Text style={styles.statNumber}>{favoriteCount}</Text>
-              <Text style={styles.statLabel}>Favorites</Text>
+              <Text style={styles.statNumber}>{energy}</Text>
+              <Text style={styles.statLabel}>Energy</Text>
             </View>
           </View>
 
@@ -284,47 +301,11 @@ export default function HomeScreen() {
               </Pressable>
             </Link>
 
-            <View style={styles.navGrid}>
-              <Link href="/collections" asChild>
-                <Pressable style={styles.navCard}>
-                  <Text style={styles.navCardText}>📚 Collections</Text>
-                </Pressable>
-              </Link>
-
-              <Link href="/lootboxes" asChild>
-                <Pressable style={styles.navCard}>
-                  <Text style={styles.navCardText}>🎁 Loot Boxes</Text>
-                </Pressable>
-              </Link>
-
-              <Link href="/skill-tree" asChild>
-                <Pressable style={styles.navCard}>
-                  <Text style={styles.navCardText}>🌳 Skill Tree</Text>
-                </Pressable>
-              </Link>
-
-              <Link href="/favorites" asChild>
-                <Pressable style={styles.navCard}>
-                  <Text style={styles.navCardText}>
-                    ⭐ Favorites {favoriteCount ? `(${favoriteCount})` : ""}
-                  </Text>
-                </Pressable>
-              </Link>
-
-              <Link href="/recent" asChild>
-                <Pressable style={styles.navCard}>
-                  <Text style={styles.navCardText}>
-                    🕘 Recent {recentCount ? `(${recentCount})` : ""}
-                  </Text>
-                </Pressable>
-              </Link>
-
-              <Link href="/stats" asChild>
-                <Pressable style={styles.navCard}>
-                  <Text style={styles.navCardText}>🏆 Stats</Text>
-                </Pressable>
-              </Link>
-            </View>
+            <Link href="/hub" asChild>
+              <Pressable style={styles.hubButton}>
+                <Text style={styles.hubButtonText}>✨ Progress Hub</Text>
+              </Pressable>
+            </Link>
           </View>
         </View>
       </SafeAreaView>
@@ -445,6 +426,43 @@ const styles = StyleSheet.create({
     height: "100%",
     borderRadius: 999,
     backgroundColor: "#FF5C8A",
+  },
+
+  energyCard: {
+    width: "100%",
+    marginTop: 12,
+    padding: 14,
+    borderRadius: 22,
+    backgroundColor: "rgba(255,255,255,0.92)",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+
+  energyTitle: {
+    fontSize: 17,
+    fontWeight: "900",
+    color: "#4B2E20",
+  },
+
+  energySubtitle: {
+    marginTop: 2,
+    fontSize: 13,
+    fontWeight: "800",
+    color: "#7B5A43",
+  },
+
+  energyButton: {
+    paddingHorizontal: 16,
+    paddingVertical: 9,
+    borderRadius: 999,
+    backgroundColor: "#FF5C8A",
+  },
+
+  energyButtonText: {
+    color: "white",
+    fontSize: 13,
+    fontWeight: "900",
   },
 
   statCardRow: {
@@ -584,6 +602,26 @@ const styles = StyleSheet.create({
   secondaryButtonText: {
     color: "#6A3F2B",
     fontSize: 16,
+    fontWeight: "900",
+  },
+
+  hubButton: {
+    backgroundColor: "rgba(255,255,255,0.94)",
+    paddingVertical: 16,
+    borderRadius: 999,
+    alignItems: "center",
+    borderWidth: 1,
+    borderColor: "rgba(255,255,255,0.75)",
+    shadowColor: "#000",
+    shadowOpacity: 0.18,
+    shadowRadius: 12,
+    shadowOffset: { width: 0, height: 6 },
+    elevation: 5,
+  },
+
+  hubButtonText: {
+    color: "#4B2E20",
+    fontSize: 17,
     fontWeight: "900",
   },
 
