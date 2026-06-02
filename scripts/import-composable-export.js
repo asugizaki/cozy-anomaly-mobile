@@ -46,6 +46,53 @@ function toRequirePath(relativePath) {
   return `../../assets/composable/${relativePath.replace(/\\/g, "/")}`;
 }
 
+function readPngSize(filePath) {
+  const buffer = fs.readFileSync(filePath);
+
+  if (
+    buffer.length >= 24 &&
+    buffer.toString("ascii", 1, 4) === "PNG"
+  ) {
+    return {
+      width: buffer.readUInt32BE(16),
+      height: buffer.readUInt32BE(20),
+    };
+  }
+
+  return null;
+}
+
+function normalizePuzzleRendering(puzzle, exportRoot) {
+  const normalPath = path.join(exportRoot, puzzle.normal_item || "");
+  const size = fs.existsSync(normalPath) ? readPngSize(normalPath) : null;
+
+  if (!size) {
+    return puzzle;
+  }
+
+  const objectSize =
+    Number(puzzle.object_size || puzzle.item_size || size.width) || size.width;
+
+  const itemWidth = objectSize;
+  const itemHeight = Math.round(objectSize * (size.height / size.width));
+
+  return {
+    ...puzzle,
+    item_size: objectSize,
+    object_size: objectSize,
+    rendering: {
+      ...(puzzle.rendering || {}),
+      anchor: puzzle.rendering?.anchor || "bottom_center",
+      foot_overlap: puzzle.rendering?.foot_overlap ?? 10,
+      source_width: size.width,
+      source_height: size.height,
+      item_width: itemWidth,
+      item_height: itemHeight,
+    },
+  };
+}
+
+
 rmrf(targetAssetDir);
 copyDir(absoluteSource, targetAssetDir);
 
@@ -53,7 +100,20 @@ const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
 
 const puzzles = manifest.puzzles.map((puzzlePath) => {
   const fullPath = path.join(absoluteSource, puzzlePath);
-  const puzzle = JSON.parse(fs.readFileSync(fullPath, "utf8"));
+  const rawPuzzle = JSON.parse(fs.readFileSync(fullPath, "utf8"));
+  const puzzle = normalizePuzzleRendering(rawPuzzle, absoluteSource);
+
+  for (const assetPath of [
+    puzzle.background,
+    puzzle.normal_item,
+    puzzle.anomaly_item,
+  ]) {
+    const fullAssetPath = path.join(absoluteSource, assetPath);
+
+    if (!fs.existsSync(fullAssetPath)) {
+      throw new Error(`Missing puzzle asset: ${fullAssetPath}`);
+    }
+  }
 
   return {
     puzzle,

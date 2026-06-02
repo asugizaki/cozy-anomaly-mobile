@@ -50,6 +50,30 @@ function imageDimensions(source: ImageSourcePropType) {
   };
 }
 
+function itemRenderSize(puzzle: ComposablePuzzle) {
+  const resolved = Image.resolveAssetSource(puzzle.normalItemSource);
+  const assetWidth = resolved?.width || puzzle.rendering.source_width || puzzle.rendering.item_width;
+  const assetHeight = resolved?.height || puzzle.rendering.source_height || puzzle.rendering.item_height;
+
+  // In the generator, object_size is the rendered item WIDTH.
+  // Some older exports accidentally treated object_size as height, which made
+  // wide assets huge on mobile. This normalizes the runtime to the actual PNG.
+  const targetWidth =
+    puzzle.object_size ||
+    puzzle.item_size ||
+    puzzle.rendering.source_width ||
+    puzzle.rendering.item_width ||
+    assetWidth ||
+    1;
+
+  const aspect = assetWidth > 0 ? assetHeight / assetWidth : 1;
+
+  return {
+    width: targetWidth,
+    height: Math.round(targetWidth * aspect),
+  };
+}
+
 function itemStyleForSlot(
   slot: PuzzleSlot,
   puzzle: ComposablePuzzle,
@@ -57,13 +81,8 @@ function itemStyleForSlot(
   offsetX: number,
   offsetY: number
 ) {
-  const sourceWidth = puzzle.rendering.item_width;
-  const sourceHeight = puzzle.rendering.item_height;
-  const aspect = sourceHeight > 0 ? sourceWidth / sourceHeight : 1;
-
-  const itemHeight = puzzle.item_size || sourceHeight;
-  const itemWidth = itemHeight * aspect;
-  const footOverlap = puzzle.rendering.foot_overlap;
+  const { width: itemWidth, height: itemHeight } = itemRenderSize(puzzle);
+  const footOverlap = puzzle.rendering.foot_overlap || 0;
 
   return {
     left: offsetX + (slot.x - itemWidth / 2) * scale,
@@ -156,6 +175,7 @@ export default function PlayScreen() {
   const [wrongMarkers, setWrongMarkers] = useState<WrongMarker[]>([]);
   const [wrongTapCountInPuzzle, setWrongTapCountInPuzzle] = useState(0);
   const [lastReward, setLastReward] = useState<PuzzleReward | null>(null);
+  const [dailyAlreadyCompleted, setDailyAlreadyCompleted] = useState(false);
 
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const consumedEnergyKeyRef = useRef<string | null>(null);
@@ -171,6 +191,10 @@ export default function PlayScreen() {
 
       setSettings(loadedSettings);
       setProgress(loadedProgress);
+      setDailyAlreadyCompleted(
+        params.mode === "daily" &&
+          (loadedProgress.completedDailyKeys || []).includes(dailyKey())
+      );
 
       await loadGameAudio();
       await startMusic(loadedSettings);
@@ -183,6 +207,14 @@ export default function PlayScreen() {
     if (!puzzle) return;
 
     async function consumeEnergyForPuzzle() {
+      if (
+        params.mode === "daily" &&
+        (progress?.completedDailyKeys || []).includes(dailyKey())
+      ) {
+        setDailyAlreadyCompleted(true);
+        return;
+      }
+
       const key = `${puzzle.id}:${puzzleIndex}`;
 
       if (consumedEnergyKeyRef.current === key) {
@@ -233,13 +265,17 @@ export default function PlayScreen() {
       setWrongTapCountInPuzzle(0);
       setLastReward(null);
 
-      const sources = [
-        puzzle.backgroundSource,
-        puzzle.normalItemSource,
-        puzzle.anomalyItemSource,
-      ]
-        .map((source) => Image.resolveAssetSource(source)?.uri)
-        .filter(Boolean) as string[];
+      const sources = Array.from(
+        new Set(
+          [
+            puzzle.backgroundSource,
+            puzzle.normalItemSource,
+            puzzle.anomalyItemSource,
+          ]
+            .map((source) => Image.resolveAssetSource(source)?.uri)
+            .filter(Boolean) as string[]
+        )
+      );
 
       await Promise.all(
         sources.map((uri) =>
@@ -307,6 +343,25 @@ export default function PlayScreen() {
   const showHintCircle = hintLevel >= MAX_HINT_LEVEL;
   const difficulty = difficultyMeta(puzzle.difficulty);
   const currentStreak = progress?.currentStreak || 0;
+
+  if (dailyAlreadyCompleted && isDailyMode) {
+    return (
+      <SafeAreaView style={styles.emptyState}>
+        <Text style={styles.title}>Daily Complete</Text>
+        <Text style={styles.subtitle}>
+          Come back tomorrow for a new daily challenge.
+        </Text>
+
+        <Pressable
+          style={[styles.primaryButton, styles.emptyStateButton]}
+          onPress={() => router.replace("/")}
+        >
+          <Text style={styles.primaryButtonText}>Back Home</Text>
+        </Pressable>
+      </SafeAreaView>
+    );
+  }
+
 
   async function saveProgressPatch(patch: Partial<PlayerProgress>) {
     if (!progress) return;
@@ -643,7 +698,7 @@ export default function PlayScreen() {
               return (
                 <Image
                   key={`${puzzle.id}-${index}`}
-                  source={
+                        source={
                     isTarget ? puzzle.anomalyItemSource : puzzle.normalItemSource
                   }
                   resizeMode="stretch"
@@ -681,7 +736,7 @@ export default function PlayScreen() {
         {(!assetsReady || !ready) && (
           <View style={styles.loadingOverlay}>
             <ActivityIndicator size="large" color="#ffffff" />
-          <Text style={styles.loadingText}>Preparing scene...</Text>
+            <Text style={styles.loadingText}>Preparing scene...</Text>
           </View>
         )}
       </ZoomablePuzzle>
@@ -1183,12 +1238,27 @@ const styles = StyleSheet.create({
     backgroundColor: "#120B07",
   },
 
+  loadingText: {
+    marginTop: 12,
+    fontSize: 15,
+    fontWeight: "900",
+    color: "white",
+    textShadowColor: "rgba(0,0,0,0.4)",
+    textShadowOffset: { width: 0, height: 2 },
+    textShadowRadius: 5,
+  },
+
   emptyState: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#F7EAD8",
     padding: 24,
+  },
+
+  emptyStateButton: {
+    marginTop: 22,
+    width: "100%",
   },
 
   title: {

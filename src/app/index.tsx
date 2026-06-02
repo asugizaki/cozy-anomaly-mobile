@@ -1,3 +1,4 @@
+import { NotificationBell } from "@/components/NotificationBell";
 import { PUZZLES } from "@/data/puzzles";
 import { avatarById } from "@/lib/avatars";
 import {
@@ -5,13 +6,14 @@ import {
   collectionSummary,
 } from "@/lib/collections";
 import { getDailyPuzzleIndex } from "@/lib/daily-puzzle";
-import { loadProgressWithEnergy } from "@/lib/energy";
+import { loadProgressWithEnergy, secondsUntilNextEnergy } from "@/lib/energy";
 import { xpProgress } from "@/lib/levels";
 import {
   nextCollectionPuzzleIndex,
   smartRandomPuzzleIndex,
 } from "@/lib/puzzle-library";
 import { titleById } from "@/lib/titles";
+import { PlayerProgress } from "@/lib/player-progress";
 import { Link, router, useFocusEffect } from "expo-router";
 import { useCallback, useEffect, useState } from "react";
 import {
@@ -33,6 +35,24 @@ type DifficultyIndexes = {
   hard: number;
 };
 
+
+function todayKey(date = new Date()) {
+  const year = date.getFullYear();
+  const month = `${date.getMonth() + 1}`.padStart(2, "0");
+  const day = `${date.getDate()}`.padStart(2, "0");
+
+  return `${year}-${month}-${day}`;
+}
+
+function formatEnergyTimer(seconds: number) {
+  if (seconds <= 0) return "Full";
+
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = seconds % 60;
+
+  return `${minutes}:${`${remainingSeconds}`.padStart(2, "0")}`;
+}
+
 type FeaturedCollection = {
   id: string;
   emoji: string;
@@ -44,10 +64,13 @@ type FeaturedCollection = {
 };
 
 export default function HomeScreen() {
+  const [homeProgress, setHomeProgress] = useState<PlayerProgress | null>(null);
   const [completedCount, setCompletedCount] = useState(0);
   const [currentStreak, setCurrentStreak] = useState(0);
   const [energy, setEnergy] = useState(20);
   const [maxEnergy, setMaxEnergy] = useState(20);
+  const [nextEnergySeconds, setNextEnergySeconds] = useState(0);
+  const [dailyCompleted, setDailyCompleted] = useState(false);
   const [lootBoxes, setLootBoxes] = useState(0);
   const [randomIndex, setRandomIndex] = useState(0);
   const [level, setLevel] = useState(1);
@@ -70,14 +93,22 @@ export default function HomeScreen() {
 
   useFocusEffect(
     useCallback(() => {
-      loadProgressWithEnergy().then((progress) => {
+      let mounted = true;
+
+      async function refreshHomeProgress() {
+        const progress = await loadProgressWithEnergy();
+
+        if (!mounted) return;
+
+        setHomeProgress(progress);
         setCompletedCount(progress.completedPuzzleIds.length);
         setCurrentStreak(progress.currentStreak || 0);
         setEnergy(progress.energy || 0);
         setMaxEnergy(progress.maxEnergy || 20);
+        setNextEnergySeconds(secondsUntilNextEnergy(progress));
+        setDailyCompleted((progress.completedDailyKeys || []).includes(todayKey()));
         setLootBoxes(progress.lootBoxes || 0);
         setCoins(progress.coins || 0);
-        setLootBoxes(progress.lootBoxes || 0);
         setSkillPoints(progress.skillPoints || 0);
         setCurrentAvatarId(progress.currentAvatarId || "tanuki");
         setEquippedTitleId(progress.equippedTitleId || "rookie_observer");
@@ -86,26 +117,23 @@ export default function HomeScreen() {
         setLevel(xp.level);
         setXpPercent(xp.progress);
 
-        const closest =
-          closestIncompleteCollection(progress) ||
-          collectionSummary(progress)[0];
-
-        setFeaturedCollection(closest || null);
-      });
-
-      smartRandomPuzzleIndex().then(setRandomIndex);
-
-      Promise.all([
-        smartRandomPuzzleIndex({ difficulty: "easy" }),
-        smartRandomPuzzleIndex({ difficulty: "medium" }),
-        smartRandomPuzzleIndex({ difficulty: "hard" }),
-      ]).then(([easy, medium, hard]) => {
+        setRandomIndex(await smartRandomPuzzleIndex());
         setDifficultyIndexes({
-          easy,
-          medium,
-          hard,
+          easy: await smartRandomPuzzleIndex("find_anomaly", "easy"),
+          medium: await smartRandomPuzzleIndex("find_anomaly", "medium"),
+          hard: await smartRandomPuzzleIndex("find_anomaly", "hard"),
         });
-      });
+
+        setFeaturedCollection(closestIncompleteCollection(progress));
+      }
+
+      refreshHomeProgress();
+      const timer = setInterval(refreshHomeProgress, 1000);
+
+      return () => {
+        mounted = false;
+        clearInterval(timer);
+      };
     }, [])
   );
 
@@ -144,11 +172,7 @@ export default function HomeScreen() {
             <Text style={styles.streakText}>🔥 {currentStreak}</Text>
           </View>
 
-          <Link href="/stats" asChild>
-            <Pressable style={styles.iconButton}>
-              <Text style={styles.iconText}>📊</Text>
-            </Pressable>
-          </Link>
+          <NotificationBell progress={homeProgress} />
         </View>
 
         <View style={styles.content}>
@@ -182,37 +206,44 @@ export default function HomeScreen() {
             </Pressable>
           </Link>
 
-          <View style={styles.energyCard}>
-            <View>
-              <Text style={styles.energyTitle}>⚡ Energy</Text>
-              <Text style={styles.energySubtitle}>
-                {energy}/{maxEnergy} available
-              </Text>
+          <View
+            style={[
+              styles.energyCard,
+              energy <= 0 && styles.energyCardEmpty,
+            ]}
+          >
+            <View style={styles.energyHeader}>
+              <Text style={styles.energyBigIcon}>⚡</Text>
+
+              <View style={styles.energyMainText}>
+                <Text style={styles.energyTitle}>
+                  {energy}/{maxEnergy}
+                </Text>
+                <Text style={styles.energySubtitle}>
+                  {energy <= 0
+                    ? "Out of energy. Refill to keep playing."
+                    : nextEnergySeconds > 0
+                      ? `Next energy in ${formatEnergyTimer(nextEnergySeconds)}`
+                      : "Energy is full"}
+                </Text>
+              </View>
             </View>
 
             <Link href="/energy-shop" asChild>
-              <Pressable style={styles.energyButton}>
-                <Text style={styles.energyButtonText}>Refill</Text>
+              <Pressable
+                style={[
+                  styles.energyButton,
+                  energy <= 0 && styles.energyButtonUrgent,
+                ]}
+              >
+                <Text style={styles.energyButtonText}>
+                  {energy <= 0 ? "Refill Now" : "Refill"}
+                </Text>
               </Pressable>
             </Link>
           </View>
 
-          <View style={styles.statCardRow}>
-            <View style={styles.statCard}>
-              <Text style={styles.statNumber}>{completedCount}</Text>
-              <Text style={styles.statLabel}>Solved</Text>
-            </View>
-
-            <View style={styles.statCard}>
-              <Text style={styles.statNumber}>{PUZZLES.length}</Text>
-              <Text style={styles.statLabel}>Puzzles</Text>
-            </View>
-
-            <View style={styles.statCard}>
-              <Text style={styles.statNumber}>{energy}</Text>
-              <Text style={styles.statLabel}>Energy</Text>
-            </View>
-          </View>
+          
 
           {featuredCollection && (
             <Pressable
@@ -290,16 +321,24 @@ export default function HomeScreen() {
               </Link>
             </View>
 
-            <Link
-              href={`/play?mode=daily&index=${dailyPuzzleIndex}`}
-              asChild
-            >
-              <Pressable style={styles.secondaryButton}>
+            {dailyCompleted ? (
+              <Pressable style={[styles.secondaryButton, styles.disabledButton]}>
                 <Text style={styles.secondaryButtonText}>
-                  ☀ Daily Challenge
+                  ✓ Daily Complete
                 </Text>
               </Pressable>
-            </Link>
+            ) : (
+              <Link
+                href={`/play?mode=daily&index=${dailyPuzzleIndex}`}
+                asChild
+              >
+                <Pressable style={styles.secondaryButton}>
+                  <Text style={styles.secondaryButtonText}>
+                    ☀ Daily Challenge
+                  </Text>
+                </Pressable>
+              </Link>
+            )}
 
             <Link href="/hub" asChild>
               <Pressable style={styles.hubButton}>
@@ -430,38 +469,67 @@ const styles = StyleSheet.create({
 
   energyCard: {
     width: "100%",
-    marginTop: 12,
-    padding: 14,
-    borderRadius: 22,
-    backgroundColor: "rgba(255,255,255,0.92)",
+    marginTop: 14,
+    padding: 18,
+    borderRadius: 30,
+    backgroundColor: "rgba(255,255,255,0.94)",
+    borderWidth: 2,
+    borderColor: "rgba(255,255,255,0.72)",
+    shadowColor: "#000",
+    shadowOpacity: 0.2,
+    shadowRadius: 16,
+    shadowOffset: { width: 0, height: 8 },
+    elevation: 7,
+  },
+
+  energyCardEmpty: {
+    backgroundColor: "rgba(255,235,238,0.97)",
+    borderColor: "#FF6B7A",
+  },
+
+  energyHeader: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
+    gap: 14,
+  },
+
+  energyBigIcon: {
+    fontSize: 42,
+  },
+
+  energyMainText: {
+    flex: 1,
   },
 
   energyTitle: {
-    fontSize: 17,
+    fontSize: 34,
     fontWeight: "900",
     color: "#4B2E20",
   },
 
   energySubtitle: {
     marginTop: 2,
-    fontSize: 13,
-    fontWeight: "800",
+    fontSize: 14,
+    lineHeight: 19,
+    fontWeight: "900",
     color: "#7B5A43",
   },
 
   energyButton: {
-    paddingHorizontal: 16,
-    paddingVertical: 9,
+    marginTop: 14,
+    paddingVertical: 13,
     borderRadius: 999,
     backgroundColor: "#FF5C8A",
+    alignItems: "center",
+  },
+
+  energyButtonUrgent: {
+    backgroundColor: "#EF4444",
   },
 
   energyButtonText: {
     color: "white",
-    fontSize: 13,
+    fontSize: 15,
     fontWeight: "900",
   },
 
@@ -597,6 +665,10 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     borderRadius: 999,
     alignItems: "center",
+  },
+
+  disabledButton: {
+    opacity: 0.55,
   },
 
   secondaryButtonText: {

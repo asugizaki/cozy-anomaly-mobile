@@ -1,19 +1,8 @@
-import { ComposablePuzzle } from "@/types/puzzle";
-import { PuzzleEngine, TapPoint } from "./types";
+import { isInsideTapBox } from "./hitbox";
+import { PuzzleEngine } from "./types";
 
 function cleanAnswer(answer: string) {
   return answer.replace(/\.$/, "");
-}
-
-function isInsideAnswerBox(point: TapPoint, puzzle: ComposablePuzzle) {
-  const box = puzzle.answer_box;
-
-  return (
-    point.x >= box.x1 &&
-    point.x <= box.x2 &&
-    point.y >= box.y1 &&
-    point.y <= box.y2
-  );
 }
 
 function articleFor(text: string) {
@@ -28,7 +17,7 @@ export const anomalyEngine: PuzzleEngine = {
   subtitle: "Tap the tiny difference.",
 
   checkTap(point, puzzle) {
-    return isInsideAnswerBox(point, puzzle);
+    return isInsideTapBox(point, puzzle);
   },
 
   genericHint(puzzle) {

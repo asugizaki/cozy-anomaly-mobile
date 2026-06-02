@@ -20,7 +20,8 @@ export type ComposablePuzzle = {
   difficulty: "easy" | "medium" | "hard";
   background: string;
   asset: string;
-  item_size: number;
+  item_size?: number;
+  object_size?: number;
   normal_item: string;
   normal_item_meta: string;
   anomaly: string;
