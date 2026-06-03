@@ -4,6 +4,7 @@ import { PUZZLES } from "@/data/puzzles";
 import { getPuzzleEngine } from "@/game-engines";
 import { loadGameAudio, playSfx, startMusic, updateMusic } from "@/lib/audio";
 import { puzzleCollectionId, puzzlesForCollection } from "@/lib/collections";
+import { chapterById, chapterSummary, nextChapterPuzzleIndex } from "@/lib/chapters";
 import { spendEnergy } from "@/lib/energy";
 import { loadSettings } from "@/lib/game-settings";
 import {

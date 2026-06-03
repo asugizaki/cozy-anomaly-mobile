@@ -1,6 +1,8 @@
 import { activeEventTasks } from "./events";
 import { dailyMissions } from "./missions";
 import { PlayerProgress } from "./player-progress";
+import { chapterSummaries } from "./chapters";
+import { readyRepairRewards } from "./restoration";
 import { canUnlockSkill, SKILL_NODES } from "./skill-tree";
 
 export type ClaimNotification = {
@@ -45,6 +47,25 @@ export function claimNotifications(progress?: PlayerProgress | null) {
       message: "Claim your completed event task rewards.",
       href: "/event",
       emoji: "🎉",
+    });
+  }
+
+  const repairRewards = chapterSummaries(progress).flatMap((chapter) =>
+    readyRepairRewards(chapter, progress).map((repair) => ({
+      chapter,
+      repair,
+    }))
+  );
+
+  if (repairRewards.length) {
+    notifications.push({
+      id: "chapter-repairs",
+      title: `${repairRewards.length} repair reward${
+        repairRewards.length === 1 ? "" : "s"
+      } ready`,
+      message: "Tanuki can restore part of a chapter now.",
+      href: `/chapter-detail?id=${repairRewards[0].chapter.id}`,
+      emoji: "🛠",
     });
   }
 

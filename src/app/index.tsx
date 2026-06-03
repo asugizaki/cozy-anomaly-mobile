@@ -176,7 +176,7 @@ export default function HomeScreen() {
         </View>
 
         <View style={styles.content}>
-          <Text style={styles.logo}>Cozy Anomaly</Text>
+          <Text style={styles.logo}>Hidden Tanuki</Text>
 
           <Text style={styles.subtitle}>
             Spot tiny differences in cozy scenes.
@@ -284,7 +284,7 @@ export default function HomeScreen() {
           )}
 
           <View style={styles.buttonGroup}>
-            <Link href={`/play?mode=random&index=${randomIndex}`} asChild>
+            <Link href="/chapters" asChild>
               <Pressable style={styles.primaryButton}>
                 <Text style={styles.primaryButtonText}>🎲 Play Random</Text>
               </Pressable>

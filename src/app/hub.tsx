@@ -25,6 +25,12 @@ type HubItem = {
 
 const ITEMS: HubItem[] = [
   {
+    href: "/chapters",
+    emoji: "🦝",
+    title: "Chapters",
+    subtitle: "Restore themed locations with Tanuki.",
+  },
+  {
     href: "/collections",
     emoji: "📚",
     title: "Collections",

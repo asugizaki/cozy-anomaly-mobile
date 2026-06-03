@@ -37,6 +37,7 @@ export type PlayerProgress = {
   equippedTitleId?: string;
 
   claimedCollectionRewardIds: string[];
+  claimedChapterRepairRewardIds: string[];
 
   energy: number;
   maxEnergy: number;
@@ -108,6 +109,7 @@ export const DEFAULT_PROGRESS: PlayerProgress = {
   equippedTitleId: "rookie_observer",
 
   claimedCollectionRewardIds: [],
+  claimedChapterRepairRewardIds: [],
 
   energy: STARTING_MAX_ENERGY,
   maxEnergy: STARTING_MAX_ENERGY,

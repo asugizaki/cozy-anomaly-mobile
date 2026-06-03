@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "cozy-anomaly-mobile",
-    "slug": "cozy-anomaly-mobile",
+    "name": "Hidden Tanuki",
+    "slug": "hidden-tanuki",
     "version": "1.0.0",
     "orientation": "portrait",
-    "scheme": "cozyanomalymobile",
+    "scheme": "hiddentanuki",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
