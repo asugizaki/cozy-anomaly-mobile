@@ -1,4 +1,9 @@
 import { loadProgress, PlayerProgress, saveProgress } from "./player-progress";
+import {
+  buyEnergyPackServerCall,
+  spendEnergyServerCall,
+  watchAdForEnergyServerCall,
+} from "./server-economy";
 
 export const ENERGY_RECHARGE_MINUTES = 12;
 export const ENERGY_PER_PLAY = 1;
@@ -75,6 +80,21 @@ export async function loadProgressWithEnergy() {
 export async function spendEnergy(amount = ENERGY_PER_PLAY) {
   const progress = await loadProgressWithEnergy();
 
+  try {
+    const serverResult = await spendEnergyServerCall(progress, amount);
+
+    if (serverResult) {
+      return serverResult;
+    }
+  } catch (error) {
+    return {
+      success: false,
+      progress,
+      message:
+        error instanceof Error ? error.message : "Could not spend energy.",
+    };
+  }
+
   if ((progress.energy || 0) < amount) {
     return {
       success: false,
@@ -103,6 +123,24 @@ export async function spendEnergy(amount = ENERGY_PER_PLAY) {
 
 export async function watchAdForEnergy() {
   const progress = await loadProgressWithEnergy();
+
+  try {
+    const serverResult = await watchAdForEnergyServerCall(progress);
+
+    if (serverResult) {
+      return serverResult;
+    }
+  } catch (error) {
+    return {
+      success: false,
+      progress,
+      message:
+        error instanceof Error
+          ? error.message
+          : "Could not refill energy.",
+    };
+  }
+
   const today = todayKey();
 
   const viewsToday =
@@ -147,6 +185,27 @@ export async function watchAdForEnergy() {
 
 export async function buyEnergyPack(amount: number, cost: number) {
   const progress = await loadProgressWithEnergy();
+
+  try {
+    const serverResult = await buyEnergyPackServerCall(
+      progress,
+      amount,
+      cost
+    );
+
+    if (serverResult) {
+      return serverResult;
+    }
+  } catch (error) {
+    return {
+      success: false,
+      progress,
+      message:
+        error instanceof Error
+          ? error.message
+          : "Could not buy energy pack.",
+    };
+  }
 
   if ((progress.coins || 0) < cost) {
     return {

@@ -3,6 +3,7 @@ import { ResourceSummary } from "@/components/ResourceSummary";
 import { ScreenHeader } from "@/components/ScreenHeader";
 import { loadGameAudio, playSfx } from "@/lib/audio";
 import { loadProgressWithEnergy } from "@/lib/energy";
+import { claimDailyMissionRewardServer } from "@/lib/server-economy";
 import {
   claimDailyMission,
   dailyMissions,
@@ -51,6 +52,27 @@ export default function MissionsScreen() {
   );
 
   async function claim(missionId: string) {
+    try {
+      const serverResult = await claimDailyMissionRewardServer(
+        missionId,
+        progress
+      );
+
+      if (serverResult) {
+        setProgress(serverResult.progress);
+        setNotice("Mission reward claimed!");
+        setTimeout(() => setNotice(null), 1400);
+        playSfx("reward");
+        return;
+      }
+    } catch (error) {
+      Alert.alert(
+        "Server claim failed",
+        error instanceof Error ? error.message : "Could not claim reward."
+      );
+      return;
+    }
+
     const result = await claimDailyMission(missionId);
 
     setProgress(result.progress);

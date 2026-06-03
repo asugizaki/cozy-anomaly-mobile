@@ -13,6 +13,7 @@ import {
 } from "@/lib/player-progress";
 import { safePuzzleIndex, smartRandomPuzzleIndex } from "@/lib/puzzle-library";
 import { calculatePuzzleReward, PuzzleReward } from "@/lib/progression";
+import { completePuzzleServerReward } from "@/lib/server-economy";
 import { ComposablePuzzle, PuzzleSlot } from "@/types/puzzle";
 import * as Haptics from "expo-haptics";
 import { router, useLocalSearchParams } from "expo-router";
@@ -405,16 +406,6 @@ export default function PlayScreen() {
       isCollectionCompleteNow &&
       !(progress.claimedCollectionRewardIds || []).includes(collectionRewardId);
 
-    const recentPuzzleIndexes = [
-      ...(progress.recentPuzzleIndexes || []),
-      puzzleIndex,
-    ].slice(-RECENT_HISTORY_LIMIT);
-
-    const recentPlayedPuzzleIds = [
-      puzzle.id,
-      ...(progress.recentPlayedPuzzleIds || []).filter((id) => id !== puzzle.id),
-    ].slice(0, RECENT_HISTORY_LIMIT);
-
     const nextStreak = wasFailed ? 0 : progress.currentStreak + 1;
     const isPerfect =
       !wasFailed &&
@@ -427,6 +418,61 @@ export default function PlayScreen() {
     const hasCompletedDailyToday = completedDailyKeys.includes(todayKey);
     const shouldCountDaily =
       isDailyMode && !wasFailed && !hasCompletedDailyToday;
+
+    if (!wasFailed) {
+      try {
+        const serverResult = await completePuzzleServerReward({
+          progress,
+          puzzle: {
+            id: puzzle.id,
+            difficulty: puzzle.difficulty,
+            collection: collectionId,
+          },
+          puzzleIndex,
+          wasFailed,
+          alreadyCompleted,
+          isPerfect,
+          usedNoHints: hintLevel === 0,
+          isDailyMode,
+          completedCollection: shouldGrantCollectionReward,
+          collectionRewardId,
+          dailyKey: todayKey,
+        });
+
+        if (serverResult) {
+          setLastReward(serverResult.reward);
+          setProgress(serverResult.progress);
+
+          if (serverResult.reward.leveledUp) {
+            playSfx("levelup", settings);
+          } else if (serverResult.reward.coins > 0) {
+            playSfx("coin", settings);
+          } else if (serverResult.reward.xp > 0) {
+            playSfx("reward", settings);
+          }
+
+          return;
+        }
+      } catch (error) {
+        Alert.alert(
+          "Reward claim failed",
+          error instanceof Error
+            ? error.message
+            : "Could not claim puzzle reward from server."
+        );
+        return;
+      }
+    }
+
+    const recentPuzzleIndexes = [
+      ...(progress.recentPuzzleIndexes || []),
+      puzzleIndex,
+    ].slice(-RECENT_HISTORY_LIMIT);
+
+    const recentPlayedPuzzleIds = [
+      puzzle.id,
+      ...(progress.recentPlayedPuzzleIds || []).filter((id) => id !== puzzle.id),
+    ].slice(0, RECENT_HISTORY_LIMIT);
 
     const willCompletePuzzle = !alreadyCompleted && !wasFailed;
     const reward = calculatePuzzleReward({

@@ -9,7 +9,11 @@
     "import:puzzle-folder": "node scripts/import-composable-folder.js",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "functions:install": "cd functions && npm install",
+    "functions:build": "cd functions && npm run build",
+    "functions:deploy": "firebase deploy --only functions,firestore:rules,firestore:indexes",
+    "emulators": "firebase emulators:start --only auth,firestore,functions"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "2.2.0",

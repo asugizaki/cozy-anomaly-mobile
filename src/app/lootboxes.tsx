@@ -1,6 +1,7 @@
 import { AppBackground } from "@/components/AppBackground";
 import { ResourceSummary } from "@/components/ResourceSummary";
 import { ScreenHeader } from "@/components/ScreenHeader";
+import { openLootBoxServer } from "@/lib/server-economy";
 import {
   buyLootBox,
   lootBoxPrice,
@@ -71,6 +72,36 @@ export default function LootBoxesScreen() {
   }
 
   async function handleOpen() {
+    try {
+      const serverResult = await openLootBoxServer(progress);
+
+      if (serverResult) {
+        setProgress(serverResult.progress);
+
+        playSfx("lootbox");
+
+        setLastOpen({
+          rarity: serverResult.rarity,
+          reward: serverResult.reward,
+        });
+
+        setNotice("Crate opened!");
+        setTimeout(() => setNotice(null), 1400);
+
+        setTimeout(() => {
+          playSfx("reward");
+        }, 450);
+
+        return;
+      }
+    } catch (error) {
+      Alert.alert(
+        "Server crate failed",
+        error instanceof Error ? error.message : "Could not open crate."
+      );
+      return;
+    }
+
     const result = await openLootBox();
 
     setProgress(result.progress);

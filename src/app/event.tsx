@@ -3,6 +3,7 @@ import { ResourceSummary } from "@/components/ResourceSummary";
 import { ScreenHeader } from "@/components/ScreenHeader";
 import { loadGameAudio, playSfx } from "@/lib/audio";
 import { loadProgressWithEnergy } from "@/lib/energy";
+import { claimEventTaskRewardServer } from "@/lib/server-economy";
 import {
   ACTIVE_EVENT,
   activeEventTasks,
@@ -52,6 +53,28 @@ export default function EventScreen() {
   );
 
   async function claim(taskId: string) {
+    try {
+      const serverResult = await claimEventTaskRewardServer(
+        ACTIVE_EVENT.id,
+        taskId,
+        progress
+      );
+
+      if (serverResult) {
+        setProgress(serverResult.progress);
+        setNotice("Event reward claimed!");
+        setTimeout(() => setNotice(null), 1400);
+        playSfx("reward");
+        return;
+      }
+    } catch (error) {
+      Alert.alert(
+        "Server claim failed",
+        error instanceof Error ? error.message : "Could not claim event reward."
+      );
+      return;
+    }
+
     const result = await claimEventTask(taskId);
 
     setProgress(result.progress);
