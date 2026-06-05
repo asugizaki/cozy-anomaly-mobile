@@ -1,0 +1,37 @@
+{
+  "exported_at": "2026-06-04T16:29:33.266722",
+  "schema": "centralized_assets_v1",
+  "asset_root": "central_assets",
+  "scene": "teahouse",
+  "profile": "mobile",
+  "difficulty": "medium",
+  "asset": "ramen",
+  "object_size": 350,
+  "puzzle_count": 10,
+  "puzzles": [
+    "puzzles/cozy_puzzle_001.json",
+    "puzzles/cozy_puzzle_002.json",
+    "puzzles/cozy_puzzle_003.json",
+    "puzzles/cozy_puzzle_004.json",
+    "puzzles/cozy_puzzle_005.json",
+    "puzzles/cozy_puzzle_006.json",
+    "puzzles/cozy_puzzle_007.json",
+    "puzzles/cozy_puzzle_008.json",
+    "puzzles/cozy_puzzle_009.json",
+    "puzzles/cozy_puzzle_010.json"
+  ],
+  "assets": [
+    "central_assets/items/ramen/350/missing_egg_yolk.json",
+    "central_assets/items/ramen/350/missing_egg_yolk.png",
+    "central_assets/items/ramen/350/missing_green_onion.json",
+    "central_assets/items/ramen/350/missing_green_onion.png",
+    "central_assets/items/ramen/350/missing_naruto_swirls.json",
+    "central_assets/items/ramen/350/missing_naruto_swirls.png",
+    "central_assets/items/ramen/350/missing_ramen_characters.json",
+    "central_assets/items/ramen/350/missing_ramen_characters.png",
+    "central_assets/items/ramen/350/normal.json",
+    "central_assets/items/ramen/350/normal.png",
+    "central_assets/scenes/teahouse/mobile.png"
+  ],
+  "warnings": []
+}

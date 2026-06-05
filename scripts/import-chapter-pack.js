@@ -364,6 +364,94 @@ export const GENERATED_CHAPTERS: ChapterDefinition[] = ${JSON.stringify(chapters
   fs.writeFileSync(outputFile, ts);
 }
 
+
+function normalizeBonusManifest(sceneId, destDir) {
+  const manifestPath = path.join(destDir, "manifest.json");
+  const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
+
+  if (manifest.background) {
+    manifest.background = `assets/bonus-tanuki/${sceneId}/${path.basename(manifest.background)}`;
+  }
+
+  fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2) + "\n");
+  return manifest;
+}
+
+function regenerateGeneratedBonusTanukiScenes() {
+  const outputFile = path.join(repoRoot, "src", "data", "generatedBonusTanukiScenes.ts");
+  const bonusRoot = path.join(repoRoot, "assets", "bonus-tanuki");
+
+  const sceneDirs = fs.existsSync(bonusRoot)
+    ? fs.readdirSync(bonusRoot).filter((entry) =>
+        fs.existsSync(path.join(bonusRoot, entry, "manifest.json"))
+      )
+    : [];
+
+  const entries = sceneDirs.map((id) => {
+    const data = JSON.parse(fs.readFileSync(path.join(bonusRoot, id, "manifest.json"), "utf8"));
+    const backgroundRequire = data.background
+      ? `require(${JSON.stringify(relativeRequire(outputFile, data.background))})`
+      : "undefined";
+
+    return `  {
+    ...${JSON.stringify(data, null, 4).replace(/\n/g, "\n    ")},
+    backgroundSource: ${backgroundRequire},
+  }`;
+  });
+
+  const ts = `import { ImageSourcePropType } from "react-native";
+
+export type BonusTanukiRewardConfig = {
+  xp: number;
+  coins: number;
+  energy: number;
+  lootBoxChance: number;
+  rareAvatarChance: number;
+};
+
+export type BonusTanukiScene = {
+  id: string;
+  title: string;
+  chapter_id?: string;
+  background: string;
+  backgroundSource: ImageSourcePropType;
+  canvas?: {
+    width: number;
+    height: number;
+  };
+  target: {
+    x: number;
+    y: number;
+    radius: number;
+  };
+  attempts: number;
+  reward: BonusTanukiRewardConfig;
+};
+
+export const BONUS_TANUKI_SCENES: BonusTanukiScene[] = [
+${entries.join(",\n")}
+];
+
+export function bonusTanukiScenesForChapter(chapterId?: string) {
+  const matches = BONUS_TANUKI_SCENES.filter(
+    (scene) => !chapterId || scene.chapter_id === chapterId
+  );
+
+  return matches.length ? matches : BONUS_TANUKI_SCENES;
+}
+
+export function randomBonusTanukiScene(chapterId?: string) {
+  const scenes = bonusTanukiScenesForChapter(chapterId);
+
+  if (!scenes.length) return undefined;
+
+  return scenes[Math.floor(Math.random() * scenes.length)];
+}
+`;
+
+  fs.writeFileSync(outputFile, ts);
+}
+
 const chapterJsonPath = findChapterJson(inputPath);
 const packRoot = path.dirname(chapterJsonPath);
 const chapterPack = JSON.parse(fs.readFileSync(chapterJsonPath, "utf8"));
@@ -383,8 +471,30 @@ removeDirIfExists(restorationDest);
 copyDir(restorationSource, restorationDest);
 normalizeRestorationManifest(chapterId, restorationDest);
 
+for (const bonusRelPath of chapterPack.bonus_tanuki?.paths || []) {
+  const bonusSource = path.join(installedRoot, bonusRelPath);
+  const bonusManifestPath = path.join(bonusSource, "manifest.json");
+
+  if (!fs.existsSync(bonusManifestPath)) {
+    throw new Error(`Bonus Tanuki scene missing manifest.json: ${bonusSource}`);
+  }
+
+  const bonusManifest = JSON.parse(fs.readFileSync(bonusManifestPath, "utf8"));
+  const sceneId = bonusManifest.id;
+
+  if (!sceneId) {
+    throw new Error(`Bonus Tanuki scene missing id: ${bonusSource}`);
+  }
+
+  const bonusDest = path.join(repoRoot, "assets", "bonus-tanuki", sceneId);
+  removeDirIfExists(bonusDest);
+  copyDir(bonusSource, bonusDest);
+  normalizeBonusManifest(sceneId, bonusDest);
+}
+
 regenerateGeneratedChapters();
 regenerateGeneratedRestorations();
+regenerateGeneratedBonusTanukiScenes();
 const puzzleCount = regenerateGeneratedPuzzles();
 
 console.log(`Imported chapter pack: ${chapterId}`);
@@ -392,4 +502,5 @@ console.log(`Installed to: ${path.relative(repoRoot, installedRoot)}`);
 console.log(`Generated puzzles total: ${puzzleCount}`);
 console.log("Generated src/data/generatedChapters.ts");
 console.log("Generated src/data/generatedRestorations.ts");
+console.log("Generated src/data/generatedBonusTanukiScenes.ts");
 console.log("Generated src/data/generatedPuzzles.ts");

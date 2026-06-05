@@ -1,0 +1,15 @@
+{
+  "asset": "shiba_inu",
+  "variant": "missing_dot_on_headband",
+  "size": 350,
+  "width": 350,
+  "height": 191,
+  "anchor": "bottom_center",
+  "answer": "One shiba_inu is missing a dot on headband.",
+  "local_box": [
+    171,
+    42,
+    179,
+    49
+  ]
+}

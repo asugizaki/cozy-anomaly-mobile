@@ -1,0 +1,15 @@
+{
+  "asset": "daruma",
+  "variant": "missing_left_world",
+  "size": 350,
+  "width": 350,
+  "height": 191,
+  "anchor": "bottom_center",
+  "answer": "One daruma is missing a left world.",
+  "local_box": [
+    108,
+    71,
+    119,
+    85
+  ]
+}

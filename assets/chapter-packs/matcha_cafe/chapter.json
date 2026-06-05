@@ -1,0 +1,125 @@
+{
+  "schema": "hidden_tanuki_chapter_pack_v1",
+  "exported_at": "2026-06-04T22:34:52.800799",
+  "chapter": {
+    "id": "matcha_cafe",
+    "title": "Matcha Cafe",
+    "subtitle": "Restore a quiet tea cafe with Tanuki",
+    "theme": "Matcha",
+    "emoji": "\ud83e\udd9d",
+    "collectionIds": [
+      "matcha_cafe"
+    ],
+    "targetPuzzleCount": 80,
+    "intro": "This old Matcha Cafe needs help. Let's restore it together!",
+    "completionText": "The Matcha Cafe is cozy again! Amazing work!",
+    "sortOrder": 1,
+    "unlockAfterChapterId": ""
+  },
+  "restoration": {
+    "chapter_id": "matcha_cafe",
+    "path": "restoration",
+    "manifest": "restoration/manifest.json"
+  },
+  "puzzles": {
+    "paths": [
+      "puzzles/cozy_puzzle_163114",
+      "puzzles/cozy_puzzle_163105",
+      "puzzles/cozy_puzzle_163053",
+      "puzzles/cozy_puzzle_163046",
+      "puzzles/cozy_puzzle_163022",
+      "puzzles/cozy_puzzle_163005",
+      "puzzles/cozy_puzzle_162942",
+      "puzzles/cozy_puzzle_162933",
+      "puzzles/cozy_puzzle_162924",
+      "puzzles/cozy_puzzle_162908"
+    ],
+    "count": 100,
+    "packs": [
+      {
+        "folder": "cozy_puzzle_163114",
+        "scene": "teahouse",
+        "asset": "shiba_inu",
+        "difficulty": "easy",
+        "puzzle_count": 10
+      },
+      {
+        "folder": "cozy_puzzle_163105",
+        "scene": "teahouse",
+        "asset": "ramen",
+        "difficulty": "easy",
+        "puzzle_count": 10
+      },
+      {
+        "folder": "cozy_puzzle_163053",
+        "scene": "teahouse",
+        "asset": "kokeshi",
+        "difficulty": "easy",
+        "puzzle_count": 10
+      },
+      {
+        "folder": "cozy_puzzle_163046",
+        "scene": "teahouse",
+        "asset": "daruma",
+        "difficulty": "easy",
+        "puzzle_count": 10
+      },
+      {
+        "folder": "cozy_puzzle_163022",
+        "scene": "teahouse",
+        "asset": "tanuki",
+        "difficulty": "easy",
+        "puzzle_count": 10
+      },
+      {
+        "folder": "cozy_puzzle_163005",
+        "scene": "teahouse",
+        "asset": "tanuki",
+        "difficulty": "medium",
+        "puzzle_count": 10
+      },
+      {
+        "folder": "cozy_puzzle_162942",
+        "scene": "teahouse",
+        "asset": "shiba_inu",
+        "difficulty": "medium",
+        "puzzle_count": 10
+      },
+      {
+        "folder": "cozy_puzzle_162933",
+        "scene": "teahouse",
+        "asset": "ramen",
+        "difficulty": "medium",
+        "puzzle_count": 10
+      },
+      {
+        "folder": "cozy_puzzle_162924",
+        "scene": "teahouse",
+        "asset": "kokeshi",
+        "difficulty": "medium",
+        "puzzle_count": 10
+      },
+      {
+        "folder": "cozy_puzzle_162908",
+        "scene": "teahouse",
+        "asset": "daruma",
+        "difficulty": "medium",
+        "puzzle_count": 10
+      }
+    ]
+  },
+  "bonus_tanuki": {
+    "paths": [
+      "bonus_tanuki/matcha_cafe_bonus_01",
+      "bonus_tanuki/matcha_cafe_bonus_02",
+      "bonus_tanuki/matcha_cafe_bonus_03",
+      "bonus_tanuki/matcha_cafe_bonus_04"
+    ],
+    "count": 4
+  },
+  "exhaustion": {
+    "warnRemaining": 20,
+    "criticalRemaining": 10,
+    "minimumAvailablePuzzles": 80
+  }
+}

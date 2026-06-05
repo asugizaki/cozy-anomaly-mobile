@@ -1,0 +1,138 @@
+{
+  "id": "cozy_puzzle_003",
+  "version": 2,
+  "asset_schema": "centralized_v1",
+  "scene": "teahouse",
+  "profile": "mobile",
+  "difficulty": "medium",
+  "asset": "tanuki",
+  "anomaly": "missing_right_ear",
+  "answer": "One tanuki is missing a right ear.",
+  "background_ref": "scenes/teahouse/mobile.png",
+  "normal_item_ref": "items/tanuki/150/normal.png",
+  "normal_item_meta_ref": "items/tanuki/150/normal.json",
+  "anomaly_item_ref": "items/tanuki/150/missing_right_ear.png",
+  "anomaly_item_meta_ref": "items/tanuki/150/missing_right_ear.json",
+  "background": "scenes/teahouse/mobile.png",
+  "normal_item": "items/tanuki/150/normal.png",
+  "normal_item_meta": "items/tanuki/150/normal.json",
+  "anomaly_item": "items/tanuki/150/missing_right_ear.png",
+  "anomaly_item_meta": "items/tanuki/150/missing_right_ear.json",
+  "answer_box": {
+    "x1": 502,
+    "y1": 630,
+    "x2": 614,
+    "y2": 742
+  },
+  "answer_visual_box": {
+    "x1": 551,
+    "y1": 677,
+    "x2": 565,
+    "y2": 694
+  },
+  "target_slot_index": 6,
+  "slots": [
+    {
+      "surface_y": 606,
+      "x": 121
+    },
+    {
+      "surface_y": 606,
+      "x": 320
+    },
+    {
+      "surface_y": 606,
+      "x": 520
+    },
+    {
+      "surface_y": 606,
+      "x": 719
+    },
+    {
+      "surface_y": 808,
+      "x": 122
+    },
+    {
+      "surface_y": 808,
+      "x": 321
+    },
+    {
+      "surface_y": 808,
+      "x": 521
+    },
+    {
+      "surface_y": 808,
+      "x": 720
+    },
+    {
+      "surface_y": 1009,
+      "x": 123
+    },
+    {
+      "surface_y": 1009,
+      "x": 322
+    },
+    {
+      "surface_y": 1009,
+      "x": 522
+    },
+    {
+      "surface_y": 1009,
+      "x": 721
+    },
+    {
+      "surface_y": 1216,
+      "x": 125
+    },
+    {
+      "surface_y": 1216,
+      "x": 324
+    },
+    {
+      "surface_y": 1216,
+      "x": 524
+    },
+    {
+      "surface_y": 1216,
+      "x": 723
+    },
+    {
+      "surface_y": 1418,
+      "x": 126
+    },
+    {
+      "surface_y": 1418,
+      "x": 325
+    },
+    {
+      "surface_y": 1418,
+      "x": 525
+    },
+    {
+      "surface_y": 1418,
+      "x": 724
+    }
+  ],
+  "object_size": 150,
+  "item_size": 150,
+  "rendering": {
+    "anchor": "bottom_center",
+    "foot_overlap": 10,
+    "source_width": 150,
+    "source_height": 179,
+    "item_width": 150,
+    "item_height": 179
+  },
+  "game_type": "find_anomaly",
+  "category": "cozy_cafe",
+  "collection": "cozy_cafe",
+  "tags": [
+    "medium",
+    "tanuki",
+    "teahouse"
+  ],
+  "difficulty_rating": 2,
+  "hint_type": "difference",
+  "hint_target": "",
+  "exported_at": "2026-06-04T16:30:05.867299"
+}

@@ -1,0 +1,15 @@
+{
+  "asset": "ramen",
+  "variant": "missing_naruto_swirls",
+  "size": 350,
+  "width": 350,
+  "height": 191,
+  "anchor": "bottom_center",
+  "answer": "One ramen is missing a naruto swirls.",
+  "local_box": [
+    134,
+    66,
+    158,
+    85
+  ]
+}

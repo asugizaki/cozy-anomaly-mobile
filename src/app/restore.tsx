@@ -139,10 +139,19 @@ export default function RestoreScreen() {
   }
 
   function continuePlaying() {
-    const nextChapter = currentChapter(progress);
+    const repairedCount = repair?.completedAt || 0;
+    const finalRepairAt = Math.max(
+      ...chapter.repairs.map((item) => item.completedAt),
+      chapter.targetPuzzleCount
+    );
+
+    const next =
+      restored && repairedCount >= finalRepairAt
+        ? "chapter-complete"
+        : "play";
 
     router.replace(
-      `/play?mode=chapter&chapter=${nextChapter.id}`
+      `/bonus-tanuki?chapter=${chapter.id}&next=${next}`
     );
   }
 

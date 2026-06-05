@@ -1,34 +1,34 @@
 import { NotificationBell } from "@/components/NotificationBell";
-import { PUZZLES } from "@/data/puzzles";
 import { avatarById } from "@/lib/avatars";
+import { currentChapter, nextChapterPuzzleIndex } from "@/lib/chapters";
 import {
-  closestIncompleteCollection,
-  collectionSummary,
+  closestIncompleteCollection
 } from "@/lib/collections";
 import { getDailyPuzzleIndex } from "@/lib/daily-puzzle";
 import { loadProgressWithEnergy, secondsUntilNextEnergy } from "@/lib/energy";
 import { xpProgress } from "@/lib/levels";
-import {
-  nextCollectionPuzzleIndex,
-  smartRandomPuzzleIndex,
-} from "@/lib/puzzle-library";
-import { currentChapter, nextChapterPuzzleIndex } from "@/lib/chapters";
-import { titleById } from "@/lib/titles";
 import { PlayerProgress } from "@/lib/player-progress";
-import { Link, router, useFocusEffect } from "expo-router";
-import { useCallback, useEffect, useState } from "react";
 import {
-  Image,
+  nextCollectionPuzzleIndex
+} from "@/lib/puzzle-library";
+import { titleById } from "@/lib/titles";
+import { Link, router, useFocusEffect } from "expo-router";
+import { useCallback, useState } from "react";
+import {
   ImageBackground,
   Pressable,
   StyleSheet,
   Text,
-  View,
+  View
 } from "react-native";
 import {
   SafeAreaView,
   useSafeAreaInsets,
 } from "react-native-safe-area-context";
+
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+await AsyncStorage.clear();
 
 type DifficultyIndexes = {
   easy: number;
@@ -97,7 +97,12 @@ export default function HomeScreen() {
     useCallback(() => {
       let mounted = true;
 
-      async function refreshHomeProgress() {
+      const playHref =
+    homeProgress && completedCount === 0
+      ? `/chapter-intro?chapter=${playChapterId}`
+      : `/play?mode=chapter&chapter=${playChapterId}&index=${randomIndex}`;
+
+  async function refreshHomeProgress() {
         const progress = await loadProgressWithEnergy();
 
         if (!mounted) return;
@@ -284,7 +289,7 @@ export default function HomeScreen() {
 
           <View style={styles.buttonGroup}>
             <Link
-              href={`/play?mode=chapter&chapter=${playChapterId}&index=${randomIndex}`}
+              href={playHref as any}
               asChild
             >
               <Pressable style={styles.primaryButton}>
@@ -296,6 +301,12 @@ export default function HomeScreen() {
               Daily Challenge is intentionally paused for now.
               The game should have one simple main path before launch.
             */}
+
+            <Link href="/chapter-map" asChild>
+              <Pressable style={styles.hubButton}>
+                <Text style={styles.hubButtonText}>🗺 Chapter Map</Text>
+              </Pressable>
+            </Link>
 
             <Link href="/hub" asChild>
               <Pressable style={styles.hubButton}>

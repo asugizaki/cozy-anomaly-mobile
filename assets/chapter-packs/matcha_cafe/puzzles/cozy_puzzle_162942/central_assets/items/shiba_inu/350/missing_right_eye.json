@@ -1,0 +1,15 @@
+{
+  "asset": "shiba_inu",
+  "variant": "missing_right_eye",
+  "size": 350,
+  "width": 350,
+  "height": 191,
+  "anchor": "bottom_center",
+  "answer": "One shiba_inu is missing a right eye.",
+  "local_box": [
+    180,
+    55,
+    190,
+    64
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "asset": "tanuki",
+  "variant": "missing_left_eye",
+  "size": 150,
+  "width": 150,
+  "height": 179,
+  "anchor": "bottom_center",
+  "answer": "One tanuki is missing a left eye.",
+  "local_box": [
+    43,
+    67,
+    60,
+    88
+  ]
+}

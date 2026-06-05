@@ -1,0 +1,39 @@
+{
+  "exported_at": "2026-06-04T16:30:53.187753",
+  "schema": "centralized_assets_v1",
+  "asset_root": "central_assets",
+  "scene": "teahouse",
+  "profile": "mobile",
+  "difficulty": "easy",
+  "asset": "kokeshi",
+  "object_size": 350,
+  "puzzle_count": 10,
+  "puzzles": [
+    "puzzles/cozy_puzzle_001.json",
+    "puzzles/cozy_puzzle_002.json",
+    "puzzles/cozy_puzzle_003.json",
+    "puzzles/cozy_puzzle_004.json",
+    "puzzles/cozy_puzzle_005.json",
+    "puzzles/cozy_puzzle_006.json",
+    "puzzles/cozy_puzzle_007.json",
+    "puzzles/cozy_puzzle_008.json",
+    "puzzles/cozy_puzzle_009.json",
+    "puzzles/cozy_puzzle_010.json"
+  ],
+  "assets": [
+    "central_assets/items/kokeshi/350/missing_hair_accessory.json",
+    "central_assets/items/kokeshi/350/missing_hair_accessory.png",
+    "central_assets/items/kokeshi/350/missing_left_eye.json",
+    "central_assets/items/kokeshi/350/missing_left_eye.png",
+    "central_assets/items/kokeshi/350/missing_mouth.json",
+    "central_assets/items/kokeshi/350/missing_mouth.png",
+    "central_assets/items/kokeshi/350/missing_right_eye.json",
+    "central_assets/items/kokeshi/350/missing_right_eye.png",
+    "central_assets/items/kokeshi/350/missing_yellow_in_flower.json",
+    "central_assets/items/kokeshi/350/missing_yellow_in_flower.png",
+    "central_assets/items/kokeshi/350/normal.json",
+    "central_assets/items/kokeshi/350/normal.png",
+    "central_assets/scenes/teahouse/mobile.png"
+  ],
+  "warnings": []
+}

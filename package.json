@@ -17,7 +17,8 @@
     "import:restoration": "node scripts/import-restoration-bundle.js",
     "import:chapter-pack": "node scripts/import-chapter-pack.js",
     "chapter:status": "node scripts/chapter-pack-status.js",
-    "chapter:alerts": "node scripts/chapter-content-alerts.js"
+    "chapter:alerts": "node scripts/chapter-content-alerts.js",
+    "import:bonus-tanuki": "node scripts/import-bonus-tanuki-bundle.js"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "2.2.0",

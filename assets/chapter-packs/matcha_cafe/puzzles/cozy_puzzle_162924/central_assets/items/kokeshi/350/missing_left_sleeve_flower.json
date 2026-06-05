@@ -1,0 +1,15 @@
+{
+  "asset": "kokeshi",
+  "variant": "missing_left_sleeve_flower",
+  "size": 350,
+  "width": 350,
+  "height": 191,
+  "anchor": "bottom_center",
+  "answer": "One kokeshi is missing a left sleeve flower.",
+  "local_box": [
+    149,
+    124,
+    160,
+    135
+  ]
+}

@@ -628,8 +628,13 @@ export default async function PlayScreen() {
     }
 
     if (nextIndex < 0) {
+      if (activeChapter.fullyRestored) {
+        router.replace(`/chapter-complete?chapter=${activeChapter.id}`);
+        return;
+      }
+
       Alert.alert(
-        "Chapter Complete",
+        "More puzzles needed",
         "You have played all available puzzles for this chapter. Import more puzzles for this chapter pack to continue.",
         [
           {

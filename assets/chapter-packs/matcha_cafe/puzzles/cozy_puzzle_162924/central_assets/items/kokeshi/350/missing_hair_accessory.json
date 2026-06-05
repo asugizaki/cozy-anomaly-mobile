@@ -1,0 +1,15 @@
+{
+  "asset": "kokeshi",
+  "variant": "missing_hair_accessory",
+  "size": 350,
+  "width": 350,
+  "height": 191,
+  "anchor": "bottom_center",
+  "answer": "One kokeshi is missing a hair accessory.",
+  "local_box": [
+    197,
+    42,
+    206,
+    62
+  ]
+}

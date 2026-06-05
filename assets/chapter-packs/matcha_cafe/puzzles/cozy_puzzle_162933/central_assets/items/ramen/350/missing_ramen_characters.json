@@ -1,0 +1,15 @@
+{
+  "asset": "ramen",
+  "variant": "missing_ramen_characters",
+  "size": 350,
+  "width": 350,
+  "height": 191,
+  "anchor": "bottom_center",
+  "answer": "One ramen is missing a ramen characters.",
+  "local_box": [
+    148,
+    134,
+    202,
+    150
+  ]
+}

@@ -1,4 +1,3 @@
-import { ImageSourcePropType } from "react-native";
 import { RestorationBundle } from "@/lib/restoration-runtime";
 
 export const RESTORATION_BUNDLES: RestorationBundle[] = [
@@ -139,5 +138,7 @@ export const RESTORATION_BUNDLES: RestorationBundle[] = [
 ];
 
 export function restorationBundleByChapterId(chapterId: string) {
-  return RESTORATION_BUNDLES.find((bundle) => bundle.manifest.chapter_id === chapterId);
+  return RESTORATION_BUNDLES.find(
+    (bundle) => bundle.manifest.chapter_id === chapterId
+  );
 }

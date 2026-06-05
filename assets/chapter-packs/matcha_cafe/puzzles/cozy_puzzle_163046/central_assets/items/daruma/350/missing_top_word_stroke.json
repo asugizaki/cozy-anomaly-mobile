@@ -1,0 +1,15 @@
+{
+  "asset": "daruma",
+  "variant": "missing_top_word_stroke",
+  "size": 350,
+  "width": 350,
+  "height": 191,
+  "anchor": "bottom_center",
+  "answer": "One daruma is missing a top word stroke.",
+  "local_box": [
+    166,
+    22,
+    174,
+    27
+  ]
+}

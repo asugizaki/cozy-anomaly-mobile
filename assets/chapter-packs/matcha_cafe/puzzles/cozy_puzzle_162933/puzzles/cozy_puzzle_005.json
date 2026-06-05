@@ -1,0 +1,139 @@
+{
+  "id": "cozy_puzzle_005",
+  "version": 2,
+  "asset_schema": "centralized_v1",
+  "scene": "teahouse",
+  "profile": "mobile",
+  "difficulty": "medium",
+  "asset": "ramen",
+  "anomaly": "missing_ramen_characters",
+  "answer": "One ramen is missing a ramen characters.",
+  "background_ref": "scenes/teahouse/mobile.png",
+  "normal_item_ref": "items/ramen/350/normal.png",
+  "normal_item_meta_ref": "items/ramen/350/normal.json",
+  "anomaly_item_ref": "items/ramen/350/missing_ramen_characters.png",
+  "anomaly_item_meta_ref": "items/ramen/350/missing_ramen_characters.json",
+  "background": "scenes/teahouse/mobile.png",
+  "normal_item": "items/ramen/350/normal.png",
+  "normal_item_meta": "items/ramen/350/normal.json",
+  "anomaly_item": "items/ramen/350/missing_ramen_characters.png",
+  "anomaly_item_meta": "items/ramen/350/missing_ramen_characters.json",
+  "answer_box": {
+    "x1": 469,
+    "y1": 1323,
+    "x2": 581,
+    "y2": 1435
+  },
+  "answer_visual_box": {
+    "x1": 498,
+    "y1": 1371,
+    "x2": 552,
+    "y2": 1387
+  },
+  "target_slot_index": 18,
+  "slots": [
+    {
+      "surface_y": 606,
+      "x": 121
+    },
+    {
+      "surface_y": 606,
+      "x": 320
+    },
+    {
+      "surface_y": 606,
+      "x": 520
+    },
+    {
+      "surface_y": 606,
+      "x": 719
+    },
+    {
+      "surface_y": 808,
+      "x": 122
+    },
+    {
+      "surface_y": 808,
+      "x": 321
+    },
+    {
+      "surface_y": 808,
+      "x": 521
+    },
+    {
+      "surface_y": 808,
+      "x": 720
+    },
+    {
+      "surface_y": 1009,
+      "x": 123
+    },
+    {
+      "surface_y": 1009,
+      "x": 322
+    },
+    {
+      "surface_y": 1009,
+      "x": 522
+    },
+    {
+      "surface_y": 1009,
+      "x": 721
+    },
+    {
+      "surface_y": 1216,
+      "x": 125
+    },
+    {
+      "surface_y": 1216,
+      "x": 324
+    },
+    {
+      "surface_y": 1216,
+      "x": 524
+    },
+    {
+      "surface_y": 1216,
+      "x": 723
+    },
+    {
+      "surface_y": 1418,
+      "x": 126
+    },
+    {
+      "surface_y": 1418,
+      "x": 325
+    },
+    {
+      "surface_y": 1418,
+      "x": 525
+    },
+    {
+      "surface_y": 1418,
+      "x": 724
+    }
+  ],
+  "object_size": 350,
+  "item_size": 350,
+  "rendering": {
+    "anchor": "bottom_center",
+    "foot_overlap": 10,
+    "source_width": 350,
+    "source_height": 191,
+    "item_width": 350,
+    "item_height": 191
+  },
+  "game_type": "find_anomaly",
+  "category": "cozy_cafe",
+  "collection": "cozy_cafe",
+  "tags": [
+    "medium",
+    "ramen",
+    "tanuki",
+    "teahouse"
+  ],
+  "difficulty_rating": 2,
+  "hint_type": "difference",
+  "hint_target": "",
+  "exported_at": "2026-06-04T16:29:33.232689"
+}

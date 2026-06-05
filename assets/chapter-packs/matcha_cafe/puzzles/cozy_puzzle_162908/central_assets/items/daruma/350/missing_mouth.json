@@ -1,0 +1,15 @@
+{
+  "asset": "daruma",
+  "variant": "missing_mouth",
+  "size": 350,
+  "width": 350,
+  "height": 191,
+  "anchor": "bottom_center",
+  "answer": "One daruma is missing a mouth.",
+  "local_box": [
+    153,
+    104,
+    197,
+    111
+  ]
+}

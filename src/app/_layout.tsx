@@ -27,6 +27,9 @@ export default function RootLayout() {
           <Stack screenOptions={{ headerShown: false }}>
           <Stack.Screen name="index" />
           <Stack.Screen name="play" />
+          <Stack.Screen name="chapter-intro" />
+          <Stack.Screen name="chapter-complete" />
+          <Stack.Screen name="chapter-map" />
           <Stack.Screen name="settings" />
             <Stack.Screen name="account" />
           <Stack.Screen name="stats" />

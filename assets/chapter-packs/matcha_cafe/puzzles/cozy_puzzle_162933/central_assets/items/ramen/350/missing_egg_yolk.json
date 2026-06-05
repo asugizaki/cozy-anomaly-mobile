@@ -1,0 +1,15 @@
+{
+  "asset": "ramen",
+  "variant": "missing_egg_yolk",
+  "size": 350,
+  "width": 350,
+  "height": 191,
+  "anchor": "bottom_center",
+  "answer": "One ramen is missing an egg yolk.",
+  "local_box": [
+    125,
+    86,
+    146,
+    104
+  ]
+}

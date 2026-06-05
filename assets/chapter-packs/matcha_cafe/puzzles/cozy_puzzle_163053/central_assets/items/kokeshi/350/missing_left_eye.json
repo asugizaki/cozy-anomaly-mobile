@@ -1,0 +1,15 @@
+{
+  "asset": "kokeshi",
+  "variant": "missing_left_eye",
+  "size": 350,
+  "width": 350,
+  "height": 191,
+  "anchor": "bottom_center",
+  "answer": "One kokeshi is missing a left eye.",
+  "local_box": [
+    156,
+    73,
+    165,
+    82
+  ]
+}

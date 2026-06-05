@@ -1,0 +1,15 @@
+{
+  "asset": "ramen",
+  "variant": "missing_green_onion",
+  "size": 350,
+  "width": 350,
+  "height": 191,
+  "anchor": "bottom_center",
+  "answer": "One ramen is missing a green onion.",
+  "local_box": [
+    155,
+    74,
+    191,
+    94
+  ]
+}

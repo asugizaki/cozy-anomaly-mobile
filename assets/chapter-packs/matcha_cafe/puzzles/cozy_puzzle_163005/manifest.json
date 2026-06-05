@@ -1,0 +1,41 @@
+{
+  "exported_at": "2026-06-04T16:30:05.898793",
+  "schema": "centralized_assets_v1",
+  "asset_root": "central_assets",
+  "scene": "teahouse",
+  "profile": "mobile",
+  "difficulty": "medium",
+  "asset": "tanuki",
+  "object_size": 150,
+  "puzzle_count": 10,
+  "puzzles": [
+    "puzzles/cozy_puzzle_001.json",
+    "puzzles/cozy_puzzle_002.json",
+    "puzzles/cozy_puzzle_003.json",
+    "puzzles/cozy_puzzle_004.json",
+    "puzzles/cozy_puzzle_005.json",
+    "puzzles/cozy_puzzle_006.json",
+    "puzzles/cozy_puzzle_007.json",
+    "puzzles/cozy_puzzle_008.json",
+    "puzzles/cozy_puzzle_009.json",
+    "puzzles/cozy_puzzle_010.json"
+  ],
+  "assets": [
+    "central_assets/items/tanuki/150/missing_left_ear.json",
+    "central_assets/items/tanuki/150/missing_left_ear.png",
+    "central_assets/items/tanuki/150/missing_left_eye.json",
+    "central_assets/items/tanuki/150/missing_left_eye.png",
+    "central_assets/items/tanuki/150/missing_mouth.json",
+    "central_assets/items/tanuki/150/missing_mouth.png",
+    "central_assets/items/tanuki/150/missing_right_ear.json",
+    "central_assets/items/tanuki/150/missing_right_ear.png",
+    "central_assets/items/tanuki/150/missing_right_eye.json",
+    "central_assets/items/tanuki/150/missing_right_eye.png",
+    "central_assets/items/tanuki/150/missing_tail_line.json",
+    "central_assets/items/tanuki/150/missing_tail_line.png",
+    "central_assets/items/tanuki/150/normal.json",
+    "central_assets/items/tanuki/150/normal.png",
+    "central_assets/scenes/teahouse/mobile.png"
+  ],
+  "warnings": []
+}

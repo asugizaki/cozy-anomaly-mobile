@@ -1,0 +1,15 @@
+{
+  "asset": "daruma",
+  "variant": "missing_bottom_right_mustache",
+  "size": 350,
+  "width": 350,
+  "height": 191,
+  "anchor": "bottom_center",
+  "answer": "One daruma is missing a bottom right mustache.",
+  "local_box": [
+    197,
+    108,
+    209,
+    116
+  ]
+}

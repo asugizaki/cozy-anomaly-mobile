@@ -1,0 +1,119 @@
+{
+  "id": "cozy_puzzle_003",
+  "version": 2,
+  "asset_schema": "centralized_v1",
+  "scene": "teahouse",
+  "profile": "mobile",
+  "difficulty": "easy",
+  "asset": "daruma",
+  "anomaly": "missing_top_right_mustache",
+  "answer": "One daruma is missing a top right mustache.",
+  "background_ref": "scenes/teahouse/mobile.png",
+  "normal_item_ref": "items/daruma/350/normal.png",
+  "normal_item_meta_ref": "items/daruma/350/normal.json",
+  "anomaly_item_ref": "items/daruma/350/missing_top_right_mustache.png",
+  "anomaly_item_meta_ref": "items/daruma/350/missing_top_right_mustache.json",
+  "background": "scenes/teahouse/mobile.png",
+  "normal_item": "items/daruma/350/normal.png",
+  "normal_item_meta": "items/daruma/350/normal.json",
+  "anomaly_item": "items/daruma/350/missing_top_right_mustache.png",
+  "anomaly_item_meta": "items/daruma/350/missing_top_right_mustache.json",
+  "answer_box": {
+    "x1": 135,
+    "y1": 1264,
+    "x2": 267,
+    "y2": 1396
+  },
+  "answer_visual_box": {
+    "x1": 195,
+    "y1": 1328,
+    "x2": 207,
+    "y2": 1333
+  },
+  "target_slot_index": 12,
+  "slots": [
+    {
+      "surface_y": 607,
+      "x": 171
+    },
+    {
+      "surface_y": 612,
+      "x": 430
+    },
+    {
+      "surface_y": 613,
+      "x": 684
+    },
+    {
+      "surface_y": 803,
+      "x": 164
+    },
+    {
+      "surface_y": 803,
+      "x": 429
+    },
+    {
+      "surface_y": 804,
+      "x": 683
+    },
+    {
+      "surface_y": 1010,
+      "x": 168
+    },
+    {
+      "surface_y": 1015,
+      "x": 427
+    },
+    {
+      "surface_y": 1016,
+      "x": 681
+    },
+    {
+      "surface_y": 1214,
+      "x": 177
+    },
+    {
+      "surface_y": 1214,
+      "x": 431
+    },
+    {
+      "surface_y": 1215,
+      "x": 685
+    },
+    {
+      "surface_y": 1414,
+      "x": 171
+    },
+    {
+      "surface_y": 1413,
+      "x": 426
+    },
+    {
+      "surface_y": 1414,
+      "x": 680
+    }
+  ],
+  "object_size": 350,
+  "item_size": 350,
+  "rendering": {
+    "anchor": "bottom_center",
+    "foot_overlap": 10,
+    "source_width": 350,
+    "source_height": 191,
+    "item_width": 350,
+    "item_height": 191
+  },
+  "game_type": "find_anomaly",
+  "category": "cozy_cafe",
+  "collection": "cozy_cafe",
+  "tags": [
+    "daruma",
+    "easy",
+    "tanuki",
+    "teahouse"
+  ],
+  "difficulty_rating": 1,
+  "hint_type": "difference",
+  "hint_target": "",
+  "exported_at": "2026-06-04T16:30:46.523867"
+}

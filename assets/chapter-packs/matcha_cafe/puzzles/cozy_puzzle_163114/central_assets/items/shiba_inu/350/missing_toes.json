@@ -1,0 +1,15 @@
+{
+  "asset": "shiba_inu",
+  "variant": "missing_toes",
+  "size": 350,
+  "width": 350,
+  "height": 191,
+  "anchor": "bottom_center",
+  "answer": "One shiba_inu is missing a toes.",
+  "local_box": [
+    149,
+    161,
+    202,
+    170
+  ]
+}
