@@ -1,0 +1,15 @@
+{
+  "asset": "tanuki",
+  "variant": "missing_nose",
+  "size": 150,
+  "width": 150,
+  "height": 179,
+  "anchor": "bottom_center",
+  "answer": "One tanuki is missing a nose.",
+  "local_box": [
+    64,
+    81,
+    73,
+    87
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "asset": "kokeshi",
+  "variant": "missing_yellow_in_flower",
+  "size": 350,
+  "width": 350,
+  "height": 191,
+  "anchor": "bottom_center",
+  "answer": "One kokeshi is missing a yellow in flower.",
+  "local_box": [
+    195,
+    30,
+    206,
+    41
+  ]
+}

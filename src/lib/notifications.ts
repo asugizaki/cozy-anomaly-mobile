@@ -69,6 +69,16 @@ export function claimNotifications(progress?: PlayerProgress | null) {
     });
   }
 
+  if ((progress.bonusTanukiTickets || 0) > 0) {
+    notifications.push({
+      id: "bonus-tanuki",
+      title: "Tanuki is hiding!",
+      message: "Bonus rewards available.",
+      href: "/bonus-tanuki",
+      emoji: "🦝",
+    });
+  }
+
   if ((progress.lootBoxes || 0) > 0) {
     notifications.push({
       id: "lootboxes",

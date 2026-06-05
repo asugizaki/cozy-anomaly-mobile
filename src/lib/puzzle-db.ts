@@ -1,7 +1,7 @@
 import { PUZZLES } from "@/data/puzzles";
 import { puzzleCollectionId } from "@/lib/collections";
 import { ComposablePuzzle } from "@/types/puzzle";
-import { getMetaValue, initLocalDb, setMetaValue } from "./local-db";
+import { getMetaValue, initLocalDb } from "./local-db";
 
 const PUZZLE_SEED_VERSION = `${PUZZLES.length}:${PUZZLES[0]?.id || "empty"}:${
   PUZZLES[PUZZLES.length - 1]?.id || "empty"
@@ -46,43 +46,48 @@ export async function seedPuzzleDbIfNeeded() {
     };
   }
 
-  await db.withTransactionAsync(async () => {
-    await db.runAsync("DELETE FROM puzzles");
+  await db.runAsync("DELETE FROM puzzles");
 
-    for (let index = 0; index < PUZZLES.length; index += 1) {
-      const puzzle = PUZZLES[index];
+  for (let index = 0; index < PUZZLES.length; index += 1) {
+    const puzzle = PUZZLES[index];
 
-      await db.runAsync(
-        `
-          INSERT INTO puzzles (
-            id,
-            puzzle_index,
-            difficulty,
-            game_type,
-            collection,
-            category,
-            asset,
-            scene,
-            search_text,
-            updated_at
-          )
-          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-        `,
-        puzzle.id,
-        index,
-        puzzle.difficulty,
-        puzzle.game_type || "find_anomaly",
-        puzzleCollectionId(puzzle),
-        puzzle.category || null,
-        puzzle.asset || null,
-        puzzle.scene || null,
-        puzzleSearchText(puzzle),
-        Date.now()
-      );
-    }
+    await db.runAsync(
+      `
+        INSERT INTO puzzles (
+          id,
+          puzzle_index,
+          difficulty,
+          game_type,
+          collection,
+          category,
+          asset,
+          scene,
+          search_text,
+          updated_at
+        )
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      `,
+      puzzle.id,
+      index,
+      puzzle.difficulty,
+      puzzle.game_type || "find_anomaly",
+      puzzleCollectionId(puzzle),
+      puzzle.category || null,
+      puzzle.asset || null,
+      puzzle.scene || null,
+      puzzleSearchText(puzzle),
+      Date.now()
+    );
+  }
 
-    await setMetaValue("puzzle_seed_version", PUZZLE_SEED_VERSION);
-  });
+  await db.runAsync(
+    `
+      INSERT INTO app_meta (key, value)
+      VALUES ('puzzle_seed_version', ?)
+      ON CONFLICT(key) DO UPDATE SET value = excluded.value
+    `,
+    PUZZLE_SEED_VERSION
+  );
 
   return {
     seeded: true,

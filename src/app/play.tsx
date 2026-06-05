@@ -3,8 +3,8 @@ import { ZoomablePuzzle, ZoomTransform } from "@/components/ZoomablePuzzle";
 import { PUZZLES } from "@/data/puzzles";
 import { getPuzzleEngine } from "@/game-engines";
 import { loadGameAudio, playSfx, startMusic, updateMusic } from "@/lib/audio";
+import { currentChapter, nextChapterPuzzleIndex } from "@/lib/chapters";
 import { puzzleCollectionId, puzzlesForCollection } from "@/lib/collections";
-import { chapterById, chapterSummary, nextChapterPuzzleIndex } from "@/lib/chapters";
 import { spendEnergy } from "@/lib/energy";
 import { loadSettings } from "@/lib/game-settings";
 import {
@@ -12,8 +12,9 @@ import {
   PlayerProgress,
   saveProgress,
 } from "@/lib/player-progress";
-import { safePuzzleIndex, smartRandomPuzzleIndex } from "@/lib/puzzle-library";
 import { calculatePuzzleReward, PuzzleReward } from "@/lib/progression";
+import { safePuzzleIndex } from "@/lib/puzzle-library";
+import { readyRepairRewards } from "@/lib/restoration";
 import { completePuzzleServerReward } from "@/lib/server-economy";
 import { ComposablePuzzle, PuzzleSlot } from "@/types/puzzle";
 import * as Haptics from "expo-haptics";
@@ -160,9 +161,14 @@ function screenPointToOriginalPoint(
   };
 }
 
-export default function PlayScreen() {
+export default async function PlayScreen() {
   const params = useLocalSearchParams<{ mode?: string; index?: string }>();
-  const initialPuzzleIndex = safePuzzleIndex(Number(params.index || 0));
+  const loadedProgress = await loadProgress();
+  const activeChapter = currentChapter(loadedProgress);
+  const initialPuzzleIndex =
+    params.index != null
+      ? safePuzzleIndex(Number(params.index))
+      : nextChapterPuzzleIndex(activeChapter, loadedProgress);
 
   const [puzzleIndex, setPuzzleIndex] = useState(initialPuzzleIndex);
   const [attemptsLeft, setAttemptsLeft] = useState(MAX_ATTEMPTS);
@@ -595,23 +601,29 @@ export default function PlayScreen() {
     playSfx("tap", settings);
 
     if (isDailyMode) {
-      router.back();
+      router.replace("/");
       return;
     }
 
-    const recentPuzzleIndexes = [
-      ...(progress?.recentPuzzleIndexes || []),
-      puzzleIndex,
-    ].slice(-RECENT_HISTORY_LIMIT);
+    const latestProgress = await loadProgress();
+    const activeChapter = currentChapter(latestProgress);
+    const readyRepairs = readyRepairRewards(activeChapter, latestProgress);
+    const nextIndex = nextChapterPuzzleIndex(activeChapter, latestProgress);
 
-    const nextIndex = await smartRandomPuzzleIndex({
-      excludeIndexes: recentPuzzleIndexes,
-    });
+    console.log(
+      "completed puzzles",
+      latestProgress.completedPuzzleIds?.length
+    );
+    if (readyRepairs.length > 0) {
+      router.replace(
+        `/restore?chapter=${activeChapter.id}&repair=${readyRepairs[0].id}&nextIndex=${nextIndex}`
+      );
+      return;
+    }
 
     if (progress) {
       await saveProgressPatch({
         lastPuzzleIndex: nextIndex,
-        recentPuzzleIndexes,
       });
     }
 
@@ -881,7 +893,7 @@ export default function PlayScreen() {
             <View style={styles.buttonRow}>
               <Pressable style={styles.primaryButton} onPress={goToNextPuzzle}>
                 <Text style={styles.primaryButtonText}>
-                  {isDailyMode ? "Back Home" : "Next Random"}
+                  {isDailyMode ? "Back Home" : "Continue"}
                 </Text>
               </Pressable>
             </View>

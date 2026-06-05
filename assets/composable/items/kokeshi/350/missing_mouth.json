@@ -1,0 +1,15 @@
+{
+  "asset": "kokeshi",
+  "variant": "missing_mouth",
+  "size": 350,
+  "width": 350,
+  "height": 191,
+  "anchor": "bottom_center",
+  "answer": "One kokeshi is missing a mouth.",
+  "local_box": [
+    167,
+    81,
+    183,
+    90
+  ]
+}

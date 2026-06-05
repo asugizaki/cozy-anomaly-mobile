@@ -1,0 +1,123 @@
+{
+  "chapter_id": "matcha_cafe",
+  "clean_background": "assets/restoration/matcha_cafe/clean_background.png",
+  "dirty_background": "assets/restoration/matcha_cafe/dirty_background.png",
+  "milestones": [
+    {
+      "animation": "clean_sparkle",
+      "id": "clean_room",
+      "next_text": "Now that the room is clean, let's add a nice tea ceremony set.",
+      "sound": "reward",
+      "tanuki_mood": "happy",
+      "tanuki_text": "Wow! You cleaned up this dusty room. It looks great now!",
+      "title": "Clean the Room",
+      "type": "background_swap",
+      "unlock_at": 20
+    },
+    {
+      "animation": "pop_fade",
+      "id": "tea_set",
+      "next_text": "A few zabuton cushions would make this a cozy place to sit.",
+      "overlay_id": "tea_set",
+      "sound": "reward",
+      "tanuki_mood": "excited",
+      "tanuki_text": "This tea set makes the room feel so welcoming!",
+      "title": "Add the Tea Set",
+      "type": "overlay",
+      "unlock_at": 40
+    },
+    {
+      "animation": "slide_up",
+      "id": "zabuton",
+      "next_text": "The alcove still feels empty. Let's add a beautiful matcha display.",
+      "overlay_ids": [
+        "zabuton_left",
+        "zabuton_right"
+      ],
+      "sound": "reward",
+      "tanuki_mood": "happy",
+      "tanuki_text": "Perfect! Now guests have a comfy place to sit.",
+      "title": "Add the Zabuton",
+      "type": "overlay_group",
+      "unlock_at": 60
+    },
+    {
+      "animation": "sparkle_reveal",
+      "id": "matcha_display",
+      "next_text": "One final masterpiece will make this chapter unforgettable.",
+      "overlay_id": "matcha_display",
+      "sound": "levelup",
+      "tanuki_mood": "celebration",
+      "tanuki_text": "The alcove looks amazing now. This cafe is almost complete!",
+      "title": "Decorate the Alcove",
+      "type": "overlay",
+      "unlock_at": 80
+    }
+  ],
+  "mobile_canvas": {
+    "height": 1659,
+    "width": 948
+  },
+  "overlays": [
+    {
+      "anchor": "center",
+      "animation": "pop_fade",
+      "id": "tea_set",
+      "image": "assets/restoration/matcha_cafe/tea_set.png",
+      "label": "Tea Ceremony Set",
+      "source_height": 2048,
+      "source_width": 2048,
+      "unlock_at": 40,
+      "visible_in_editor": true,
+      "width": 0.267,
+      "x": 0.515,
+      "y": 0.598,
+      "z": 1
+    },
+    {
+      "anchor": "center",
+      "animation": "pop_fade",
+      "id": "zabuton",
+      "image": "assets/restoration/matcha_cafe/zabuton.png",
+      "label": "Zabuton",
+      "source_height": 2048,
+      "source_width": 2048,
+      "unlock_at": 60,
+      "visible_in_editor": true,
+      "width": 0.3030285470990789,
+      "x": 0.13526174231803695,
+      "y": 0.6749916923807263,
+      "z": 2
+    },
+    {
+      "anchor": "center",
+      "animation": "pop_fade",
+      "id": "stand",
+      "image": "assets/restoration/matcha_cafe/stand.png",
+      "label": "Stand",
+      "source_height": 1536,
+      "source_width": 2752,
+      "unlock_at": 80,
+      "visible_in_editor": true,
+      "width": 0.7023265522290415,
+      "x": 0.5015950652668307,
+      "y": 0.4328459530026109,
+      "z": 3
+    }
+  ],
+  "preview": {
+    "safe_area_notes": "Keep important objects away from bottom UI and top notch space.",
+    "show_dirty_until": 20
+  },
+  "schema_version": 1,
+  "tanuki": {
+    "anchor": {
+      "width": 0.24,
+      "x": 0.12,
+      "y": 0.72
+    },
+    "default_mood": "happy"
+  },
+  "theme": "",
+  "title": "Matcha Cafe"
+}

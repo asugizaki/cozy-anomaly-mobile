@@ -33,6 +33,7 @@ export default function RootLayout() {
           <Stack.Screen name="collections" />
           <Stack.Screen name="chapters" />
           <Stack.Screen name="chapter-detail" />
+          <Stack.Screen name="restore" />
           <Stack.Screen name="bonus-tanuki" />
           <Stack.Screen name="collection-play" />
           <Stack.Screen name="avatar-shop" />

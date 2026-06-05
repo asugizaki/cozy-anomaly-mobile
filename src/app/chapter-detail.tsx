@@ -1,5 +1,6 @@
 import { AppBackground } from "@/components/AppBackground";
 import { ResourceSummary } from "@/components/ResourceSummary";
+import { RestorationScene } from "@/components/RestorationScene";
 import { ScreenHeader } from "@/components/ScreenHeader";
 import {
   chapterById,
@@ -19,6 +20,7 @@ import {
   repairRewardId,
   tanukiLineForChapter,
 } from "@/lib/restoration";
+import { restorationBundleByChapterId } from "@/data/generatedRestorations";
 import { Link, useFocusEffect, useLocalSearchParams } from "expo-router";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import {
@@ -63,6 +65,7 @@ export default function ChapterDetailScreen() {
   );
 
   const nextIndex = nextChapterPuzzleIndex(chapter, progress);
+  const restorationBundle = restorationBundleByChapterId(chapter.id);
   const readyRewards = readyRepairRewards(chapter, progress);
   const claimed = new Set(progress.claimedChapterRepairRewardIds || []);
 
@@ -94,33 +97,49 @@ export default function ChapterDetailScreen() {
 
         <ResourceSummary progress={progress} notice={notice} compact />
 
-        <View style={styles.heroCard}>
-          <Text style={styles.roomEmoji}>{chapter.emoji}</Text>
-
-          <View style={styles.roomText}>
-            <Text style={styles.roomTitle}>
-              {chapter.fullyRestored ? "Fully Restored" : "Restoration Progress"}
-            </Text>
-            <Text style={styles.roomSubtitle}>{chapter.progress}% complete</Text>
-          </View>
-        </View>
-
-        <View style={styles.progressTrack}>
-          <View
-            style={[
-              styles.progressFill,
-              { width: `${chapter.progress}%` },
-            ]}
+        {restorationBundle ? (
+          <RestorationScene
+            bundle={restorationBundle}
+            chapter={chapter}
+            progress={progress}
           />
-        </View>
+        ) : (
+          <>
+            <View style={styles.heroCard}>
+              <Text style={styles.roomEmoji}>{chapter.emoji}</Text>
 
-        <View style={styles.tanukiCard}>
-          <Text style={styles.tanukiEmoji}>🦝</Text>
-          <View style={styles.tanukiTextWrap}>
-            <Text style={styles.tanukiName}>Tanuki</Text>
-            <Text style={styles.tanukiText}>{tanukiLineForChapter(chapter)}</Text>
-          </View>
-        </View>
+              <View style={styles.roomText}>
+                <Text style={styles.roomTitle}>
+                  {chapter.fullyRestored
+                    ? "Fully Restored"
+                    : "Restoration Progress"}
+                </Text>
+                <Text style={styles.roomSubtitle}>
+                  {chapter.progress}% complete
+                </Text>
+              </View>
+            </View>
+
+            <View style={styles.progressTrack}>
+              <View
+                style={[
+                  styles.progressFill,
+                  { width: `${chapter.progress}%` },
+                ]}
+              />
+            </View>
+
+            <View style={styles.tanukiCard}>
+              <Text style={styles.tanukiEmoji}>🦝</Text>
+              <View style={styles.tanukiTextWrap}>
+                <Text style={styles.tanukiName}>Tanuki</Text>
+                <Text style={styles.tanukiText}>
+                  {tanukiLineForChapter(chapter)}
+                </Text>
+              </View>
+            </View>
+          </>
+        )}
 
         <View style={styles.repairList}>
           {chapter.repairs.map((repair) => {

@@ -13,7 +13,8 @@
     "functions:install": "cd functions && npm install",
     "functions:build": "cd functions && npm run build",
     "functions:deploy": "firebase deploy --only functions,firestore:rules,firestore:indexes",
-    "emulators": "firebase emulators:start --only auth,firestore,functions"
+    "emulators": "firebase emulators:start --only auth,firestore,functions",
+    "import:restoration": "node scripts/import-restoration-bundle.js"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "2.2.0",

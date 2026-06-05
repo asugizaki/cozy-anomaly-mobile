@@ -1,0 +1,15 @@
+{
+  "asset": "daruma",
+  "variant": "missing_left_eye",
+  "size": 350,
+  "width": 350,
+  "height": 191,
+  "anchor": "bottom_center",
+  "answer": "One daruma is missing a left eye.",
+  "local_box": [
+    141,
+    66,
+    160,
+    85
+  ]
+}

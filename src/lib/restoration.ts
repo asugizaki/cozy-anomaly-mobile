@@ -121,6 +121,7 @@ export async function claimChapterRepairReward(
     coins: (progress.coins || 0) + reward.coins,
     lifetimeCoins: (progress.lifetimeCoins || 0) + reward.coins,
     lootBoxes: (progress.lootBoxes || 0) + reward.lootBoxes,
+    bonusTanukiTickets: (progress.bonusTanukiTickets || 0) + 1,
     claimedChapterRepairRewardIds: [
       rewardId,
       ...(progress.claimedChapterRepairRewardIds || []),

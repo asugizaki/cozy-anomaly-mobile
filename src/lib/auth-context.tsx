@@ -16,12 +16,13 @@ import {
   useMemo,
   useState,
 } from "react";
-import { firebaseAuth, firebaseConfigured } from "./firebase";
+import { Platform } from 'react-native';
 import {
+  downloadCloudSave,
   syncCloudSave,
   uploadCloudSave,
-  downloadCloudSave,
 } from "./cloud-save";
+import { firebaseAuth, firebaseConfigured } from "./firebase";
 import { saveProgress } from "./player-progress";
 
 WebBrowser.maybeCompleteAuthSession();
@@ -56,12 +57,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     syncing: false,
   });
 
-  const [, response, promptAsync] = Google.useAuthRequest({
-    androidClientId: process.env.EXPO_PUBLIC_GOOGLE_ANDROID_CLIENT_ID,
-    iosClientId: process.env.EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID,
-    webClientId: process.env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID,
-    expoClientId: process.env.EXPO_PUBLIC_GOOGLE_EXPO_CLIENT_ID,
-  });
+const googleAuthConfig = {
+  androidClientId: process.env.EXPO_PUBLIC_GOOGLE_ANDROID_CLIENT_ID,
+  webClientId: process.env.EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID,
+  ...(Platform.OS === "ios" &&
+  process.env.EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID
+    ? {
+        iosClientId: process.env.EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID,
+      }
+    : {}),
+};
+
+const [, response, promptAsync] = Google.useAuthRequest(googleAuthConfig);
 
   async function loadLastSync() {
     const raw = await AsyncStorage.getItem(LAST_SYNC_KEY);

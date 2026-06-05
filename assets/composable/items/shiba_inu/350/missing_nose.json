@@ -1,0 +1,15 @@
+{
+  "asset": "shiba_inu",
+  "variant": "missing_nose",
+  "size": 350,
+  "width": 350,
+  "height": 191,
+  "anchor": "bottom_center",
+  "answer": "One shiba_inu is missing a nose.",
+  "local_box": [
+    170,
+    64,
+    180,
+    71
+  ]
+}

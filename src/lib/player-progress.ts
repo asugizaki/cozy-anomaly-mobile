@@ -38,6 +38,8 @@ export type PlayerProgress = {
 
   claimedCollectionRewardIds: string[];
   claimedChapterRepairRewardIds: string[];
+  bonusTanukiTickets: number;
+  completedBonusTanukiIds: string[];
 
   energy: number;
   maxEnergy: number;
@@ -110,6 +112,8 @@ export const DEFAULT_PROGRESS: PlayerProgress = {
 
   claimedCollectionRewardIds: [],
   claimedChapterRepairRewardIds: [],
+  bonusTanukiTickets: 0,
+  completedBonusTanukiIds: [],
 
   energy: STARTING_MAX_ENERGY,
   maxEnergy: STARTING_MAX_ENERGY,

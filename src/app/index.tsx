@@ -12,6 +12,7 @@ import {
   nextCollectionPuzzleIndex,
   smartRandomPuzzleIndex,
 } from "@/lib/puzzle-library";
+import { currentChapter, nextChapterPuzzleIndex } from "@/lib/chapters";
 import { titleById } from "@/lib/titles";
 import { PlayerProgress } from "@/lib/player-progress";
 import { Link, router, useFocusEffect } from "expo-router";
@@ -73,6 +74,7 @@ export default function HomeScreen() {
   const [dailyCompleted, setDailyCompleted] = useState(false);
   const [lootBoxes, setLootBoxes] = useState(0);
   const [randomIndex, setRandomIndex] = useState(0);
+  const [playChapterId, setPlayChapterId] = useState("matcha_cafe");
   const [level, setLevel] = useState(1);
   const [coins, setCoins] = useState(0);
   const [skillPoints, setSkillPoints] = useState(0);
@@ -117,12 +119,9 @@ export default function HomeScreen() {
         setLevel(xp.level);
         setXpPercent(xp.progress);
 
-        setRandomIndex(await smartRandomPuzzleIndex());
-        setDifficultyIndexes({
-          easy: await smartRandomPuzzleIndex("find_anomaly", "easy"),
-          medium: await smartRandomPuzzleIndex("find_anomaly", "medium"),
-          hard: await smartRandomPuzzleIndex("find_anomaly", "hard"),
-        });
+        const activeChapter = currentChapter(progress);
+        setPlayChapterId(activeChapter.id);
+        setRandomIndex(nextChapterPuzzleIndex(activeChapter, progress));
 
         setFeaturedCollection(closestIncompleteCollection(progress));
       }
@@ -284,61 +283,19 @@ export default function HomeScreen() {
           )}
 
           <View style={styles.buttonGroup}>
-            <Link href="/chapters" asChild>
+            <Link
+              href={`/play?mode=chapter&chapter=${playChapterId}&index=${randomIndex}`}
+              asChild
+            >
               <Pressable style={styles.primaryButton}>
-                <Text style={styles.primaryButtonText}>🎲 Play Random</Text>
+                <Text style={styles.primaryButtonText}>▶ Play</Text>
               </Pressable>
             </Link>
 
-            <View style={styles.difficultyRow}>
-              <Link
-                href={`/play?mode=random&index=${difficultyIndexes.easy}`}
-                asChild
-              >
-                <Pressable style={[styles.difficultyButton, styles.easyButton]}>
-                  <Text style={styles.difficultyButtonText}>🟢 Easy</Text>
-                </Pressable>
-              </Link>
-
-              <Link
-                href={`/play?mode=random&index=${difficultyIndexes.medium}`}
-                asChild
-              >
-                <Pressable
-                  style={[styles.difficultyButton, styles.mediumButton]}
-                >
-                  <Text style={styles.difficultyButtonText}>🟡 Medium</Text>
-                </Pressable>
-              </Link>
-
-              <Link
-                href={`/play?mode=random&index=${difficultyIndexes.hard}`}
-                asChild
-              >
-                <Pressable style={[styles.difficultyButton, styles.hardButton]}>
-                  <Text style={styles.difficultyButtonText}>🔴 Hard</Text>
-                </Pressable>
-              </Link>
-            </View>
-
-            {dailyCompleted ? (
-              <Pressable style={[styles.secondaryButton, styles.disabledButton]}>
-                <Text style={styles.secondaryButtonText}>
-                  ✓ Daily Complete
-                </Text>
-              </Pressable>
-            ) : (
-              <Link
-                href={`/play?mode=daily&index=${dailyPuzzleIndex}`}
-                asChild
-              >
-                <Pressable style={styles.secondaryButton}>
-                  <Text style={styles.secondaryButtonText}>
-                    ☀ Daily Challenge
-                  </Text>
-                </Pressable>
-              </Link>
-            )}
+            {/*
+              Daily Challenge is intentionally paused for now.
+              The game should have one simple main path before launch.
+            */}
 
             <Link href="/hub" asChild>
               <Pressable style={styles.hubButton}>

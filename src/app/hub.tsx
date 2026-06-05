@@ -25,18 +25,6 @@ type HubItem = {
 
 const ITEMS: HubItem[] = [
   {
-    href: "/chapters",
-    emoji: "🦝",
-    title: "Chapters",
-    subtitle: "Restore themed locations with Tanuki.",
-  },
-  {
-    href: "/collections",
-    emoji: "📚",
-    title: "Collections",
-    subtitle: "Continue themed puzzle packs.",
-  },
-  {
     href: "/missions",
     emoji: "✅",
     title: "Daily Missions",

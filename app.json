@@ -11,7 +11,12 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.sugistar.hiddentanuki",
       "edgeToEdgeEnabled": true
+    },
+    "ios": {
+      "bundleIdentifier": "com.sugistar.hiddentanuki",
+      "supportsTablet": true
     },
     "plugins": [
       "expo-router",
