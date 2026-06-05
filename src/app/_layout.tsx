@@ -31,6 +31,7 @@ export default function RootLayout() {
           <Stack.Screen name="chapter-complete" />
           <Stack.Screen name="chapter-map" />
           <Stack.Screen name="settings" />
+          <Stack.Screen name="dev-tools" />
             <Stack.Screen name="account" />
           <Stack.Screen name="stats" />
           <Stack.Screen name="collections" />

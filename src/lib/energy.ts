@@ -25,7 +25,6 @@ export function applyEnergyRecharge(progress: PlayerProgress): PlayerProgress {
   if ((progress.energy || 0) >= maxEnergy) {
     return {
       ...progress,
-      energy: maxEnergy,
       lastEnergyAt: now,
     };
   }
@@ -218,8 +217,11 @@ export async function buyEnergyPack(amount: number, cost: number) {
   const updated: PlayerProgress = {
     ...progress,
     coins: progress.coins - cost,
-    energy: Math.min(progress.maxEnergy, progress.energy + amount),
-    lastEnergyAt: Date.now(),
+    energy: (progress.energy || 0) + amount,
+    lastEnergyAt:
+      (progress.energy || 0) >= (progress.maxEnergy || 20)
+        ? progress.lastEnergyAt
+        : Date.now(),
   };
 
   await saveProgress(updated);

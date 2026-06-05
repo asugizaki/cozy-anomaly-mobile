@@ -53,7 +53,7 @@ export async function seedPuzzleDbIfNeeded() {
 
     await db.runAsync(
       `
-        INSERT INTO puzzles (
+        INSERT OR REPLACE INTO puzzles (
           id,
           puzzle_index,
           difficulty,

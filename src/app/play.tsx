@@ -161,14 +161,9 @@ function screenPointToOriginalPoint(
   };
 }
 
-export default async function PlayScreen() {
+export default function PlayScreen() {
   const params = useLocalSearchParams<{ mode?: string; index?: string }>();
-  const loadedProgress = await loadProgress();
-  const activeChapter = currentChapter(loadedProgress);
-  const initialPuzzleIndex =
-    params.index != null
-      ? safePuzzleIndex(Number(params.index))
-      : nextChapterPuzzleIndex(activeChapter, loadedProgress);
+  const initialPuzzleIndex = safePuzzleIndex(Number(params.index || 0));
 
   const [puzzleIndex, setPuzzleIndex] = useState(initialPuzzleIndex);
   const [attemptsLeft, setAttemptsLeft] = useState(MAX_ATTEMPTS);
@@ -456,7 +451,7 @@ export default async function PlayScreen() {
           dailyKey: todayKey,
         });
 
-        if (serverResult) {
+        if (false && serverResult) {
           setLastReward(serverResult.reward);
           setProgress(serverResult.progress);
 
@@ -700,7 +695,7 @@ export default async function PlayScreen() {
     }, 700);
   }
 
-  function handlePuzzleTap(
+  async function handlePuzzleTap(
     screenX: number,
     screenY: number,
     transform: ZoomTransform
@@ -722,7 +717,7 @@ export default async function PlayScreen() {
 
       setSolved(true);
       setFailed(false);
-      markSolved(false);
+      await markSolved(false);
       return;
     }
 

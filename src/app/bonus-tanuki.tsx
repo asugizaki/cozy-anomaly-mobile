@@ -9,7 +9,6 @@ import { DEFAULT_PROGRESS, PlayerProgress } from "@/lib/player-progress";
 import { router, useFocusEffect, useLocalSearchParams } from "expo-router";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import {
-  Alert,
   ImageBackground,
   LayoutChangeEvent,
   Pressable,
@@ -26,7 +25,7 @@ const FALLBACK_SCENE: BonusTanukiScene = {
   background: "",
   backgroundSource: require("../../assets/home-bg.png"),
   canvas: { width: 900, height: 1600 },
-  target: { x: 0.5, y: 0.55, radius: 0.09 },
+  target: { x: 0.5, y: 0.55, radius: 0.12 },
   attempts: 3,
   reward: {
     xp: 200,
@@ -82,19 +81,42 @@ export default function BonusTanukiScreen() {
     }, [scene.attempts])
   );
 
-  const hasTicket = (progress.bonusTanukiTickets || 0) > 0;
-
-  const targetStyle = useMemo(() => {
-    const diameter = scene.target.radius * 2 * layout.width;
+  function coverMetrics() {
+    const imageWidth = scene.canvas?.width || 900;
+    const imageHeight = scene.canvas?.height || 1600;
+    const scale = Math.max(layout.width / imageWidth, layout.height / imageHeight);
+    const renderedWidth = imageWidth * scale;
+    const renderedHeight = imageHeight * scale;
 
     return {
-      left: scene.target.x * layout.width - diameter / 2,
-      top: scene.target.y * layout.height - diameter / 2,
+      renderedWidth,
+      renderedHeight,
+      offsetX: (layout.width - renderedWidth) / 2,
+      offsetY: (layout.height - renderedHeight) / 2,
+    };
+  }
+
+  function screenToImageNormalized(x: number, y: number) {
+    const metrics = coverMetrics();
+
+    return {
+      x: (x - metrics.offsetX) / metrics.renderedWidth,
+      y: (y - metrics.offsetY) / metrics.renderedHeight,
+    };
+  }
+
+  const targetStyle = useMemo(() => {
+    const metrics = coverMetrics();
+    const diameter = Math.max(scene.target.radius, 0.11) * 2 * metrics.renderedWidth;
+
+    return {
+      left: metrics.offsetX + scene.target.x * metrics.renderedWidth - diameter / 2,
+      top: metrics.offsetY + scene.target.y * metrics.renderedHeight - diameter / 2,
       width: diameter,
       height: diameter,
       borderRadius: diameter / 2,
     };
-  }, [layout.height, layout.width, scene.target.radius, scene.target.x, scene.target.y]);
+  }, [layout.height, layout.width, scene.canvas?.height, scene.canvas?.width, scene.target.radius, scene.target.x, scene.target.y]);
 
   function onLayout(event: LayoutChangeEvent) {
     const { width, height } = event.nativeEvent.layout;
@@ -106,22 +128,22 @@ export default function BonusTanukiScreen() {
   }
 
   async function handleTap(event: any) {
-    if (found || !hasTicket || attemptsLeft <= 0) return;
+    if (found || attemptsLeft <= 0) return;
 
-    const x = event.nativeEvent.locationX / layout.width;
-    const y = event.nativeEvent.locationY / layout.height;
-    const dx = x - scene.target.x;
-    const dy = y - scene.target.y;
-    const distance = Math.sqrt(dx * dx + dy * dy);
+    const point = screenToImageNormalized(
+      event.nativeEvent.locationX,
+      event.nativeEvent.locationY
+    );
 
-    if (distance <= scene.target.radius) {
+    const dx = point.x - scene.target.x;
+    const dy = point.y - scene.target.y;
+    const imageAspect = (scene.canvas?.height || 1600) / (scene.canvas?.width || 900);
+    const normalizedDistance = Math.sqrt(dx * dx + (dy * imageAspect) * (dy * imageAspect));
+    const hitRadius = Math.max(scene.target.radius, 0.11);
+
+    if (normalizedDistance <= hitRadius) {
       const result = await claimBonusTanukiReward(scene.reward);
       setProgress(result.progress);
-
-      if (!result.success) {
-        Alert.alert("Bonus Tanuki", result.message);
-        return;
-      }
 
       playSfx("reward");
       setFound(true);
@@ -141,7 +163,7 @@ export default function BonusTanukiScreen() {
     setAttemptsLeft(nextAttempts);
 
     if (nextAttempts <= 0) {
-      setRewardText("Tanuki got away this time. Your ticket was not used.");
+      setRewardText("Tanuki got away this time.");
     }
   }
 
@@ -164,27 +186,17 @@ export default function BonusTanukiScreen() {
           )}
 
           <SafeAreaView pointerEvents="box-none" style={styles.overlay}>
-            <View style={styles.topCard}>
-              <Text style={styles.kicker}>Bonus Game</Text>
-              <Text style={styles.title}>Find the Tanuki</Text>
-              <Text style={styles.status}>
-                🎟 {progress.bonusTanukiTickets || 0} · Attempts {attemptsLeft}
-              </Text>
+            <View style={styles.topBar}>
+              <Text style={styles.topBarText}>🦝 Find the Tanuki</Text>
+              <Text style={styles.topBarSub}>Attempts {attemptsLeft}</Text>
             </View>
 
             <View style={styles.spacer} />
 
             <View style={styles.bottomCard}>
-              {!hasTicket ? (
+              {found ? (
                 <>
-                  <Text style={styles.bottomTitle}>No bonus ticket</Text>
-                  <Text style={styles.bottomText}>
-                    Restore a room milestone to earn a Bonus Tanuki ticket.
-                  </Text>
-                </>
-              ) : found ? (
-                <>
-                  <Text style={styles.bottomTitle}>🦝 Tanuki Found!</Text>
+                  <Text style={styles.bottomTitle}>🦝 Found!</Text>
                   <Text style={styles.bottomText}>{rewardText}</Text>
                 </>
               ) : attemptsLeft <= 0 ? (
@@ -196,18 +208,18 @@ export default function BonusTanukiScreen() {
                 <>
                   <Text style={styles.bottomTitle}>{scene.title}</Text>
                   <Text style={styles.bottomText}>
-                    Tap where Tanuki is hiding. Find him before your attempts run out.
+                    Tap where Tanuki is hiding.
                   </Text>
                 </>
               )}
 
-              {(found || attemptsLeft <= 0 || !hasTicket) && (
+              {(found || attemptsLeft <= 0) && (
                 <Pressable style={styles.primaryButton} onPress={continueNext}>
                   <Text style={styles.primaryButtonText}>Continue</Text>
                 </Pressable>
               )}
 
-              {!found && attemptsLeft > 0 && hasTicket && (
+              {!found && attemptsLeft > 0 && (
                 <Pressable style={styles.secondaryButton} onPress={continueNext}>
                   <Text style={styles.secondaryButtonText}>Skip Bonus</Text>
                 </Pressable>
@@ -236,36 +248,28 @@ const styles = StyleSheet.create({
 
   overlay: {
     flex: 1,
-    paddingHorizontal: 16,
+    paddingHorizontal: 12,
   },
 
-  topCard: {
+  topBar: {
     marginTop: 8,
-    alignSelf: "center",
-    minWidth: 250,
-    padding: 14,
-    borderRadius: 24,
-    backgroundColor: "rgba(255,247,236,0.93)",
+    alignSelf: "stretch",
+    paddingVertical: 7,
+    paddingHorizontal: 14,
+    borderRadius: 999,
+    backgroundColor: "rgba(255,247,236,0.88)",
+    flexDirection: "row",
     alignItems: "center",
+    justifyContent: "space-between",
   },
 
-  kicker: {
-    fontSize: 11,
-    fontWeight: "900",
-    color: "#FF5C8A",
-    textTransform: "uppercase",
-    letterSpacing: 0.8,
-  },
-
-  title: {
-    marginTop: 2,
-    fontSize: 23,
+  topBarText: {
+    fontSize: 15,
     fontWeight: "900",
     color: "#4B2E20",
   },
 
-  status: {
-    marginTop: 4,
+  topBarSub: {
     fontSize: 13,
     fontWeight: "900",
     color: "#7B5A43",
@@ -290,32 +294,32 @@ const styles = StyleSheet.create({
 
   bottomCard: {
     marginBottom: 10,
-    padding: 16,
-    borderRadius: 26,
-    backgroundColor: "rgba(255,247,236,0.94)",
+    padding: 13,
+    borderRadius: 23,
+    backgroundColor: "rgba(255,247,236,0.92)",
     borderWidth: 1,
     borderColor: "rgba(255,255,255,0.65)",
   },
 
   bottomTitle: {
-    fontSize: 21,
+    fontSize: 19,
     fontWeight: "900",
     color: "#4B2E20",
     textAlign: "center",
   },
 
   bottomText: {
-    marginTop: 6,
+    marginTop: 4,
     fontSize: 13,
-    lineHeight: 19,
+    lineHeight: 18,
     fontWeight: "800",
     color: "#7C2D12",
     textAlign: "center",
   },
 
   primaryButton: {
-    marginTop: 14,
-    paddingVertical: 14,
+    marginTop: 12,
+    paddingVertical: 13,
     borderRadius: 999,
     backgroundColor: "#FF5C8A",
     alignItems: "center",
@@ -328,8 +332,8 @@ const styles = StyleSheet.create({
   },
 
   secondaryButton: {
-    marginTop: 10,
-    paddingVertical: 13,
+    marginTop: 9,
+    paddingVertical: 12,
     borderRadius: 999,
     backgroundColor: "#F4D7C4",
     alignItems: "center",

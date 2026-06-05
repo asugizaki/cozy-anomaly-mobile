@@ -14,14 +14,6 @@ export async function claimBonusTanukiReward(
 ) {
   const progress = await loadProgress();
 
-  if ((progress.bonusTanukiTickets || 0) <= 0) {
-    return {
-      success: false,
-      message: "No bonus tickets available.",
-      progress,
-    };
-  }
-
   const config = {
     xp: rewardConfig?.xp ?? 200,
     coins: rewardConfig?.coins ?? 250,
@@ -51,14 +43,10 @@ export async function claimBonusTanukiReward(
 
   const updated = {
     ...progress,
-    bonusTanukiTickets: Math.max(0, (progress.bonusTanukiTickets || 0) - 1),
     xp: (progress.xp || 0) + reward.xp,
     coins: (progress.coins || 0) + reward.coins,
     lifetimeCoins: (progress.lifetimeCoins || 0) + reward.coins,
-    energy: Math.min(
-      progress.maxEnergy || 20,
-      (progress.energy || 0) + reward.energy
-    ),
+    energy: (progress.energy || 0) + reward.energy,
     lootBoxes: (progress.lootBoxes || 0) + reward.lootBoxes,
     unlockedAvatarIds,
     completedBonusTanukiIds: [

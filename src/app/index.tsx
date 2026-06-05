@@ -26,10 +26,6 @@ import {
   useSafeAreaInsets,
 } from "react-native-safe-area-context";
 
-import AsyncStorage from "@react-native-async-storage/async-storage";
-
-await AsyncStorage.clear();
-
 type DifficultyIndexes = {
   easy: number;
   medium: number;
@@ -93,16 +89,16 @@ export default function HomeScreen() {
   const insets = useSafeAreaInsets();
   const dailyPuzzleIndex = getDailyPuzzleIndex();
 
-  useFocusEffect(
-    useCallback(() => {
-      let mounted = true;
-
-      const playHref =
+  const playHref =
     homeProgress && completedCount === 0
       ? `/chapter-intro?chapter=${playChapterId}`
       : `/play?mode=chapter&chapter=${playChapterId}&index=${randomIndex}`;
 
-  async function refreshHomeProgress() {
+  useFocusEffect(
+    useCallback(() => {
+      let mounted = true;
+
+      async function refreshHomeProgress() {
         const progress = await loadProgressWithEnergy();
 
         if (!mounted) return;

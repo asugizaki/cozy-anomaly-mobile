@@ -153,13 +153,13 @@ export function chapterPuzzlePool(chapter: ChapterDefinition) {
   );
 
   if (chapterTagged.length) {
-    return chapterTagged.slice(0, chapter.targetPuzzleCount);
+    return chapterTagged;
   }
 
   const ids = new Set(chapter.collectionIds);
   const pool = PUZZLES.filter((puzzle) => ids.has(puzzleCollectionId(puzzle)));
 
-  if (pool.length) return pool.slice(0, chapter.targetPuzzleCount);
+  if (pool.length) return pool;
 
   return [];
 }
@@ -176,18 +176,20 @@ export function chapterSummary(
   const puzzles = chapterPuzzlePool(chapter);
   const puzzleIds = unique(puzzles.map((puzzle) => puzzle.id));
   const completed = puzzleIds.filter((id) => normalizedCompleted(progress).has(id)).length;
-  const total = Math.max(chapter.targetPuzzleCount, puzzleIds.length || chapter.targetPuzzleCount);
-  const progressPercent = total ? Math.min(100, Math.round((completed / total) * 100)) : 0;
+  const available = puzzleIds.length;
+  const total = chapter.targetPuzzleCount || available;
+  const cappedCompleted = Math.min(completed, total);
+  const progressPercent = total ? Math.min(100, Math.round((cappedCompleted / total) * 100)) : 0;
   const completedRepairs = chapter.repairs.filter(
-    (repair) => completed >= repair.completedAt
+    (repair) => cappedCompleted >= repair.completedAt
   ).length;
-  const nextRepair = chapter.repairs.find((repair) => completed < repair.completedAt);
+  const nextRepair = chapter.repairs.find((repair) => cappedCompleted < repair.completedAt);
 
   return {
     ...chapter,
     puzzles,
     puzzleIds,
-    completed,
+    completed: cappedCompleted,
     total,
     progress: progressPercent,
     unlocked: chapter.id === CHAPTERS[0].id || previousComplete,
@@ -198,7 +200,7 @@ export function chapterSummary(
       completedRepairs > 0 &&
       completed % 20 === 0 &&
       completed < total,
-    fullyRestored: completed >= total,
+    fullyRestored: cappedCompleted >= total,
   };
 }
 
@@ -225,19 +227,93 @@ export function chapterById(id?: string) {
   return CHAPTERS.find((chapter) => chapter.id === id) || CHAPTERS[0];
 }
 
+function difficultyForChapterStep(completedInChapter: number) {
+  const stepInMilestone = completedInChapter % 20;
+
+  if (stepInMilestone < 7) return "easy";
+  if (stepInMilestone < 14) return "medium";
+
+  return "hard";
+}
+
+function shuffled<T>(items: T[]) {
+  return [...items].sort(() => Math.random() - 0.5);
+}
+
+function puzzleSpreadScore(
+  puzzle: ComposablePuzzle,
+  progress: PlayerProgress
+) {
+  const recentIds = progress.recentPlayedPuzzleIds || [];
+  const recentIndexes = progress.recentPuzzleIndexes || [];
+
+  let score = Math.random();
+
+  if (recentIds.includes(puzzle.id)) {
+    score -= 1000;
+  }
+
+  const recentPuzzles = recentIds
+    .map((id) => PUZZLES.find((item) => item.id === id))
+    .filter(Boolean) as ComposablePuzzle[];
+
+  const recentAssets = recentPuzzles
+    .slice(0, 8)
+    .map((item) => item.asset)
+    .filter(Boolean);
+
+  const recentScenes = recentPuzzles
+    .slice(0, 8)
+    .map((item) => item.scene)
+    .filter(Boolean);
+
+  if (puzzle.asset && recentAssets.includes(puzzle.asset)) {
+    score -= 18;
+  }
+
+  if (puzzle.scene && recentScenes.includes(puzzle.scene)) {
+    score -= 6;
+  }
+
+  const index = PUZZLES.findIndex((item) => item.id === puzzle.id);
+
+  if (index >= 0 && recentIndexes.includes(index)) {
+    score -= 1000;
+  }
+
+  return score;
+}
+
 export function nextChapterPuzzleIndex(
   chapter: ChapterSummary,
   progress: PlayerProgress
 ) {
-  const completed = normalizedCompleted(progress);
-  const next = chapter.puzzles.find((puzzle) => !completed.has(puzzle.id));
-
-  if (next) {
-    const index = PUZZLES.findIndex((puzzle) => puzzle.id === next.id);
-    return Math.max(0, index);
+  if (chapter.completed >= chapter.targetPuzzleCount) {
+    return -1;
   }
 
-  return -1;
+  const completed = normalizedCompleted(progress);
+  const unsolved = chapter.puzzles.filter((puzzle) => !completed.has(puzzle.id));
+
+  if (!unsolved.length) {
+    return -1;
+  }
+
+  const preferredDifficulty = difficultyForChapterStep(chapter.completed);
+
+  const preferred = unsolved.filter(
+    (puzzle) => puzzle.difficulty === preferredDifficulty
+  );
+
+  const candidates = preferred.length ? preferred : unsolved;
+
+  const picked = shuffled(candidates).sort(
+    (a, b) => puzzleSpreadScore(b, progress) - puzzleSpreadScore(a, progress)
+  )[0];
+
+  const index = PUZZLES.findIndex((puzzle) => puzzle.id === picked.id);
+
+  return Math.max(0, index);
 }
 
 export function chapterDisplayNameForPuzzle(puzzle: ComposablePuzzle) {

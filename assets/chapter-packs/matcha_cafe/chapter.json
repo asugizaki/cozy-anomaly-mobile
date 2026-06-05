@@ -1,6 +1,6 @@
 {
   "schema": "hidden_tanuki_chapter_pack_v1",
-  "exported_at": "2026-06-04T22:34:52.800799",
+  "exported_at": "2026-06-05T13:50:36.879306",
   "chapter": {
     "id": "matcha_cafe",
     "title": "Matcha Cafe",
@@ -11,8 +11,8 @@
       "matcha_cafe"
     ],
     "targetPuzzleCount": 80,
-    "intro": "This old Matcha Cafe needs help. Let's restore it together!",
-    "completionText": "The Matcha Cafe is cozy again! Amazing work!",
+    "intro": "This old Matcha Cafe needs our help! Let's restore it together!",
+    "completionText": "The Matcha Cafe is cozy again. Amaizing work!",
     "sortOrder": 1,
     "unlockAfterChapterId": ""
   },

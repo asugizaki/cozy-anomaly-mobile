@@ -3,7 +3,7 @@ import { ComposablePuzzle } from "@/types/puzzle";
 export const PUZZLES: ComposablePuzzle[] = [
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_001",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163114/cozy_puzzle_001",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -121,6 +121,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:31:14.209269",
+        "source_puzzle_id": "cozy_puzzle_001",
+        "source_pack_path": "puzzles/cozy_puzzle_163114",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -130,7 +132,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_002",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163114/cozy_puzzle_002",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -248,6 +250,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:31:14.212428",
+        "source_puzzle_id": "cozy_puzzle_002",
+        "source_pack_path": "puzzles/cozy_puzzle_163114",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -257,7 +261,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_003",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163114/cozy_puzzle_003",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -375,6 +379,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:31:14.215362",
+        "source_puzzle_id": "cozy_puzzle_003",
+        "source_pack_path": "puzzles/cozy_puzzle_163114",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -384,7 +390,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_004",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163114/cozy_puzzle_004",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -502,6 +508,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:31:14.220990",
+        "source_puzzle_id": "cozy_puzzle_004",
+        "source_pack_path": "puzzles/cozy_puzzle_163114",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -511,7 +519,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_005",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163114/cozy_puzzle_005",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -629,6 +637,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:31:14.228067",
+        "source_puzzle_id": "cozy_puzzle_005",
+        "source_pack_path": "puzzles/cozy_puzzle_163114",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -638,7 +648,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_006",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163114/cozy_puzzle_006",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -756,6 +766,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:31:14.231924",
+        "source_puzzle_id": "cozy_puzzle_006",
+        "source_pack_path": "puzzles/cozy_puzzle_163114",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -765,7 +777,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_007",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163114/cozy_puzzle_007",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -883,6 +895,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:31:14.236621",
+        "source_puzzle_id": "cozy_puzzle_007",
+        "source_pack_path": "puzzles/cozy_puzzle_163114",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -892,7 +906,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_008",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163114/cozy_puzzle_008",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -1010,6 +1024,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:31:14.239955",
+        "source_puzzle_id": "cozy_puzzle_008",
+        "source_pack_path": "puzzles/cozy_puzzle_163114",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -1019,7 +1035,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_009",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163114/cozy_puzzle_009",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -1137,6 +1153,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:31:14.244689",
+        "source_puzzle_id": "cozy_puzzle_009",
+        "source_pack_path": "puzzles/cozy_puzzle_163114",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -1146,7 +1164,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_010",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163114/cozy_puzzle_010",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -1264,6 +1282,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:31:14.247387",
+        "source_puzzle_id": "cozy_puzzle_010",
+        "source_pack_path": "puzzles/cozy_puzzle_163114",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -1273,7 +1293,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_001",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163105/cozy_puzzle_001",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -1391,6 +1411,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:31:05.778402",
+        "source_puzzle_id": "cozy_puzzle_001",
+        "source_pack_path": "puzzles/cozy_puzzle_163105",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -1400,7 +1422,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_002",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163105/cozy_puzzle_002",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -1518,6 +1540,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:31:05.782077",
+        "source_puzzle_id": "cozy_puzzle_002",
+        "source_pack_path": "puzzles/cozy_puzzle_163105",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -1527,7 +1551,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_003",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163105/cozy_puzzle_003",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -1645,6 +1669,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:31:05.790614",
+        "source_puzzle_id": "cozy_puzzle_003",
+        "source_pack_path": "puzzles/cozy_puzzle_163105",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -1654,7 +1680,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_004",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163105/cozy_puzzle_004",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -1772,6 +1798,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:31:05.794971",
+        "source_puzzle_id": "cozy_puzzle_004",
+        "source_pack_path": "puzzles/cozy_puzzle_163105",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -1781,7 +1809,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_005",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163105/cozy_puzzle_005",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -1899,6 +1927,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:31:05.797844",
+        "source_puzzle_id": "cozy_puzzle_005",
+        "source_pack_path": "puzzles/cozy_puzzle_163105",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -1908,7 +1938,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_006",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163105/cozy_puzzle_006",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -2026,6 +2056,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:31:05.805846",
+        "source_puzzle_id": "cozy_puzzle_006",
+        "source_pack_path": "puzzles/cozy_puzzle_163105",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -2035,7 +2067,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_007",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163105/cozy_puzzle_007",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -2153,6 +2185,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:31:05.810483",
+        "source_puzzle_id": "cozy_puzzle_007",
+        "source_pack_path": "puzzles/cozy_puzzle_163105",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -2162,7 +2196,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_008",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163105/cozy_puzzle_008",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -2280,6 +2314,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:31:05.814303",
+        "source_puzzle_id": "cozy_puzzle_008",
+        "source_pack_path": "puzzles/cozy_puzzle_163105",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -2289,7 +2325,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_009",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163105/cozy_puzzle_009",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -2407,6 +2443,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:31:05.822014",
+        "source_puzzle_id": "cozy_puzzle_009",
+        "source_pack_path": "puzzles/cozy_puzzle_163105",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -2416,7 +2454,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_010",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163105/cozy_puzzle_010",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -2534,6 +2572,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:31:05.829885",
+        "source_puzzle_id": "cozy_puzzle_010",
+        "source_pack_path": "puzzles/cozy_puzzle_163105",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -2543,7 +2583,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_001",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163053/cozy_puzzle_001",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -2661,6 +2701,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:30:53.151282",
+        "source_puzzle_id": "cozy_puzzle_001",
+        "source_pack_path": "puzzles/cozy_puzzle_163053",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -2670,7 +2712,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_002",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163053/cozy_puzzle_002",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -2788,6 +2830,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:30:53.156696",
+        "source_puzzle_id": "cozy_puzzle_002",
+        "source_pack_path": "puzzles/cozy_puzzle_163053",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -2797,7 +2841,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_003",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163053/cozy_puzzle_003",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -2915,6 +2959,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:30:53.159559",
+        "source_puzzle_id": "cozy_puzzle_003",
+        "source_pack_path": "puzzles/cozy_puzzle_163053",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -2924,7 +2970,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_004",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163053/cozy_puzzle_004",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -3042,6 +3088,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:30:53.162118",
+        "source_puzzle_id": "cozy_puzzle_004",
+        "source_pack_path": "puzzles/cozy_puzzle_163053",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -3051,7 +3099,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_005",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163053/cozy_puzzle_005",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -3169,6 +3217,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:30:53.164961",
+        "source_puzzle_id": "cozy_puzzle_005",
+        "source_pack_path": "puzzles/cozy_puzzle_163053",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -3178,7 +3228,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_006",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163053/cozy_puzzle_006",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -3296,6 +3346,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:30:53.167788",
+        "source_puzzle_id": "cozy_puzzle_006",
+        "source_pack_path": "puzzles/cozy_puzzle_163053",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -3305,7 +3357,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_007",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163053/cozy_puzzle_007",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -3423,6 +3475,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:30:53.175171",
+        "source_puzzle_id": "cozy_puzzle_007",
+        "source_pack_path": "puzzles/cozy_puzzle_163053",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -3432,7 +3486,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_008",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163053/cozy_puzzle_008",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -3550,6 +3604,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:30:53.178445",
+        "source_puzzle_id": "cozy_puzzle_008",
+        "source_pack_path": "puzzles/cozy_puzzle_163053",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -3559,7 +3615,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_009",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163053/cozy_puzzle_009",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -3677,6 +3733,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:30:53.182561",
+        "source_puzzle_id": "cozy_puzzle_009",
+        "source_pack_path": "puzzles/cozy_puzzle_163053",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -3686,7 +3744,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_010",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163053/cozy_puzzle_010",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -3804,6 +3862,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:30:53.186746",
+        "source_puzzle_id": "cozy_puzzle_010",
+        "source_pack_path": "puzzles/cozy_puzzle_163053",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -3813,7 +3873,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_001",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163046/cozy_puzzle_001",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -3931,6 +3991,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:30:46.515506",
+        "source_puzzle_id": "cozy_puzzle_001",
+        "source_pack_path": "puzzles/cozy_puzzle_163046",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -3940,7 +4002,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_002",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163046/cozy_puzzle_002",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -4058,6 +4120,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:30:46.518943",
+        "source_puzzle_id": "cozy_puzzle_002",
+        "source_pack_path": "puzzles/cozy_puzzle_163046",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -4067,7 +4131,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_003",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163046/cozy_puzzle_003",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -4185,6 +4249,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:30:46.523867",
+        "source_puzzle_id": "cozy_puzzle_003",
+        "source_pack_path": "puzzles/cozy_puzzle_163046",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -4194,7 +4260,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_004",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163046/cozy_puzzle_004",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -4312,6 +4378,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:30:46.526822",
+        "source_puzzle_id": "cozy_puzzle_004",
+        "source_pack_path": "puzzles/cozy_puzzle_163046",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -4321,7 +4389,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_005",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163046/cozy_puzzle_005",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -4439,6 +4507,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:30:46.529468",
+        "source_puzzle_id": "cozy_puzzle_005",
+        "source_pack_path": "puzzles/cozy_puzzle_163046",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -4448,7 +4518,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_006",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163046/cozy_puzzle_006",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -4566,6 +4636,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:30:46.532669",
+        "source_puzzle_id": "cozy_puzzle_006",
+        "source_pack_path": "puzzles/cozy_puzzle_163046",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -4575,7 +4647,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_007",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163046/cozy_puzzle_007",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -4693,6 +4765,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:30:46.537690",
+        "source_puzzle_id": "cozy_puzzle_007",
+        "source_pack_path": "puzzles/cozy_puzzle_163046",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -4702,7 +4776,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_008",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163046/cozy_puzzle_008",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -4820,6 +4894,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:30:46.540556",
+        "source_puzzle_id": "cozy_puzzle_008",
+        "source_pack_path": "puzzles/cozy_puzzle_163046",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -4829,7 +4905,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_009",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163046/cozy_puzzle_009",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -4947,6 +5023,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:30:46.543308",
+        "source_puzzle_id": "cozy_puzzle_009",
+        "source_pack_path": "puzzles/cozy_puzzle_163046",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -4956,7 +5034,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_010",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163046/cozy_puzzle_010",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -5074,6 +5152,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:30:46.546050",
+        "source_puzzle_id": "cozy_puzzle_010",
+        "source_pack_path": "puzzles/cozy_puzzle_163046",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -5083,7 +5163,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_001",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163022/cozy_puzzle_001",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -5200,6 +5280,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:30:22.537638",
+        "source_puzzle_id": "cozy_puzzle_001",
+        "source_pack_path": "puzzles/cozy_puzzle_163022",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -5209,7 +5291,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_002",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163022/cozy_puzzle_002",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -5326,6 +5408,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:30:22.541856",
+        "source_puzzle_id": "cozy_puzzle_002",
+        "source_pack_path": "puzzles/cozy_puzzle_163022",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -5335,7 +5419,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_003",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163022/cozy_puzzle_003",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -5452,6 +5536,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:30:22.545291",
+        "source_puzzle_id": "cozy_puzzle_003",
+        "source_pack_path": "puzzles/cozy_puzzle_163022",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -5461,7 +5547,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_004",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163022/cozy_puzzle_004",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -5578,6 +5664,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:30:22.548282",
+        "source_puzzle_id": "cozy_puzzle_004",
+        "source_pack_path": "puzzles/cozy_puzzle_163022",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -5587,7 +5675,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_005",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163022/cozy_puzzle_005",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -5704,6 +5792,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:30:22.551292",
+        "source_puzzle_id": "cozy_puzzle_005",
+        "source_pack_path": "puzzles/cozy_puzzle_163022",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -5713,7 +5803,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_006",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163022/cozy_puzzle_006",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -5830,6 +5920,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:30:22.554226",
+        "source_puzzle_id": "cozy_puzzle_006",
+        "source_pack_path": "puzzles/cozy_puzzle_163022",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -5839,7 +5931,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_007",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163022/cozy_puzzle_007",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -5956,6 +6048,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:30:22.557613",
+        "source_puzzle_id": "cozy_puzzle_007",
+        "source_pack_path": "puzzles/cozy_puzzle_163022",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -5965,7 +6059,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_008",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163022/cozy_puzzle_008",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -6082,6 +6176,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:30:22.561281",
+        "source_puzzle_id": "cozy_puzzle_008",
+        "source_pack_path": "puzzles/cozy_puzzle_163022",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -6091,7 +6187,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_009",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163022/cozy_puzzle_009",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -6208,6 +6304,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:30:22.564444",
+        "source_puzzle_id": "cozy_puzzle_009",
+        "source_pack_path": "puzzles/cozy_puzzle_163022",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -6217,7 +6315,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_010",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163022/cozy_puzzle_010",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -6334,6 +6432,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:30:22.569339",
+        "source_puzzle_id": "cozy_puzzle_010",
+        "source_pack_path": "puzzles/cozy_puzzle_163022",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -6343,7 +6443,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_001",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163005/cozy_puzzle_001",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -6480,6 +6580,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:30:05.860037",
+        "source_puzzle_id": "cozy_puzzle_001",
+        "source_pack_path": "puzzles/cozy_puzzle_163005",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -6489,7 +6591,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_002",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163005/cozy_puzzle_002",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -6626,6 +6728,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:30:05.864545",
+        "source_puzzle_id": "cozy_puzzle_002",
+        "source_pack_path": "puzzles/cozy_puzzle_163005",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -6635,7 +6739,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_003",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163005/cozy_puzzle_003",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -6772,6 +6876,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:30:05.867299",
+        "source_puzzle_id": "cozy_puzzle_003",
+        "source_pack_path": "puzzles/cozy_puzzle_163005",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -6781,7 +6887,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_004",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163005/cozy_puzzle_004",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -6918,6 +7024,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:30:05.873429",
+        "source_puzzle_id": "cozy_puzzle_004",
+        "source_pack_path": "puzzles/cozy_puzzle_163005",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -6927,7 +7035,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_005",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163005/cozy_puzzle_005",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -7064,6 +7172,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:30:05.876301",
+        "source_puzzle_id": "cozy_puzzle_005",
+        "source_pack_path": "puzzles/cozy_puzzle_163005",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -7073,7 +7183,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_006",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163005/cozy_puzzle_006",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -7210,6 +7320,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:30:05.878713",
+        "source_puzzle_id": "cozy_puzzle_006",
+        "source_pack_path": "puzzles/cozy_puzzle_163005",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -7219,7 +7331,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_007",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163005/cozy_puzzle_007",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -7356,6 +7468,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:30:05.882957",
+        "source_puzzle_id": "cozy_puzzle_007",
+        "source_pack_path": "puzzles/cozy_puzzle_163005",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -7365,7 +7479,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_008",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163005/cozy_puzzle_008",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -7502,6 +7616,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:30:05.890931",
+        "source_puzzle_id": "cozy_puzzle_008",
+        "source_pack_path": "puzzles/cozy_puzzle_163005",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -7511,7 +7627,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_009",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163005/cozy_puzzle_009",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -7648,6 +7764,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:30:05.894278",
+        "source_puzzle_id": "cozy_puzzle_009",
+        "source_pack_path": "puzzles/cozy_puzzle_163005",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -7657,7 +7775,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_010",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_163005/cozy_puzzle_010",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -7794,6 +7912,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:30:05.897617",
+        "source_puzzle_id": "cozy_puzzle_010",
+        "source_pack_path": "puzzles/cozy_puzzle_163005",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -7803,7 +7923,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_001",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_162942/cozy_puzzle_001",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -7941,6 +8061,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:29:42.714442",
+        "source_puzzle_id": "cozy_puzzle_001",
+        "source_pack_path": "puzzles/cozy_puzzle_162942",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -7950,7 +8072,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_002",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_162942/cozy_puzzle_002",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -8088,6 +8210,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:29:42.717137",
+        "source_puzzle_id": "cozy_puzzle_002",
+        "source_pack_path": "puzzles/cozy_puzzle_162942",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -8097,7 +8221,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_003",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_162942/cozy_puzzle_003",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -8235,6 +8359,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:29:42.720055",
+        "source_puzzle_id": "cozy_puzzle_003",
+        "source_pack_path": "puzzles/cozy_puzzle_162942",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -8244,7 +8370,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_004",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_162942/cozy_puzzle_004",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -8382,6 +8508,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:29:42.725261",
+        "source_puzzle_id": "cozy_puzzle_004",
+        "source_pack_path": "puzzles/cozy_puzzle_162942",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -8391,7 +8519,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_005",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_162942/cozy_puzzle_005",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -8529,6 +8657,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:29:42.729021",
+        "source_puzzle_id": "cozy_puzzle_005",
+        "source_pack_path": "puzzles/cozy_puzzle_162942",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -8538,7 +8668,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_006",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_162942/cozy_puzzle_006",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -8676,6 +8806,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:29:42.733271",
+        "source_puzzle_id": "cozy_puzzle_006",
+        "source_pack_path": "puzzles/cozy_puzzle_162942",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -8685,7 +8817,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_007",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_162942/cozy_puzzle_007",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -8823,6 +8955,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:29:42.736920",
+        "source_puzzle_id": "cozy_puzzle_007",
+        "source_pack_path": "puzzles/cozy_puzzle_162942",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -8832,7 +8966,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_008",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_162942/cozy_puzzle_008",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -8970,6 +9104,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:29:42.739429",
+        "source_puzzle_id": "cozy_puzzle_008",
+        "source_pack_path": "puzzles/cozy_puzzle_162942",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -8979,7 +9115,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_009",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_162942/cozy_puzzle_009",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -9117,6 +9253,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:29:42.747038",
+        "source_puzzle_id": "cozy_puzzle_009",
+        "source_pack_path": "puzzles/cozy_puzzle_162942",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -9126,7 +9264,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_010",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_162942/cozy_puzzle_010",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -9264,6 +9402,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:29:42.757356",
+        "source_puzzle_id": "cozy_puzzle_010",
+        "source_pack_path": "puzzles/cozy_puzzle_162942",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -9273,7 +9413,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_001",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_162933/cozy_puzzle_001",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -9411,6 +9551,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:29:33.216217",
+        "source_puzzle_id": "cozy_puzzle_001",
+        "source_pack_path": "puzzles/cozy_puzzle_162933",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -9420,7 +9562,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_002",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_162933/cozy_puzzle_002",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -9558,6 +9700,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:29:33.220095",
+        "source_puzzle_id": "cozy_puzzle_002",
+        "source_pack_path": "puzzles/cozy_puzzle_162933",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -9567,7 +9711,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_003",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_162933/cozy_puzzle_003",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -9705,6 +9849,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:29:33.222704",
+        "source_puzzle_id": "cozy_puzzle_003",
+        "source_pack_path": "puzzles/cozy_puzzle_162933",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -9714,7 +9860,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_004",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_162933/cozy_puzzle_004",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -9852,6 +9998,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:29:33.225773",
+        "source_puzzle_id": "cozy_puzzle_004",
+        "source_pack_path": "puzzles/cozy_puzzle_162933",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -9861,7 +10009,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_005",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_162933/cozy_puzzle_005",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -9999,6 +10147,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:29:33.232689",
+        "source_puzzle_id": "cozy_puzzle_005",
+        "source_pack_path": "puzzles/cozy_puzzle_162933",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -10008,7 +10158,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_006",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_162933/cozy_puzzle_006",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -10146,6 +10296,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:29:33.235863",
+        "source_puzzle_id": "cozy_puzzle_006",
+        "source_pack_path": "puzzles/cozy_puzzle_162933",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -10155,7 +10307,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_007",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_162933/cozy_puzzle_007",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -10293,6 +10445,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:29:33.238771",
+        "source_puzzle_id": "cozy_puzzle_007",
+        "source_pack_path": "puzzles/cozy_puzzle_162933",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -10302,7 +10456,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_008",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_162933/cozy_puzzle_008",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -10440,6 +10594,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:29:33.241850",
+        "source_puzzle_id": "cozy_puzzle_008",
+        "source_pack_path": "puzzles/cozy_puzzle_162933",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -10449,7 +10605,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_009",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_162933/cozy_puzzle_009",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -10587,6 +10743,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:29:33.250872",
+        "source_puzzle_id": "cozy_puzzle_009",
+        "source_pack_path": "puzzles/cozy_puzzle_162933",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -10596,7 +10754,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_010",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_162933/cozy_puzzle_010",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -10734,6 +10892,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:29:33.265490",
+        "source_puzzle_id": "cozy_puzzle_010",
+        "source_pack_path": "puzzles/cozy_puzzle_162933",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -10743,7 +10903,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_001",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_162924/cozy_puzzle_001",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -10881,6 +11041,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:29:24.960346",
+        "source_puzzle_id": "cozy_puzzle_001",
+        "source_pack_path": "puzzles/cozy_puzzle_162924",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -10890,7 +11052,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_002",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_162924/cozy_puzzle_002",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -11028,6 +11190,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:29:24.963444",
+        "source_puzzle_id": "cozy_puzzle_002",
+        "source_pack_path": "puzzles/cozy_puzzle_162924",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -11037,7 +11201,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_003",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_162924/cozy_puzzle_003",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -11175,6 +11339,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:29:24.965550",
+        "source_puzzle_id": "cozy_puzzle_003",
+        "source_pack_path": "puzzles/cozy_puzzle_162924",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -11184,7 +11350,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_004",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_162924/cozy_puzzle_004",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -11322,6 +11488,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:29:24.967794",
+        "source_puzzle_id": "cozy_puzzle_004",
+        "source_pack_path": "puzzles/cozy_puzzle_162924",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -11331,7 +11499,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_005",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_162924/cozy_puzzle_005",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -11469,6 +11637,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:29:24.970461",
+        "source_puzzle_id": "cozy_puzzle_005",
+        "source_pack_path": "puzzles/cozy_puzzle_162924",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -11478,7 +11648,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_006",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_162924/cozy_puzzle_006",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -11616,6 +11786,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:29:24.973668",
+        "source_puzzle_id": "cozy_puzzle_006",
+        "source_pack_path": "puzzles/cozy_puzzle_162924",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -11625,7 +11797,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_007",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_162924/cozy_puzzle_007",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -11763,6 +11935,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:29:24.979117",
+        "source_puzzle_id": "cozy_puzzle_007",
+        "source_pack_path": "puzzles/cozy_puzzle_162924",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -11772,7 +11946,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_008",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_162924/cozy_puzzle_008",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -11910,6 +12084,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:29:24.985820",
+        "source_puzzle_id": "cozy_puzzle_008",
+        "source_pack_path": "puzzles/cozy_puzzle_162924",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -11919,7 +12095,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_009",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_162924/cozy_puzzle_009",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -12057,6 +12233,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:29:24.989649",
+        "source_puzzle_id": "cozy_puzzle_009",
+        "source_pack_path": "puzzles/cozy_puzzle_162924",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -12066,7 +12244,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_010",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_162924/cozy_puzzle_010",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -12204,6 +12382,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:29:24.993473",
+        "source_puzzle_id": "cozy_puzzle_010",
+        "source_pack_path": "puzzles/cozy_puzzle_162924",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -12213,7 +12393,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_001",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_162908/cozy_puzzle_001",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -12351,6 +12531,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:29:08.548675",
+        "source_puzzle_id": "cozy_puzzle_001",
+        "source_pack_path": "puzzles/cozy_puzzle_162908",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -12360,7 +12542,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_002",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_162908/cozy_puzzle_002",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -12498,6 +12680,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:29:08.551396",
+        "source_puzzle_id": "cozy_puzzle_002",
+        "source_pack_path": "puzzles/cozy_puzzle_162908",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -12507,7 +12691,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_003",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_162908/cozy_puzzle_003",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -12645,6 +12829,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:29:08.556271",
+        "source_puzzle_id": "cozy_puzzle_003",
+        "source_pack_path": "puzzles/cozy_puzzle_162908",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -12654,7 +12840,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_004",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_162908/cozy_puzzle_004",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -12792,6 +12978,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:29:08.560426",
+        "source_puzzle_id": "cozy_puzzle_004",
+        "source_pack_path": "puzzles/cozy_puzzle_162908",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -12801,7 +12989,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_005",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_162908/cozy_puzzle_005",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -12939,6 +13127,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:29:08.563204",
+        "source_puzzle_id": "cozy_puzzle_005",
+        "source_pack_path": "puzzles/cozy_puzzle_162908",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -12948,7 +13138,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_006",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_162908/cozy_puzzle_006",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -13086,6 +13276,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:29:08.565533",
+        "source_puzzle_id": "cozy_puzzle_006",
+        "source_pack_path": "puzzles/cozy_puzzle_162908",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -13095,7 +13287,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_007",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_162908/cozy_puzzle_007",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -13233,6 +13425,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:29:08.568057",
+        "source_puzzle_id": "cozy_puzzle_007",
+        "source_pack_path": "puzzles/cozy_puzzle_162908",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -13242,7 +13436,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_008",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_162908/cozy_puzzle_008",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -13380,6 +13574,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:29:08.571974",
+        "source_puzzle_id": "cozy_puzzle_008",
+        "source_pack_path": "puzzles/cozy_puzzle_162908",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -13389,7 +13585,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_009",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_162908/cozy_puzzle_009",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -13527,6 +13723,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:29:08.575670",
+        "source_puzzle_id": "cozy_puzzle_009",
+        "source_pack_path": "puzzles/cozy_puzzle_162908",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },
@@ -13536,7 +13734,7 @@ export const PUZZLES: ComposablePuzzle[] = [
   },
   {
     ...{
-        "id": "matcha_cafe/cozy_puzzle_010",
+        "id": "matcha_cafe/puzzles__cozy_puzzle_162908/cozy_puzzle_010",
         "version": 2,
         "asset_schema": "centralized_v1",
         "scene": "teahouse",
@@ -13674,6 +13872,8 @@ export const PUZZLES: ComposablePuzzle[] = [
         "hint_type": "difference",
         "hint_target": "",
         "exported_at": "2026-06-04T16:29:08.578695",
+        "source_puzzle_id": "cozy_puzzle_010",
+        "source_pack_path": "puzzles/cozy_puzzle_162908",
         "chapter_id": "matcha_cafe",
         "import_pack": "matcha_cafe"
     },

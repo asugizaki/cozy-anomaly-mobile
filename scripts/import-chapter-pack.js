@@ -93,6 +93,15 @@ function tsString(value) {
   return JSON.stringify(value, null, 2);
 }
 
+function safePuzzleIdPart(value) {
+  return String(value || "")
+    .replace(/\\/g, "/")
+    .split("/")
+    .filter(Boolean)
+    .join("__")
+    .replace(/[^a-zA-Z0-9_-]/g, "_");
+}
+
 function resolvePackAssetPath(packDir, manifest, assetRef, legacyPath) {
   const assetRoot = manifest.asset_root || "central_assets";
 
@@ -218,7 +227,9 @@ function collectInstalledPuzzles() {
         const normalizedPuzzle = normalizeRendering(
           {
             ...rawPuzzle,
-            id: `${chapterId}/${rawPuzzle.id}`,
+            id: `${chapterId}/${safePuzzleIdPart(relPackPath)}/${rawPuzzle.id}`,
+            source_puzzle_id: rawPuzzle.id,
+            source_pack_path: relPackPath,
             chapter_id: chapterId,
             import_pack: chapterId,
             collection: chapterId,

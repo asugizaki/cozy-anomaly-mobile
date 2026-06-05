@@ -6,8 +6,10 @@ import {
   loadSettings,
   saveSettings,
 } from "@/lib/game-settings";
+import { Link } from "expo-router";
 import { useEffect, useState } from "react";
 import {
+  Pressable,
   SafeAreaView,
   StyleSheet,
   Switch,
@@ -42,12 +44,20 @@ export default function SettingsScreen() {
       <Text style={styles.title}>Settings</Text>
 
       <Link href="/account" asChild>
-          <Pressable style={styles.accountButton}>
-            <Text style={styles.accountButtonText}>☁️ Account & Cloud Save</Text>
+        <Pressable style={styles.accountButton}>
+          <Text style={styles.accountButtonText}>☁️ Account & Cloud Save</Text>
+        </Pressable>
+      </Link>
+
+      {__DEV__ && (
+        <Link href="/dev-tools" asChild>
+          <Pressable style={styles.devButton}>
+            <Text style={styles.devButtonText}>🛠 Developer Tools</Text>
           </Pressable>
         </Link>
+      )}
 
-        <View style={styles.card}>
+      <View style={styles.card}>
         <Row
           label="Music"
           value={settings.musicEnabled}
@@ -108,6 +118,20 @@ const styles = StyleSheet.create({
 
   accountButtonText: {
     color: "#4B2E20",
+    fontSize: 15,
+    fontWeight: "900",
+  },
+
+  devButton: {
+    marginBottom: 14,
+    paddingVertical: 14,
+    borderRadius: 999,
+    backgroundColor: "#FF5C8A",
+    alignItems: "center",
+  },
+
+  devButtonText: {
+    color: "white",
     fontSize: 15,
     fontWeight: "900",
   },

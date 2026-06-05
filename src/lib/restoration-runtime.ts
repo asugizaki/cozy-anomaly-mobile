@@ -124,10 +124,14 @@ export function unlockedRestorationState(
     for (const overlayId of milestone.overlay_ids || []) {
       unlockedOverlayIds.add(overlayId);
     }
+
+    for (const overlay of bundle.manifest.overlays || []) {
+      if (overlay.unlock_at === milestone.unlock_at) {
+        unlockedOverlayIds.add(overlay.id);
+      }
+    }
   }
 
-  // Also support overlays that unlock directly by count, even if they are not
-  // referenced by a milestone yet.
   const unlockedOverlays = (bundle.manifest.overlays || [])
     .filter(
       (overlay) =>

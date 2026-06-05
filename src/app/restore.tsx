@@ -10,10 +10,13 @@ import { loadProgressWithEnergy } from "@/lib/energy";
 import {
   DEFAULT_PROGRESS,
   PlayerProgress,
+  loadProgress,
+  saveProgress,
 } from "@/lib/player-progress";
 import {
   claimChapterRepairReward,
   repairRewardForMilestone,
+  repairRewardId,
 } from "@/lib/restoration";
 import {
   overlayImageSource,
@@ -56,6 +59,7 @@ export default function RestoreScreen() {
     chapter?: string;
     repair?: string;
     nextIndex?: string;
+    devSequence?: string;
   }>();
 
   const [progress, setProgress] =
@@ -138,12 +142,55 @@ export default function RestoreScreen() {
     playSfx("reward");
   }
 
-  function continuePlaying() {
+  async function seedNextDevRestoration(nextRepairId: string, completedAt: number) {
+    const latest = await loadProgress();
+    const idsToAdd = chapter.puzzleIds.slice(0, completedAt);
+    const nextRewardId = repairRewardId(chapter.id, nextRepairId);
+
+    await saveProgress({
+      ...latest,
+      completedPuzzleIds: Array.from(
+        new Set([
+          ...latest.completedPuzzleIds,
+          ...idsToAdd,
+        ])
+      ),
+      totalSolved: Math.max(latest.totalSolved || 0, completedAt),
+      claimedChapterRepairRewardIds: (
+        latest.claimedChapterRepairRewardIds || []
+      ).filter((id) => id !== nextRewardId),
+      energy: Math.max(latest.energy || 0, 50),
+    });
+  }
+
+  async function continuePlaying() {
     const repairedCount = repair?.completedAt || 0;
     const finalRepairAt = Math.max(
       ...chapter.repairs.map((item) => item.completedAt),
       chapter.targetPuzzleCount
     );
+
+    if (params.devSequence === "1") {
+      const nextRepair = chapter.repairs.find(
+        (item) => item.completedAt > repairedCount
+      );
+
+      if (nextRepair) {
+        await seedNextDevRestoration(nextRepair.id, nextRepair.completedAt);
+        router.replace(
+          `/restore?chapter=${chapter.id}&repair=${nextRepair.id}&devSequence=1`
+        );
+        return;
+      }
+
+      Alert.alert("Restoration test complete", "All restoration milestones were tested.", [
+        {
+          text: "Back to Dev Tools",
+          onPress: () => router.replace("/dev-tools"),
+        },
+      ]);
+      return;
+    }
 
     const next =
       restored && repairedCount >= finalRepairAt

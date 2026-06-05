@@ -13,8 +13,8 @@ export const GENERATED_CHAPTERS: ChapterDefinition[] = [
     "targetPuzzleCount": 80,
     "warnRemaining": 20,
     "criticalRemaining": 10,
-    "intro": "This old Matcha Cafe needs help. Let's restore it together!",
-    "completionText": "The Matcha Cafe is cozy again! Amazing work!",
+    "intro": "This old Matcha Cafe needs our help! Let's restore it together!",
+    "completionText": "The Matcha Cafe is cozy again. Amaizing work!",
     "repairs": [
       {
         "id": "clean_room",
