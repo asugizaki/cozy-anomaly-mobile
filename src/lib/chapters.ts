@@ -1,5 +1,6 @@
 import { PUZZLES } from "@/data/puzzles";
 import { ComposablePuzzle } from "@/types/puzzle";
+import { GENERATED_CHAPTERS } from "@/data/generatedChapters";
 import { collectionEmoji, collectionLabel, puzzleCollectionId } from "./collections";
 import { PlayerProgress } from "./player-progress";
 
@@ -38,7 +39,7 @@ export type ChapterSummary = ChapterDefinition & {
   fullyRestored: boolean;
 };
 
-export const CHAPTERS: ChapterDefinition[] = [
+export const FALLBACK_CHAPTERS: ChapterDefinition[] = [
   {
     id: "matcha_cafe",
     title: "Matcha Cafe",
@@ -135,6 +136,9 @@ export const CHAPTERS: ChapterDefinition[] = [
   },
 ];
 
+export const CHAPTERS: ChapterDefinition[] =
+  GENERATED_CHAPTERS.length > 0 ? GENERATED_CHAPTERS : FALLBACK_CHAPTERS;
+
 function unique<T>(items: T[]) {
   return Array.from(new Set(items));
 }
@@ -144,12 +148,20 @@ function normalizedCompleted(progress: PlayerProgress) {
 }
 
 export function chapterPuzzlePool(chapter: ChapterDefinition) {
+  const chapterTagged = PUZZLES.filter(
+    (puzzle) => (puzzle as any).chapter_id === chapter.id
+  );
+
+  if (chapterTagged.length) {
+    return chapterTagged.slice(0, chapter.targetPuzzleCount);
+  }
+
   const ids = new Set(chapter.collectionIds);
   const pool = PUZZLES.filter((puzzle) => ids.has(puzzleCollectionId(puzzle)));
 
   if (pool.length) return pool.slice(0, chapter.targetPuzzleCount);
 
-  return PUZZLES.slice(0, chapter.targetPuzzleCount);
+  return [];
 }
 
 export function chapterPuzzleIds(chapter: ChapterDefinition) {
@@ -225,8 +237,7 @@ export function nextChapterPuzzleIndex(
     return Math.max(0, index);
   }
 
-  const first = chapter.puzzles[0];
-  return first ? Math.max(0, PUZZLES.findIndex((puzzle) => puzzle.id === first.id)) : 0;
+  return -1;
 }
 
 export function chapterDisplayNameForPuzzle(puzzle: ComposablePuzzle) {

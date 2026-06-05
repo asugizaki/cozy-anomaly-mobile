@@ -199,6 +199,16 @@ export default async function PlayScreen() {
 
       setSettings(loadedSettings);
       setProgress(loadedProgress);
+
+      if (params.mode === "chapter" && params.index == null) {
+        const activeChapter = currentChapter(loadedProgress);
+        const nextIndex = nextChapterPuzzleIndex(activeChapter, loadedProgress);
+
+        if (nextIndex >= 0) {
+          setPuzzleIndex(nextIndex);
+        }
+      }
+
       setDailyAlreadyCompleted(
         params.mode === "daily" &&
           (loadedProgress.completedDailyKeys || []).includes(dailyKey())
@@ -610,13 +620,23 @@ export default async function PlayScreen() {
     const readyRepairs = readyRepairRewards(activeChapter, latestProgress);
     const nextIndex = nextChapterPuzzleIndex(activeChapter, latestProgress);
 
-    console.log(
-      "completed puzzles",
-      latestProgress.completedPuzzleIds?.length
-    );
     if (readyRepairs.length > 0) {
       router.replace(
         `/restore?chapter=${activeChapter.id}&repair=${readyRepairs[0].id}&nextIndex=${nextIndex}`
+      );
+      return;
+    }
+
+    if (nextIndex < 0) {
+      Alert.alert(
+        "Chapter Complete",
+        "You have played all available puzzles for this chapter. Import more puzzles for this chapter pack to continue.",
+        [
+          {
+            text: "Back Home",
+            onPress: () => router.replace("/"),
+          },
+        ]
       );
       return;
     }
