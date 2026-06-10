@@ -1,4 +1,5 @@
 import { BonusTanukiRewardConfig } from "@/data/generatedBonusTanukiScenes";
+import { ECONOMY_CONFIG } from "./economy-config";
 import { loadProgress, saveProgress } from "./player-progress";
 
 export type BonusTanukiReward = {
@@ -15,11 +16,13 @@ export async function claimBonusTanukiReward(
   const progress = await loadProgress();
 
   const config = {
-    xp: rewardConfig?.xp ?? 200,
-    coins: rewardConfig?.coins ?? 250,
-    energy: rewardConfig?.energy ?? 1,
-    lootBoxChance: rewardConfig?.lootBoxChance ?? 0.25,
-    rareAvatarChance: rewardConfig?.rareAvatarChance ?? 0.05,
+    xp: rewardConfig?.xp ?? ECONOMY_CONFIG.bonusTanuki.defaultXp,
+    coins: rewardConfig?.coins ?? ECONOMY_CONFIG.bonusTanuki.defaultCoins,
+    energy: rewardConfig?.energy ?? ECONOMY_CONFIG.bonusTanuki.defaultEnergy,
+    lootBoxChance:
+      rewardConfig?.lootBoxChance ?? ECONOMY_CONFIG.bonusTanuki.defaultLootBoxChance,
+    rareAvatarChance:
+      rewardConfig?.rareAvatarChance ?? ECONOMY_CONFIG.bonusTanuki.defaultRareAvatarChance,
   };
 
   const rareAvatarChance = Math.random() < config.rareAvatarChance;
@@ -47,6 +50,11 @@ export async function claimBonusTanukiReward(
     coins: (progress.coins || 0) + reward.coins,
     lifetimeCoins: (progress.lifetimeCoins || 0) + reward.coins,
     energy: (progress.energy || 0) + reward.energy,
+    lastEnergyAt:
+      (progress.energy || 0) + reward.energy >=
+      (progress.maxEnergy || ECONOMY_CONFIG.energy.baseEnergy)
+        ? Date.now()
+        : progress.lastEnergyAt,
     lootBoxes: (progress.lootBoxes || 0) + reward.lootBoxes,
     unlockedAvatarIds,
     completedBonusTanukiIds: [

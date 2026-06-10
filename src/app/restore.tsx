@@ -1,4 +1,5 @@
 import { ResourceSummary } from "@/components/ResourceSummary";
+import { RewardMultiplierCard } from "@/components/RewardMultiplierCard";
 import { restorationBundleByChapterId } from "@/data/generatedRestorations";
 import { loadGameAudio, playSfx } from "@/lib/audio";
 import {
@@ -66,6 +67,7 @@ export default function RestoreScreen() {
     useState<PlayerProgress>(DEFAULT_PROGRESS);
   const [restored, setRestored] = useState(false);
   const [claiming, setClaiming] = useState(false);
+  const [claimedReward, setClaimedReward] = useState<any>(null);
   const [fade] = useState(new Animated.Value(0));
 
   useEffect(() => {
@@ -132,6 +134,10 @@ export default function RestoreScreen() {
 
     setClaiming(false);
     setProgress(result.progress);
+
+    if (result.reward) {
+      setClaimedReward(result.reward);
+    }
 
     if (!result.success) {
       Alert.alert("Restore", result.message);
@@ -311,6 +317,19 @@ export default function RestoreScreen() {
             </View>
 
             <Text style={styles.rewardText}>{rewardText(repair.completedAt)}</Text>
+
+            {restored && claimedReward && (
+              <RewardMultiplierCard
+                source="restoration"
+                reward={claimedReward}
+                metadata={{
+                  chapterId: chapter.id,
+                  repairId: repair.id,
+                  completedAt: repair.completedAt,
+                }}
+                onClaimed={setProgress}
+              />
+            )}
 
             {restored ? (
               <Pressable style={styles.primaryButton} onPress={continuePlaying}>

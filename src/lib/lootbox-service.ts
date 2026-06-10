@@ -1,4 +1,5 @@
 import { AVATARS, avatarById } from "./avatars";
+import { ECONOMY_CONFIG } from "./economy-config";
 import { rollRarity, BASE_LOOTBOX_PRICE, LootBoxRarity } from "./lootbox-engine";
 import { loadProgress, PlayerProgress, saveProgress } from "./player-progress";
 import { lootBoxDiscount } from "./skill-tree";
@@ -44,17 +45,17 @@ function randomItem<T>(items: T[]) {
 }
 
 function coinRewardForRarity(rarity: LootBoxRarity) {
-  if (rarity === "epic") return randomItem([300, 400, 500]);
-  if (rarity === "rare") return randomItem([150, 200, 250]);
+  if (rarity === "epic") return randomItem([...ECONOMY_CONFIG.lootBoxes.epicCoinRewards]);
+  if (rarity === "rare") return randomItem([...ECONOMY_CONFIG.lootBoxes.rareCoinRewards]);
 
-  return randomItem([50, 75, 100]);
+  return randomItem([...ECONOMY_CONFIG.lootBoxes.commonCoinRewards]);
 }
 
 function duplicateCoinsForRarity(rarity: LootBoxRarity) {
-  if (rarity === "epic") return 300;
-  if (rarity === "rare") return 150;
+  if (rarity === "epic") return ECONOMY_CONFIG.lootBoxes.epicDuplicateCoins;
+  if (rarity === "rare") return ECONOMY_CONFIG.lootBoxes.rareDuplicateCoins;
 
-  return 75;
+  return ECONOMY_CONFIG.lootBoxes.commonDuplicateCoins;
 }
 
 function avatarDrop(progress: PlayerProgress, rarity: LootBoxRarity): LootboxReward {

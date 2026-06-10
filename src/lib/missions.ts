@@ -1,3 +1,4 @@
+import { ECONOMY_CONFIG } from "./economy-config";
 import { loadProgress, PlayerProgress, saveProgress } from "./player-progress";
 
 export type MissionReward = {
@@ -49,8 +50,8 @@ export function dailyMissions(progress: PlayerProgress): Mission[] {
       target: 5,
       current: solvedToday,
       reward: {
-        xp: 60,
-        coins: 80,
+        xp: ECONOMY_CONFIG.missions.dailySolve5.xp,
+        coins: ECONOMY_CONFIG.missions.dailySolve5.coins,
       },
     },
     {
@@ -60,8 +61,8 @@ export function dailyMissions(progress: PlayerProgress): Mission[] {
       target: 1,
       current: perfectToday,
       reward: {
-        xp: 40,
-        coins: 60,
+        xp: ECONOMY_CONFIG.missions.dailyPerfect1.xp,
+        coins: ECONOMY_CONFIG.missions.dailyPerfect1.coins,
       },
     },
     {
@@ -71,8 +72,8 @@ export function dailyMissions(progress: PlayerProgress): Mission[] {
       target: 10,
       current: progress.energySpentToday || 0,
       reward: {
-        coins: 100,
-        energy: 3,
+        coins: ECONOMY_CONFIG.missions.dailySpendEnergy10.coins,
+        energy: ECONOMY_CONFIG.missions.dailySpendEnergy10.energy,
       },
     },
     {
@@ -82,8 +83,8 @@ export function dailyMissions(progress: PlayerProgress): Mission[] {
       target: 1,
       current: progress.adEnergyRefillsToday || 0,
       reward: {
-        xp: 30,
-        coins: 50,
+        xp: ECONOMY_CONFIG.missions.dailyAdEnergy1.xp,
+        coins: ECONOMY_CONFIG.missions.dailyAdEnergy1.coins,
       },
     },
     {
@@ -93,8 +94,8 @@ export function dailyMissions(progress: PlayerProgress): Mission[] {
       target: 3,
       current: wrongTapsToday <= 5 ? solvedToday : 0,
       reward: {
-        xp: 50,
-        lootBoxes: 1,
+        xp: ECONOMY_CONFIG.missions.dailyCarefulPlay.xp,
+        lootBoxes: ECONOMY_CONFIG.missions.dailyCarefulPlay.lootBoxes,
       },
     },
   ];
@@ -142,7 +143,11 @@ export async function claimDailyMission(missionId: string) {
     xp: (progress.xp || 0) + (reward.xp || 0),
     coins: (progress.coins || 0) + (reward.coins || 0),
     lifetimeCoins: (progress.lifetimeCoins || 0) + (reward.coins || 0),
-    energy: Math.min(progress.maxEnergy, (progress.energy || 0) + (reward.energy || 0)),
+    energy: (progress.energy || 0) + (reward.energy || 0),
+    lastEnergyAt:
+      (progress.energy || 0) + (reward.energy || 0) >= (progress.maxEnergy || ECONOMY_CONFIG.energy.baseEnergy)
+        ? Date.now()
+        : progress.lastEnergyAt,
     lootBoxes: (progress.lootBoxes || 0) + (reward.lootBoxes || 0),
     dailyMissionClaimedIds: [
       mission.id,

@@ -3,10 +3,10 @@
   "id": "matcha_cafe_bonus_02",
   "title": "Matcha Cafe Bonus 2",
   "chapter_id": "matcha_cafe",
-  "background": "assets/bonus_tanuki/matcha_cafe_bonus_02/background.jpg",
+  "background": "assets/bonus_tanuki/matcha_cafe_bonus_02/background.png",
   "target": {
-    "x": 0.5,
-    "y": 0.5,
+    "x": 0.646,
+    "y": 0.421,
     "radius": 0.08
   },
   "attempts": 3,
@@ -18,7 +18,7 @@
     "rareAvatarChance": 0.05
   },
   "canvas": {
-    "width": 741,
-    "height": 1600
+    "width": 1408,
+    "height": 3040
   }
 }

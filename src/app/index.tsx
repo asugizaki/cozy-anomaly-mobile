@@ -1,6 +1,7 @@
 import { NotificationBell } from "@/components/NotificationBell";
 import { avatarById } from "@/lib/avatars";
-import { currentChapter, nextChapterPuzzleIndex } from "@/lib/chapters";
+import { currentChapter, nextChapterPuzzleIndex, nextRouteForChapter } from "@/lib/chapters";
+import { hasCompletedPonOnboarding } from "@/lib/onboarding-state";
 import {
   closestIncompleteCollection
 } from "@/lib/collections";
@@ -90,9 +91,9 @@ export default function HomeScreen() {
   const dailyPuzzleIndex = getDailyPuzzleIndex();
 
   const playHref =
-    homeProgress && completedCount === 0
-      ? `/chapter-intro?chapter=${playChapterId}`
-      : `/play?mode=chapter&chapter=${playChapterId}&index=${randomIndex}`;
+    homeProgress
+      ? nextRouteForChapter(homeProgress)
+      : `/chapter-intro?chapter=${playChapterId}`;
 
   useFocusEffect(
     useCallback(() => {
@@ -100,6 +101,13 @@ export default function HomeScreen() {
 
       async function refreshHomeProgress() {
         const progress = await loadProgressWithEnergy();
+
+        const onboarded = await hasCompletedPonOnboarding();
+
+        if (!onboarded) {
+          router.replace("/onboarding" as any);
+          return;
+        }
 
         if (!mounted) return;
 

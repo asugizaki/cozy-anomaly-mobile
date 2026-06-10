@@ -1,6 +1,7 @@
 import { AppBackground } from "@/components/AppBackground";
 import { ResourceSummary } from "@/components/ResourceSummary";
 import { loadGameAudio, playSfx } from "@/lib/audio";
+import { showRewardedAd } from "@/lib/ads";
 import {
   buyEnergyPack,
   loadProgressWithEnergy,
@@ -82,6 +83,13 @@ export default function EnergyShopScreen() {
   );
 
   async function handleAdRefill() {
+    const adResult = await showRewardedAd("energy_refill");
+
+    if (!adResult.success) {
+      Alert.alert("Ad not completed", adResult.message);
+      return;
+    }
+
     const result = await watchAdForEnergy();
 
     setProgress(result.progress);

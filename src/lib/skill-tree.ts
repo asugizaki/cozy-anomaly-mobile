@@ -1,3 +1,4 @@
+import { ECONOMY_CONFIG } from "./economy-config";
 import { PlayerProgress, loadProgress, saveProgress } from "./player-progress";
 
 export type SkillNodeId =
@@ -86,20 +87,20 @@ export function hasSkill(progress: PlayerProgress, id: SkillNodeId) {
 }
 
 export function xpMultiplier(progress: PlayerProgress) {
-  if (hasSkill(progress, "xp_boost_2")) return 1.2;
-  if (hasSkill(progress, "xp_boost_1")) return 1.1;
+  if (hasSkill(progress, "xp_boost_2")) return 1 + ECONOMY_CONFIG.skills.xpBoost2;
+  if (hasSkill(progress, "xp_boost_1")) return 1 + ECONOMY_CONFIG.skills.xpBoost1;
   return 1;
 }
 
 export function coinMultiplier(progress: PlayerProgress) {
-  if (hasSkill(progress, "coin_boost_2")) return 1.2;
-  if (hasSkill(progress, "coin_boost_1")) return 1.1;
+  if (hasSkill(progress, "coin_boost_2")) return 1 + ECONOMY_CONFIG.skills.coinBoost2;
+  if (hasSkill(progress, "coin_boost_1")) return 1 + ECONOMY_CONFIG.skills.coinBoost1;
   return 1;
 }
 
 export function lootBoxDiscount(progress: PlayerProgress) {
-  if (hasSkill(progress, "crate_discount_2")) return 0.2;
-  if (hasSkill(progress, "crate_discount_1")) return 0.1;
+  if (hasSkill(progress, "crate_discount_2")) return ECONOMY_CONFIG.skills.crateDiscount2;
+  if (hasSkill(progress, "crate_discount_1")) return ECONOMY_CONFIG.skills.crateDiscount1;
   return 0;
 }
 

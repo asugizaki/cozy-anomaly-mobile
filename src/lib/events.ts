@@ -1,3 +1,4 @@
+import { ECONOMY_CONFIG } from "./economy-config";
 import { loadProgress, PlayerProgress, saveProgress } from "./player-progress";
 
 export type EventTaskReward = {
@@ -50,8 +51,8 @@ export function activeEventTasks(progress: PlayerProgress): EventTask[] {
       target: 25,
       current: solved,
       reward: {
-        xp: 250,
-        coins: 300,
+        xp: ECONOMY_CONFIG.events.solve25.xp,
+        coins: ECONOMY_CONFIG.events.solve25.coins,
       },
     },
     {
@@ -61,8 +62,8 @@ export function activeEventTasks(progress: PlayerProgress): EventTask[] {
       target: 10,
       current: perfect,
       reward: {
-        coins: 500,
-        lootBoxes: 1,
+        coins: ECONOMY_CONFIG.events.perfect10.coins,
+        lootBoxes: ECONOMY_CONFIG.events.perfect10.lootBoxes,
       },
     },
     {
@@ -72,8 +73,8 @@ export function activeEventTasks(progress: PlayerProgress): EventTask[] {
       target: 40,
       current: progress.totalEnergySpent || 0,
       reward: {
-        xp: 300,
-        energy: 10,
+        xp: ECONOMY_CONFIG.events.spendEnergy40.xp,
+        energy: ECONOMY_CONFIG.events.spendEnergy40.energy,
       },
     },
     {
@@ -83,8 +84,8 @@ export function activeEventTasks(progress: PlayerProgress): EventTask[] {
       target: 3,
       current: openedCrates,
       reward: {
-        lootBoxes: 2,
-        coins: 150,
+        lootBoxes: ECONOMY_CONFIG.events.openCrates3.lootBoxes,
+        coins: ECONOMY_CONFIG.events.openCrates3.coins,
       },
     },
   ];
@@ -132,7 +133,11 @@ export async function claimEventTask(taskId: string) {
     xp: (progress.xp || 0) + (reward.xp || 0),
     coins: (progress.coins || 0) + (reward.coins || 0),
     lifetimeCoins: (progress.lifetimeCoins || 0) + (reward.coins || 0),
-    energy: Math.min(progress.maxEnergy, (progress.energy || 0) + (reward.energy || 0)),
+    energy: (progress.energy || 0) + (reward.energy || 0),
+    lastEnergyAt:
+      (progress.energy || 0) + (reward.energy || 0) >= (progress.maxEnergy || ECONOMY_CONFIG.energy.baseEnergy)
+        ? Date.now()
+        : progress.lastEnergyAt,
     lootBoxes: (progress.lootBoxes || 0) + (reward.lootBoxes || 0),
     eventClaimedTaskIds: [task.id, ...(progress.eventClaimedTaskIds || [])],
   };

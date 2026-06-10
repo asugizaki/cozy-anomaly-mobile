@@ -23,6 +23,7 @@ import {
   uploadCloudSave,
 } from "./cloud-save";
 import { firebaseAuth, firebaseConfigured } from "./firebase";
+import { setErrorUser } from "./error-reporting";
 import { saveProgress } from "./player-progress";
 
 WebBrowser.maybeCompleteAuthSession();
@@ -98,6 +99,15 @@ const [, response, promptAsync] = Google.useAuthRequest(googleAuthConfig);
 
     const unsubscribe = onAuthStateChanged(firebaseAuth, (nextUser) => {
       setUser(nextUser);
+      setErrorUser(
+        nextUser
+          ? {
+              id: nextUser.uid,
+              email: nextUser.email,
+              username: nextUser.displayName,
+            }
+          : undefined
+      );
       setInitializing(false);
     });
 

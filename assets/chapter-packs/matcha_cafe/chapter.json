@@ -1,18 +1,18 @@
 {
   "schema": "hidden_tanuki_chapter_pack_v1",
-  "exported_at": "2026-06-05T13:50:36.879306",
+  "exported_at": "2026-06-05T20:24:10.153619",
   "chapter": {
     "id": "matcha_cafe",
     "title": "Matcha Cafe",
-    "subtitle": "Restore a quiet tea cafe with Tanuki",
+    "subtitle": "Restore a quiet Tea Cafe with Tanuki",
     "theme": "Matcha",
     "emoji": "\ud83e\udd9d",
     "collectionIds": [
       "matcha_cafe"
     ],
     "targetPuzzleCount": 80,
-    "intro": "This old Matcha Cafe needs our help! Let's restore it together!",
-    "completionText": "The Matcha Cafe is cozy again. Amaizing work!",
+    "intro": "Matcha Cafe needs your sharp eyes.",
+    "completionText": "Matcha Cafe is complete!",
     "sortOrder": 1,
     "unlockAfterChapterId": ""
   },

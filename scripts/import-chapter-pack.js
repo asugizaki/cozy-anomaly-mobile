@@ -342,7 +342,7 @@ function regenerateGeneratedChapters() {
       ? JSON.parse(fs.readFileSync(restorationManifestPath, "utf8"))
       : { milestones: [] };
 
-    const repairs = (restorationManifest.milestones || []).map((milestone) => ({
+    const milestoneRepairs = (restorationManifest.milestones || []).map((milestone) => ({
       id: milestone.id,
       title: milestone.title,
       description: milestone.next_text || milestone.tanuki_text || milestone.title,
@@ -351,6 +351,10 @@ function regenerateGeneratedChapters() {
       afterEmoji: "✨",
     }));
 
+    const repairs = (chapter.repairs && chapter.repairs.length)
+      ? chapter.repairs
+      : milestoneRepairs;
+
     return {
       id: chapter.id,
       title: chapter.title,
@@ -358,14 +362,16 @@ function regenerateGeneratedChapters() {
       theme: chapter.theme,
       emoji: chapter.emoji || "🦝",
       collectionIds: [chapter.id],
-      targetPuzzleCount: chapter.targetPuzzleCount || chapterJson.puzzles?.count || 80,
+      targetPuzzleCount: chapter.targetPuzzleCount || chapterJson.puzzles?.count || 100,
       warnRemaining: chapterJson.exhaustion?.warnRemaining ?? 20,
       criticalRemaining: chapterJson.exhaustion?.criticalRemaining ?? 10,
       intro: chapter.intro || `${chapter.title} needs your sharp eyes.`,
       completionText: chapter.completionText || `${chapter.title} is complete!`,
+      sortOrder: chapter.sortOrder || 1,
+      unlockAfterChapterId: chapter.unlockAfterChapterId || "",
       repairs,
     };
-  });
+  }).sort((a, b) => (a.sortOrder || 1) - (b.sortOrder || 1));
 
   const ts = `import { ChapterDefinition } from "@/lib/chapters";
 

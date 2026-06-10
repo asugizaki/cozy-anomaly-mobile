@@ -10,7 +10,7 @@ export const GENERATED_CHAPTERS: ChapterDefinition[] = [
     "collectionIds": [
       "matcha_cafe"
     ],
-    "targetPuzzleCount": 80,
+    "targetPuzzleCount": 100,
     "warnRemaining": 20,
     "criticalRemaining": 10,
     "intro": "This old Matcha Cafe needs our help! Let's restore it together!",
@@ -47,6 +47,14 @@ export const GENERATED_CHAPTERS: ChapterDefinition[] = [
         "completedAt": 80,
         "beforeEmoji": "⬜",
         "afterEmoji": "✨"
+      },
+      {
+        "id": "grand_opening",
+        "title": "Grand Opening",
+        "description": "The cafe is ready to welcome guests again.",
+        "completedAt": 100,
+        "beforeEmoji": "⬜",
+        "afterEmoji": "🌟"
       }
     ]
   }

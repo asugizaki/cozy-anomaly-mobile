@@ -1,4 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { resetPonOnboardingForTesting } from "@/lib/onboarding-state";
 import * as SQLite from "expo-sqlite";
 import { AppBackground } from "@/components/AppBackground";
 import { CHAPTERS, chapterSummary } from "@/lib/chapters";
@@ -35,6 +36,11 @@ export default function DevToolsScreen() {
   }, [chapter.id, refreshKey]);
 
   const repairs = useMemo(() => chapter.repairs || [], [chapter.id]);
+
+  async function resetOnboarding() {
+    await resetPonOnboardingForTesting();
+    Alert.alert("Onboarding reset", "Restart or go Home to see Pon onboarding again.");
+  }
 
   async function clearAllLocalData() {
     try {
@@ -123,6 +129,17 @@ export default function DevToolsScreen() {
             {chapter.emoji} {chapter.title}
           </Text>
           <Text style={styles.cardText}>Completed: {completedCount}</Text>
+        </View>
+
+        <View style={styles.card}>
+          <Text style={styles.cardTitle}>Onboarding Test</Text>
+          <Text style={styles.cardText}>
+            Reset first-time Pon onboarding so you can test the full new-player flow.
+          </Text>
+
+          <Pressable style={styles.secondaryButton} onPress={resetOnboarding}>
+            <Text style={styles.secondaryButtonText}>Reset Onboarding</Text>
+          </Pressable>
         </View>
 
         <View style={styles.card}>

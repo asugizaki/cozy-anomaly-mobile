@@ -2,7 +2,8 @@ import {
   randomBonusTanukiScene,
   BonusTanukiScene,
 } from "@/data/generatedBonusTanukiScenes";
-import { claimBonusTanukiReward } from "@/lib/bonus-tanuki";
+import { RewardMultiplierCard } from "@/components/RewardMultiplierCard";
+import { claimBonusTanukiReward, BonusTanukiReward } from "@/lib/bonus-tanuki";
 import { loadGameAudio, playSfx } from "@/lib/audio";
 import { loadProgressWithEnergy } from "@/lib/energy";
 import { DEFAULT_PROGRESS, PlayerProgress } from "@/lib/player-progress";
@@ -64,6 +65,7 @@ export default function BonusTanukiScreen() {
   const [layout, setLayout] = useState({ width: 1, height: 1 });
   const [found, setFound] = useState(false);
   const [rewardText, setRewardText] = useState("");
+  const [claimedReward, setClaimedReward] = useState<BonusTanukiReward | null>(null);
   const [scene] = useState(
     () => randomBonusTanukiScene(String(params.chapter || "")) || FALLBACK_SCENE
   );
@@ -144,6 +146,7 @@ export default function BonusTanukiScreen() {
     if (normalizedDistance <= hitRadius) {
       const result = await claimBonusTanukiReward(scene.reward);
       setProgress(result.progress);
+      setClaimedReward(result.reward);
 
       playSfx("reward");
       setFound(true);
@@ -180,9 +183,7 @@ export default function BonusTanukiScreen() {
       >
         <Pressable style={styles.tapLayer} onPress={handleTap} onLayout={onLayout}>
           {found && (
-            <View pointerEvents="none" style={[styles.targetReveal, targetStyle]}>
-              <Text style={styles.targetTanuki}>🦝</Text>
-            </View>
+            <View pointerEvents="none" style={[styles.targetReveal, targetStyle]} />
           )}
 
           <SafeAreaView pointerEvents="box-none" style={styles.overlay}>
@@ -211,6 +212,18 @@ export default function BonusTanukiScreen() {
                     Tap where Tanuki is hiding.
                   </Text>
                 </>
+              )}
+
+              {found && claimedReward && (
+                <RewardMultiplierCard
+                  source="bonus_tanuki"
+                  reward={claimedReward}
+                  metadata={{
+                    sceneId: scene.id,
+                    chapterId: scene.chapter_id || String(params.chapter || ""),
+                  }}
+                  onClaimed={setProgress}
+                />
               )}
 
               {(found || attemptsLeft <= 0) && (
@@ -288,9 +301,6 @@ const styles = StyleSheet.create({
     borderColor: "#FF5C8A",
   },
 
-  targetTanuki: {
-    fontSize: 44,
-  },
 
   bottomCard: {
     marginBottom: 10,

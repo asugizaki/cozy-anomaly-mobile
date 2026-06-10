@@ -1,6 +1,7 @@
+import { ECONOMY_CONFIG } from "./economy-config";
 export type LootBoxRarity = "common" | "rare" | "epic";
 
-export const BASE_LOOTBOX_PRICE = 250;
+export const BASE_LOOTBOX_PRICE = ECONOMY_CONFIG.lootBoxes.basePrice;
 
 export function rollRarity(): LootBoxRarity {
   const r = Math.random();

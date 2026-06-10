@@ -174,5 +174,24 @@ export function overlayImageSource(
   bundle: RestorationBundle,
   overlay: RestorationOverlay
 ) {
-  return bundle.sources.overlays[overlay.id];
+  const direct = bundle.sources.overlays[overlay.id];
+
+  if (direct) return direct;
+
+  const fileName = overlay.image?.split("/").pop()?.replace(/\.[^.]+$/, "");
+
+  if (fileName && bundle.sources.overlays[fileName]) {
+    return bundle.sources.overlays[fileName];
+  }
+
+  if (__DEV__) {
+    console.log("[restore-runtime] overlay source missing", {
+      overlayId: overlay.id,
+      image: overlay.image,
+      fileName,
+      sourceKeys: Object.keys(bundle.sources.overlays || {}),
+    });
+  }
+
+  return undefined;
 }

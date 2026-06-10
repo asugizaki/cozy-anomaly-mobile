@@ -1,20 +1,7 @@
 import { useEffect, useRef } from "react";
 import { Animated, StyleSheet, Text, View } from "react-native";
 
-type Props = {
-  active: boolean;
-};
-
-const SPARKLES = [
-  { id: "a", x: "18%", y: "28%", delay: 0 },
-  { id: "b", x: "76%", y: "24%", delay: 120 },
-  { id: "c", x: "52%", y: "40%", delay: 220 },
-  { id: "d", x: "28%", y: "57%", delay: 340 },
-  { id: "e", x: "82%", y: "62%", delay: 450 },
-  { id: "f", x: "44%", y: "72%", delay: 560 },
-];
-
-export function SparkleBurst({ active }: Props) {
+export function SparkleBurst({ active }: { active: boolean }) {
   const anim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -26,51 +13,50 @@ export function SparkleBurst({ active }: Props) {
     anim.setValue(0);
 
     Animated.sequence([
-      Animated.timing(anim, {
-        toValue: 1,
-        duration: 620,
-        useNativeDriver: true,
-      }),
-      Animated.timing(anim, {
-        toValue: 0,
-        duration: 420,
-        useNativeDriver: true,
-      }),
+      Animated.timing(anim, { toValue: 1, duration: 700, useNativeDriver: true }),
+      Animated.timing(anim, { toValue: 0, duration: 700, useNativeDriver: true }),
     ]).start();
   }, [active, anim]);
 
+  const spots = [
+    ["14%", "26%"],
+    ["78%", "23%"],
+    ["48%", "36%"],
+    ["25%", "55%"],
+    ["83%", "63%"],
+    ["46%", "72%"],
+  ];
+
   return (
     <View pointerEvents="none" style={StyleSheet.absoluteFill}>
-      {SPARKLES.map((sparkle, index) => {
+      {spots.map(([left, top], index) => {
         const opacity = anim.interpolate({
-          inputRange: [0, 0.2, 0.72, 1],
+          inputRange: [0, 0.15, 0.75, 1],
           outputRange: [0, 1, 1, 0],
         });
-
         const scale = anim.interpolate({
           inputRange: [0, 1],
-          outputRange: [0.4 + index * 0.02, 1.8],
+          outputRange: [0.4, 1.9 + index * 0.05],
         });
-
         const translateY = anim.interpolate({
           inputRange: [0, 1],
-          outputRange: [20, -36 - index * 3],
+          outputRange: [20, -36 - index * 4],
         });
 
         return (
           <Animated.View
-            key={sparkle.id}
+            key={`${left}-${top}`}
             style={[
               styles.sparkle,
               {
-                left: sparkle.x as any,
-                top: sparkle.y as any,
+                left: left as any,
+                top: top as any,
                 opacity,
                 transform: [{ scale }, { translateY }],
               },
             ]}
           >
-            <Text style={styles.sparkleText}>✨</Text>
+            <Text style={styles.text}>✨</Text>
           </Animated.View>
         );
       })}
@@ -79,11 +65,6 @@ export function SparkleBurst({ active }: Props) {
 }
 
 const styles = StyleSheet.create({
-  sparkle: {
-    position: "absolute",
-  },
-
-  sparkleText: {
-    fontSize: 34,
-  },
+  sparkle: { position: "absolute" },
+  text: { fontSize: 34 },
 });

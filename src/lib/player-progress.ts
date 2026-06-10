@@ -64,6 +64,8 @@ export type PlayerProgress = {
   eventStartPerfectGames: number;
   eventStartHintsUsed: number;
   eventStartLootBoxesOpened: number;
+
+  hasSeenPonIntro: boolean;
 };
 
 const KEY = "player_progress";
@@ -138,6 +140,8 @@ export const DEFAULT_PROGRESS: PlayerProgress = {
   eventStartPerfectGames: 0,
   eventStartHintsUsed: 0,
   eventStartLootBoxesOpened: 0,
+
+  hasSeenPonIntro: false,
 };
 
 function safeArray(value: unknown): string[] {
@@ -288,6 +292,8 @@ export async function loadProgress(): Promise<PlayerProgress> {
         parsed.eventStartLootBoxesOpened,
         parsed.lootBoxesOpened || 0
       ),
+
+      hasSeenPonIntro: Boolean(parsed.hasSeenPonIntro),
     };
 
     return resetDailyIfNeeded(progress);

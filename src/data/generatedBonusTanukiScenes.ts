@@ -36,9 +36,9 @@ export const BONUS_TANUKI_SCENES: BonusTanukiScene[] = [
         "chapter_id": "matcha_cafe",
         "background": "assets/bonus-tanuki/matcha_cafe_bonus_01/background.jpg",
         "target": {
-            "x": 0.5,
-            "y": 0.5,
-            "radius": 0.08
+            "x": 0.544,
+            "y": 0.698,
+            "radius": 0.107
         },
         "attempts": 3,
         "reward": {
@@ -61,10 +61,10 @@ export const BONUS_TANUKI_SCENES: BonusTanukiScene[] = [
         "id": "matcha_cafe_bonus_02",
         "title": "Matcha Cafe Bonus 2",
         "chapter_id": "matcha_cafe",
-        "background": "assets/bonus-tanuki/matcha_cafe_bonus_02/background.jpg",
+        "background": "assets/bonus-tanuki/matcha_cafe_bonus_02/background.png",
         "target": {
-            "x": 0.5,
-            "y": 0.5,
+            "x": 0.646,
+            "y": 0.421,
             "radius": 0.08
         },
         "attempts": 3,
@@ -76,11 +76,11 @@ export const BONUS_TANUKI_SCENES: BonusTanukiScene[] = [
             "rareAvatarChance": 0.05
         },
         "canvas": {
-            "width": 741,
-            "height": 1600
+            "width": 1408,
+            "height": 3040
         }
     },
-    backgroundSource: require("../../assets/bonus-tanuki/matcha_cafe_bonus_02/background.jpg"),
+    backgroundSource: require("../../assets/bonus-tanuki/matcha_cafe_bonus_02/background.png"),
   },
   {
     ...{
@@ -90,8 +90,8 @@ export const BONUS_TANUKI_SCENES: BonusTanukiScene[] = [
         "chapter_id": "matcha_cafe",
         "background": "assets/bonus-tanuki/matcha_cafe_bonus_03/background.jpg",
         "target": {
-            "x": 0.5,
-            "y": 0.5,
+            "x": 0.876,
+            "y": 0.175,
             "radius": 0.08
         },
         "attempts": 3,
@@ -117,8 +117,8 @@ export const BONUS_TANUKI_SCENES: BonusTanukiScene[] = [
         "chapter_id": "matcha_cafe",
         "background": "assets/bonus-tanuki/matcha_cafe_bonus_04/background.jpg",
         "target": {
-            "x": 0.5,
-            "y": 0.5,
+            "x": 0.134,
+            "y": 0.451,
             "radius": 0.08
         },
         "attempts": 3,

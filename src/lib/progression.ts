@@ -1,6 +1,7 @@
 import { ComposablePuzzle } from "@/types/puzzle";
 import { PlayerProgress } from "./player-progress";
 import { levelForXp } from "./levels";
+import { ECONOMY_CONFIG } from "./economy-config";
 import { coinMultiplier, hasSkill, xpMultiplier } from "./skill-tree";
 
 export type PuzzleReward = {
@@ -14,17 +15,9 @@ export type PuzzleReward = {
   reasons: string[];
 };
 
-const BASE_XP_BY_DIFFICULTY: Record<string, number> = {
-  easy: 10,
-  medium: 20,
-  hard: 40,
-};
+const BASE_XP_BY_DIFFICULTY: Record<string, number> = ECONOMY_CONFIG.puzzleRewards.xpByDifficulty;
 
-const BASE_COINS_BY_DIFFICULTY: Record<string, number> = {
-  easy: 5,
-  medium: 10,
-  hard: 20,
-};
+const BASE_COINS_BY_DIFFICULTY: Record<string, number> = ECONOMY_CONFIG.puzzleRewards.coinsByDifficulty;
 
 export function calculatePuzzleReward(options: {
   puzzle: ComposablePuzzle;
@@ -69,42 +62,42 @@ export function calculatePuzzleReward(options: {
   const reasons = [`${puzzle.difficulty.toUpperCase()} clear`];
 
   if (isPerfect) {
-    xp += 10;
-    coins += 5;
+    xp += ECONOMY_CONFIG.puzzleRewards.perfectBonusXp;
+    coins += ECONOMY_CONFIG.puzzleRewards.perfectBonusCoins;
     reasons.push("Perfect bonus");
 
     if (hasSkill(progress, "perfect_bonus_1")) {
-      coins += 10;
+      coins += ECONOMY_CONFIG.skills.perfectBonusCoins;
       reasons.push("Perfect Eye");
     }
   }
 
   if (usedNoHints) {
-    xp += 5;
+    xp += ECONOMY_CONFIG.puzzleRewards.noHintBonusXp;
     reasons.push("No-hint bonus");
   }
 
   if (isDailyMode) {
-    xp += 20;
-    coins += 10;
+    xp += ECONOMY_CONFIG.puzzleRewards.dailyBonusXp;
+    coins += ECONOMY_CONFIG.puzzleRewards.dailyBonusCoins;
     reasons.push("Daily bonus");
 
     if (hasSkill(progress, "daily_bonus_1")) {
-      xp += 10;
+      xp += ECONOMY_CONFIG.skills.dailyBonusXp;
       reasons.push("Daily Focus");
     }
   }
 
   if (completedCollection) {
-    xp += 50;
-    coins += 25;
-    lootBoxes += 1;
+    xp += ECONOMY_CONFIG.puzzleRewards.collectionCompleteXp;
+    coins += ECONOMY_CONFIG.puzzleRewards.collectionCompleteCoins;
+    lootBoxes += ECONOMY_CONFIG.puzzleRewards.collectionCompleteLootBoxes;
     reasons.push("Collection complete crate");
   }
 
   if (alreadyCompleted) {
-    xp = Math.max(1, Math.floor(xp * 0.25));
-    coins = Math.max(1, Math.floor(coins * 0.25));
+    xp = Math.max(1, Math.floor(xp * ECONOMY_CONFIG.puzzleRewards.replayMultiplier));
+    coins = Math.max(1, Math.floor(coins * ECONOMY_CONFIG.puzzleRewards.replayMultiplier));
     reasons.push("Replay reward");
   }
 

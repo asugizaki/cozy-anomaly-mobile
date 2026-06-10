@@ -1,3 +1,4 @@
+import { ECONOMY_CONFIG } from "./economy-config";
 import { loadProgress, PlayerProgress, saveProgress } from "./player-progress";
 import {
   buyEnergyPackServerCall,
@@ -5,10 +6,10 @@ import {
   watchAdForEnergyServerCall,
 } from "./server-economy";
 
-export const ENERGY_RECHARGE_MINUTES = 12;
-export const ENERGY_PER_PLAY = 1;
-export const AD_ENERGY_REWARD = 5;
-export const MAX_DAILY_ENERGY_ADS = 3;
+export const ENERGY_RECHARGE_MINUTES = ECONOMY_CONFIG.energy.rechargeMinutes;
+export const ENERGY_PER_PLAY = ECONOMY_CONFIG.energy.energyPerPlay;
+export const AD_ENERGY_REWARD = ECONOMY_CONFIG.energy.adEnergyReward;
+export const MAX_DAILY_ENERGY_ADS = ECONOMY_CONFIG.energy.maxDailyEnergyAds;
 
 function todayKey(date = new Date()) {
   const year = date.getFullYear();
@@ -16,6 +17,31 @@ function todayKey(date = new Date()) {
   const day = `${date.getDate()}`.padStart(2, "0");
 
   return `${year}-${month}-${day}`;
+}
+
+
+function baseEnergyCap(progress: PlayerProgress) {
+  return progress.maxEnergy || ECONOMY_CONFIG.energy.baseEnergy;
+}
+
+function shouldRechargeEnergy(progress: PlayerProgress) {
+  return (progress.energy || 0) < baseEnergyCap(progress);
+}
+
+function lastEnergyAtAfterEnergyChange(previous: PlayerProgress, nextEnergy: number) {
+  const cap = baseEnergyCap(previous);
+
+  // At or above base cap, refill timer is paused/reset.
+  // When energy later drops below cap, spendEnergy starts a fresh timer.
+  if (nextEnergy >= cap) return Date.now();
+
+  const previousEnergy = previous.energy || 0;
+
+  if (previousEnergy >= cap && nextEnergy < cap) {
+    return Date.now();
+  }
+
+  return previous.lastEnergyAt || Date.now();
 }
 
 export function applyEnergyRecharge(progress: PlayerProgress): PlayerProgress {
@@ -50,13 +76,14 @@ export function applyEnergyRecharge(progress: PlayerProgress): PlayerProgress {
 
 export function secondsUntilNextEnergy(progress: PlayerProgress) {
   const charged = applyEnergyRecharge(progress);
+  const maxEnergy = baseEnergyCap(charged);
 
-  if (charged.energy >= charged.maxEnergy) {
+  if ((charged.energy || 0) >= maxEnergy) {
     return 0;
   }
 
   const rechargeMs = ENERGY_RECHARGE_MINUTES * 60 * 1000;
-  const elapsed = Date.now() - charged.lastEnergyAt;
+  const elapsed = Date.now() - (charged.lastEnergyAt || Date.now());
   const remaining = rechargeMs - elapsed;
 
   return Math.max(0, Math.ceil(remaining / 1000));
@@ -107,8 +134,7 @@ export async function spendEnergy(amount = ENERGY_PER_PLAY) {
     energy: progress.energy - amount,
     totalEnergySpent: (progress.totalEnergySpent || 0) + amount,
     energySpentToday: (progress.energySpentToday || 0) + amount,
-    lastEnergyAt:
-      progress.energy >= progress.maxEnergy ? Date.now() : progress.lastEnergyAt,
+    lastEnergyAt: lastEnergyAtAfterEnergyChange(progress, progress.energy - amount),
   };
 
   await saveProgress(updated);
@@ -161,16 +187,17 @@ export async function watchAdForEnergy() {
     };
   }
 
-  const gained = Math.min(AD_ENERGY_REWARD, progress.maxEnergy - progress.energy);
+  const nextEnergy = (progress.energy || 0) + AD_ENERGY_REWARD;
+  const gained = AD_ENERGY_REWARD;
 
   const updated: PlayerProgress = {
     ...progress,
-    energy: Math.min(progress.maxEnergy, progress.energy + AD_ENERGY_REWARD),
+    energy: nextEnergy,
     energyAdViewsDate: today,
     energyAdViewsToday: viewsToday + 1,
     totalEnergyFromAds: (progress.totalEnergyFromAds || 0) + gained,
     adEnergyRefillsToday: (progress.adEnergyRefillsToday || 0) + 1,
-    lastEnergyAt: Date.now(),
+    lastEnergyAt: lastEnergyAtAfterEnergyChange(progress, nextEnergy),
   };
 
   await saveProgress(updated);
@@ -218,10 +245,7 @@ export async function buyEnergyPack(amount: number, cost: number) {
     ...progress,
     coins: progress.coins - cost,
     energy: (progress.energy || 0) + amount,
-    lastEnergyAt:
-      (progress.energy || 0) >= (progress.maxEnergy || 20)
-        ? progress.lastEnergyAt
-        : Date.now(),
+    lastEnergyAt: lastEnergyAtAfterEnergyChange(progress, (progress.energy || 0) + amount),
   };
 
   await saveProgress(updated);

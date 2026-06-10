@@ -7,18 +7,14 @@
     "start": "expo start",
     "import:puzzles": "node scripts/import-composable-export.js",
     "import:puzzle-folder": "node scripts/import-composable-folder.js",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web",
-    "functions:install": "cd functions && npm install",
-    "functions:build": "cd functions && npm run build",
-    "functions:deploy": "firebase deploy --only functions,firestore:rules,firestore:indexes",
-    "emulators": "firebase emulators:start --only auth,firestore,functions",
     "import:restoration": "node scripts/import-restoration-bundle.js",
     "import:chapter-pack": "node scripts/import-chapter-pack.js",
     "chapter:status": "node scripts/chapter-pack-status.js",
     "chapter:alerts": "node scripts/chapter-content-alerts.js",
-    "import:bonus-tanuki": "node scripts/import-bonus-tanuki-bundle.js"
+    "import:bonus-tanuki": "node scripts/import-bonus-tanuki-bundle.js",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "2.2.0",

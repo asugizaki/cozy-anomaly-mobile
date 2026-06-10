@@ -74,9 +74,9 @@ export default function ChapterIntroScreen() {
             <Text style={styles.subtitle}>{chapter.subtitle}</Text>
 
             <View style={styles.dialogueCard}>
-              <Text style={styles.tanuki}>🦝🤔</Text>
+              <Text style={styles.tanuki}>🦝</Text>
               <View style={styles.dialogueTextWrap}>
-                <Text style={styles.tanukiName}>Tanuki</Text>
+                <Text style={styles.tanukiName}>Pon</Text>
                 <Text style={styles.dialogueText}>{chapter.intro}</Text>
                 <Text style={styles.goalText}>
                   Complete puzzles to restore this place step by step.

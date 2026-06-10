@@ -5,8 +5,8 @@
   "chapter_id": "matcha_cafe",
   "background": "assets/bonus_tanuki/matcha_cafe_bonus_04/background.jpg",
   "target": {
-    "x": 0.5,
-    "y": 0.5,
+    "x": 0.134,
+    "y": 0.451,
     "radius": 0.08
   },
   "attempts": 3,

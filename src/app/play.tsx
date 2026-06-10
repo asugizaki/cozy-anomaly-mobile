@@ -3,6 +3,7 @@ import { ZoomablePuzzle, ZoomTransform } from "@/components/ZoomablePuzzle";
 import { PUZZLES } from "@/data/puzzles";
 import { getPuzzleEngine } from "@/game-engines";
 import { loadGameAudio, playSfx, startMusic, updateMusic } from "@/lib/audio";
+import { showRewardedAd } from "@/lib/ads";
 import { currentChapter, nextChapterPuzzleIndex } from "@/lib/chapters";
 import { puzzleCollectionId, puzzlesForCollection } from "@/lib/collections";
 import { spendEnergy } from "@/lib/energy";
@@ -669,6 +670,13 @@ export default function PlayScreen() {
         {
           text: "🎬 Watch Ad",
           onPress: async () => {
+            const adResult = await showRewardedAd("hint");
+
+            if (!adResult.success) {
+              Alert.alert("Ad not completed", adResult.message);
+              return;
+            }
+
             hapticImpact();
             playSfx("hint", settings);
             await incrementHintUsage();

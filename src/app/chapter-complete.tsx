@@ -41,12 +41,13 @@ export default function ChapterCompleteScreen() {
 
   function continueToNextChapter() {
     const nextChapter = currentChapter(progress);
-    const nextIndex = nextChapterPuzzleIndex(nextChapter, progress);
 
     if (nextChapter.id !== chapter.id && nextChapter.completed === 0) {
-      router.replace(`/chapter-intro?chapter=${nextChapter.id}`);
+      router.replace(`/chapter-intro?chapter=${nextChapter.id}` as any);
       return;
     }
+
+    const nextIndex = nextChapterPuzzleIndex(nextChapter, progress);
 
     if (nextIndex < 0) {
       Alert.alert(
