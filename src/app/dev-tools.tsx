@@ -2,6 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { resetPonOnboardingForTesting } from "@/lib/onboarding-state";
 import * as SQLite from "expo-sqlite";
 import { AppBackground } from "@/components/AppBackground";
+import { BONUS_TANUKI_SCENES } from "@/data/generatedBonusTanukiScenes";
 import { CHAPTERS, chapterSummary } from "@/lib/chapters";
 import {
   DEFAULT_PROGRESS,
@@ -104,6 +105,24 @@ export default function DevToolsScreen() {
     );
   }
 
+  async function openBonusScene(sceneId?: string) {
+    const progress = await loadProgress();
+
+    await saveProgress({
+      ...progress,
+      bonusTanukiTickets: Math.max(progress.bonusTanukiTickets || 0, 1),
+      energy: Math.max(progress.energy || 0, 50),
+      maxEnergy: progress.maxEnergy || 20,
+      lastEnergyAt: Date.now(),
+    });
+
+    const sceneParam = sceneId ? `&scene=${encodeURIComponent(sceneId)}` : "";
+
+    router.push(
+      `/bonus-tanuki?chapter=${chapter.id}&next=dev-tools${sceneParam}`
+    );
+  }
+
   async function prepareFullSequence() {
     const firstRepair = repairs[0];
 
@@ -178,6 +197,30 @@ export default function DevToolsScreen() {
             >
               <Text style={styles.secondaryButtonText}>
                 Test {repair.completedAt}: {repair.title}
+              </Text>
+            </Pressable>
+          ))}
+        </View>
+
+        <View style={styles.card}>
+          <Text style={styles.cardTitle}>Bonus Scene Test</Text>
+          <Text style={styles.cardText}>
+            Opens the hidden Tanuki bonus flow with a seeded ticket. Use a
+            specific scene to test its target coordinates and hit radius.
+          </Text>
+
+          <Pressable style={styles.primaryButton} onPress={() => openBonusScene()}>
+            <Text style={styles.primaryButtonText}>Test Random Bonus Scene</Text>
+          </Pressable>
+
+          {BONUS_TANUKI_SCENES.map((scene) => (
+            <Pressable
+              key={scene.id}
+              style={styles.secondaryButton}
+              onPress={() => openBonusScene(scene.id)}
+            >
+              <Text style={styles.secondaryButtonText}>
+                Test {scene.title || scene.id}
               </Text>
             </Pressable>
           ))}

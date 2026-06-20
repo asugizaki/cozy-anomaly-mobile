@@ -1,4 +1,5 @@
 import { FullRestorationBackdrop } from "@/components/FullRestorationBackdrop";
+import { TanukiDialog } from "@/components/TanukiDialog";
 import { ResourceSummary } from "@/components/ResourceSummary";
 import {
   chapterById,
@@ -73,16 +74,12 @@ export default function ChapterIntroScreen() {
             </Text>
             <Text style={styles.subtitle}>{chapter.subtitle}</Text>
 
-            <View style={styles.dialogueCard}>
-              <Text style={styles.tanuki}>🦝</Text>
-              <View style={styles.dialogueTextWrap}>
-                <Text style={styles.tanukiName}>Pon</Text>
-                <Text style={styles.dialogueText}>{chapter.intro}</Text>
-                <Text style={styles.goalText}>
-                  Complete puzzles to restore this place step by step.
-                </Text>
-              </View>
-            </View>
+            <TanukiDialog
+              mood="guide"
+              text={chapter.intro}
+              subtext="Complete puzzles to restore this place step by step."
+              restartKey={chapter.id}
+            />
 
             <Pressable style={styles.primaryButton} onPress={startChapter}>
               <Text style={styles.primaryButtonText}>Start Chapter</Text>

@@ -1,6 +1,13 @@
 import { ImageSourcePropType } from "react-native";
 
 export type TanukiMood = "guide" | "thinking" | "happy";
+export type RestorationTanukiMood =
+  | "idle"
+  | "happy"
+  | "excited"
+  | "thinking"
+  | "celebration"
+  | "hint";
 
 export const TANUKI_NAME = "Pon";
 
@@ -14,6 +21,21 @@ export function tanukiImageForMood(mood: TanukiMood): ImageSourcePropType {
   }
 
   return require("../../assets/characters/tanuki_guide.png");
+}
+
+
+export function tanukiImageForRestorationMood(
+  mood?: RestorationTanukiMood | string
+): ImageSourcePropType {
+  if (mood === "thinking" || mood === "hint") {
+    return tanukiImageForMood("thinking");
+  }
+
+  if (mood === "happy" || mood === "excited" || mood === "celebration") {
+    return tanukiImageForMood("happy");
+  }
+
+  return tanukiImageForMood("guide");
 }
 
 export const TOWN_CHAPTERS = [

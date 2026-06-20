@@ -1,4 +1,5 @@
 import {
+  BONUS_TANUKI_SCENES,
   randomBonusTanukiScene,
   BonusTanukiScene,
 } from "@/data/generatedBonusTanukiScenes";
@@ -46,6 +47,10 @@ function continueRoute(next?: string, chapter?: string) {
     return "/chapter-map";
   }
 
+  if (next === "dev-tools") {
+    return "/dev-tools";
+  }
+
   if (chapter) {
     return `/play?mode=chapter&chapter=${chapter}`;
   }
@@ -57,6 +62,7 @@ export default function BonusTanukiScreen() {
   const params = useLocalSearchParams<{
     chapter?: string;
     next?: string;
+    scene?: string;
   }>();
 
   const [progress, setProgress] =
@@ -66,9 +72,18 @@ export default function BonusTanukiScreen() {
   const [found, setFound] = useState(false);
   const [rewardText, setRewardText] = useState("");
   const [claimedReward, setClaimedReward] = useState<BonusTanukiReward | null>(null);
-  const [scene] = useState(
-    () => randomBonusTanukiScene(String(params.chapter || "")) || FALLBACK_SCENE
-  );
+  const [scene] = useState(() => {
+    const requestedSceneId = String(params.scene || "");
+    const requestedScene = requestedSceneId
+      ? BONUS_TANUKI_SCENES.find((item) => item.id === requestedSceneId)
+      : undefined;
+
+    return (
+      requestedScene ||
+      randomBonusTanukiScene(String(params.chapter || "")) ||
+      FALLBACK_SCENE
+    );
+  });
 
   useEffect(() => {
     loadGameAudio();
